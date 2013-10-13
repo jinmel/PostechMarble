@@ -1,3 +1,4 @@
+### C++ ###
 # Compiled Object files
 *.slo
 *.lo
@@ -11,3 +12,28 @@
 *.lai
 *.la
 *.a
+
+### Qt ###
+# Qt-es
+CMakeLists.txt.user
+*.pro.user
+*.pro.user.*
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+Makefile
+*-build-*
+
+### Windows ###
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Mac crap
+.DS_Store
