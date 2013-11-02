@@ -1,4 +1,4 @@
-csed232Project
+CSED232 Course Project - Postech Marble
 ==============
 
 Tutorials
