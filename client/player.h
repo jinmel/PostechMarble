@@ -4,7 +4,7 @@ class Player
 {
 public:
     enum CharacterType {
-        LOL, GENIUS, HARD_WORKER, OUTSIDER, ALCOHOLIC
+        NONE, LOL, GENIUS, HARD_WORKER, OUTSIDER, ALCOHOLIC
     };
 
 private:

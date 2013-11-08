@@ -14,9 +14,23 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    player.cpp
+    player.cpp \
+    board.cpp \
+    dice.cpp \
+    localgame.cpp \
+    block.cpp \
+    eventblock.cpp \
+    subjectblock.cpp \
+    cornerblock.cpp
 
 HEADERS  += mainwindow.h \
-    player.h
+    player.h \
+    board.h \
+    dice.h \
+    localgame.h \
+    block.h \
+    eventblock.h \
+    subjectblock.h \
+    cornerblock.h
 
 FORMS    += mainwindow.ui
