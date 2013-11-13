@@ -46,5 +46,5 @@ int moveTo(int position)
 
 bool checkWinStatus()
 {
-	return true;
+	return false;
 }
