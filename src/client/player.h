@@ -14,7 +14,7 @@ private:
     bool    bankrupt;
     bool    mobile;
     CharcterType character_type;
-
+    // comment for test
 
 public:
     Player();
