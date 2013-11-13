@@ -1,10 +1,9 @@
-#ifndef BOARD_H
-#define BOARD_H
+#pragma once
 
 class Board
 {
+private:
+	Block* boards;
 public:
     Board();
 };
-
-#endif // BOARD_H
