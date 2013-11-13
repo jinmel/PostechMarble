@@ -14,17 +14,15 @@ private:
     bool    bankrupt;
     bool    mobile;
     CharcterType character_type;
-    // comment for test
 
 public:
     Player();
     ~Player();
 
-    int getPosition();
-    bool isMobile();
+    int getPosition() const;
+    bool isMobile() const;
 
-    void moveTo(int position);
     void setPosition(int position);
+    void moveTo(int position);
     bool checkWinStatus();
-
 };

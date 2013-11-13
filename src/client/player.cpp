@@ -1,7 +1,12 @@
 #include "player.h"
+#include <iostream>
+
+using namespace std;
+
 
 Player::Player()
 {
+	cout << "Player Created" << endl;
     energy = 0;
     position = 0;
     bankrupt = false;
@@ -12,23 +17,21 @@ Player::Player()
 
 Player::~Player()
 {
-
+	cout << "Player Destroyed" << endl;
 }
 
 
 // Accessor Methods
-int Player::getPosition()
+int Player::getPosition() const
 {
     return position;
 }
 
 
-bool isMobile()
+bool Player::isMobile() const
 {
     return mobile;
 }
-
-
 
 
 // Methods
@@ -38,13 +41,17 @@ void Player::setPosition(int position)
 }
 
 
-int moveTo(int position)
+void Player::moveTo(int position)
 {
+	setPosition(position);
 
+    // some character animations
+
+    return position;
 }
 
 
-bool checkWinStatus()
+bool Player::checkWinStatus()
 {
 	return false;
 }
