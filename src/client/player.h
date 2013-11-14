@@ -13,6 +13,7 @@ private:
     int     position;
     bool    bankrupt;
     bool    mobile;
+    int     panelty;
     CharcterType character_type;
 
 public:
@@ -25,4 +26,6 @@ public:
     void setPosition(int position);
     void moveTo(int position);
     bool checkWinStatus();
+    bool checkMouindo();
+    bool escapeMouindo();
 };

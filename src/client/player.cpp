@@ -55,3 +55,15 @@ bool Player::checkWinStatus()
 {
 	return false;
 }
+
+
+bool Player::checkMouindo()
+{
+    return false;
+}
+
+
+bool Player::escapeMouindo()
+{
+    return false;
+}
