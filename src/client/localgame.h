@@ -4,9 +4,11 @@
 class LocalGame
 {
 private:
-    Queue<Player> playerQueue;
-
+    PlayerCircularQueue * playerQueue;
+    Board * board;
 public:
-    LocalGame();
+    LocalGame(int num_players=2);
     ~LocalGame();
+    void play();
+    void printStats();
 };
