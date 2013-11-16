@@ -34,6 +34,12 @@ bool Player::isMobile() const
 }
 
 
+int Player::getEnergy() const
+{
+    return energy;
+}
+
+
 // Methods
 void Player::setPosition(int position)
 {
@@ -47,7 +53,6 @@ void Player::moveTo(int position)
 
     // some character animations
 
-    return position;
 }
 
 

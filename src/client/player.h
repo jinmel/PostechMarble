@@ -1,4 +1,8 @@
 #pragma once
+#include <list>
+#include <block.h>
+
+class Block;
 
 class Player
 {
@@ -8,13 +12,13 @@ public:
     };
 
 private:
-    int     location;
-    int     energy;
     int     position;
+    int     energy;
     bool    bankrupt;
     bool    mobile;
     int     panelty;
-    CharcterType character_type;
+    std::list<Block>   own_blocks;
+    CharacterType character_type;
 
 public:
     Player();
@@ -22,10 +26,16 @@ public:
 
     int getPosition() const;
     bool isMobile() const;
+    int getEnergy() const;
 
     void setPosition(int position);
     void moveTo(int position);
     bool checkWinStatus();
     bool checkMouindo();
     bool escapeMouindo();
+    bool hasBlock(Block block);
+    void buyBlock(Block block);
+    void sellBlock(Block block);
+
 };
+      
