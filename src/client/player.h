@@ -39,7 +39,7 @@ public:
     void moveTo(int position);//blocknumber가 position인 곳으로 이동하게 함
 							//block마다 그 위에 있는 플레이어를 playerpointer(포인터 어레이 등의 방법으로?)로 저장하게 한다면 블럭으로 move할 때해당 블럭에 플레이어 포인터를 넣어줄수있겟다!? 아닌가 반대로 해야되나 뿅
     bool checkWinStatus();
-    int checkMouindo();//해당 player가 무인도 안에 있으면서 지난 turn.. 0이면 자유 영혼
+    int getMouindo();//해당 player가 무인도 안에 있으면서 지난 turn.. 0이면 자유 영혼
     bool escapeMouindo();
     bool hasBlock(Block block);
     void buyBlock(Block block);

@@ -73,7 +73,7 @@ void CornerBlock::in61Call(Player* player){//원하는 블럭을 선택할 수 �
 }
 void CornerBlock::inBreakSemester(Player* player){//무인도
     
-	if(player->checkMouindo()==0)
+	if(player->getMouindo()==0)
 	{
 		cout<<"You have to break the 3 semesters in this block."<<endl;
 		player->setMouindo(1);
@@ -81,13 +81,14 @@ void CornerBlock::inBreakSemester(Player* player){//무인도
 	}
 
 	else{
+		/*if(player->getMouindo()==3)
 	
-	Dice* dice = Dice.getInst();
+	Dice.getInst();
 
 
 
-    dice->isDouble();
-
+    Dice.isDouble();
+	*/
 
 	}
 

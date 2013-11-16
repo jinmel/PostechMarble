@@ -77,10 +77,6 @@ bool Player::checkWinStatus()
 }
 
 
-int Player::checkMouindo()
-{
-    return checkmouindo;
-}
 void Player::setMouindo(int mouindonumber)
 {
 	checkmouindo = mouindonumber;
