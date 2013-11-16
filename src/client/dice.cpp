@@ -57,7 +57,7 @@ bool Dice::isDouble()
 	return (value1 == value2);
 }
 
-int Dice::getSum()
+int Dice::getValue()
 {
 	return value1 + value2;
 }

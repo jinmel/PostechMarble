@@ -12,11 +12,9 @@ public:
 	~Dice();
 	void roll();
 	bool isDouble();
-	int getSum();
+    int getValue();
 
 	// Static Methods
 	static Dice* getInst();
 	static void delInst();
 };
-
-
