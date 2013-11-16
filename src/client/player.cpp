@@ -1,25 +1,28 @@
 #include "player.h"
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-
 Player::Player()
 {
-	cout << "Player Created" << endl;
-    energy = 0;
     position = 0;
+    energy = 0;
     bankrupt = false;
     mobile = true;
+    panelty = 0;
+    own_blocks = new list<Block*>;
     character_type = NONE;
-	checkmouindo = 0;
-	checkwinstatus = false;
+
+    cout << "Player Created" << endl;
 }
 
 
 Player::~Player()
 {
-	cout << "Player Destroyed" << endl;
+    delete own_blocks;
+
+    cout << "Player Destroyed" << endl;
 }
 
 
@@ -27,6 +30,12 @@ Player::~Player()
 int Player::getPosition() const
 {
     return position;
+}
+
+
+bool Player::isBankrupt() const
+{
+    return bankrupt;
 }
 
 
@@ -41,14 +50,16 @@ int Player::getEnergy() const
     return energy;
 }
 
-CharacterType Player::getCharacter_Type()  const
+
+int Player::getPanelty() const
 {
-	return character_type;
+    return panelty;
 }
 
-int Player::getMouindo() const
+
+CharacterType Player::getCharactorType()  const
 {
-	return checkmouindo;
+	return character_type;
 }
 
 
@@ -57,33 +68,82 @@ void Player::setPosition(int position)
 {
     this->position = position;
 }
-void Player::setEnergy(int getenergy){
-	energy = getenergy;
+
+
+void Player::setEnergy(int energy){
+    this->energy = energy;
 }
 
-void Player::moveTo(int position)
+
+// set player to stay mouindo
+// parm: how long to stay in mouindo
+void Player::setMouindo(int panelty)
 {
-	setPosition(position);
+    this->panelty = panelty;
+    mobile = false;
+}
+
+
+// check player escaped or not
+bool Player::escapeMouindo()
+{
+    if(mobile)
+        return true;
+
+    else {
+
+        if(panelty == 0) {
+            mobile = true;
+            return true;
+        }
+
+        else {
+            // roll a dice
+            panelty--;
+            return false;
+
+        }
+    }
+}
+
+
+void Player::moveTo(int dice)
+{
+    setPosition(position + dice);
 
     // some character animations
-	//ÇØ´çÇÏ´Â ºí·°¿¡ player Æ÷ÀÎÅÍ¸¦ ÀúÀåÇÏ°Ô ÇØ¼­ÇöÀç ±× ºí·°À§¿¡ÀÖ´Â player¸¦ ³ªÅ¸³»´Â°Ç..?
+    // í•´ë‹¹í•˜ëŠ” ë¸”ëŸ­ì— player í¬ì¸í„°ë¥¼ ì €ì¥í•˜ê²Œ í•´ì„œí˜„ì¬ ê·¸ ë¸”ëŸ­ìœ„ì—ìˆëŠ” playerë¥¼ ë‚˜íƒ€ë‚´ëŠ”ê±´..?
 
+}
+
+
+bool Player::hasBlock(Block* block)
+{
+    own_blocks::iterator finder = own_blocks.end();
+    finder = find(own_blocks.begin(), own_blocks.end(), block);
+
+    // no matching
+    if(finder == own_blocks.end())
+        return false;
+    else
+        return true;
+}
+
+
+void Player::buyBlock(Block* block)
+{
+    own_blocks.push_back(block);
+}
+
+
+void Player::sellBlock(Block* block)
+{
+    own_blocks.remove(block);
 }
 
 
 bool Player::checkWinStatus()
 {
-	return checkwinstatus;
+    // some check method
+    return false;      // this is dummy
 }
-
-
-void Player::setMouindo(int mouindonumber)
-{
-	checkmouindo = mouindonumber;
-}
-
-bool Player::escapeMouindo()
-{
-    return false;
-}
-

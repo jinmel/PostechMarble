@@ -2,49 +2,47 @@
 #include <list>
 #include "block.h"
 
+// circular dependency
 class Block;
-enum CharacterType {
-		NONE, LOL, GENIUS, HARD_WORKER, OUTSIDER, ALCOHOLIC
-	};
 
 class Player
 {
 public:
-
-
+    enum CharacterType {
+            NONE, LOL, GENIUS, HARD_WORKER, OUTSIDER, ALCOHOLIC
+        };
 private:
     int     position;
     int     energy;
     bool    bankrupt;
-    bool    mobile;
-    int     panelty;
-	int		checkmouindo;
-	bool	checkwinstatus;
-    std::list<Block>   own_blocks;
+    bool    mobile;                    // is player movable? (Mouindo, Drink...)
+    int     panelty;                   // how long to be punished 
+    std::list<Block*> own_blocks;
     CharacterType character_type;
 
 public:
     Player();
     ~Player();
 
-    int getPosition() const;
+    int  getPosition() const;
+    bool isBankrupt() const;
     bool isMobile() const;
-    int getEnergy() const;
-	CharacterType getCharacter_Type() const;
-	int getMouindo() const;
+    int  getEnergy() const;
+    int  getPanelty() const;
+    CharacterType getCharacterType() const;
 
     void setPosition(int position);
-	void setEnergy(int getenergy);
-	void setMouindo(int mouindonumber);
-    void moveTo(int position);//blocknumber°¡ positionÀÎ °÷À¸·Î ÀÌµ¿ÇÏ°Ô ÇÔ
-							//block¸¶´Ù ±× À§¿¡ ÀÖ´Â ÇÃ·¹ÀÌ¾î¸¦ playerpointer(Æ÷ÀÎÅÍ ¾î·¹ÀÌ µîÀÇ ¹æ¹ıÀ¸·Î?)·Î ÀúÀåÇÏ°Ô ÇÑ´Ù¸é ºí·°À¸·Î moveÇÒ ¶§ÇØ´ç ºí·°¿¡ ÇÃ·¹ÀÌ¾î Æ÷ÀÎÅÍ¸¦ ³Ö¾îÁÙ¼öÀÖ°Ù´Ù!? ¾Æ´Ñ°¡ ¹İ´ë·Î ÇØ¾ßµÇ³ª »Ğ
-    bool checkWinStatus();
-    int getMouindo();//ÇØ´ç player°¡ ¹«ÀÎµµ ¾È¿¡ ÀÖÀ¸¸é¼­ Áö³­ turn.. 0ÀÌ¸é ÀÚÀ¯ ¿µÈ¥
+    void setEnergy(int getenergy);
+    void setMouindo(int panelty);
     bool escapeMouindo();
-    bool hasBlock(Block block);
-    void buyBlock(Block block);
-    void sellBlock(Block block);
+    void moveTo(int dice);         //blocknumberê°€ positionì¸ ê³³ìœ¼ë¡œ ì´ë™í•˜ê²Œ í•¨
+                                       //blockë§ˆë‹¤ ê·¸ ìœ„ì— ìˆëŠ” í”Œë ˆì´ì–´ë¥¼ playerpointer(í¬ì¸í„° ì–´ë ˆì´ ë“±ì˜ ë°©ë²•ìœ¼ë¡œ?)ë¡œ ì €ì¥í•˜ê²Œ í•œë‹¤ë©´ ë¸”ëŸ­ìœ¼ë¡œ moveí•  ë•Œí•´ë‹¹ ë¸”ëŸ­ì— í”Œë ˆì´ì–´ í¬ì¸í„°ë¥¼ ë„£ì–´ì¤„ìˆ˜ìˆê²Ÿë‹¤!? ì•„ë‹Œê°€ ë°˜ëŒ€ë¡œ í•´ì•¼ë˜ë‚˜ ë¿…
 
 
+    bool hasBlock(Block* block);
+    void buyBlock(Block* block);
+    void sellBlock(Block* block);
+
+    bool checkWinStatus();
 };
       
