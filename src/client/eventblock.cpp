@@ -1,3 +1,4 @@
+#include "player.h"
 #include "eventblock.h"
 #include <iostream>
 

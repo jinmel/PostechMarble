@@ -8,9 +8,10 @@ class SubjectBlock : public Block
 {
 
 private:
-    Department department;
-    String subject_name;
-    //Player owner;
+    Department	department;
+    String		subject_name;
+    Player*		owner;
+
     int grade;
     int cost;
 
