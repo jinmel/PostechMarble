@@ -9,7 +9,7 @@ class SubjectBlock : public Block
 
 private:
     Department	department;
-    String		subject_name;
+    String		subject_name;//æÍ∞° string¿Ã ø÷ æ»¥Ô?;;;;
     Player*		owner;
 
     int grade;
