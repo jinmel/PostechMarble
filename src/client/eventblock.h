@@ -1,5 +1,4 @@
-#ifndef EVENTBLOCK_H
-#define EVENTBLOCK_H
+#pragma once
 
 class EventBlock : public Block
 {
@@ -15,5 +14,3 @@ public:
 	void eatChicken(Player* player);
 	void clubActivity(Player* player);
 };
-
-#endif // EVENTBLOCK_H
