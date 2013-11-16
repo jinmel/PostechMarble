@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     block.cpp \
     eventblock.cpp \
     subjectblock.cpp \
-    cornerblock.cpp
+    cornerblock.cpp \
+    playerqueue.cpp
 
 HEADERS  += mainwindow.h \
     player.h \
@@ -31,6 +32,7 @@ HEADERS  += mainwindow.h \
     block.h \
     eventblock.h \
     subjectblock.h \
-    cornerblock.h
+    cornerblock.h \
+    playerqueue.h
 
 FORMS    += mainwindow.ui
