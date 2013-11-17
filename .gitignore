@@ -24,6 +24,11 @@ ui_*.h
 Makefile
 *-build-*
 
+# Qt-creator
+debug
+release
+client/build
+
 ### Windows ###
 # Windows image file caches
 Thumbs.db

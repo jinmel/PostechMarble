@@ -1,5 +1,4 @@
 #include "localgame.h"
-#include "circularqueue.h"
 #include "dice.h"
 #include "board.h"
 #include <iostream>
@@ -10,7 +9,7 @@ LocalGame::LocalGame(int num_players)
 {
     playerQueue = new PlayerCircularQueue();
     for (int i = 0; i < num_players; i ++)
-        playerQueue.push(new Player);
+        playerQueue->push(new Player);
     
     board = new Board();
 }
@@ -23,14 +22,14 @@ LocalGame::~LocalGame()
 void LocalGame::play(){
     Player * currentPlayer = playerQueue->next();
     do {
-        dice.roll();
-        currentPlayer->moveTo(dice.getValue() % board->getLength());
-        Block * curBlock = board->getBlock(dice.getValue());
+        Dice::getInst()->roll();
+        currentPlayer->moveTo(Dice::getInst()->getValue() % board->getLength());
+        Block * curBlock = board->getBlock(Dice::getInst()->getValue());
         curBlock->enter(currentPlayer);
         if(currentPlayer->checkWinStatus()) {
             break;
         } 
-        if (!dice.isDouble())
+        if (!Dice::getInst()->isDouble())
             currentPlayer = playerQueue->next();
     } while(1); // fix this inf. loop
 }

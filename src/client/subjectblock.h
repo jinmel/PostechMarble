@@ -1,24 +1,25 @@
-#ifndef SUBJECTBLOCK_H
-#define SUBJECTBLOCK_H
-
-enum Department {CSE, ME, MATH, EECE, PHYS. BIOLOTY, CHEM, MSE};
-
+#pragma once
+#include <string>
+#include "player.h"
 
 class SubjectBlock : public Block
 {
+public:
+    enum Department {
+        CSE, ME, MATH, EECE, PHYS, BIOLOTY, CHEM, MSE
+    };
 
 private:
-    Department department;
-    String subject_name;
-    //Player owner;
+    Department      department;
+    std::string     subject_name;
+    Player*         owner;
+
     int grade;
     int cost;
 
 public:
-    SubjectBlock(){}//constructor
-    void enter();
-
+    SubjectBlock();//constructor
+    virtual ~SubjectBlock();
+    virtual void enter();
 
 };
-
-#endif // SUBJECTBLOCK_H

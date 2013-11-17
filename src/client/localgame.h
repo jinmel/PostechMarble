@@ -1,5 +1,5 @@
 #pragma once
-#include <queue>
+#include "playerqueue.h"
 
 class LocalGame
 {
