@@ -6,6 +6,8 @@ public:
     EventBlock();
 	~EventBlock();
 
+	void checkEvent(Player* player); 
+
 	void drink(Player* player);
 	void cc(Player* player);
 	void takeSubject(Player* player);
