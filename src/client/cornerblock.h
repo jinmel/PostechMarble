@@ -1,6 +1,6 @@
 #pragma once
+#include "player.h"
 
-using namespace std;
 
 class CornerBlock : public Block
 {
