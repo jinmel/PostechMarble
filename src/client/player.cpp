@@ -11,7 +11,7 @@ Player::Player()
     bankrupt = false;
     mobile = true;
     panelty = 0;
-    own_blocks = new list<Block*>;
+    //own_blocks = new list<Block*>;
     character_type = NONE;
 
     cout << "Player Created" << endl;
@@ -20,7 +20,7 @@ Player::Player()
 
 Player::~Player()
 {
-    delete own_blocks;
+   //delete own_blocks;
 
     cout << "Player Destroyed" << endl;
 }
@@ -57,7 +57,7 @@ int Player::getPanelty() const
 }
 
 
-CharacterType Player::getCharactorType()  const
+Player::CharacterType Player::getCharacterType() const
 {
 	return character_type;
 }
@@ -119,7 +119,7 @@ void Player::moveTo(int dice)
 
 bool Player::hasBlock(Block* block)
 {
-    own_blocks::iterator finder = own_blocks.end();
+    list<Block*>::iterator finder = own_blocks.end();
     finder = find(own_blocks.begin(), own_blocks.end(), block);
 
     // no matching

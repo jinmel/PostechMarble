@@ -1,6 +1,5 @@
 #pragma once
-
-#include <player.h>
+#include "playerqueue.h"
 
 PlayerCircularQueue::PlayerCircularQueue() {
     
@@ -8,17 +7,17 @@ PlayerCircularQueue::PlayerCircularQueue() {
 
 PlayerCircularQueue::~PlayerCircularQueue(){
     for(int i = 0; i < size ; i ++ ){
-        Player * p = queue.pop();
+        Player * p = playerQueue->pop();
         delete p;
     }
 }
 
 void PlayerCircularQueue::push(Player * p){
-    queue.push(p);
+    playerQueue->push(p);
 }
 
 Player * PlayerCircularQueue::next(){
     Player * ret = queue.pop();
-    queue.push(ret);
+    playerQueue->push(ret);
     return ret;
 }

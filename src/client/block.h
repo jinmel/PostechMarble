@@ -15,11 +15,10 @@ public:
         BREAKSEMESTER,
         PLURALMAJOR
     };
-	int blocknumber;//blocknumber È¤Àº boardÀÇ ¾î·¹ÀÌ ¹øÈ£·Î °¢ ºí·° ¹øÈ£¸¦ °ü¸®ÇÒ ¼ö ÀÖÀ¸¸é ÁÁ°Ú´Ù.. ¾Æ´Ï¸é ÀÌ°É ¿øÇ¥°¡ ÇÏ°íÀÖ³ª!?
-					//0¹ø =dormitory~
+	int blocknumber;//blocknumber í˜¹ì€ boardì˜ ì–´ë ˆì´ ë²ˆí˜¸ë¡œ ê° ë¸”ëŸ­ ë²ˆí˜¸ë¥¼ ê´€ë¦¬í•  ìˆ˜ ìˆìœ¼ë©´ ì¢‹ê² ë‹¤.. ì•„ë‹ˆë©´ ì´ê±¸ ì›í‘œê°€ í•˜ê³ ìˆë‚˜!?
+                    //0ë²ˆ =dormitory~
 
 public:
-
 
     Block();
     virtual ~Block();

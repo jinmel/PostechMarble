@@ -76,6 +76,9 @@ void CornerBlock::in61Call(Player* player) {        //원하는 블럭을 선택
 }
 void CornerBlock::inBreakSemester(Player* player) {     //무인도
     /*
+     * Please Check this part
+     * method name has been changed in player class
+     *
     if(player->getPanelty()==0)
     {
         cout<<"You have to break the 3 semesters in this block."<<endl;
@@ -91,9 +94,10 @@ void CornerBlock::inBreakSemester(Player* player) {     //무인도
 
 
     Dice.isDouble();
-    */
+
 
     }
+    */
 
 
     

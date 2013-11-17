@@ -9,7 +9,7 @@ LocalGame::LocalGame(int num_players)
 {
     playerQueue = new PlayerCircularQueue();
     for (int i = 0; i < num_players; i ++)
-        playerQueue.push(new Player);
+        playerQueue->push(new Player);
     
     board = new Board();
 }
