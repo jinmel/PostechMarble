@@ -11,6 +11,7 @@ Player::Player()
     bankrupt = false;
     mobile = true;
     panelty = 0;
+    plural_major = false;
     //own_blocks = new list<Block*>;
     character_type = NONE;
 
@@ -56,6 +57,11 @@ int Player::getPanelty() const
     return panelty;
 }
 
+bool Player::isPlural() const
+{
+    return plural;
+}
+
 
 Player::CharacterType Player::getCharacterType() const
 {
@@ -70,8 +76,15 @@ void Player::setPosition(int position)
 }
 
 
-void Player::setEnergy(int energy){
+void Player::setEnergy(int energy)
+{
     this->energy = energy;
+}
+
+
+void Player::setPlural(bool plural)
+{
+    this->plural = plural;
 }
 
 

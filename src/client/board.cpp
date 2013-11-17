@@ -12,8 +12,8 @@ Board::Board()
 	boards[0] = new CornerBlock;
 
 	boards[1] = new SubjectBlock;
-	boards[2] = new SUbjectBlock;
-	boards[3] = new SUbjectBlock;
+	boards[2] = new SubjectBlock;
+	boards[3] = new SubjectBlock;
 
 
 	boards[4] = new SubjectBlock;
