@@ -17,6 +17,7 @@ private:
     bool    bankrupt;
     bool    mobile;                    // is player movable? (Mouindo, Drink...)
     int     panelty;                   // how long to be punished 
+    bool    plural;              //
     std::list<Block*> own_blocks;
     CharacterType character_type;
 
