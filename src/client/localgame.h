@@ -1,5 +1,6 @@
 #pragma once
 #include "playerqueue.h"
+#include "gamerecord.h"
 
 class LocalGame
 {
@@ -10,5 +11,6 @@ public:
     LocalGame(int num_players=2);
     ~LocalGame();
     void play();
+    bool load(Gamerecord * game);
     void printStats();
 };
