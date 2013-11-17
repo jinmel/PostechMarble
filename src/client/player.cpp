@@ -11,7 +11,7 @@ Player::Player()
     bankrupt = false;
     mobile = true;
     panelty = 0;
-    plural_major = false;
+    plural = false;
     //own_blocks = new list<Block*>;
     character_type = NONE;
 
@@ -145,13 +145,47 @@ bool Player::hasBlock(Block* block)
 
 void Player::buyBlock(Block* block)
 {
-    own_blocks.push_back(block);
+    if(!hasBlock(block))
+        cout << "You already have that block. Check Again!" << endl;
+
+    else {
+        own_blocks.push_back(block);
+        //energy -= block->getValue();
+    }
 }
 
 
 void Player::sellBlock(Block* block)
 {
-    own_blocks.remove(block);
+    if(!hasBlock(block))
+        cout << "You don't have that block. Check Again!" << endl;
+
+    else {
+        own_blocks.remove(block);
+        //energy += block->getValue();
+    }
+}
+
+
+void Player::takeBlock(Block *block)
+{
+    if(!hasBlock(block))
+        cout << "You don't have that block. Check Again!" << endl;
+
+    else {
+        own_blocks.push_back(block);
+    }
+}
+
+
+void Player::loseBlock(Block *block)
+{
+    if(!hasBlock(block))
+        cout << "You don't have that block. Check Again!" << endl;
+
+    else {
+        own_blocks.remove(block);
+    }
 }
 
 

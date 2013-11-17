@@ -30,10 +30,12 @@ public:
     bool isMobile() const;
     int  getEnergy() const;
     int  getPanelty() const;
+    bool isPlural() const;
     CharacterType getCharacterType() const;
 
     void setPosition(int position);
     void setEnergy(int getenergy);
+    void setPlural(bool plural);
     void setMouindo(int panelty);
     bool escapeMouindo();
     void moveTo(int dice);         //blocknumber가 position인 곳으로 이동하게 함
@@ -43,6 +45,8 @@ public:
     bool hasBlock(Block* block);
     void buyBlock(Block* block);
     void sellBlock(Block* block);
+    void takeBlock(Block* block);
+    void loseBlock(Block* block);
 
     bool checkWinStatus();
 };
