@@ -18,7 +18,7 @@ private:
     int cost;
 
 public:
-    SubjectBlock();//constructor
+    SubjectBlock(int subject):Department(subject){];//constructor
     virtual ~SubjectBlock();
     virtual void enter();
 

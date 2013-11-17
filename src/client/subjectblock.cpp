@@ -1,6 +1,7 @@
 #include "subjectblock.h"
 #include "block.h"
 
-SubjectBlock::SubjectBlock()
+SubjectBlock::SubjectBlock(int subject)
 {
+
 }

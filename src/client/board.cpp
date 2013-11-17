@@ -7,13 +7,17 @@
 Board::Board()
 {
     boards = new Block*[36];
+
+
 	boards[0] = new CornerBlock;
+
 	boards[1] = new SubjectBlock;
-	boards[2] = new SUbjectBlock;
-	boards[3] = new SUbjectBlock;
-	
+	boards[2] = new SubjectBlock;
+	boards[3] = new SubjectBlock;
+
+
 	boards[4] = new SubjectBlock;
-	?
+	// 관광지
 	boards[6] = new SubjectBlock;
 	boards[7] = new SubjectBlock;
 
@@ -31,8 +35,7 @@ Board::Board()
 	boards[15] = new SubjectBlock;
 	boards[16] = new SubjectBlock;
 	
-	?
-
+	// 관광지
 	boards[18] = new CornerBlock;
 	
 	boards[19] = new SubjectBlock;
@@ -45,11 +48,11 @@ Board::Board()
 	boards[24] = new SubjectBlock;
 	boards[25] = new SubjectBlock;
 	
-	?
+	// 관광지
 
 	boards[27] = new CornerBlock;
 	
-	?
+	// 관광지
 
 	boards[29] = new SubjectBlock;
 	boards[30] = new SubjectBlock;
