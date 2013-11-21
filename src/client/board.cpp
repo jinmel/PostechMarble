@@ -2,6 +2,7 @@
 #include "eventblock.h"
 #include "subjectblock.h"
 #include "cornerblock.h"
+#include "FireFridayBlock.h"
 
 
 Board::Board()
@@ -17,7 +18,10 @@ Board::Board()
 
 
 	boards[4] = new SubjectBlock;
-	// 관광지
+
+    boards[5] = new FireFridayBlock;
+
+
 	boards[6] = new SubjectBlock;
 	boards[7] = new SubjectBlock;
 
@@ -35,7 +39,8 @@ Board::Board()
 	boards[15] = new SubjectBlock;
 	boards[16] = new SubjectBlock;
 	
-	// 관광지
+    boards[17] = new FireFridayBlock;
+
 	boards[18] = new CornerBlock;
 	
 	boards[19] = new SubjectBlock;
@@ -48,11 +53,11 @@ Board::Board()
 	boards[24] = new SubjectBlock;
 	boards[25] = new SubjectBlock;
 	
-	// 관광지
+    boards[26] = new FireFridayBlock;
 
 	boards[27] = new CornerBlock;
 	
-	// 관광지
+    boards[28] = new FireFridayBlock;
 
 	boards[29] = new SubjectBlock;
 	boards[30] = new SubjectBlock;

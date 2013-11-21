@@ -17,14 +17,14 @@ FireFridayBlock::~FireFridayBlock()
 
 void FireFridayBlock::inFireFridayBlock(Player *player)
 {
-    switch(player->getPosition())
-   {    case 5: inTWODARI(player);
+    switch(theBlockType)
+   {    case TWODARI: inTWODARI(player);
             break;
-        case 17: inSEOULJONGBIN(player);
+        case SEOULJONGBIN: inSEOULJONGBIN(player);
             break;
-        case 26: inTONGZIP(player);
+        case TONGZIP: inTONGZIP(player);
             break;
-        case 28: inCHAMPYO(player);
+        case CHAMPYO: inCHAMPYO(player);
             break;
     }
 
