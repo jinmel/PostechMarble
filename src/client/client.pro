@@ -36,3 +36,6 @@ HEADERS  += mainwindow.h \
     playerqueue.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    resources.qrc

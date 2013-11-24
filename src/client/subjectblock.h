@@ -20,8 +20,8 @@ private:
     int cost;
 
 public:
-    SubjectBlock(int subject);//constructor
+    SubjectBlock(int position);
     virtual ~SubjectBlock();
-    virtual void enter();
 
+    virtual void enter(Player* player);
 };

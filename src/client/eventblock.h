@@ -1,10 +1,13 @@
 #pragma once
+#include "player.h"
 
 class EventBlock : public Block
 {
 public:
-    EventBlock();
-	~EventBlock();
+    EventBlock(int position);
+    virtual ~EventBlock();
+
+    virtual void enter(Player* player);
 
 	void checkEvent(Player* player); 
 

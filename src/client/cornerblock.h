@@ -13,8 +13,10 @@ private:
     CornerType theBlockType;
 
 public:
-    CornerBlock();
-    ~CornerBlock();
+    CornerBlock(int position);
+    virtual ~CornerBlock();
+
+    virtual void enter(Player* player);
     void inCornerBlock(Player* player);//in Cornerblock, execute this function
                         //This function : type check and call correct function
     void inDormitory(Player* player);

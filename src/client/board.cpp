@@ -1,75 +1,97 @@
+#include <iostream>
 #include "board.h"
 #include "eventblock.h"
 #include "subjectblock.h"
 #include "cornerblock.h"
 
+using namespace std;
 
+// Constructor & Destructor
 Board::Board()
 {
-    boards = new Block*[36];
+    blocks = new Block*[36];
 
 
-	boards[0] = new CornerBlock;
+	blocks[0] = new CornerBlock(0);
 
-	boards[1] = new SubjectBlock;
-	boards[2] = new SubjectBlock;
-	boards[3] = new SubjectBlock;
+	blocks[1] = new SubjectBlock(1);
+	blocks[2] = new SubjectBlock(2);
+	blocks[3] = new SubjectBlock(3);
 
 
-	boards[4] = new SubjectBlock;
+	blocks[4] = new SubjectBlock(4);
 	// 관광지
-	boards[6] = new SubjectBlock;
-	boards[7] = new SubjectBlock;
+	blocks[6] = new SubjectBlock(5);
+	blocks[7] = new SubjectBlock(6);
 
-	boards[8] = new EventBlock;
+	blocks[8] = new EventBlock(7);
 	
-	boards[9] = new CornerBlock;
+	blocks[9] = new CornerBlock(8);
 
-	boards[10] = new SubjectBlock;
-	boards[11] = new SubjectBlock;
-	boards[12] = new SubjectBlock;
+	blocks[10] = new SubjectBlock(0);
+	blocks[11] = new SubjectBlock(0);
+	blocks[12] = new SubjectBlock(0);
 
-	boards[13] = new EventBlock;
+	blocks[13] = new EventBlock(0);
 	
-	boards[14] = new SubjectBlock;
-	boards[15] = new SubjectBlock;
-	boards[16] = new SubjectBlock;
-	
-	// 관광지
-	boards[18] = new CornerBlock;
-	
-	boards[19] = new SubjectBlock;
-	boards[20] = new SubjectBlock;
-	boards[21] = new SubjectBlock;
-
-	boards[22] = new EventBlock;
-
-	boards[23] = new SubjectBlock;
-	boards[24] = new SubjectBlock;
-	boards[25] = new SubjectBlock;
+	blocks[14] = new SubjectBlock(0);
+	blocks[15] = new SubjectBlock(0);
+	blocks[16] = new SubjectBlock(0);
 	
 	// 관광지
+	blocks[18] = new CornerBlock(0);
+	
+	blocks[19] = new SubjectBlock(0);
+	blocks[20] = new SubjectBlock(0);
+	blocks[21] = new SubjectBlock(0);
 
-	boards[27] = new CornerBlock;
+	blocks[22] = new EventBlock(0);
+
+	blocks[23] = new SubjectBlock(0);
+	blocks[24] = new SubjectBlock(0);
+	blocks[25] = new SubjectBlock(0);
 	
 	// 관광지
 
-	boards[29] = new SubjectBlock;
-	boards[30] = new SubjectBlock;
-	boards[31] = new SubjectBlock;
+	blocks[27] = new CornerBlock(0);
 	
-	boards[32] = new EventBlock;
+	// 관광지
 
-	boards[33] = new SubjectBlock;
-	boards[34] = new SubjectBlock;
-	boards[35] = new SubjectBlock;
+	blocks[29] = new SubjectBlock(0);
+	blocks[30] = new SubjectBlock(0);
+	blocks[31] = new SubjectBlock(0);
 	
+	blocks[32] = new EventBlock(0);
 
+	blocks[33] = new SubjectBlock(0);
+	blocks[34] = new SubjectBlock(0);
+	blocks[35] = new SubjectBlock(0);
+
+    cout << "Board Created" << endl;
+}
+
+
+Board::~Board()
+{
+    delete[] blocks;
+}
+
+
+// Methods
+int Board::getLength() const
+{
+    return length;
+}
+
+
+Block* Board::getBlock(int position) const
+{
+    return blocks[position];
 }
 
 
 void Board::enter(Player* player)
 {
-	int position = player->getPosition();
-    boards[position]->enter(player);
+    blocks[player->getPosition()]->enter(player);
 }
+

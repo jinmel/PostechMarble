@@ -9,11 +9,13 @@ class Player;
 class Board
 {
 private:
-    Block** boards;
+    Block** blocks;
+    int length;
+
 public:
     Board();
-    virtual ~Board();
-    virtual void enter(Player* player);
+    ~Board();
+    void enter(Player* player);
 
     int getLength() const;
     Block* getBlock(int position) const;

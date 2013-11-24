@@ -1,23 +1,27 @@
 #pragma once
 #include "playerqueue.h"
 
-PlayerCircularQueue::PlayerCircularQueue() {
-    
+// Constructor & Destructor
+PlayerQueue::PlayerQueue()
+{
+    playerQueue = new std::queue<Player*>();
+    size = 0;
 }
 
-PlayerCircularQueue::~PlayerCircularQueue(){
-    for(int i = 0; i < size ; i ++ ){
-        Player * p = playerQueue->pop();
-        delete p;
-    }
+PlayerQueue::~PlayerQueue()
+{
+    delete[] playerQueue;
 }
 
-void PlayerCircularQueue::push(Player * p){
+
+// Methods
+void PlayerQueue::push(Player * p){
     playerQueue->push(p);
 }
 
-Player * PlayerCircularQueue::next(){
-    Player * ret = queue.pop();
+Player * PlayerQueue::next(){
+    Player * ret = playerQueue->front();
+    playerQueue->pop();
     playerQueue->push(ret);
     return ret;
 }

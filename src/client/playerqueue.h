@@ -1,14 +1,15 @@
 #pragma once
-
 #include <queue>
 #include <player.h>
 
-class PlayerCircularQueue {
+class PlayerQueue {
 private:
     std::queue<Player*> * playerQueue;
+    int size;
+
 public:
-    PlayerCircularQueue();
-    ~PlayerCircularQueue();
+    PlayerQueue();
+    ~PlayerQueue();
     void push(Player * p);
     Player* next(void);
     
