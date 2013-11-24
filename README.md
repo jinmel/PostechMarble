@@ -8,11 +8,14 @@ CSED232 Course Project - Postech Marble
 Tutorials
 ----------------------------
  * Git Tutorial Game: http://try.github.io/levels/1/challenges/1
+ * QGraphicsView Framework : http://qt-project.org/doc/qt-4.8/graphicsview.html
 
 
 Environment Setup
 -----------------------------
  * Qt 5.1
+
+
 
 
 Coding Standard 
