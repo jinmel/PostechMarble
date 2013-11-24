@@ -10,7 +10,7 @@ public:
     };
 
 private:
-    CornerType theBlockType;
+    CornerType block_type;
 
 public:
     CornerBlock(int position);
