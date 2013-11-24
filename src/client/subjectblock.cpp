@@ -1,7 +1,20 @@
 #include "subjectblock.h"
 #include "block.h"
 
-SubjectBlock::SubjectBlock(int subject)
+
+// Constructor & Destructor
+SubjectBlock::SubjectBlock()
+{
+}
+
+
+SubjectBlock::~SubjectBlock()
+{
+}
+
+
+// Methods
+void SubjectBlock::enter(Player* player)
 {
 
 }

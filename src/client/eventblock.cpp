@@ -1,87 +1,97 @@
-#include "player.h"
 #include "eventblock.h"
 #include <ctime>
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
+// Constructor & Destructor
 EventBlock::EventBlock()
 {
 }
+
 
 EventBlock::~EventBlock()
 {
 }
 
+
+// Methods
+void EventBlock::enter(Player* player)
+{
+
+}
+
+
 void EventBlock::checkEvent(Player* player)
 {
-	// ÀÌº¥Æ® ºí·°À» ¹âÀ»½Ã ½ÇÇàÇÏ¿© ·£´ýÇÑ ÀÌº¥Æ® ¹ß»ý
-	srand((unsigned)time(NULL));
-	int value = rand() % 7;
-	switch(value) {
-	case 0:
-		drink(player);
-		break;
-	case 1:
-		cc(player);
-		break;
-	case 2:
-		takeSubject(player);
-		break;
-	case 3:
-		loseSubject(player);
-		break;
-	case 4:
-		lol(player);
-		break;
-	case 5:
-		eatChicken(player);
-		break;
-	case 6:
-		clubActivity(player);
-		break;
-	}
+    // ì´ë²¤íŠ¸ ë¸”ëŸ­ì„ ë°Ÿì„ì‹œ ì‹¤í–‰í•˜ì—¬ ëžœë¤í•œ ì´ë²¤íŠ¸ ë°œìƒ
+    srand((unsigned)time(NULL));
+    int value = rand() % 7;
+    switch(value) {
+    case 0:
+        drink(player);
+        break;
+    case 1:
+        cc(player);
+        break;
+    case 2:
+        takeSubject(player);
+        break;
+    case 3:
+        loseSubject(player);
+        break;
+    case 4:
+        lol(player);
+        break;
+    case 5:
+        eatChicken(player);
+        break;
+    case 6:
+        clubActivity(player);
+        break;
+    }
 }
 
 void EventBlock::drink(Player* player)
 {
-	// À½ÁÖ·Î ÀÎÇÑ Çàµ¿·Â °¨¼Ò
-	player.setEnergy(player.getEnergy() - 100);
+    // ìŒì£¼ë¡œ ì¸í•œ í–‰ë™ë ¥ ê°ì†Œ
+    player->setEnergy(player->getEnergy() - 100);
 }
 
 void EventBlock::cc(Player* player)
 {
-	// Ä¿ÇÃ È°µ¿À¸·Î ÀÎÇÑ Çàµ¿·Â °¨¼Ò ( ¾Æ´Ï¸é ÀÏÁ¤ È®·ü·Î ¿À¸£°Ô? )
-	player.setEnergy(player.getEnergy() - 100);
+    // ì»¤í”Œ í™œë™ìœ¼ë¡œ ì¸í•œ í–‰ë™ë ¥ ê°ì†Œ ( ì•„ë‹ˆë©´ ì¼ì • í™•ë¥ ë¡œ ì˜¤ë¥´ê²Œ? )
+    player->setEnergy(player->getEnergy() - 100);
 }
 
 void EventBlock::takeSubject(Player* player)
 {
-	// ÇÃ·¹ÀÌ¾î°¡ °ú¸ñÀ» ÇÏ³ª ¼±ÅÃÇÑ ÈÄ buyBlockÀ» ½ÇÇàÇÑ´Ù.
-	// player.buyBlock();
+    // í”Œë ˆì´ì–´ê°€ ê³¼ëª©ì„ í•˜ë‚˜ ì„ íƒí•œ í›„ buyBlockì„ ì‹¤í–‰í•œë‹¤
+    //player->buyBlock();
 }
 
 void EventBlock::loseSubject(Player* player)
 {
-	// ÇÃ·¹ÀÌ¾î°¡ °ú¸ñ ÇÏ³ª¸¦ ÀÒ´Â´Ù. (·£´ý or ¼±ÅÃ)
-	// player.sellBlock();
+    // í”Œë ˆì´ì–´ê°€ ê³¼ëª© í•˜ë‚˜ë¥¼ ìžƒëŠ”ë‹¤. (ëžœë¤ or ì„ íƒ)
+    //player->sellBlock();
 }
 
 void EventBlock::lol(Player* player)
 {
-	// ·Ñ ³Ê¹« ¸¹ÀÌÇØ¼­ Çàµ¿·Â ´ëÆø °¨¼Ò
-	player.setEnergy(player.getEnergy() - 100);
+    // ë¡¤ ë„ˆë¬´ ë§Žì´í•´ì„œ í–‰ë™ë ¥ ëŒ€í­ ê°ì†Œ
+    player->setEnergy(player->getEnergy() - 100);
 }
 
 void EventBlock::eatChicken(Player* player)
 {
-	// Ä¡´À´ÔÀ» ¿µÁ¢ÇÏ¿© Çàµ¿·Â Áõ°¡
-	player.setEnergy(player.getEnergy() + 100);
+    // ì¹˜ëŠë‹˜ì„ ì˜ì ‘í•˜ì—¬ í–‰ë™ë ¥ ì¦ê°€
+    player->setEnergy(player->getEnergy() + 100);
 
 }
 
 void EventBlock::clubActivity(Player* player)
 {
-	// µ¿¾Æ¸® È°µ¿À¸·Î °øºÎÇÒ ½Ã°£ÀÌ ¾ø´Ù..
-	player.setEnergy(player.getEnergy() - 100);
+    // ë™ì•„ë¦¬ í™œë™ìœ¼ë¡œ ê³µë¶€í•  ì‹œê°„ì´ ì—†ë‹¤.
+    player->setEnergy(player->getEnergy() - 100);
 }

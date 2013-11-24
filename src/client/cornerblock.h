@@ -1,6 +1,6 @@
 #pragma once
+#include "player.h"
 
-using namespace std;
 
 class CornerBlock : public Block
 {
@@ -10,11 +10,13 @@ public:
     };
 
 private:
-    CornerType theBlockType;
+    CornerType block_type;
 
 public:
     CornerBlock();
-    ~CornerBlock();
+    virtual ~CornerBlock();
+
+    virtual void enter(Player* player);
     void inCornerBlock(Player* player);//in Cornerblock, execute this function
                         //This function : type check and call correct function
     void inDormitory(Player* player);

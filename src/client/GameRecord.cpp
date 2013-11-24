@@ -54,8 +54,3 @@ bool GameRecord::load(){
     return true;
   }
 }
-
-
-
-
-

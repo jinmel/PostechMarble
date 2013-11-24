@@ -2,6 +2,8 @@
 #include <string>
 #include "player.h"
 
+class Player;
+
 class SubjectBlock : public Block
 {
 public:
@@ -18,8 +20,8 @@ private:
     int cost;
 
 public:
-    SubjectBlock(int subject):Department(subject){];//constructor
+    SubjectBlock();
     virtual ~SubjectBlock();
-    virtual void enter();
 
+    virtual void enter(Player* player);
 };

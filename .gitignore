@@ -44,5 +44,10 @@ $RECYCLE.BIN/
 .DS_Store
 
 # Emacs crap
-
 *~
+
+# Tags
+
+GPATH
+GRTAGS
+GTAGS

@@ -4,6 +4,7 @@
 #include "player.h"
 #include "dice.h"
 
+using namespace std;
 
 CornerBlock::CornerBlock()
 {
@@ -14,8 +15,16 @@ CornerBlock::~CornerBlock()
 {
 }
 
+
+// Methods
+void CornerBlock::enter(Player* player)
+{
+
+}
+
+
 void CornerBlock::inCornerBlock(Player* player){
-    switch(theBlockType)
+    switch(block_type)
     {
         case DORMITORY : inDormitory(player);
             break;

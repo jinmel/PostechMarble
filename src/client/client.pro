@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     eventblock.cpp \
     subjectblock.cpp \
     cornerblock.cpp \
-    playerqueue.cpp
+    playerqueue.cpp \
+    firefridayblock.cpp
 
 HEADERS  += mainwindow.h \
     player.h \
@@ -33,6 +34,10 @@ HEADERS  += mainwindow.h \
     eventblock.h \
     subjectblock.h \
     cornerblock.h \
-    playerqueue.h
+    playerqueue.h \
+    firefridayblock.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    resources.qrc
