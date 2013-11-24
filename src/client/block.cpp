@@ -11,3 +11,10 @@ Block::Block()
 Block::~Block()
 {
 }
+
+
+// Methods
+void Block::setPosition(int position)
+{
+    this->position = position;
+}

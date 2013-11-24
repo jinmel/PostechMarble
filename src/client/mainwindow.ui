@@ -46,6 +46,9 @@
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
    </widget>
   </widget>
  </widget>

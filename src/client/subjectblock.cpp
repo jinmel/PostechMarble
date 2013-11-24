@@ -3,9 +3,8 @@
 
 
 // Constructor & Destructor
-SubjectBlock::SubjectBlock(int position)
+SubjectBlock::SubjectBlock()
 {
-    this->position = position;
 }
 
 

@@ -20,7 +20,7 @@ private:
     int cost;
 
 public:
-    SubjectBlock(int position);
+    SubjectBlock();
     virtual ~SubjectBlock();
 
     virtual void enter(Player* player);

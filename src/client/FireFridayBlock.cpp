@@ -15,7 +15,7 @@ FireFridayBlock::~FireFridayBlock()
 
 }
 
-void FireFridayBlock::inFireFridayBlock(Player *player)
+void FireFridayBlock::enter(Player *player)
 {
     switch(block_type)
    {    case TWODARI: inTWODARI(player);

@@ -6,9 +6,8 @@
 
 using namespace std;
 
-CornerBlock::CornerBlock(int position)
+CornerBlock::CornerBlock()
 {
-    this->position = position;
 }
 
 

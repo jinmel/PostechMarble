@@ -20,6 +20,8 @@ public:
 public:
     Block();
     virtual ~Block();
+
+    void setPosition(int position);
     virtual void enter(Player* player) = 0;
 };
 

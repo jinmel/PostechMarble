@@ -13,7 +13,7 @@ private:
     CornerType block_type;
 
 public:
-    CornerBlock(int position);
+    CornerBlock();
     virtual ~CornerBlock();
 
     virtual void enter(Player* player);

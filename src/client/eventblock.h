@@ -4,7 +4,7 @@
 class EventBlock : public Block
 {
 public:
-    EventBlock(int position);
+    EventBlock();
     virtual ~EventBlock();
 
     virtual void enter(Player* player);

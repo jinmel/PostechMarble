@@ -6,9 +6,8 @@
 using namespace std;
 
 // Constructor & Destructor
-EventBlock::EventBlock(int position)
+EventBlock::EventBlock()
 {
-    this->position = position;
 }
 
 
