@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     subjectblock.cpp \
     cornerblock.cpp \
     playerqueue.cpp \
-    firefridayblock.cpp
+    firefridayblock.cpp \
+    sellpopup.cpp
 
 HEADERS  += mainwindow.h \
     player.h \
@@ -35,9 +36,11 @@ HEADERS  += mainwindow.h \
     subjectblock.h \
     cornerblock.h \
     playerqueue.h \
-    firefridayblock.h
+    firefridayblock.h \
+    sellpopup.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    sellpopup.ui
 
 RESOURCES += \
     resources.qrc
