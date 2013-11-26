@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     cornerblock.cpp \
     playerqueue.cpp \
     firefridayblock.cpp \
-    sellpopup.cpp
+    sellpopup.cpp \
+    qgameobject.cpp
 
 HEADERS  += mainwindow.h \
     player.h \
@@ -37,7 +38,8 @@ HEADERS  += mainwindow.h \
     cornerblock.h \
     playerqueue.h \
     firefridayblock.h \
-    sellpopup.h
+    sellpopup.h \
+    qgameobject.h
 
 FORMS    += mainwindow.ui \
     sellpopup.ui

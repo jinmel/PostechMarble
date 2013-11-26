@@ -7,6 +7,5 @@ int main(int argc, char *argv[])
     MainWindow window;
     window.setApplication(&app);
     window.show();
-
     return app.exec();
 }

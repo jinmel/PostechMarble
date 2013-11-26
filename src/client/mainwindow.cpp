@@ -2,6 +2,9 @@
 #include "ui_mainwindow.h"
 #include <QGraphicsItem>
 #include <QDebug>
+#include <QGraphicsItemAnimation>
+#include <QTimeLine>
+
 
 class CustomItem : public QGraphicsPixmapItem
 {
@@ -12,8 +15,19 @@ public:
     void mousePressEvent(QGraphicsSceneMouseEvent *event)
     {
         qDebug() << "Custom item clicked.";
-        app->quit();
-        QGraphicsItem::mousePressEvent(event);
+        QGraphicsItemAnimation * animation = new QGraphicsItemAnimation();
+        animation->setItem(this);
+
+        QTimeLine * timer = new QTimeLine(50000);
+        animation->setTimeLine(timer);
+
+        for(int i =0 ; i < 200; i ++){
+            animation->setPosAt(1/200.0,QPointF(this->x()+ i,this->y()));
+        }
+        timer->start();
+
+//        app->quit();
+//        QGraphicsItem::mousePressEvent(event);
     }
 
     void setApplication(QApplication* app)
@@ -33,19 +47,17 @@ MainWindow::MainWindow(QWidget *parent) :
     logo->setSceneRect(0, 0, 1280, 720);
 
     // Set Background
-    QGraphicsPixmapItem *background = logo->addPixmap(QPixmap(":/back_dummy.png"));
+    QGraphicsPixmapItem *background = logo->addPixmap(QPixmap(":images/back_dummy.png"));
     background->setPos(0, 0);
 
     CustomItem *ok_test = new CustomItem();
-    ok_test->setPixmap(QPixmap(":/button_ok.png"));
+    ok_test->setPixmap(QPixmap(":/images/button_ok.png"));
     ok_test->setPos(620, 550);
     ok_test->setApplication(app);
     logo->addItem(ok_test);
 
-    //QGraphicsPixmapItem *ok_button = logo->addPixmap(QPixmap(":/button_ok.png"));
-    //ok_button->setPos(620, 550);
 
-    QGraphicsPixmapItem *image = logo->addPixmap(QPixmap(":/hammer.png"));
+    QGraphicsPixmapItem *image = logo->addPixmap(QPixmap(":images/hammer.png"));
     image->setPos(1.0, 1.0);
 }
 
