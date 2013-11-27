@@ -1,4 +1,5 @@
 #include "player.h"
+#include "subjectblock.h"
 #include <iostream>
 #include <algorithm>
 #include <QDebug>
@@ -13,17 +14,18 @@ Player::Player()
     mobile = true;
     panelty = 0;
     plural = false;
-    character_type = NONE;
+    character_type = CharacterType::NONE;
 
-    //initializing map
-    registered[SubjectBlock::BIO] = 0;
-    registered[SubjectBlock::CHEM] = 0;
-    registered[SubjectBlock::CSE] = 0;
-    registered[SubjectBlock::EE] = 0;
-    registered[SubjectBlock::MATH] = 0;
-    registered[SubjectBlock::ME] = 0;
-    registered[SubjectBlock::MSE] = 0;
-    registered[SubjectBlock::PHYS] = 0;
+    //initialize map
+    using namespace SubjectType;
+    registered[BIO] = 0;
+    registered[CHEM] = 0;
+    registered[CSE] = 0;
+    registered[EE] = 0;
+    registered[MATH] = 0;
+    registered[ME] = 0;
+    registered[MSE] = 0;
+    registered[PHYS] = 0;
 
     // end initialize
     qDebug() << "Player Created" << endl;
@@ -74,7 +76,7 @@ bool Player::isPlural() const
 }
 
 
-Player::CharacterType Player::getCharacterType() const
+CharacterType::Type Player::getType() const
 {
 	return character_type;
 }
@@ -133,10 +135,17 @@ bool Player::escapeMouindo()
 
 void Player::moveTo(int dice)
 {
-    setPosition(position + dice);
+    int moveValue = position + dice;
+
+    // pay check
+    if(moveValue >= 36) {
+        giveSalary();
+        moveValue %= 36;
+    }
+
+    setPosition(moveValue);
 
     // some character animations
-    // 해당하는 블럭에 player 포인터를 저장하게 해서현재 그 블럭위에있는 player를 나타내는건..?
 
 }
 
@@ -156,34 +165,43 @@ bool Player::hasBlock(Block* block)
 
 void Player::buyBlock(Block* block)
 {
-    if(!hasBlock(block))
-        qDebug() << "You already have that block. Check Again!" << endl;
+    takeBlock(block);
+    //energy -= block->getValue();
 
-    else {
-        own_blocks.push_back(block);
-        //energy -= block->getValue();
-    }
 }
 
 
 void Player::sellBlock(Block* block)
 {
-    if(!hasBlock(block))
-        qDebug() << "You don't have that block. Check Again!" << endl;
-
-    else {
-        own_blocks.remove(block);
-        //energy += block->getValue();
-    }
+    loseBlock(block);
+    //energy += block->getValue();
 }
 
 
 void Player::takeBlock(Block *block)
 {
+    using namespace BlockType;
+
     if(!hasBlock(block))
         qDebug() << "You don't have that block. Check Again!" << endl;
 
     else {
+        switch(block->getType()) {
+            case Corner:
+                // CornerBlock
+                break;
+            case Event:
+                // EventBlock
+                break;
+            case Friday:
+                // FriayBlock
+                break;
+            case Subject:
+                // SubjectBlock
+                registered.find(((SubjectBlock*)block)->getType())->second++;
+                break;
+        }
+
         own_blocks.push_back(block);
     }
 }
@@ -191,12 +209,37 @@ void Player::takeBlock(Block *block)
 
 void Player::loseBlock(Block *block)
 {
+    using namespace BlockType;
+
     if(!hasBlock(block))
         qDebug() << "You don't have that block. Check Again!" << endl;
 
     else {
+        switch(block->getType()) {
+            case Corner:
+                // CornerBlock
+                break;
+            case Event:
+                // EventBlock
+                break;
+            case Friday:
+                // FriayBlock
+                break;
+            case Subject:
+                // SubjectBlock
+                registered.find(((SubjectBlock*)block)->getType())->second--;
+                break;
+
+        }
+
         own_blocks.remove(block);
     }
+}
+
+
+void Player::giveSalary()
+{
+    energy += 500;
 }
 
 
@@ -204,7 +247,7 @@ bool Player::checkWinStatus()
 {
     int majored = 0;
 
-    for(map<SubjectBlock::Department, int>::iterator i = registered.begin(); i != registered.end(); i++) {
+    for(map<SubjectType::Type, int>::iterator i = registered.begin(); i != registered.end(); i++) {
         if(i->second == 3)
             majored ++;
     }

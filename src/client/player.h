@@ -2,20 +2,14 @@
 #include <list>
 #include <map>
 #include "block.h"
-#include "subjectblock.h"
+#include "types.h"
 
 // circular dependency
 class Block;
-class SubjectBlock;
 
 
 class Player
 {
-public:
-    enum CharacterType {
-            NONE, LOL, GENIUS, HARD_WORKER, OUTSIDER, ALCOHOLIC
-        };
-
 private:
     int     position;
     int     energy;
@@ -23,9 +17,9 @@ private:
     bool    mobile;                    // is player movable? (Mouindo, Drink...)
     int     panelty;                   // how long to be punished 
     bool    plural;                    // plural major status
-    std::map<SubjectBlock::Department, int> registered;     // registered class for each subject
+    std::map<SubjectType::Type, int> registered;     // registered class for each subject
     std::list<Block*> own_blocks;
-    CharacterType character_type;
+    CharacterType::Type character_type;
 
 public:
     Player();
@@ -37,22 +31,21 @@ public:
     int  getEnergy() const;
     int  getPanelty() const;
     bool isPlural() const;
-    CharacterType getCharacterType() const;
+    CharacterType::Type getType() const;
 
     void setPosition(int position);
     void setEnergy(int getenergy);
     void setPlural(bool plural);
     void setMouindo(int panelty);
     bool escapeMouindo();
-    void moveTo(int dice);         //blocknumber가 position인 곳으로 이동하게 함
-                                       //block마다 그 위에 있는 플레이어를 playerpointer(포인터 어레이 등의 방법으로?)로 저장하게 한다면 블럭으로 move할 때해당 블럭에 플레이어 포인터를 넣어줄수있겟다!? 아닌가 반대로 해야되나 뿅
-
+    void moveTo(int dice);
 
     bool hasBlock(Block* block);
     void buyBlock(Block* block);
     void sellBlock(Block* block);
     void takeBlock(Block* block);
     void loseBlock(Block* block);
+    void giveSalary();
 
     bool checkWinStatus();
 };

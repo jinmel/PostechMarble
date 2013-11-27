@@ -4,13 +4,13 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = client
 TEMPLATE = app
-
+QMAKE_CXXFLAGS += -std=c++11
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -39,7 +39,8 @@ HEADERS  += mainwindow.h \
     playerqueue.h \
     firefridayblock.h \
     sellpopup.h \
-    qgameobject.h
+    qgameobject.h \
+    types.h
 
 FORMS    += mainwindow.ui \
     sellpopup.ui

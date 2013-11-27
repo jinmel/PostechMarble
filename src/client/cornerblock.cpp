@@ -24,7 +24,10 @@ void CornerBlock::enter(Player* player)
 }
 
 
-void CornerBlock::inCornerBlock(Player* player){
+void CornerBlock::inCornerBlock(Player* player)
+{
+    using namespace CornerType;
+
     switch(block_type)
     {
         case DORMITORY : inDormitory(player);
@@ -40,24 +43,26 @@ void CornerBlock::inCornerBlock(Player* player){
     }
 }
 
-void CornerBlock::inDormitory(Player* player){
+void CornerBlock::inDormitory(Player* player)
+{
+    using namespace CharacterType;
 
     int takingenergy;
-    switch(player->getCharacterType())
+    switch(player->getType())
     {
-        case Player::LOL : takingenergy = 1; //주는 에너지 수치는 상학선배&주현이가 채워주세요 ㅎㅎ
+        case LOL : takingenergy = 1; //주는 에너지 수치는 상학선배&주현이가 채워주세요 ㅎㅎ
             break;
 
-        case Player::GENIUS : takingenergy = 2;
+        case GENIUS : takingenergy = 2;
             break;
 
-        case Player::HARD_WORKER : takingenergy = 3;
+        case HARD_WORKER : takingenergy = 3;
             break;
 
-        case Player::OUTSIDER : takingenergy = 4;
+        case OUTSIDER : takingenergy = 4;
             break;
 
-        case Player::ALCOHOLIC : takingenergy = 5;
+        case ALCOHOLIC : takingenergy = 5;
             break;
 
         default         : takingenergy = 6;
@@ -71,11 +76,11 @@ void CornerBlock::inDormitory(Player* player){
 
 void CornerBlock::in61Call(Player* player) {        //원하는 블럭을 선택할 수 있게 함
 
-    cout<<"You can choose any block."<<endl;
-    cout<<">>";
+    cout <<"You can choose any block."<< endl;
+    cout <<">>";
     int blocknum;//0~35까지의 숫자로 block 번호 관리... 이렇게 안하면 board 어레이로 올라가야하는데.. 뭐 할라면 할순잇겟지..
-    cin>> blocknum; //ui는 블럭을 클릭 할 수 있도록, 우리는 클릭받은 블럭의 입력받아서 여기에 cin대신에 넣을 수 있어야겠지..
-    cout<<" "<<endl;
+    cin >> blocknum; //ui는 블럭을 클릭 할 수 있도록, 우리는 클릭받은 블럭의 입력받아서 여기에 cin대신에 넣을 수 있어야겠지..
+    cout <<" "<<endl;
     player->moveTo(blocknum);//moveTo에서 포인터가지고 어찌어찌해서 옮겨줘야될꺼같은데!! 
 
 

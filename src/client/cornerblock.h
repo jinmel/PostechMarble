@@ -1,19 +1,19 @@
 #pragma once
 #include "player.h"
 #include "block.h"
+<<<<<<< HEAD
 #include <ctime>
 #include <cstdlib>
 
+=======
+#include "types.h"
+>>>>>>> b6f959267c62efc4f3dbef89a64eb7581955c3ce
 
 class CornerBlock : public Block
 {
-public:
-    enum CornerType {
-        DORMITORY, THE61CALL, BREAKSEMESTER, PLURALMAJOR
-    };
-
 private:
-    CornerType block_type;
+    CornerType::Type block_type;
+
 public:
     CornerBlock();
     virtual ~CornerBlock();

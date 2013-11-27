@@ -1,15 +1,12 @@
 #pragma once
 #include "block.h"
+#include "types.h"
+
 
 class FireFridayBlock : public Block
 {
-public:
-    enum FireFridayType {
-        TWODARI,SEOULJONGBIN,TONGZIP,CHAMPYO
-    };
-
 private:
-    FireFridayType block_type;
+    FireFridayType::Type block_type;
 
 public:
     FireFridayBlock();
