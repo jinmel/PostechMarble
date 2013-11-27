@@ -1,3 +1,4 @@
+#include <QDebug>
 #include <iostream>
 #include "block.h"
 #include "cornerblock.h"
@@ -120,7 +121,23 @@ void CornerBlock::inBreakSemester(Player* player) {     //무인도
 }
 
 void CornerBlock::inPluralMajor(Player* player) {//복수전공
-    cout<<"You have to take two major for graduation."<<endl;
+    
+
+	cout<<"You have to take two major for graduation."<<endl;
+	cout<<"Plural major check..."<<endl;
+	
+	Dice::getInst()->roll();
+	
+
+	int checkplural=Dice::getInst()->getValue();//1=plural 2,3,4,5,6=normal
+	switch(checkplural)
+	{
+	case 1 : qDebug() <<"You have to take plural major."<<endl;
+
+	
+	
+	}
+
     //졸업 요건... 아니면 여기에 걸리면 학과독점 해도 다시 해야하는.. 장치!
 
 }

@@ -1,6 +1,8 @@
 #pragma once
 #include "player.h"
 #include "block.h"
+#include <ctime>
+#include <cstdlib>
 
 
 class CornerBlock : public Block
