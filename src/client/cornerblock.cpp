@@ -19,7 +19,7 @@ CornerBlock::~CornerBlock()
 // Methods
 void CornerBlock::enter(Player* player)
 {
-
+	inCornerBlock(player);
 }
 
 
