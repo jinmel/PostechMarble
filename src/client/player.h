@@ -1,9 +1,13 @@
 #pragma once
 #include <list>
+#include <map>
 #include "block.h"
+#include "subjectblock.h"
 
 // circular dependency
 class Block;
+class SubjectBlock;
+
 
 class Player
 {
@@ -11,13 +15,15 @@ public:
     enum CharacterType {
             NONE, LOL, GENIUS, HARD_WORKER, OUTSIDER, ALCOHOLIC
         };
+
 private:
     int     position;
     int     energy;
     bool    bankrupt;
     bool    mobile;                    // is player movable? (Mouindo, Drink...)
     int     panelty;                   // how long to be punished 
-    bool    plural;              //
+    bool    plural;                    // plural major status
+    std::map<SubjectBlock::Department, int> registered;     // registered class for each subject
     std::list<Block*> own_blocks;
     CharacterType character_type;
 

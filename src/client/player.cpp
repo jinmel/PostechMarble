@@ -1,6 +1,7 @@
 #include "player.h"
 #include <iostream>
 #include <algorithm>
+#include <QDebug>
 
 using namespace std;
 
@@ -12,10 +13,20 @@ Player::Player()
     mobile = true;
     panelty = 0;
     plural = false;
-    //own_blocks = new list<Block*>;
     character_type = NONE;
 
-    cout << "Player Created" << endl;
+    //initializing map
+    registered[SubjectBlock::BIO] = 0;
+    registered[SubjectBlock::CHEM] = 0;
+    registered[SubjectBlock::CSE] = 0;
+    registered[SubjectBlock::EE] = 0;
+    registered[SubjectBlock::MATH] = 0;
+    registered[SubjectBlock::ME] = 0;
+    registered[SubjectBlock::MSE] = 0;
+    registered[SubjectBlock::PHYS] = 0;
+
+    // end initialize
+    qDebug() << "Player Created" << endl;
 }
 
 
@@ -23,7 +34,7 @@ Player::~Player()
 {
    //delete own_blocks;
 
-    cout << "Player Destroyed" << endl;
+    qDebug() << "Player Destroyed" << endl;
 }
 
 
@@ -146,7 +157,7 @@ bool Player::hasBlock(Block* block)
 void Player::buyBlock(Block* block)
 {
     if(!hasBlock(block))
-        cout << "You already have that block. Check Again!" << endl;
+        qDebug() << "You already have that block. Check Again!" << endl;
 
     else {
         own_blocks.push_back(block);
@@ -158,7 +169,7 @@ void Player::buyBlock(Block* block)
 void Player::sellBlock(Block* block)
 {
     if(!hasBlock(block))
-        cout << "You don't have that block. Check Again!" << endl;
+        qDebug() << "You don't have that block. Check Again!" << endl;
 
     else {
         own_blocks.remove(block);
@@ -170,7 +181,7 @@ void Player::sellBlock(Block* block)
 void Player::takeBlock(Block *block)
 {
     if(!hasBlock(block))
-        cout << "You don't have that block. Check Again!" << endl;
+        qDebug() << "You don't have that block. Check Again!" << endl;
 
     else {
         own_blocks.push_back(block);
@@ -181,7 +192,7 @@ void Player::takeBlock(Block *block)
 void Player::loseBlock(Block *block)
 {
     if(!hasBlock(block))
-        cout << "You don't have that block. Check Again!" << endl;
+        qDebug() << "You don't have that block. Check Again!" << endl;
 
     else {
         own_blocks.remove(block);
@@ -191,6 +202,17 @@ void Player::loseBlock(Block *block)
 
 bool Player::checkWinStatus()
 {
-    // some check method
-    return false;      // this is dummy
+    int majored = 0;
+
+    for(map<SubjectBlock::Department, int>::iterator i = registered.begin(); i != registered.end(); i++) {
+        if(i->second == 3)
+            majored ++;
+    }
+
+    if(plural && majored >= 2)
+        return true;
+    else if (!plural && majored >= 1)
+        return true;
+    else
+        return false;
 }

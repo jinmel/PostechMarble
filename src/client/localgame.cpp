@@ -2,9 +2,10 @@
 #include "dice.h"
 #include "board.h"
 #include <iostream>
+#include <QDebug>
+
 
 using namespace std;
-
 
 // Constructor & Destructor
 LocalGame::LocalGame(int num_players)
@@ -14,6 +15,8 @@ LocalGame::LocalGame(int num_players)
         playerQueue->push(new Player);
     
     board = new Board();
+
+    qDebug() << "LocalGame Initialized" << endl;
 }
 
 

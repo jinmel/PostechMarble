@@ -1,5 +1,6 @@
 #pragma once
 #include "playerqueue.h"
+#include "board.h"
 //#include "gamerecord.h"
 
 class LocalGame

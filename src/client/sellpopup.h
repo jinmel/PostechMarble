@@ -1,5 +1,4 @@
-#ifndef SELLPOPUP_H
-#define SELLPOPUP_H
+#pragma once
 
 #include <QWidget>
 

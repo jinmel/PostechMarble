@@ -1,5 +1,4 @@
-#ifndef QGAMEOBJECT_H
-#define QGAMEOBJECT_H
+#pragma once
 
 #include <QObject>
 #include <QGraphicsPixmapItem>
@@ -16,5 +15,3 @@ public:
 
 
 };
-
-#endif // QGAMEOBJECT_H

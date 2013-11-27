@@ -1,5 +1,6 @@
 #pragma once
 #include "player.h"
+#include "block.h"
 
 class EventBlock : public Block
 {

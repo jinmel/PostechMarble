@@ -1,10 +1,6 @@
 #pragma once
-#include "block.h"
 #include "player.h"
-
-// circular dependency
-class Block;
-class Player;
+#include "block.h"
 
 class Board
 {

@@ -1,26 +1,26 @@
 #pragma once
-#include "block.h"
+#include "player.h"
 
 // circular dependency
-class Board;
 class Player;
 
 class Block
 {
 public:
-    enum CornerType
+    enum BlockType
     {
-        DORMITORY,
-        CALLTAXI,
-        BREAKSEMESTER,
-        PLURALMAJOR
+        Subject, Corner, Event, Friday
     };
+
+protected:
     int position;
+    BlockType block_type;
 
 public:
     Block();
     virtual ~Block();
 
+    BlockType getType() const;
     void setPosition(int position);
     virtual void enter(Player* player) = 0;
 };
