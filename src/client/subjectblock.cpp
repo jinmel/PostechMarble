@@ -13,7 +13,14 @@ SubjectBlock::~SubjectBlock()
 
 
 // Methods
+SubjectBlock::Department SubjectBlock::getType() const
+{
+    return subject_type;
+}
+
 void SubjectBlock::enter(Player* player)
 {
 
 }
+
+

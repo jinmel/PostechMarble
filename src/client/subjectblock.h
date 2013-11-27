@@ -16,6 +16,7 @@ private:
     Department      department;
     std::string     subject_name;
     Player*         owner;
+    Department      subject_type;
 
     int grade;
     int cost;
@@ -23,6 +24,6 @@ private:
 public:
     SubjectBlock();
     virtual ~SubjectBlock();
-
-   virtual void enter(Player* player);
+    Department getType() const;
+    virtual void enter(Player* player);
 };

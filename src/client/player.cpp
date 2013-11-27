@@ -15,7 +15,7 @@ Player::Player()
     plural = false;
     character_type = NONE;
 
-    //initializing map
+    //initialize map
     registered[SubjectBlock::BIO] = 0;
     registered[SubjectBlock::CHEM] = 0;
     registered[SubjectBlock::CSE] = 0;
@@ -133,10 +133,17 @@ bool Player::escapeMouindo()
 
 void Player::moveTo(int dice)
 {
-    setPosition(position + dice);
+    int moveValue = position + dice;
+
+    // pay check
+    if(moveValue >= 36) {
+        giveSalary();
+        moveValue %= 36;
+    }
+
+    setPosition(moveValue);
 
     // some character animations
-    // 해당하는 블럭에 player 포인터를 저장하게 해서현재 그 블럭위에있는 player를 나타내는건..?
 
 }
 
@@ -156,25 +163,15 @@ bool Player::hasBlock(Block* block)
 
 void Player::buyBlock(Block* block)
 {
-    if(!hasBlock(block))
-        qDebug() << "You already have that block. Check Again!" << endl;
-
-    else {
-        own_blocks.push_back(block);
-        //energy -= block->getValue();
-    }
+    takeBlock(block);
+    //energy -= block->getValue();
 }
 
 
 void Player::sellBlock(Block* block)
 {
-    if(!hasBlock(block))
-        qDebug() << "You don't have that block. Check Again!" << endl;
-
-    else {
-        own_blocks.remove(block);
-        //energy += block->getValue();
-    }
+    loseBlock(block);
+    //energy += block->getValue();
 }
 
 
@@ -184,6 +181,23 @@ void Player::takeBlock(Block *block)
         qDebug() << "You don't have that block. Check Again!" << endl;
 
     else {
+        switch(block->getType()) {
+            case Block::Corner:
+                // CornerBlock
+            break;
+        case Block::Event:
+            // EventBlock
+            break;
+        case Block::Friday:
+            // FriayBlock
+            break;
+        case Block::Subject:
+            // SubjectBlock
+            registered.find(((SubjectBlock*)block)->getType())->second++;
+            break;
+
+        }
+
         own_blocks.push_back(block);
     }
 }
@@ -195,8 +209,31 @@ void Player::loseBlock(Block *block)
         qDebug() << "You don't have that block. Check Again!" << endl;
 
     else {
+        switch(block->getType()) {
+            case Block::Corner:
+                // CornerBlock
+            break;
+        case Block::Event:
+            // EventBlock
+            break;
+        case Block::Friday:
+            // FriayBlock
+            break;
+        case Block::Subject:
+            // SubjectBlock
+            registered.find(((SubjectBlock*)block)->getType())->second--;
+            break;
+
+        }
+
         own_blocks.remove(block);
     }
+}
+
+
+void Player::giveSalary()
+{
+    energy += 500;
 }
 
 

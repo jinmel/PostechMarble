@@ -14,6 +14,7 @@ public:
 
 protected:
     int position;
+    int value;
     BlockType block_type;
 
 public:
