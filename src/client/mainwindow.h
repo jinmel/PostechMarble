@@ -1,5 +1,4 @@
 #pragma once
-
 #include <QMainWindow>
 #include <QGraphicsView>
 #include <QGraphicsScene>
@@ -16,10 +15,16 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void setApplication(QApplication* app);
+    void animateLogo();
 
 private:
     Ui::MainWindow *ui;
-    QGraphicsScene *logo;
     QApplication *app;
+    QGraphicsView *viewWindow;
+    QGraphicsScene *logo;
+    QGraphicsScene *menu;
+    QGraphicsScene *ready;
+    QGraphicsScene *ingame;
 
+    void setupScenes();
 };

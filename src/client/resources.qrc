@@ -1,7 +1,18 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/back_dummy.png</file>
         <file>images/button_ok.png</file>
         <file>images/hammer.png</file>
+        <file>images/Ingame/button_pushed.png</file>
+        <file>images/Ingame/double.png</file>
+        <file>images/Ingame/roll.png</file>
+        <file>images/Ingame/dice/dice1.png</file>
+        <file>images/Ingame/dice/dice2.png</file>
+        <file>images/Ingame/dice/dice3.png</file>
+        <file>images/Ingame/dice/dice4.png</file>
+        <file>images/Ingame/dice/dice5.png</file>
+        <file>images/Ingame/dice/dice6.png</file>
+        <file>images/logo/team_logo.png</file>
+        <file>images/button_ok_click.png</file>
+        <file>images/logo/logo_background.png</file>
     </qresource>
 </RCC>
