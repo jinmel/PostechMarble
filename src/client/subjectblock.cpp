@@ -13,7 +13,7 @@ SubjectBlock::~SubjectBlock()
 
 
 // Methods
-SubjectBlock::Department SubjectBlock::getType() const
+SubjectType::Type SubjectBlock::getType() const
 {
     return department;
 }

@@ -1,17 +1,12 @@
 #pragma once
 #include "player.h"
 #include "block.h"
-
+#include "types.h"
 
 class CornerBlock : public Block
 {
-public:
-    enum CornerType {
-        DORMITORY, THE61CALL, BREAKSEMESTER, PLURALMAJOR
-    };
-
 private:
-    CornerType block_type;
+    CornerType::Type block_type;
 
 public:
     CornerBlock();

@@ -1,4 +1,5 @@
 #include "player.h"
+#include "subjectblock.h"
 #include <iostream>
 #include <algorithm>
 #include <QDebug>
@@ -16,14 +17,14 @@ Player::Player()
     character_type = NONE;
 
     //initialize map
-    registered[SubjectBlock::BIO] = 0;
-    registered[SubjectBlock::CHEM] = 0;
-    registered[SubjectBlock::CSE] = 0;
-    registered[SubjectBlock::EE] = 0;
-    registered[SubjectBlock::MATH] = 0;
-    registered[SubjectBlock::ME] = 0;
-    registered[SubjectBlock::MSE] = 0;
-    registered[SubjectBlock::PHYS] = 0;
+    registered[SubjectType::BIO] = 0;
+    registered[SubjectType::CHEM] = 0;
+    registered[SubjectType::CSE] = 0;
+    registered[SubjectType::EE] = 0;
+    registered[SubjectType::MATH] = 0;
+    registered[SubjectType::ME] = 0;
+    registered[SubjectType::MSE] = 0;
+    registered[SubjectType::PHYS] = 0;
 
     // end initialize
     qDebug() << "Player Created" << endl;
@@ -165,6 +166,7 @@ void Player::buyBlock(Block* block)
 {
     takeBlock(block);
     //energy -= block->getValue();
+
 }
 
 
@@ -177,25 +179,26 @@ void Player::sellBlock(Block* block)
 
 void Player::takeBlock(Block *block)
 {
+    using namespace BlockType;
+
     if(!hasBlock(block))
         qDebug() << "You don't have that block. Check Again!" << endl;
 
     else {
         switch(block->getType()) {
-            case Block::Corner:
+            case Corner:
                 // CornerBlock
-            break;
-        case Block::Event:
-            // EventBlock
-            break;
-        case Block::Friday:
-            // FriayBlock
-            break;
-        case Block::Subject:
-            // SubjectBlock
-            registered.find(((SubjectBlock*)block)->getType())->second++;
-            break;
-
+                break;
+            case Event:
+                // EventBlock
+                break;
+            case Friday:
+                // FriayBlock
+                break;
+            case Subject:
+                // SubjectBlock
+                registered.find(((SubjectBlock*)block)->getType())->second++;
+                break;
         }
 
         own_blocks.push_back(block);
@@ -205,24 +208,26 @@ void Player::takeBlock(Block *block)
 
 void Player::loseBlock(Block *block)
 {
+    using namespace BlockType;
+
     if(!hasBlock(block))
         qDebug() << "You don't have that block. Check Again!" << endl;
 
     else {
         switch(block->getType()) {
-            case Block::Corner:
+            case Corner:
                 // CornerBlock
-            break;
-        case Block::Event:
-            // EventBlock
-            break;
-        case Block::Friday:
-            // FriayBlock
-            break;
-        case Block::Subject:
-            // SubjectBlock
-            registered.find(((SubjectBlock*)block)->getType())->second--;
-            break;
+                break;
+            case Event:
+                // EventBlock
+                break;
+            case Friday:
+                // FriayBlock
+                break;
+            case Subject:
+                // SubjectBlock
+                registered.find(((SubjectBlock*)block)->getType())->second--;
+                break;
 
         }
 
@@ -241,7 +246,7 @@ bool Player::checkWinStatus()
 {
     int majored = 0;
 
-    for(map<SubjectBlock::Department, int>::iterator i = registered.begin(); i != registered.end(); i++) {
+    for(map<SubjectType::Type, int>::iterator i = registered.begin(); i != registered.end(); i++) {
         if(i->second == 3)
             majored ++;
     }

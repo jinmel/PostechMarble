@@ -17,6 +17,8 @@ FireFridayBlock::~FireFridayBlock()
 
 void FireFridayBlock::enter(Player *player)
 {
+    using namespace FireFridayType;
+
     switch(block_type)
    {    case TWODARI: inTWODARI(player);
             break;

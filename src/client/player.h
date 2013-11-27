@@ -2,11 +2,10 @@
 #include <list>
 #include <map>
 #include "block.h"
-#include "subjectblock.h"
+#include "types.h"
 
 // circular dependency
 class Block;
-class SubjectBlock;
 
 
 class Player
@@ -23,7 +22,7 @@ private:
     bool    mobile;                    // is player movable? (Mouindo, Drink...)
     int     panelty;                   // how long to be punished 
     bool    plural;                    // plural major status
-    std::map<SubjectBlock::Department, int> registered;     // registered class for each subject
+    std::map<SubjectType::Type, int> registered;     // registered class for each subject
     std::list<Block*> own_blocks;
     CharacterType character_type;
 

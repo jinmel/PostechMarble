@@ -39,7 +39,8 @@ HEADERS  += mainwindow.h \
     playerqueue.h \
     firefridayblock.h \
     sellpopup.h \
-    qgameobject.h
+    qgameobject.h \
+    types.h
 
 FORMS    += mainwindow.ui \
     sellpopup.ui

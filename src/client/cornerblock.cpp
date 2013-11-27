@@ -24,6 +24,8 @@ void CornerBlock::enter(Player* player)
 
 
 void CornerBlock::inCornerBlock(Player* player){
+    using namespace CornerType;
+
     switch(block_type)
     {
         case DORMITORY : inDormitory(player);
