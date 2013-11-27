@@ -20,7 +20,8 @@ Environment Setup
 
 Coding Standard 
 -----------------------------
- * use [camelCase](http://en.wikipedia.org/wiki/CamelCase) for variables and operations 
+ * use [snake_case](http://en.wikipedia.org/wiki/SnakeCase) for variables
+ * use [camelCase](http://en.wikipedia.org/wiki/CamelCase) for operations 
  * use [PascalCase](http://c2.com/cgi/wiki?PascalCase) for class name
  * tab width : 4 (with **spaces**)
  * encoding : UTF-8
