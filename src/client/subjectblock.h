@@ -16,7 +16,6 @@ private:
     Department      department;
     std::string     subject_name;
     Player*         owner;
-    Department      subject_type;
 
     int grade;
     int cost;

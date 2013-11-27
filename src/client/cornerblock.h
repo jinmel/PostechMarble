@@ -12,6 +12,7 @@ public:
 
 private:
     CornerType block_type;
+
 public:
     CornerBlock();
     virtual ~CornerBlock();

@@ -15,7 +15,7 @@ SubjectBlock::~SubjectBlock()
 // Methods
 SubjectBlock::Department SubjectBlock::getType() const
 {
-    return subject_type;
+    return department;
 }
 
 void SubjectBlock::enter(Player* player)

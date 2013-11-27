@@ -17,5 +17,3 @@ public:
 private:
     Ui::sellpopup *ui;
 };
-
-#endif // SELLPOPUP_H
