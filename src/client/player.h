@@ -10,11 +10,6 @@ class Block;
 
 class Player
 {
-public:
-    enum CharacterType {
-            NONE, LOL, GENIUS, HARD_WORKER, OUTSIDER, ALCOHOLIC
-        };
-
 private:
     int     position;
     int     energy;
@@ -24,7 +19,7 @@ private:
     bool    plural;                    // plural major status
     std::map<SubjectType::Type, int> registered;     // registered class for each subject
     std::list<Block*> own_blocks;
-    CharacterType character_type;
+    CharacterType::Type character_type;
 
 public:
     Player();
@@ -36,7 +31,7 @@ public:
     int  getEnergy() const;
     int  getPanelty() const;
     bool isPlural() const;
-    CharacterType getCharacterType() const;
+    CharacterType::Type getType() const;
 
     void setPosition(int position);
     void setEnergy(int getenergy);

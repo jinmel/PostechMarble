@@ -1,4 +1,5 @@
 #pragma once
+#include <QDebug>   //for convinence
 
 namespace BlockType {
     enum Type {
@@ -22,4 +23,10 @@ namespace SubjectType {
     enum Type {
         CSE, ME, MATH, EE, PHYS, BIO, CHEM, MSE
     };
+}
+
+namespace CharacterType {
+    enum Type {
+           NONE, LOL, GENIUS, HARD_WORKER, OUTSIDER, ALCOHOLIC
+       };
 }

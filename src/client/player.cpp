@@ -14,17 +14,18 @@ Player::Player()
     mobile = true;
     panelty = 0;
     plural = false;
-    character_type = NONE;
+    character_type = CharacterType::NONE;
 
     //initialize map
-    registered[SubjectType::BIO] = 0;
-    registered[SubjectType::CHEM] = 0;
-    registered[SubjectType::CSE] = 0;
-    registered[SubjectType::EE] = 0;
-    registered[SubjectType::MATH] = 0;
-    registered[SubjectType::ME] = 0;
-    registered[SubjectType::MSE] = 0;
-    registered[SubjectType::PHYS] = 0;
+    using namespace SubjectType;
+    registered[BIO] = 0;
+    registered[CHEM] = 0;
+    registered[CSE] = 0;
+    registered[EE] = 0;
+    registered[MATH] = 0;
+    registered[ME] = 0;
+    registered[MSE] = 0;
+    registered[PHYS] = 0;
 
     // end initialize
     qDebug() << "Player Created" << endl;
@@ -75,7 +76,7 @@ bool Player::isPlural() const
 }
 
 
-Player::CharacterType Player::getCharacterType() const
+CharacterType::Type Player::getType() const
 {
 	return character_type;
 }
