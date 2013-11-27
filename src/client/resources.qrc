@@ -14,5 +14,6 @@
         <file>images/logo/team_logo.png</file>
         <file>images/button_ok_click.png</file>
         <file>images/logo/logo_background.png</file>
+        <file>images/main/main_background.png</file>
     </qresource>
 </RCC>

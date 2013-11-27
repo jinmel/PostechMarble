@@ -20,7 +20,7 @@ public:
         qDebug() << "Custom item clicked.";
         setPixmap(QPixmap(":images/button_ok_click.png"));
 
-        window->animateLogo();
+        window->switchToMain();
 
         /*  Disable Animation
         QGraphicsItemAnimation * animation = new QGraphicsItemAnimation();
@@ -88,9 +88,8 @@ void MainWindow::setupScenes()
     ingame = new QGraphicsScene(0, 0, 1280, 720, this);
 
     // setup for logo
-    // Set Background
-    QGraphicsPixmapItem *background = logo->addPixmap(QPixmap(":images/logo/logo_background.png"));
-    background->setPos(0, 0);
+    QGraphicsPixmapItem *back_logo = logo->addPixmap(QPixmap(":images/logo/logo_background.png"));
+    back_logo->setPos(0, 0);
 
     CustomItem *ok_test = new CustomItem();
     ok_test->setMainWindow(this);
@@ -99,9 +98,12 @@ void MainWindow::setupScenes()
     ok_test->setApplication(app);
     logo->addItem(ok_test);
 
-
     QGraphicsPixmapItem *team_logo = logo->addPixmap(QPixmap(":images/logo/team_logo.png")); //900 170
     team_logo->setPos(190, 275);
+
+    // setup for main
+    QGraphicsPixmapItem *back_main = menu->addPixmap(QPixmap(":images/main/main_background.png"));
+    back_main->setPos(0, 0);
 
 }
 
@@ -129,4 +131,10 @@ void MainWindow::animateLogo()
 
     animation->start();
     sound->play();
+}
+
+
+void MainWindow::switchToMain()
+{
+    ui->graphicsView->setScene(menu);
 }

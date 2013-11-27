@@ -16,6 +16,7 @@ public:
     ~MainWindow();
     void setApplication(QApplication* app);
     void animateLogo();
+    void switchToMain();
 
 private:
     Ui::MainWindow *ui;
