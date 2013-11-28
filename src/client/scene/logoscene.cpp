@@ -7,11 +7,15 @@
 #include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
 #include <QMediaPlayer>
+#include <QtGlobal>
 
-
-LogoScene::LogoScene(MainWindow *window)
+LogoScene::LogoScene(qreal x, qreal y,
+                      qreal width, qreal height,
+                      QObject *parent)
+ : QGraphicsScene(x,y,width,height,parent)
 {
-    this->window = window;
+    this->window = dynamic_cast<MainWindow*>(parent);
+    Q_CHECK_PTR(this->window);
 
     setupLogo();
     animateLogo();
@@ -26,21 +30,21 @@ LogoScene::~LogoScene()
 
 void LogoScene::switchToMain()
 {
-    window->switchScene(1);
+    qDebug() << "Switching to Main" << endl;
+    window->switchScene(SceneType::MAIN);
 }
 
 
 void LogoScene::setupLogo()
 {
     // setup for logo
-    back_logo = new QGameItem(this, window);
-    back_logo->setImage(":images/logo/logo_background.png");
-    back_logo->setPos(0, 0);
 
-    ok_test = new QGameItem(this, window);
-    ok_test->setImage(":/images/button_ok.png");
-    ok_test->setPos(600, 550);
+    // set background
+    background = new QGameItem(this, window);
+    background->setImage(":images/logo/logo_background.png");
+    background->setPos(0, 0);
 
+    // set team_logo
     team_logo = new QGameItem(this, window);
     team_logo->setImage(":images/logo/team_logo.png"); //900 170
     team_logo->setPos(190, 275);
@@ -65,8 +69,10 @@ void LogoScene::animateLogo()
     animation->setEasingCurve(QEasingCurve::OutQuad);
 
     // connect: switch to main when logo animation finished
-    QObject::connect(animation, SIGNAL(finished()), this, SLOT(switchToMain()));
+    connect(animation,SIGNAL(finished()),this,SLOT(switchToMain()));
 
+
+    // play sound
     QMediaPlayer* sound = new QMediaPlayer();
     sound->setMedia(QUrl::fromLocalFile("D:/Development/C&C++/CSED232 Project/src/client/sound/logo_dang.mp3"));
     sound->setVolume(80);
