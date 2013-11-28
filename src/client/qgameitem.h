@@ -8,6 +8,8 @@
 #include <QPixmap>
 #include <QEasingCurve>
 
+
+
 class QGameItem :public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
@@ -17,7 +19,7 @@ public slots:
     void animationFinished();
     void hideFinished();
 public:
-    QGameItem(QGraphicsScene* scene);
+    QGameItem(QGraphicsScene* scene,MainWindow * window);
     QPixmap* image();
     void setImage(char * filename);
     //Game object animation

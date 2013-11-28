@@ -25,7 +25,12 @@ SOURCES += main.cpp\
     playerqueue.cpp \
     firefridayblock.cpp \
     sellpopup.cpp \
-    qgameitem.cpp
+    qgameitem.cpp \
+    scene/ingamescene.cpp \
+    scene/logoscene.cpp \
+    scene/creditscene.cpp \
+    scene/mainscene.cpp \
+    scene/readyscene.cpp
 
 HEADERS  += mainwindow.h \
     player.h \
@@ -40,7 +45,12 @@ HEADERS  += mainwindow.h \
     firefridayblock.h \
     sellpopup.h \
     types.h \
-    qgameitem.h\
+    qgameitem.h \
+    scene/ingamescene.h \
+    scene/logoscene.h \
+    scene/creditscene.h \
+    scene/mainscene.h \
+    scene/readyscene.h
 
 FORMS    += mainwindow.ui \
     sellpopup.ui
