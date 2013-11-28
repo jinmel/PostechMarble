@@ -9,6 +9,7 @@
 
 class DiceGraphicItem;
 class DiceValuePanel;
+class CharacterStatusBar;
 
 class IngameScene : public QGraphicsScene
 {
@@ -17,6 +18,8 @@ private:
     DiceGraphicItem *dice_graphic;
     DiceValuePanel *first_panel;
     DiceValuePanel *second_panel;
+    CharacterStatusBar *bar1;
+    CharacterStatusBar *bar2;
 public:
     IngameScene(qreal x=0,qreal y=0,qreal width=1280,
                 qreal height=720,
@@ -49,6 +52,18 @@ private:
     DiceValuePanel();
 public slots:
     void setValue(int value);
+};
+
+class CharacterStatusBar : public QGameItem {
+    Q_OBJECT
+public:
+    CharacterStatusBar(QGraphicsScene* scene,MainWindow * window,int player_num);
+private:
+    QGraphicsTextItem *status_text;
+    QGraphicsPixmapItem *character_image;
+public slots:
+    void setEnergyText(int energy);
+
 };
 
 #endif // INGAMESCENE_H

@@ -3,7 +3,7 @@
 
 namespace BlockType {
     enum Type {
-        SUBJECT, CORNER, EVENT, FRIDAY
+        SUBJECT, CORNER, EVENT, FRIDAY, NONE
     };
 }
 

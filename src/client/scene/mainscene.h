@@ -1,10 +1,44 @@
-#ifndef MAINSCENE_H
-#define MAINSCENE_H
+#pragma once
+#include <QGraphicsScene>
+#include "mainwindow.h"
+#include "qgameitem.h"
 
-class MainScene
+class MainScene : public QGraphicsScene
 {
+    Q_OBJECT
+
+private:
+    MainWindow* window;
+    QGameItem *background;
+    QGameItem *start_button;
+    QGameItem *credit_button;
+
+    void animateMain();
+    void setupMain();
 public:
-    MainScene();
+    MainScene(qreal x=0, qreal y=0, qreal width=1280,
+              qreal height=720, QObject *parent=0);
+    ~MainScene();
 };
 
-#endif // MAINSCENE_H
+
+class StartButton : public QGameItem
+{
+    Q_OBJECT
+public:
+    StartButton(QGraphicsScene *scene, MainWindow *window);
+    virtual ~StartButton();
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+};
+
+
+class CreditButton : public QGameItem
+{
+    Q_OBJECT
+public:
+    CreditButton(QGraphicsScene *scene, MainWindow *window);
+    virtual ~CreditButton();
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+};

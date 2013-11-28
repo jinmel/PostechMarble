@@ -9,6 +9,8 @@
 #include <QMediaPlayer>
 #include <QtGlobal>
 
+
+// Constructor & Destructor
 LogoScene::LogoScene(qreal x, qreal y,
                       qreal width, qreal height,
                       QObject *parent)
@@ -28,9 +30,10 @@ LogoScene::~LogoScene()
 }
 
 
-void LogoScene::switchToMain()
+// Methods
+void LogoScene::switchtoMain()
 {
-    qDebug() << "Switching to Main" << endl;
+    qDebug() << "Switching to Main";
     window->switchScene(SceneType::MAIN);
 }
 
@@ -69,7 +72,7 @@ void LogoScene::animateLogo()
     animation->setEasingCurve(QEasingCurve::OutQuad);
 
     // connect: switch to main when logo animation finished
-    connect(animation,SIGNAL(finished()),this,SLOT(switchToMain()));
+    connect(animation,SIGNAL(finished()),this,SLOT(switchtoMain()));
 
 
     // play sound

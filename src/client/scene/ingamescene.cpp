@@ -17,6 +17,11 @@ IngameScene::IngameScene(qreal x, qreal y,
     first_panel->setPos(500,500);
     second_panel = new DiceValuePanel(this,w);
     second_panel->setPos(300,300);
+    bar1 = new CharacterStatusBar(this,w,1);
+    bar1->setPos(200,200);
+    bar2 = new CharacterStatusBar(this,w,2);
+    bar2->setPos(200,300);
+
     connect(dice_graphic,SIGNAL(firstValueChanged(int)),first_panel,SLOT(setValue(int)));
     connect(dice_graphic,SIGNAL(secondValueChanged(int)),second_panel,SLOT(setValue(int)));
 }
@@ -88,5 +93,30 @@ void DiceValuePanel::setValue(int value)
         break;
     }
 }
+
+CharacterStatusBar::CharacterStatusBar(QGraphicsScene *scene, MainWindow *window,int player_num)
+    :QGameItem(scene,window)
+{
+    Q_ASSERT(player_num <= 2 && player_num >= 1);
+    QString filename = ":/images/ingame/status/status";
+    filename += QString(static_cast<char>(player_num) + '0');
+    filename += ".png";
+    qDebug() << filename;
+    setImage(filename.toUtf8().constData());
+
+    status_text = new QGraphicsTextItem(this);
+    character_image = new QGraphicsPixmapItem(this);
+    //character_image->setPixmap(QPixmap(QString(":/images/ingame/"));
+    status_text->setPlainText(QString::number(0));
+
+    //set these position in appropriate position relative to status bar...
+}
+
+void CharacterStatusBar::setEnergyText(int energy){
+    status_text->setPlainText(QString::number(energy));
+}
+
+
+
 
 
