@@ -5,7 +5,8 @@ Block::Block()
 {
     // dummy
     position = -1;
-
+    value = 0;
+    block_type = BlockType::NONE;
 
 }
 

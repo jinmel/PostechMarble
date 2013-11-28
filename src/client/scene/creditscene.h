@@ -1,7 +1,7 @@
 #pragma once
 #include <QGraphicsScene>
-#include "mainwindow.h"
-#include "qgameitem.h"
+#include "../mainwindow.h"
+#include "../qgameitem.h"
 
 class CreditScene : public QGraphicsScene
 {
@@ -13,6 +13,7 @@ private:
     QGameItem* credit;
 
     void setupCredit();
+    void animateCredit();
 
 public:
     CreditScene(qreal x=0, qreal y=0, qreal width=1280,

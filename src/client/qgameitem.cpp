@@ -11,6 +11,12 @@ QGameItem::QGameItem()
    //void constructor never called
 }
 
+
+QGameItem::~QGameItem()
+{
+
+}
+
 QGameItem::QGameItem(QGraphicsScene *scene, MainWindow *window){
     parent_scene = scene;
     parent_scene->addItem(this);
