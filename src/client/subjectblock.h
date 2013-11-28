@@ -17,11 +17,10 @@ private:
     int paneltycost; //타인이 블럭을 밟았을 때 내야 하는 금액
 
 public:
-    SubjectBlock();
+    SubjectBlock(SubjectType::Type type, std::string subject_name, int cost);
     virtual ~SubjectBlock();
     SubjectType::Type getType() const;
     virtual void enter(Player* player);
-    void setSubjectBlock(SubjectType::Type blockdepartment, std::string subjectname);
-    void decideGrade();
 
+    void decideGrade();
 };

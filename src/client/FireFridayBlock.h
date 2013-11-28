@@ -2,21 +2,21 @@
 #include "block.h"
 #include "types.h"
 
+using namespace FireFridayType;
+
 
 class FireFridayBlock : public Block
 {
 private:
-    FireFridayType::Type block_type;
+    Type block_type;
 
 public:
-    FireFridayBlock();
+    FireFridayBlock(Type type);
     virtual ~FireFridayBlock();
+
     virtual void enter(Player* player);//in Cornerblock, execute this function
                         //This function : type check and call correct function
-    void inTWODARI(Player* player);
     void inSEOULJONGBIN(Player* player);
     void inTONGZIP(Player* player);
-    void inCHAMPYO(Player* player);
-
 
 };

@@ -5,13 +5,6 @@
 #include "dice.h"
 
 // Constructor & Destructor
-SubjectBlock::SubjectBlock()
-{
-    qDebug()<<"Subject Block constructed."<<endl;
-    owner = NULL;
-}
-
-
 SubjectBlock::~SubjectBlock()
 {
     qDebug()<<"Subject Block destroyed."<<endl;
@@ -19,10 +12,22 @@ SubjectBlock::~SubjectBlock()
 
 
 // Methods
+<<<<<<< HEAD
  void SubjectBlock::setSubjectBlock(SubjectType::Type blockdepartment, std::string subjectname){
      department=blockdepartment;
      subject_name=subjectname;
  }
+=======
+SubjectBlock::SubjectBlock(SubjectType::Type type, std::string subject_name,int cost)
+{
+    qDebug()<<"Subject Block constructed."<<endl;
+    department = type;
+    this->subject_name=subject_name;
+    owner = NULL;
+    this->cost = cost;
+}
+
+>>>>>>> fcb0d30314a1c4ee5120a289d960a0cf6b07b0f0
 SubjectType::Type SubjectBlock::getType() const
 {
     return department;

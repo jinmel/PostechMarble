@@ -9,9 +9,12 @@
 #include <QMediaPlayer>
 
 
-LogoScene::LogoScene(MainWindow *window)
+LogoScene::LogoScene(qreal x, qreal y,
+                      qreal width, qreal height,
+                      QObject *parent)
+ : QGraphicsScene(x,y,width,height, parent)
 {
-    this->window = window;
+    this->window = (MainWindow*)parent;
 
     setupLogo();
     animateLogo();
@@ -26,7 +29,8 @@ LogoScene::~LogoScene()
 
 void LogoScene::switchToMain()
 {
-    window->switchScene(1);
+    qDebug() << "Switching to Main" << endl;
+    window->switchScene(SceneType::MAIN);
 }
 
 
@@ -65,7 +69,7 @@ void LogoScene::animateLogo()
     animation->setEasingCurve(QEasingCurve::OutQuad);
 
     // connect: switch to main when logo animation finished
-    QObject::connect(animation, SIGNAL(finished()), this, SLOT(switchToMain()));
+    connect(animation, SIGNAL(finished()), this, SLOT(switchToMain()));
 
     QMediaPlayer* sound = new QMediaPlayer();
     sound->setMedia(QUrl::fromLocalFile("D:/Development/C&C++/CSED232 Project/src/client/sound/logo_dang.mp3"));

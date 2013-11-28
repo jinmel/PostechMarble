@@ -7,9 +7,12 @@
 
 using namespace std;
 
-CornerBlock::CornerBlock()
+CornerBlock::CornerBlock(CornerType::Type type)
 {
+    block_type = type;
 }
+
+
 
 
 CornerBlock::~CornerBlock()
@@ -30,15 +33,15 @@ void CornerBlock::inCornerBlock(Player* player)
 
     switch(block_type)
     {
-    case DORMITORY : inDormitory(player);
+    case DORM : inDormitory(player);
         break;
-    case THE61CALL : in61Call(player);
+    case CALLTAXI : in61Call(player);
         break;
-    case BREAKSEMESTER : inBreakSemester(player);
+    case BREAKSEM : inBreakSemester(player);
         break;
-    case PLURALMAJOR : inPluralMajor(player);
+    case PLURAL : inPluralMajor(player);
         break;
-    default : qDebug()<<"CornerBlock error!"<<endl;
+    default : qDebug() << "CornerBlock error!" << endl;
         break;
     }
 }

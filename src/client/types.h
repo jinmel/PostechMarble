@@ -9,7 +9,7 @@ namespace BlockType {
 
 namespace CornerType {
     enum Type {
-        DORMITORY, THE61CALL, BREAKSEMESTER, PLURALMAJOR
+        DORM, CALLTAXI, BREAKSEM, PLURAL
     };
 }
 
