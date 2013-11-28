@@ -20,7 +20,7 @@ IngameScene::IngameScene(qreal x, qreal y,
     bar1 = new CharacterStatusBar(this,w,1);
     bar1->setPos(200,200);
     bar2 = new CharacterStatusBar(this,w,2);
-    bar2->setpos(200,300);
+    bar2->setPos(200,300);
 
     connect(dice_graphic,SIGNAL(firstValueChanged(int)),first_panel,SLOT(setValue(int)));
     connect(dice_graphic,SIGNAL(secondValueChanged(int)),second_panel,SLOT(setValue(int)));

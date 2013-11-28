@@ -54,7 +54,7 @@ public slots:
     void setValue(int value);
 };
 
-class CharacterStatusBar : public QGameItem{
+class CharacterStatusBar : public QGameItem {
     Q_OBJECT
 public:
     CharacterStatusBar(QGraphicsScene* scene,MainWindow * window,int player_num);
