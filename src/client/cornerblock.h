@@ -11,7 +11,11 @@ private:
     CornerType::Type block_type;
 
 public:
+<<<<<<< HEAD
+    CornerBlock(CornerType type);
+=======
     CornerBlock(CornerType::Type type);
+>>>>>>> fcb0d30314a1c4ee5120a289d960a0cf6b07b0f0
     virtual ~CornerBlock();
 
     virtual void enter(Player* player);

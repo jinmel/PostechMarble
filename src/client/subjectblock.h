@@ -12,8 +12,9 @@ private:
     std::string         subject_name;
     Player*             owner;
 
-    int grade;
+    int grade;//4->A 3->B 3->C
     int cost;
+    int paneltycost; //타인이 블럭을 밟았을 때 내야 하는 금액
 
 public:
     SubjectBlock(SubjectType::Type type, std::string subject_name, int cost);
