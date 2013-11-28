@@ -99,6 +99,7 @@ void MainWindow::setupScenes()
     menu = new QGraphicsScene(0, 0, 1280, 720, this);
     ready = new QGraphicsScene(0, 0, 1280, 720, this);
     ingame = new QGraphicsScene(0, 0, 1280, 720, this);
+    credit = new QGraphicsScene(0,0,1280,720,this);
 
     // setup for logo
     QGraphicsPixmapItem *back_logo = logo->addPixmap(QPixmap(":images/logo/logo_background.png"));
@@ -127,6 +128,14 @@ void MainWindow::setupScenes()
     // setup for ready
     QGraphicsPixmapItem *ready_logo = logo->addPixmap(QPixmap(":images/logo/logo_background.png"));
     ready_logo->setPos(0, 0);
+
+    // setup for ingame
+    QGraphicsPixmapItem *game_board = ingame->addPixmap(QPixmap(":images/ingame/background.png"));
+    game_board->setPos(0,0);
+
+
+
+
 }
 
 void MainWindow::animateLogo()
@@ -149,7 +158,6 @@ void MainWindow::animateLogo()
     QMediaPlayer* sound = new QMediaPlayer();
     sound->setMedia(QUrl::fromLocalFile("D:/Development/C&C++/CSED232 Project/src/client/sound/logo_dang.mp3"));
     sound->setVolume(80);
-
     animation->start();
     sound->play();
 }

@@ -47,9 +47,6 @@ void EventBlock::checkEvent(Player* player)
     case 5:
         eatChicken(player);
         break;
-    case 6:
-        clubActivity(player);
-        break;
     }
 }
 
