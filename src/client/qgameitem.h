@@ -16,14 +16,14 @@ public slots:
     void animationFinished();
     void hideFinished();
 public:
-    QGameItem(QGraphicsScene* parent);
+    QGameItem(QGraphicsScene* scene);
     QPixmap* image();
     void setImage(char * filename);
     //Game object animation
     void animate(qreal x,qreal y,int duration,
                  const QEasingCurve & curve=QEasingCurve::Linear);
-    void hide(bool fade=false,int duration=1000);
-    void show(bool fase=false,int duration=1000);
+    void hide(bool fade,int duration=1000);
+    void show(bool fase,int duration=1000);
 
 private:
     QGameItem(); //disabled to explicitly expcify the parent scene of the item

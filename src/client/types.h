@@ -30,3 +30,9 @@ namespace CharacterType {
            NONE, LOL, GENIUS, HARD_WORKER, OUTSIDER, ALCOHOLIC
        };
 }
+
+namespace SceneType {
+enum Type {
+    MAIN,LOGO,READY,INGAME
+};
+}

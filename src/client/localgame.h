@@ -12,8 +12,6 @@ private:
 public:
     LocalGame(int num_players=2);
     ~LocalGame();
-    Player * currentPlayer();
-    Board * board();
-    Block * block();
-
+    void play();
+    void printStats();
 };

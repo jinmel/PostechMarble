@@ -7,6 +7,7 @@
 #include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
 #include <QMediaPlayer>
+#include "qgameitem.h"
 
 class CustomItem : public QGraphicsPixmapItem
 {
@@ -38,6 +39,9 @@ public:
     }
 };
 
+void MainWindow::switchScene(int scenetype){
+
+}
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -86,6 +90,7 @@ void MainWindow::setupScenes()
     // setup for main
     QGraphicsPixmapItem *back_main = menu->addPixmap(QPixmap(":images/main/main_background.png"));
     back_main->setPos(0, 0);
+
 
 }
 

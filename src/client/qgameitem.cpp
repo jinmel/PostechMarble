@@ -10,8 +10,8 @@ QGameItem::QGameItem()
    //void constructor never called
 }
 
-QGameItem::QGameItem(QGraphicsScene *parent){
-    parent_scene = parent;
+QGameItem::QGameItem(QGraphicsScene *scene){
+    parent_scene = scene;
     parent_scene->addItem(this);
     timer = NULL;
     animation = NULL;
@@ -96,11 +96,10 @@ void QGameItem::show(bool fade,int duration){
     }
 }
 
-
 void QGameItem::animationFinished(){
     qDebug() << "Animation fininshed";
 }
 
 void QGameItem::hideFinished(){
-    this->hide();
+    this->hide(false);
 }

@@ -27,18 +27,7 @@ LocalGame::~LocalGame()
 
 // Methods
 void LocalGame::play(){
-    Player * currentPlayer = playerQueue->next();
-    do {
-        Dice::getInst()->roll();
-        currentPlayer->moveTo(Dice::getInst()->getValue() % board->getLength());
-        Block * curBlock = board->getBlock(Dice::getInst()->getValue());
-        curBlock->enter(currentPlayer);
-        if(currentPlayer->checkWinStatus()) {
-            break;
-        } 
-        if (!Dice::getInst()->isDouble())
-            currentPlayer = playerQueue->next();
-    } while(1); // fix this inf. loop
+
 }
 
 
