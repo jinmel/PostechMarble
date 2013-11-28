@@ -49,17 +49,17 @@ void EventBlock::checkEvent(Player* player)
         break;
     }
 }
-
+//전체적으로 수정 바람.
 void EventBlock::drink(Player* player)
 {
-    // 음주로 인한 행동력 감소
-    player->setEnergy(player->getEnergy() - 100);
+    // 음주칸으로 이동
+    player->setEnergy(player->getEnergy() - 100); //
 }
 
 void EventBlock::cc(Player* player)
 {
-    // 커플 활동으로 인한 행동력 감소 ( 아니면 일정 확률로 오르게? )
-    player->setEnergy(player->getEnergy() - 100);
+    // 행동력 감소 + 일정 확률로 휴학 또는 61콜 이동
+    player->setEnergy(player->getEnergy() - 100); //
 }
 
 void EventBlock::takeSubject(Player* player)
@@ -76,8 +76,8 @@ void EventBlock::loseSubject(Player* player)
 
 void EventBlock::lol(Player* player)
 {
-    // 롤 너무 많이해서 행동력 대폭 감소
-    player->setEnergy(player->getEnergy() - 100);
+    // 50:50으로 행동력 증가 또는 감소, lol타입 캐릭터의 경우 항상 증가
+    player->setEnergy(player->getEnergy() - 100); //
 }
 
 void EventBlock::eatChicken(Player* player)
