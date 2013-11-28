@@ -32,10 +32,12 @@ void FireFridayBlock::enter(Player *player)
 
 void FireFridayBlock::inSEOULJONGBIN(Player *player)
 {
+    if(getType()!=ALCOHOLIC)
     player->setEnergy(player->getEnergy() - 100);
 }
 
 void FireFridayBlock::inTONGZIP(Player *player)
 {
+    if(getType()!=ALCOHOLIC)
     player->setEnergy(player->getEnergy() - 100);
 }
