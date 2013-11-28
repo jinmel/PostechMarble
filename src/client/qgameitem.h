@@ -21,13 +21,14 @@ public:
     QPixmap* image();
     void setImage(char * filename);
     //Game object animation
-    void animate(qreal x,qreal y,int duration,
+    void animateTo(qreal x,qreal y,int duration,
                  const QEasingCurve & curve=QEasingCurve::Linear);
+    void animateBy(qreal x,qreal y,int duration,
+                   const QEasingCurve & curve=QEasingCurve::Linear);
     void hide(bool fade,int duration=1000);
     void show(bool fase,int duration=1000);
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
-
 private:
     QGameItem(); //disabled to explicitly expcify the parent scene of the item
     QGraphicsScene * parent_scene;
