@@ -24,7 +24,6 @@ LocalGame::~LocalGame()
     delete playerQueue;
 }
 
-
 // Methods
 void LocalGame::play(){
 

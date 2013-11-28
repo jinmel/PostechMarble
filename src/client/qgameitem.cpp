@@ -11,12 +11,13 @@ QGameItem::QGameItem()
    //void constructor never called
 }
 
-QGameItem::QGameItem(QGraphicsScene *scene){
+QGameItem::QGameItem(QGraphicsScene *scene, MainWindow *window){
     parent_scene = scene;
     parent_scene->addItem(this);
     timer = NULL;
     animation = NULL;
     item_image = NULL;
+    this->window = window;
 }
 
 QPixmap * QGameItem::image(){
@@ -120,9 +121,4 @@ void QGameItem::animationFinished(){
 
 void QGameItem::hideFinished(){
     this->hide(false);
-}
-
-void QGameItem::mousePressEvent(QGraphicsSceneMouseEvent *event){
-    qDebug() << "clicked.";
-
 }

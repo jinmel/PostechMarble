@@ -76,23 +76,29 @@ void MainWindow::setupScenes()
     QGraphicsPixmapItem *back_logo = logo->addPixmap(QPixmap(":images/logo/logo_background.png"));
     back_logo->setPos(0, 0);
 
-    CustomItem *ok_test = new CustomItem();
-    ok_test->setMainWindow(this);
+    QGameItem *ok_test = new QGameItem(logo, this);
     ok_test->setPixmap(QPixmap(":/images/button_ok.png"));
     ok_test->setPos(600, 550);
-    ok_test->setApplication(app);
-    logo->addItem(ok_test);
 
     QGraphicsPixmapItem *team_logo = logo->addPixmap(QPixmap(":images/logo/team_logo.png")); //900 170
     team_logo->setPos(190, 275);
+
 
     // setup for main
     QGraphicsPixmapItem *back_main = menu->addPixmap(QPixmap(":images/main/main_background.png"));
     back_main->setPos(0, 0);
 
-    QGameItem * o = new QGameItem(menu);
-    o->setImage(":/images/button_ok.png");
-    o->setPos(500,500);
+    QGameItem *start_button = new QGameItem(menu, this);
+    start_button->setImage(":/images/button_ok.png");
+    start_button->setPos(600,400);
+
+    QGameItem *credit_button = new QGameItem(menu, this);
+    credit_button->setImage(":/images/button_ok.png");
+    credit_button->setPos(600,500);
+
+    // setup for ready
+    QGraphicsPixmapItem *ready_logo = logo->addPixmap(QPixmap(":images/logo/logo_background.png"));
+    ready_logo->setPos(0, 0);
 }
 
 void MainWindow::animateLogo()

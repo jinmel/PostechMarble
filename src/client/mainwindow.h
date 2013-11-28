@@ -26,7 +26,9 @@ private:
     QGraphicsScene *menu;
     QGraphicsScene *ready;
     QGraphicsScene *ingame;
+    QGraphicsScene *credit;
 
 
     void setupScenes();
+    void switchScene();
 };

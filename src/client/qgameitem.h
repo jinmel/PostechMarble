@@ -1,4 +1,5 @@
 #pragma once
+#include "mainwindow.h"
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include <QObject>
@@ -11,6 +12,7 @@ class QGameItem :public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
     Q_PROPERTY(QPointF pos READ pos WRITE setPos)
+
 public slots:
     void animationFinished();
     void hideFinished();
@@ -25,13 +27,9 @@ public:
                    const QEasingCurve & curve=QEasingCurve::Linear);
     void hide(bool fade,int duration=1000);
     void show(bool fase,int duration=1000);
-protected:
-    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-    virtual void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
-    virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
 
 private:
+    MainWindow *window;
     QGameItem(); //disabled to explicitly expcify the parent scene of the item
     QGraphicsScene * parent_scene;
     QTimeLine *timer;
