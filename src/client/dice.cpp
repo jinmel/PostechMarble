@@ -61,3 +61,12 @@ int Dice::getValue()
 {
 	return value1 + value2;
 }
+int Dice::getFirstDice()
+{
+    return value1;
+}
+
+int Dice::getSecondDice()
+{
+    return value2;
+}

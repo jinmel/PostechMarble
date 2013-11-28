@@ -11,6 +11,8 @@ private:
 public:
 	~Dice();
 	void roll();
+    int getFirstDice();
+    int getSecondDice();
 	bool isDouble();
     int getValue();
 

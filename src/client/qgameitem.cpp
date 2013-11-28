@@ -24,7 +24,7 @@ QPixmap * QGameItem::image(){
     return this->item_image;
 }
 
-void QGameItem::setImage(char * filename){
+void QGameItem::setImage(const char * filename){
     if(item_image == NULL){
         item_image = new QPixmap(QString(filename));
         setPixmap(*item_image);
