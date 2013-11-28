@@ -47,6 +47,9 @@ void EventBlock::checkEvent(Player* player)
     case 5:
         eatChicken(player);
         break;
+    case 6:
+        photoGenic();
+        break;
     }
 }
 //전체적으로 수정 바람.
@@ -85,4 +88,9 @@ void EventBlock::eatChicken(Player* player)
     // 치느님을 영접하여 행동력 증가
     player->setEnergy(player->getEnergy() + 100);
 
+}
+
+void EventBlock::photoGenic()
+{
+    //팀원 사진 띄우기
 }
