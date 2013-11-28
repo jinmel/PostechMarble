@@ -48,7 +48,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setupScenes();
     ui->graphicsView->setScene(logo);
-    animateLogo();
 }
 
 
