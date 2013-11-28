@@ -28,6 +28,7 @@ Makefile
 debug
 release
 client/build
+*.autosave
 
 ### Windows ###
 # Windows image file caches
