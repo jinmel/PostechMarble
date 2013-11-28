@@ -86,6 +86,7 @@ void MainWindow::setupScenes()
     // setup for main
     QGraphicsPixmapItem *back_main = menu->addPixmap(QPixmap(":images/main/main_background.png"));
     back_main->setPos(0, 0);
+
 }
 
 void MainWindow::animateLogo()
