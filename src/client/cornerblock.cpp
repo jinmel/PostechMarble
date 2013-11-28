@@ -23,7 +23,7 @@ CornerBlock::~CornerBlock()
 // Methods
 void CornerBlock::enter(Player* player)
 {
-	inCornerBlock(player);
+    inCornerBlock(player);
 }
 
 
@@ -33,16 +33,16 @@ void CornerBlock::inCornerBlock(Player* player)
 
     switch(block_type)
     {
-        case DORMITORY : inDormitory(player);
-            break;
-        case THE61CALL : in61Call(player);
-            break;
-        case BREAKSEMESTER : inBreakSemester(player);
-            break;
-        case PLURALMAJOR : inPluralMajor(player);
-            break;
-        default : qDebug()<<"CornerBlock error!"<<endl;
-            break;
+    case DORMITORY : inDormitory(player);
+        break;
+    case THE61CALL : in61Call(player);
+        break;
+    case BREAKSEMESTER : inBreakSemester(player);
+        break;
+    case PLURALMAJOR : inPluralMajor(player);
+        break;
+    default : qDebug()<<"CornerBlock error!"<<endl;
+        break;
     }
 }
 
@@ -53,22 +53,22 @@ void CornerBlock::inDormitory(Player* player)
     int takingenergy;
     switch(player->getType())
     {
-        case LOL : takingenergy = 100; //주는 에너지 수치는 상학선배&주현이가 채워주세요 ㅎㅎ
-            break;
+    case LOL : takingenergy = 100; //주는 에너지 수치는 상학선배&주현이가 채워주세요 ㅎㅎ
+        break;
 
-        case GENIUS : takingenergy = 100;
-            break;
+    case GENIUS : takingenergy = 100;
+        break;
 
-        case HARD_WORKER : takingenergy = 150;
-            break;
+    case HARD_WORKER : takingenergy = 150;
+        break;
 
-        case OUTSIDER : takingenergy = 100;
-            break;
+    case OUTSIDER : takingenergy = 100;
+        break;
 
-        case ALCOHOLIC : takingenergy = 100;
-            break;
+    case ALCOHOLIC : takingenergy = 100;
+        break;
 
-        default         : takingenergy = 100;
+    default         : takingenergy = 100;
 
     }
 
@@ -84,7 +84,7 @@ void CornerBlock::in61Call(Player* player) {        //원하는 블럭을 선택
     int blocknum;//0~35까지의 숫자로 block 번호 관리... 이렇게 안하면 board 어레이로 올라가야하는데.. 뭐 할라면 할순잇겟지..
     cin >> blocknum; //ui는 블럭을 클릭 할 수 있도록, 우리는 클릭받은 블럭의 입력받아서 여기에 cin대신에 넣을 수 있어야겠지.. clicked()이용해야할듯 ㅎ
     qDebug() <<" "<<endl;
-    player->moveTo(blocknum);//moveTo에서 포인터가지고 어찌어찌해서 옮겨줘야될꺼같은데!! 
+    player->moveTo(blocknum);//moveTo에서 포인터가지고 어찌어찌해서 옮겨줘야될꺼같은데!!
 
 
     /*moveTo 를 숫자로 넣을수 있도록 해야할듯!! 현재 있는 칸도 번호 저장해둬서 주사위 돌렸을 때 현재 숫자+주사위 눈 으로 이동하든지
@@ -158,25 +158,13 @@ void CornerBlock::inPluralMajor(Player* player) {//복수전공
 
     qDebug()<<"You have to take two major for graduation."<<endl;
     qDebug()<<"Plural major check..."<<endl;
-<<<<<<< HEAD
-
     Dice::getInst()->roll();
 
 
-    int checkplural=Dice::getInst()->getValue();//1=plural 2,3,4,5,6=normal
+    int checkplural = Dice::getInst()->getValue();      //1=plural 2,3,4,5,6=normal
     switch(checkplural)
     {
     case 1 : qDebug() <<"You have to take plural major."<<endl;
-=======
-	
-	Dice::getInst()->roll();
-	
-
-    int checkplural = Dice::getInst()->getValue();      //1=plural 2,3,4,5,6=normal
-	switch(checkplural)
-	{
-	case 1 : qDebug() <<"You have to take plural major."<<endl;
->>>>>>> 700b751d317078be635f452f03b1aeb0da89d4e8
         player->setPlural(true);
         break;
     default : qDebug()<<"You don't have to take plural major."<<endl;

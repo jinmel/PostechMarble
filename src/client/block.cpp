@@ -5,6 +5,8 @@ Block::Block()
 {
     // dummy
     position = -1;
+
+
 }
 
 

@@ -3,12 +3,9 @@
 #include <map>
 #include "block.h"
 #include "types.h"
-#include "subjectblock.h"
 
 // circular dependency
 class Block;
-class SubjectBlock;
-
 
 class Player
 {
@@ -49,9 +46,6 @@ public:
     void loseBlock(Block* block);
     void giveSalary();
     void payEnergy(int payenergy);
-    void pushSubject(SubjectBlock* subjectblock);
-
-
 
     bool checkWinStatus();
 };

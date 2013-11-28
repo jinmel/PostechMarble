@@ -1,5 +1,6 @@
 #include "player.h"
 #include "subjectblock.h"
+#include "types.h"
 #include <iostream>
 #include <algorithm>
 #include <QDebug>
@@ -238,7 +239,7 @@ void Player::loseBlock(Block *block)
 
 void Player::giveSalary()
 {
-    if(character_type==HARD_WORKER)
+    if(character_type == CharacterType::HARD_WORKER)
     	energy += 150;
     else
     	energy += 100;

@@ -20,13 +20,10 @@ void FireFridayBlock::enter(Player *player)
     using namespace FireFridayType;
 
     switch(block_type)
-   {    case TWODARI: inTWODARI(player);
-            break;
+   {    
         case SEOULJONGBIN: inSEOULJONGBIN(player);
             break;
         case TONGZIP: inTONGZIP(player);
-            break;
-        case CHAMPYO: inCHAMPYO(player);
             break;
     }
 
@@ -35,21 +32,12 @@ void FireFridayBlock::enter(Player *player)
 
 void FireFridayBlock::inSEOULJONGBIN(Player *player)
 {
-
-}
-
-void FireFridayBlock::inCHAMPYO(Player *player)
-{
-
+    if(getType()!=ALCOHOLIC)
+    player->setEnergy(player->getEnergy() - 100);
 }
 
 void FireFridayBlock::inTONGZIP(Player *player)
 {
-
+    if(getType()!=ALCOHOLIC)
+    player->setEnergy(player->getEnergy() - 100);
 }
-
-void FireFridayBlock::inTWODARI(Player *player)
-{
-
-}
-

@@ -15,7 +15,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void setApplication(QApplication* app);
-    void animateLogo();
     void switchToMain();
     void switchScene(int scenetype);
 private:
