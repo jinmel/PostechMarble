@@ -91,7 +91,9 @@ void MainWindow::setupScenes()
     QGraphicsPixmapItem *back_main = menu->addPixmap(QPixmap(":images/main/main_background.png"));
     back_main->setPos(0, 0);
 
-
+    QGameItem * o = new QGameItem(menu);
+    o->setImage(":/images/button_ok.png");
+    o->setPos(500,500);
 }
 
 void MainWindow::animateLogo()

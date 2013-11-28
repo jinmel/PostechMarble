@@ -16,7 +16,6 @@ QGameItem::QGameItem(QGraphicsScene *scene){
     timer = NULL;
     animation = NULL;
     item_image = NULL;
-    setCacheMode(DeviceCoordinateCache);
 }
 
 QPixmap * QGameItem::image(){
@@ -24,12 +23,13 @@ QPixmap * QGameItem::image(){
 }
 
 void QGameItem::setImage(char * filename){
-    if(item_image == NULL)
+    if(item_image == NULL){
         item_image = new QPixmap(QString(filename));
+        setPixmap(*item_image);
+    }
     else{
         QPixmap * del = item_image;
         item_image = new QPixmap(QString(filename));
-
         setPixmap(*item_image);
         delete del;
     }
@@ -102,4 +102,9 @@ void QGameItem::animationFinished(){
 
 void QGameItem::hideFinished(){
     this->hide(false);
+}
+
+void QGameItem::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    qDebug() << "clicked.";
+    this->animate(50,50,1000);
 }

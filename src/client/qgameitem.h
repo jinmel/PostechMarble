@@ -12,6 +12,7 @@
 class QGameItem :public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
+    Q_PROPERTY(QPointF pos READ pos WRITE setPos)
 public slots:
     void animationFinished();
     void hideFinished();
@@ -24,6 +25,8 @@ public:
                  const QEasingCurve & curve=QEasingCurve::Linear);
     void hide(bool fade,int duration=1000);
     void show(bool fase,int duration=1000);
+protected:
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
 
 private:
     QGameItem(); //disabled to explicitly expcify the parent scene of the item
