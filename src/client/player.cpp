@@ -259,3 +259,10 @@ bool Player::checkWinStatus()
     else
         return false;
 }
+
+void Player::payEnergy(int payenergy)
+{
+    energy-=payenergy;
+
+}
+

@@ -46,6 +46,7 @@ public:
     void takeBlock(Block* block);
     void loseBlock(Block* block);
     void giveSalary();
+    void payEnergy(int payenergy);
 
     bool checkWinStatus();
 };
