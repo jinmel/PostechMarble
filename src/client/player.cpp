@@ -239,7 +239,10 @@ void Player::loseBlock(Block *block)
 
 void Player::giveSalary()
 {
-    energy += 500;
+    if(character_type==HARD_WORKER)
+    	energy += 150;
+    else
+    	energy += 100;
 }
 
 
