@@ -89,9 +89,3 @@ void EventBlock::eatChicken(Player* player)
     player->setEnergy(player->getEnergy() + 100);
 
 }
-
-void EventBlock::clubActivity(Player* player)
-{
-    // 동아리 활동으로 공부할 시간이 없다.
-    player->setEnergy(player->getEnergy() - 100);
-}
