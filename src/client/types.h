@@ -3,13 +3,13 @@
 
 namespace BlockType {
     enum Type {
-        Subject, Corner, Event, Friday
+        SUBJECT, CORNER, EVENT, FRIDAY
     };
 }
 
 namespace CornerType {
     enum Type {
-        DORMITORY, THE61CALL, BREAKSEMESTER, PLURALMAJOR
+        DORM, CALLTAXI, BREAKSEM, PLURAL
     };
 }
 

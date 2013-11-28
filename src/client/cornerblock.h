@@ -11,7 +11,7 @@ private:
     CornerType::Type block_type;
 
 public:
-    CornerBlock();
+    CornerBlock(CornerType::Type type);
     virtual ~CornerBlock();
 
     virtual void enter(Player* player);

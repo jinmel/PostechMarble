@@ -1,5 +1,6 @@
 #include "player.h"
 #include "subjectblock.h"
+#include "types.h"
 #include <iostream>
 #include <algorithm>
 #include <QDebug>
@@ -34,7 +35,7 @@ Player::Player()
 
 Player::~Player()
 {
-   //delete own_blocks;
+    //delete own_blocks;
 
     qDebug() << "Player Destroyed" << endl;
 }
@@ -78,7 +79,7 @@ bool Player::isPlural() const
 
 CharacterType::Type Player::getType() const
 {
-	return character_type;
+    return character_type;
 }
 
 
@@ -146,7 +147,6 @@ void Player::moveTo(int dice)
     setPosition(moveValue);
 
     // some character animations
-
 }
 
 
@@ -165,16 +165,63 @@ bool Player::hasBlock(Block* block)
 
 void Player::buyBlock(Block* block)
 {
-    takeBlock(block);
-    //energy -= block->getValue();
+    using namespace BlockType;
+
+    if(!hasBlock(block))
+        qDebug() << "You don't have that block. Check Again!" << endl;
+
+    else {
+        switch(block->getType()) {
+        case CORNER:
+            // CornerBlock
+            break;
+        case EVENT:
+            // EventBlock
+            break;
+        case FRIDAY:
+            // FriayBlock
+            break;
+        case SUBJECT:
+            // SubjectBlock
+            registered.find(((SubjectBlock*)block)->getType())->second++;
+            break;
+        }
+
+        own_blocks.push_back(block);
+    }
+    energy -= block->getValue();
 
 }
 
 
 void Player::sellBlock(Block* block)
 {
-    loseBlock(block);
-    //energy += block->getValue();
+    using namespace BlockType;
+
+    if(!hasBlock(block))
+        qDebug() << "You don't have that block. Check Again!" << endl;
+
+    else {
+        switch(block->getType()) {
+        case CORNER:
+            // CornerBlock
+            break;
+        case EVENT:
+            // EventBlock
+            break;
+        case FRIDAY:
+            // FriayBlock
+            break;
+        case SUBJECT:
+            // SubjectBlock
+            registered.find(((SubjectBlock*)block)->getType())->second--;
+            break;
+
+        }
+
+        own_blocks.remove(block);
+    }
+    energy += block->getValue();
 }
 
 
@@ -187,19 +234,19 @@ void Player::takeBlock(Block *block)
 
     else {
         switch(block->getType()) {
-            case Corner:
-                // CornerBlock
-                break;
-            case Event:
-                // EventBlock
-                break;
-            case Friday:
-                // FriayBlock
-                break;
-            case Subject:
-                // SubjectBlock
-                registered.find(((SubjectBlock*)block)->getType())->second++;
-                break;
+        case CORNER:
+            // CornerBlock
+            break;
+        case EVENT:
+            // EventBlock
+            break;
+        case FRIDAY:
+            // FriayBlock
+            break;
+        case SUBJECT:
+            // SubjectBlock
+            registered.find(((SubjectBlock*)block)->getType())->second++;
+            break;
         }
 
         own_blocks.push_back(block);
@@ -216,19 +263,19 @@ void Player::loseBlock(Block *block)
 
     else {
         switch(block->getType()) {
-            case Corner:
-                // CornerBlock
-                break;
-            case Event:
-                // EventBlock
-                break;
-            case Friday:
-                // FriayBlock
-                break;
-            case Subject:
-                // SubjectBlock
-                registered.find(((SubjectBlock*)block)->getType())->second--;
-                break;
+        case CORNER:
+            // CornerBlock
+            break;
+        case EVENT:
+            // EventBlock
+            break;
+        case FRIDAY:
+            // FriayBlock
+            break;
+        case SUBJECT:
+            // SubjectBlock
+            registered.find(((SubjectBlock*)block)->getType())->second--;
+            break;
 
         }
 
@@ -239,7 +286,10 @@ void Player::loseBlock(Block *block)
 
 void Player::giveSalary()
 {
-    energy += 500;
+    if(character_type == CharacterType::HARD_WORKER)
+        energy += 150;
+    else
+        energy += 100;
 }
 
 
@@ -265,4 +315,9 @@ void Player::payEnergy(int payenergy)
     energy-=payenergy;
 
 }
+void Player::paidEnergy(int paidenergy){
+    energy+=paidenergy;
+
+}
+
 
