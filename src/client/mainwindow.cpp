@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "scene/logoscene.h"
+#include "scene/creditscene.h"
 #include <QGraphicsItem>
 #include <QDebug>
 #include <QGraphicsItemAnimation>
@@ -99,7 +100,7 @@ void MainWindow::setupScenes()
     menu = new QGraphicsScene(0, 0, 1280, 720, this);
     ready = new QGraphicsScene(0, 0, 1280, 720, this);
     ingame = new QGraphicsScene(0, 0, 1280, 720, this);
-    credit = new QGraphicsScene(0,0,1280,720,this);
+    credit = new CreditScene(0,0,1280,720,this);
 
 
     // setup for main
