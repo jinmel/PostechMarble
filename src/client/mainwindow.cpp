@@ -39,10 +39,8 @@ public:
     }
 };
 
-void MainWindow::switchScene(int scenetype){
 
-}
-
+// Constructor & Destructor
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -53,9 +51,39 @@ MainWindow::MainWindow(QWidget *parent) :
     animateLogo();
 }
 
+
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+
+// Methods
+// Utility Functions
+void MainWindow::switchScene(int scenetype)
+{
+    using namespace SceneType;
+    QGraphicsScene* scene;
+
+    switch(scenetype) {
+        case LOGO:
+            scene = logo;
+            break;
+        case MAIN:
+            scene = menu;
+            break;
+        case READY:
+            scene = ready;
+            break;
+        case INGAME:
+            scene = ingame;
+            break;
+        case CREDIT:
+            scene = credit;
+            break;
+    }
+
+    ui->graphicsView->setScene(scene);
 }
 
 
@@ -69,27 +97,43 @@ void MainWindow::setupScenes()
 {
     logo = new QGraphicsScene(0, 0, 1280, 720, this);
     menu = new QGraphicsScene(0, 0, 1280, 720, this);
-    menu = new QGraphicsScene(0, 0, 1280, 720, this);
     ready = new QGraphicsScene(0, 0, 1280, 720, this);
     ingame = new QGraphicsScene(0, 0, 1280, 720, this);
+    credit = new QGraphicsScene(0,0,1280,720,this);
 
     // setup for logo
     QGraphicsPixmapItem *back_logo = logo->addPixmap(QPixmap(":images/logo/logo_background.png"));
     back_logo->setPos(0, 0);
 
-    CustomItem *ok_test = new CustomItem();
-    ok_test->setMainWindow(this);
+    QGameItem *ok_test = new QGameItem(logo, this);
     ok_test->setPixmap(QPixmap(":/images/button_ok.png"));
     ok_test->setPos(600, 550);
-    ok_test->setApplication(app);
-    logo->addItem(ok_test);
 
     QGraphicsPixmapItem *team_logo = logo->addPixmap(QPixmap(":images/logo/team_logo.png")); //900 170
     team_logo->setPos(190, 275);
 
+
     // setup for main
     QGraphicsPixmapItem *back_main = menu->addPixmap(QPixmap(":images/main/main_background.png"));
     back_main->setPos(0, 0);
+
+    QGameItem *start_button = new QGameItem(menu, this);
+    start_button->setImage(":/images/button_ok.png");
+    start_button->setPos(600,400);
+
+    QGameItem *credit_button = new QGameItem(menu, this);
+    credit_button->setImage(":/images/button_ok.png");
+    credit_button->setPos(600,500);
+
+    // setup for ready
+    QGraphicsPixmapItem *ready_logo = logo->addPixmap(QPixmap(":images/logo/logo_background.png"));
+    ready_logo->setPos(0, 0);
+
+    // setup for ingame
+    QGraphicsPixmapItem *game_board = ingame->addPixmap(QPixmap(":images/ingame/background.png"));
+    game_board->setPos(0,0);
+
+
 
 
 }
@@ -112,17 +156,8 @@ void MainWindow::animateLogo()
     animation->setEasingCurve(QEasingCurve::OutQuad);
 
     QMediaPlayer* sound = new QMediaPlayer();
-    sound->setMedia(QUrl(":sound/logo_dang.mp3"));
+    sound->setMedia(QUrl::fromLocalFile("D:/Development/C&C++/CSED232 Project/src/client/sound/logo_dang.mp3"));
     sound->setVolume(80);
-
     animation->start();
     sound->play();
 }
-
-
-void MainWindow::switchToMain()
-{
-    // implement this with smoother transition
-    ui->graphicsView->setScene(menu);
-}
-

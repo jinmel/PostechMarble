@@ -50,22 +50,22 @@ void CornerBlock::inDormitory(Player* player)
     int takingenergy;
     switch(player->getType())
     {
-        case LOL : takingenergy = 1; //주는 에너지 수치는 상학선배&주현이가 채워주세요 ㅎㅎ
+        case LOL : takingenergy = 100; //주는 에너지 수치는 상학선배&주현이가 채워주세요 ㅎㅎ
             break;
 
-        case GENIUS : takingenergy = 2;
+        case GENIUS : takingenergy = 100;
             break;
 
-        case HARD_WORKER : takingenergy = 3;
+        case HARD_WORKER : takingenergy = 150;
             break;
 
-        case OUTSIDER : takingenergy = 4;
+        case OUTSIDER : takingenergy = 100;
             break;
 
-        case ALCOHOLIC : takingenergy = 5;
+        case ALCOHOLIC : takingenergy = 100;
             break;
 
-        default         : takingenergy = 6;
+        default         : takingenergy = 100;
 
     }
 
@@ -155,6 +155,7 @@ void CornerBlock::inPluralMajor(Player* player) {//복수전공
 
     qDebug()<<"You have to take two major for graduation."<<endl;
     qDebug()<<"Plural major check..."<<endl;
+<<<<<<< HEAD
 
     Dice::getInst()->roll();
 
@@ -163,6 +164,16 @@ void CornerBlock::inPluralMajor(Player* player) {//복수전공
     switch(checkplural)
     {
     case 1 : qDebug() <<"You have to take plural major."<<endl;
+=======
+	
+	Dice::getInst()->roll();
+	
+
+    int checkplural = Dice::getInst()->getValue();      //1=plural 2,3,4,5,6=normal
+	switch(checkplural)
+	{
+	case 1 : qDebug() <<"You have to take plural major."<<endl;
+>>>>>>> 700b751d317078be635f452f03b1aeb0da89d4e8
         player->setPlural(true);
         break;
     default : qDebug()<<"You don't have to take plural major."<<endl;

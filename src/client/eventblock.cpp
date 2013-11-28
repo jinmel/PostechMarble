@@ -47,9 +47,6 @@ void EventBlock::checkEvent(Player* player)
     case 5:
         eatChicken(player);
         break;
-    case 6:
-        clubActivity(player);
-        break;
     }
 }
 
@@ -88,10 +85,4 @@ void EventBlock::eatChicken(Player* player)
     // 치느님을 영접하여 행동력 증가
     player->setEnergy(player->getEnergy() + 100);
 
-}
-
-void EventBlock::clubActivity(Player* player)
-{
-    // 동아리 활동으로 공부할 시간이 없다.
-    player->setEnergy(player->getEnergy() - 100);
 }

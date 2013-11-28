@@ -5,18 +5,19 @@
 #include <QPropertyAnimation>
 #include <QGraphicsOpacityEffect>
 
+
 QGameItem::QGameItem()
 {
    //void constructor never called
 }
 
-QGameItem::QGameItem(QGraphicsScene *scene){
+QGameItem::QGameItem(QGraphicsScene *scene, MainWindow *window){
     parent_scene = scene;
     parent_scene->addItem(this);
     timer = NULL;
     animation = NULL;
     item_image = NULL;
-    setCacheMode(DeviceCoordinateCache);
+    this->window = window;
 }
 
 QPixmap * QGameItem::image(){
@@ -24,18 +25,19 @@ QPixmap * QGameItem::image(){
 }
 
 void QGameItem::setImage(char * filename){
-    if(item_image == NULL)
+    if(item_image == NULL){
         item_image = new QPixmap(QString(filename));
+        setPixmap(*item_image);
+    }
     else{
         QPixmap * del = item_image;
         item_image = new QPixmap(QString(filename));
-
         setPixmap(*item_image);
         delete del;
     }
 }
 
-void QGameItem::animate(qreal dest_x,qreal dest_y,int duration,
+void QGameItem::animateTo(qreal dest_x,qreal dest_y,int duration,
                         const QEasingCurve & curve){
     // Start animate this class
     QPropertyAnimation* anim = new QPropertyAnimation(this, "pos");
@@ -45,6 +47,23 @@ void QGameItem::animate(qreal dest_x,qreal dest_y,int duration,
     anim->setStartValue(this->pos());
     // end position of animation
     anim->setEndValue(QPointF(dest_x,dest_y));
+    // easing curve
+    anim->setEasingCurve(curve);
+    // Listen animation finished signal
+    QObject::connect(anim, SIGNAL(finished()), this, SLOT(animationFinished()));
+    // Start animation and delete QPropertyAnimation class on the end
+    anim->start(QAbstractAnimation::DeleteWhenStopped);
+}
+void QGameItem::animateBy(qreal delta_x,qreal delta_y,int duration,
+                        const QEasingCurve & curve){
+    // Start animate this class
+    QPropertyAnimation* anim = new QPropertyAnimation(this, "pos");
+    // 2 second duration animation
+    anim->setDuration(duration);
+    // position to start animation
+    anim->setStartValue(this->pos());
+    // end position of animation
+    anim->setEndValue(this->pos() + QPointF(delta_x,delta_y));
     // easing curve
     anim->setEasingCurve(curve);
     // Listen animation finished signal
