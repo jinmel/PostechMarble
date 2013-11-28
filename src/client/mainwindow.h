@@ -28,7 +28,5 @@ private:
     QGraphicsScene *ingame;
     QGraphicsScene *credit;
 
-
     void setupScenes();
-    void switchScene();
 };

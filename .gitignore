@@ -28,7 +28,6 @@ Makefile
 debug
 release
 client/build
-src/build-*
 
 ### Windows ###
 # Windows image file caches

@@ -15,7 +15,7 @@ namespace CornerType {
 
 namespace FireFridayType {
     enum Type {
-        TWODARI,SEOULJONGBIN,TONGZIP,CHAMPYO
+        TWODARI, SEOULJONGBIN, TONGZIP, CHAMPYO
     };
 }
 
@@ -33,6 +33,6 @@ namespace CharacterType {
 
 namespace SceneType {
     enum Type {
-        MAIN,LOGO,READY,INGAME
+        LOGO=0, MAIN=1, READY=2, INGAME=3, CREDIT=9
     };
 }

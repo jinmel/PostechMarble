@@ -41,6 +41,7 @@ HEADERS  += mainwindow.h \
     sellpopup.h \
     types.h \
     qgameitem.h\
+    logo.h
 
 FORMS    += mainwindow.ui \
     sellpopup.ui

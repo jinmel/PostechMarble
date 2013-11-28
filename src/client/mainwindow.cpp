@@ -39,10 +39,8 @@ public:
     }
 };
 
-void MainWindow::switchScene(int scenetype){
 
-}
-
+// Constructor & Destructor
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -53,9 +51,39 @@ MainWindow::MainWindow(QWidget *parent) :
     animateLogo();
 }
 
+
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+
+// Methods
+// Utility Functions
+void MainWindow::switchScene(int scenetype)
+{
+    using namespace SceneType;
+    QGraphicsScene* scene;
+
+    switch(scenetype) {
+        case LOGO:
+            scene = logo;
+            break;
+        case MAIN:
+            scene = menu;
+            break;
+        case READY:
+            scene = ready;
+            break;
+        case INGAME:
+            scene = ingame;
+            break;
+        case CREDIT:
+            scene = credit;
+            break;
+    }
+
+    ui->graphicsView->setScene(scene);
 }
 
 
@@ -125,11 +153,3 @@ void MainWindow::animateLogo()
     animation->start();
     sound->play();
 }
-
-
-void MainWindow::switchToMain()
-{
-    // implement this with smoother transition
-    ui->graphicsView->setScene(menu);
-}
-
