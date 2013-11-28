@@ -69,7 +69,6 @@ void MainWindow::setupScenes()
 {
     logo = new QGraphicsScene(0, 0, 1280, 720, this);
     menu = new QGraphicsScene(0, 0, 1280, 720, this);
-    menu = new QGraphicsScene(0, 0, 1280, 720, this);
     ready = new QGraphicsScene(0, 0, 1280, 720, this);
     ingame = new QGraphicsScene(0, 0, 1280, 720, this);
 
@@ -112,7 +111,7 @@ void MainWindow::animateLogo()
     animation->setEasingCurve(QEasingCurve::OutQuad);
 
     QMediaPlayer* sound = new QMediaPlayer();
-    sound->setMedia(QUrl(":sound/logo_dang.mp3"));
+    sound->setMedia(QUrl::fromLocalFile("D:/Development/C&C++/CSED232 Project/src/client/sound/logo_dang.mp3"));
     sound->setVolume(80);
 
     animation->start();

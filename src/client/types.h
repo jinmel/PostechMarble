@@ -32,7 +32,7 @@ namespace CharacterType {
 }
 
 namespace SceneType {
-enum Type {
-    MAIN,LOGO,READY,INGAME
-};
+    enum Type {
+        MAIN,LOGO,READY,INGAME
+    };
 }

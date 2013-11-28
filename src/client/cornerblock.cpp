@@ -158,7 +158,7 @@ void CornerBlock::inPluralMajor(Player* player) {//복수전공
 	Dice::getInst()->roll();
 	
 
-	int checkplural=Dice::getInst()->getValue();//1=plural 2,3,4,5,6=normal
+    int checkplural = Dice::getInst()->getValue();      //1=plural 2,3,4,5,6=normal
 	switch(checkplural)
 	{
 	case 1 : qDebug() <<"You have to take plural major."<<endl;
