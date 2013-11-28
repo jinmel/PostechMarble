@@ -7,27 +7,20 @@
 // Constructor & Destructor
 SubjectBlock::~SubjectBlock()
 {
-    qDebug()<<"Subject Block destroyed."<<endl;
+    qDebug() << "Subject Block destroyed." << endl;
 }
 
 
 // Methods
-<<<<<<< HEAD
- void SubjectBlock::setSubjectBlock(SubjectType::Type blockdepartment, std::string subjectname){
-     department=blockdepartment;
-     subject_name=subjectname;
- }
-=======
-SubjectBlock::SubjectBlock(SubjectType::Type type, std::string subject_name,int cost)
+SubjectBlock::SubjectBlock(SubjectType::Type type, std::string subject_name, int cost)
 {
-    qDebug()<<"Subject Block constructed."<<endl;
+    qDebug() << "Subject Block constructed." << endl;
     department = type;
-    this->subject_name=subject_name;
+    this->subject_name = subject_name;
     owner = NULL;
     this->cost = cost;
 }
 
->>>>>>> fcb0d30314a1c4ee5120a289d960a0cf6b07b0f0
 SubjectType::Type SubjectBlock::getType() const
 {
     return department;
@@ -35,7 +28,7 @@ SubjectType::Type SubjectBlock::getType() const
 
 void SubjectBlock::enter(Player* player)
 {
-    if(owner==NULL)//빈블럭
+    if(owner == NULL)   //빈블럭
     {
         if(player->getEnergy()>=cost){
 
@@ -46,22 +39,23 @@ void SubjectBlock::enter(Player* player)
             qDebug()<<">>";
             //cin<<userselect;
 
-            if(userselect==1)//if buy
+            if(userselect==1)   //if buy
             {
                 player->buyBlock(this);
 
             }
-            else//not buy
-            {return;}
+            else                //not buy
+                return;
         }
     }
-    else if(owner==player)//자신의 블럭
+    
+    else if(owner==player)  //자신의 블럭
     {
         qDebug()<<"Do you want to take this subject again?"<<endl;//재수강 여부 확인
         int userselect;
         qDebug()<<"1.yes    2.no";
         //cin>>userselect;
-        if(userselect==1)//if yes
+        if(userselect==1)   //if yes
         {
             decideGrade();
         }
@@ -69,7 +63,7 @@ void SubjectBlock::enter(Player* player)
             return;
 
     }
-    else//타인의 블럭
+    else    //타인의 블럭
     {
         if(paneltycost>player->getEnergy())
         {
@@ -92,10 +86,10 @@ void SubjectBlock::enter(Player* player)
         randomvalue = rand() % 100 + 1;
 
         if(randomvalue<=20)
-        {grade = 4;}//A
+            grade = 4;      //A
         else if(randomvalue<=60)
-        {grade = 3;}//B
+            grade = 3;      //B
         else
-        {grade = 2;}//C
+            grade = 2;      //C
 
     }
