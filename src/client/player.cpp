@@ -138,9 +138,9 @@ void Player::moveTo(int dice)
     int moveValue = position + dice;
 
     // pay check
-    if(moveValue >= 36) {
+    if(moveValue >= 32) {
         giveSalary();
-        moveValue %= 36;
+        moveValue %= 32;
     }
 
     setPosition(moveValue);
