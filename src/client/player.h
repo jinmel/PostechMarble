@@ -27,6 +27,7 @@ public:
 
     int  getPosition() const;
     int  getId() const;
+
     bool isBankrupt() const;
     bool isMobile() const;
     int  getEnergy() const;
@@ -34,6 +35,7 @@ public:
     bool isPlural() const;
     CharacterType::Type getType() const;
 
+    void setType(CharacterType::Type new_type);
     void setPosition(int position);
     void setEnergy(int getenergy);
     void setPlural(bool plural);

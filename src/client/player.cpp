@@ -271,3 +271,7 @@ int Player::getId() const {
     return id;
 }
 
+void Player::setType(CharacterType::Type type) {
+    character_type = type;
+}
+

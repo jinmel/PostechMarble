@@ -26,6 +26,6 @@ Player * PlayerQueue::next(){
     return ret;
 }
 
-int PlayerQueue::size(){
+int PlayerQueue::getSize(){
     return size;
 }
