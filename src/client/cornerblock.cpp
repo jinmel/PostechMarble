@@ -98,6 +98,7 @@ void CornerBlock::inBreakSemester(Player* player) {     //무인도
     }
     else//원래 이 블럭에 있었을 경우.. 근데 enter라는 함수로 해결이 되는가?
     {
+
         qDebug()<<"You can escape the mouindo if you pay energy or get a double dice"<<endl;
         qDebug()<<"1. pay energy    2. roll a dice"<<endl;//나중에 애니메이션 넣어서 바꿀 부분
         qDebug()<<">>";
@@ -150,21 +151,21 @@ void CornerBlock::inBreakSemester(Player* player) {     //무인도
 }
 
 void CornerBlock::inPluralMajor(Player* player) {//복수전공
-    
+
 
     qDebug()<<"You have to take two major for graduation."<<endl;
     qDebug()<<"Plural major check..."<<endl;
-	
-	Dice::getInst()->roll();
-	
 
-	int checkplural=Dice::getInst()->getValue();//1=plural 2,3,4,5,6=normal
-	switch(checkplural)
-	{
-	case 1 : qDebug() <<"You have to take plural major."<<endl;
+    Dice::getInst()->roll();
+
+
+    int checkplural=Dice::getInst()->getValue();//1=plural 2,3,4,5,6=normal
+    switch(checkplural)
+    {
+    case 1 : qDebug() <<"You have to take plural major."<<endl;
         player->setPlural(true);
         break;
     default : qDebug()<<"You don't have to take plural major."<<endl;
-	
+
     }//학과 1개 독점 시에 복수전공 해제& 두개 독점 시에 승리 그리고 만약에 한개 독점 하고 두개째 도전중일 때다른 누군가가 독점된 학과를 뺏어가는 경우!?
 }

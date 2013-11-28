@@ -146,7 +146,6 @@ void Player::moveTo(int dice)
     setPosition(moveValue);
 
     // some character animations
-
 }
 
 
@@ -187,16 +186,16 @@ void Player::takeBlock(Block *block)
 
     else {
         switch(block->getType()) {
-            case Corner:
+            case CORNER:
                 // CornerBlock
                 break;
-            case Event:
+            case EVENT:
                 // EventBlock
                 break;
-            case Friday:
+            case FRIDAY:
                 // FriayBlock
                 break;
-            case Subject:
+            case SUBJECT:
                 // SubjectBlock
                 registered.find(((SubjectBlock*)block)->getType())->second++;
                 break;
@@ -216,16 +215,16 @@ void Player::loseBlock(Block *block)
 
     else {
         switch(block->getType()) {
-            case Corner:
+            case CORNER:
                 // CornerBlock
                 break;
-            case Event:
+            case EVENT:
                 // EventBlock
                 break;
-            case Friday:
+            case FRIDAY:
                 // FriayBlock
                 break;
-            case Subject:
+            case SUBJECT:
                 // SubjectBlock
                 registered.find(((SubjectBlock*)block)->getType())->second--;
                 break;
@@ -265,4 +264,5 @@ void Player::payEnergy(int payenergy)
     energy-=payenergy;
 
 }
+
 
