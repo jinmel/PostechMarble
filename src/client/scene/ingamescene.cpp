@@ -1,7 +1,7 @@
 #include "ingamescene.h"
 #include <QPixmap>
 #include <QtGlobal>
-#include "../dice.h"
+#include "dice.h"
 
 IngameScene::IngameScene(qreal x, qreal y,
                          qreal width, qreal height,

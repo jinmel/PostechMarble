@@ -59,6 +59,11 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete logo;
+    delete menu;
+    delete ready;
+    delete ingame;
+    delete credit;
 }
 
 
@@ -103,7 +108,7 @@ void MainWindow::setupScenes()
     menu = new MainScene(0, 0, 1280, 720, this);
     ready = new QGraphicsScene(0, 0, 1280, 720, this);
     ingame = new QGraphicsScene(0, 0, 1280, 720, this);
-    credit = new QGraphicsScene(0,0,1280,720,this);
+    credit = new CreditScene(0,0,1280,720,this);
 
 
     // setup for ready
