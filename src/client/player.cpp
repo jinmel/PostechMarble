@@ -35,7 +35,7 @@ Player::Player()
 
 Player::~Player()
 {
-   //delete own_blocks;
+    //delete own_blocks;
 
     qDebug() << "Player Destroyed" << endl;
 }
@@ -79,7 +79,7 @@ bool Player::isPlural() const
 
 CharacterType::Type Player::getType() const
 {
-	return character_type;
+    return character_type;
 }
 
 
@@ -165,16 +165,63 @@ bool Player::hasBlock(Block* block)
 
 void Player::buyBlock(Block* block)
 {
-    takeBlock(block);
-    //energy -= block->getValue();
+    using namespace BlockType;
+
+    if(!hasBlock(block))
+        qDebug() << "You don't have that block. Check Again!" << endl;
+
+    else {
+        switch(block->getType()) {
+        case CORNER:
+            // CornerBlock
+            break;
+        case EVENT:
+            // EventBlock
+            break;
+        case FRIDAY:
+            // FriayBlock
+            break;
+        case SUBJECT:
+            // SubjectBlock
+            registered.find(((SubjectBlock*)block)->getType())->second++;
+            break;
+        }
+
+        own_blocks.push_back(block);
+    }
+    energy -= block->getValue();
 
 }
 
 
 void Player::sellBlock(Block* block)
 {
-    loseBlock(block);
-    //energy += block->getValue();
+    using namespace BlockType;
+
+    if(!hasBlock(block))
+        qDebug() << "You don't have that block. Check Again!" << endl;
+
+    else {
+        switch(block->getType()) {
+        case CORNER:
+            // CornerBlock
+            break;
+        case EVENT:
+            // EventBlock
+            break;
+        case FRIDAY:
+            // FriayBlock
+            break;
+        case SUBJECT:
+            // SubjectBlock
+            registered.find(((SubjectBlock*)block)->getType())->second--;
+            break;
+
+        }
+
+        own_blocks.remove(block);
+    }
+    energy += block->getValue();
 }
 
 
@@ -187,19 +234,19 @@ void Player::takeBlock(Block *block)
 
     else {
         switch(block->getType()) {
-            case CORNER:
-                // CornerBlock
-                break;
-            case EVENT:
-                // EventBlock
-                break;
-            case FRIDAY:
-                // FriayBlock
-                break;
-            case SUBJECT:
-                // SubjectBlock
-                registered.find(((SubjectBlock*)block)->getType())->second++;
-                break;
+        case CORNER:
+            // CornerBlock
+            break;
+        case EVENT:
+            // EventBlock
+            break;
+        case FRIDAY:
+            // FriayBlock
+            break;
+        case SUBJECT:
+            // SubjectBlock
+            registered.find(((SubjectBlock*)block)->getType())->second++;
+            break;
         }
 
         own_blocks.push_back(block);
@@ -216,19 +263,19 @@ void Player::loseBlock(Block *block)
 
     else {
         switch(block->getType()) {
-            case CORNER:
-                // CornerBlock
-                break;
-            case EVENT:
-                // EventBlock
-                break;
-            case FRIDAY:
-                // FriayBlock
-                break;
-            case SUBJECT:
-                // SubjectBlock
-                registered.find(((SubjectBlock*)block)->getType())->second--;
-                break;
+        case CORNER:
+            // CornerBlock
+            break;
+        case EVENT:
+            // EventBlock
+            break;
+        case FRIDAY:
+            // FriayBlock
+            break;
+        case SUBJECT:
+            // SubjectBlock
+            registered.find(((SubjectBlock*)block)->getType())->second--;
+            break;
 
         }
 
@@ -240,9 +287,9 @@ void Player::loseBlock(Block *block)
 void Player::giveSalary()
 {
     if(character_type == CharacterType::HARD_WORKER)
-    	energy += 150;
+        energy += 150;
     else
-    	energy += 100;
+        energy += 100;
 }
 
 

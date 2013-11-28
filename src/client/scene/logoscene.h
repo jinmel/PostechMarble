@@ -2,10 +2,11 @@
 #include <QGraphicsScene>
 #include "mainwindow.h"
 #include "qgameitem.h"
+#include <QObject>
 
-
-class LogoScene : public QGraphicsScene
+class LogoScene : public QObject, public QGraphicsScene
 {
+    Q_OBJECT
 private:
     MainWindow* window;
 
@@ -17,7 +18,9 @@ private:
     void setupLogo();
 
 public:
-    LogoScene(MainWindow *window);
+    LogoScene(qreal x=0,qreal y=0,qreal width=1280,
+              qreal height=1280,
+              QObject *parent=0);
     ~LogoScene();
 
 public slots:
