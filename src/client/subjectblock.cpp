@@ -1,5 +1,5 @@
 #include <iostream>
-#include <time>
+#include <ctime>
 #include <cstdlib>
 #include "subjectblock.h"
 #include "dice.h"

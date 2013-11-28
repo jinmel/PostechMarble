@@ -89,4 +89,10 @@ void DiceValuePanel::setValue(int value)
     }
 }
 
+CharacterStatusBar::CharacterStatusBar(QGraphicsScene *scene, MainWindow *window)
+    :QGameItem(scene,window)
+{
+    setImage(":/");
+}
+
 
