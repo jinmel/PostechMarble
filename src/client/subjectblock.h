@@ -5,6 +5,7 @@
 #include "types.h"
 
 class Player;
+class Block;
 
 class SubjectBlock : public Block
 {
