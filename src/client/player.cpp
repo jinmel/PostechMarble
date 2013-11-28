@@ -16,6 +16,7 @@ Player::Player()
     panelty = 0;
     plural = false;
     character_type = CharacterType::NONE;
+    totalownsubjectenergy=0;
 
     //initialize map
     using namespace SubjectType;
@@ -81,7 +82,10 @@ CharacterType::Type Player::getType() const
 {
     return character_type;
 }
-
+int Player::getTotalOwnSubjectEnergy() const
+{
+    return totalownsubjectenergy;
+}
 
 // Methods
 void Player::setPosition(int position)
@@ -102,6 +106,20 @@ void Player::setPlural(bool plural)
 }
 
 
+void Player::addTotalOwnSubjectEnergy(int subjectenergy){
+    this->totalownsubjectenergy+=subjectenergy;
+
+    }
+void Player::setBankrupt(bool bankrupt)
+{
+    this->bankrupt=bankrupt;
+}
+
+void Player::pushBlock(Block* block)
+{
+    own_blocks.push_back(block);
+
+}
 // set player to stay mouindo
 // parm: how long to stay in mouindo
 void Player::setMouindo(int panelty)
@@ -148,7 +166,9 @@ void Player::moveTo(int dice)
 
     // some character animations
 }
-
+void Player::removeBlock(Block* block){
+    own_blocks.remove(block);
+}
 
 bool Player::hasBlock(Block* block)
 {
@@ -184,6 +204,7 @@ void Player::buyBlock(Block* block)
         case SUBJECT:
             // SubjectBlock
             registered.find(((SubjectBlock*)block)->getType())->second++;
+            totalownsubjectenergy+=block->getValue();
             break;
         }
 
@@ -215,6 +236,7 @@ void Player::sellBlock(Block* block)
         case SUBJECT:
             // SubjectBlock
             registered.find(((SubjectBlock*)block)->getType())->second--;
+            totalownsubjectenergy-=block->getValue();
             break;
 
         }
@@ -246,6 +268,7 @@ void Player::takeBlock(Block *block)
         case SUBJECT:
             // SubjectBlock
             registered.find(((SubjectBlock*)block)->getType())->second++;
+            totalownsubjectenergy+=block->getValue();
             break;
         }
 
@@ -275,6 +298,7 @@ void Player::loseBlock(Block *block)
         case SUBJECT:
             // SubjectBlock
             registered.find(((SubjectBlock*)block)->getType())->second--;
+            totalownsubjectenergy-=block->getValue();
             break;
 
         }
