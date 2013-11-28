@@ -268,5 +268,9 @@ void Player::payEnergy(int payenergy)
     energy-=payenergy;
 
 }
+void Player::paidEnergy(int paidenergy){
+    energy+=paidenergy;
+
+}
 
 

@@ -1,5 +1,8 @@
+#include <iostream>
+#include <time>
+#include <cstdlib>
 #include "subjectblock.h"
-
+#include "dice.h"
 
 // Constructor & Destructor
 SubjectBlock::SubjectBlock()
@@ -19,7 +22,6 @@ SubjectBlock::~SubjectBlock()
  void SubjectBlock::setSubjectBlock(SubjectType::Type blockdepartment, std::string subjectname){
      department=blockdepartment;
      subject_name=subjectname;
-
  }
 SubjectType::Type SubjectBlock::getType() const
 {
@@ -41,6 +43,7 @@ void SubjectBlock::enter(Player* player)
 
             if(userselect==1)//if buy
             {
+                player->buyBlock(this);
 
             }
             else//not buy
@@ -54,15 +57,40 @@ void SubjectBlock::enter(Player* player)
         qDebug()<<"1.yes    2.no";
         //cin>>userselect;
         if(userselect==1)//if yes
-            player->buyBlock(this);
+        {
+            decideGrade();
+        }
         else//if no
             return;
 
     }
     else//타인의 블럭
     {
+        if(paneltycost>player->getEnergy())
+        {
+
+
+        }
+        else{
+
+
+        }
 
 
 
     }
 }
+
+    void SubjectBlock::decideGrade(){
+        srand((unsigned)time(NULL));
+        int randomvalue;
+        randomvalue = rand() % 100 + 1;
+
+        if(randomvalue<=20)
+        {grade = 4;}//A
+        else if(randomvalue<=60)
+        {grade = 3;}//B
+        else
+        {grade = 2;}//C
+
+    }
