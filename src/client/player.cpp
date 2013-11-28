@@ -1,5 +1,6 @@
 #include "player.h"
 #include "subjectblock.h"
+#include "types.h"
 #include <iostream>
 #include <algorithm>
 #include <QDebug>

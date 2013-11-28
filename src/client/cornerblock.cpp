@@ -155,7 +155,6 @@ void CornerBlock::inPluralMajor(Player* player) {//복수전공
 
     qDebug()<<"You have to take two major for graduation."<<endl;
     qDebug()<<"Plural major check..."<<endl;
-<<<<<<< HEAD
 
     Dice::getInst()->roll();
 
