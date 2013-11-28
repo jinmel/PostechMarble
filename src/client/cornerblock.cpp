@@ -7,9 +7,12 @@
 
 using namespace std;
 
-CornerBlock::CornerBlock()
+CornerBlock::CornerBlock(CornerType type)
 {
+    block_type = type;
 }
+
+
 
 
 CornerBlock::~CornerBlock()

@@ -9,7 +9,7 @@ private:
     FireFridayType::Type block_type;
 
 public:
-    FireFridayBlock();
+    FireFridayBlock(FireFridayType type);
     virtual ~FireFridayBlock();
     virtual void enter(Player* player);//in Cornerblock, execute this function
                         //This function : type check and call correct function

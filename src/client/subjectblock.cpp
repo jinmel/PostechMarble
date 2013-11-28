@@ -16,11 +16,14 @@ SubjectBlock::~SubjectBlock()
 
 
 // Methods
- void SubjectBlock::setSubjectBlock(SubjectType::Type blockdepartment, std::string subjectname){
-     department=blockdepartment;
-     subject_name=subjectname;
+SubjectBlock::SubjectBlock(SubjectType type, std::string subject_name,int cost)
+{
+    department = type;
+    this->subject_name=subject_name;
+    owner = Null;
+    this->cost = cost;
+}
 
- }
 SubjectType::Type SubjectBlock::getType() const
 {
     return department;

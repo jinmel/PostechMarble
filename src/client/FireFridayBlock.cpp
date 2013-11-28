@@ -5,9 +5,9 @@
 #include "dice.h"
 
 
-FireFridayBlock::FireFridayBlock()
+FireFridayBlock::FireFridayBlock(FireFridayType type)
 {
-
+    block_type = type;
 }
 
 FireFridayBlock::~FireFridayBlock()
