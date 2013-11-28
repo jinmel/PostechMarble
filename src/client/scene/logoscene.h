@@ -4,9 +4,8 @@
 #include "qgameitem.h"
 #include <QObject>
 
-class LogoScene : public QObject, public QGraphicsScene
+class LogoScene : public QGraphicsScene
 {
-    Q_OBJECT
 private:
     MainWindow* window;
 

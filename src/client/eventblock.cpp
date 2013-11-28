@@ -62,7 +62,7 @@ void EventBlock::drink(Player* player)
 void EventBlock::cc(Player* player)
 {
     // 행동력 감소 + 일정 확률로 휴학 또는 61콜 이동
-    if(getType()!=OUTSIDER)
+    if(getType()!=CharacterType::OUTSIDER)
     {
         player->setEnergy(player->getEnergy() - 100); //
     }
@@ -83,7 +83,7 @@ void EventBlock::loseSubject(Player* player)
 void EventBlock::lol(Player* player)
 {
     // 50:50으로 행동력 증가 또는 감소, lol타입 캐릭터의 경우 항상 증가
-    if(getType()==LOL)
+    if(getType()==CharacterType::LOL)
     player->setEnergy(player->getEnergy() +100); //
     else
     {
