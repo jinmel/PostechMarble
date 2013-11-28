@@ -101,17 +101,6 @@ void MainWindow::setupScenes()
     ingame = new QGraphicsScene(0, 0, 1280, 720, this);
     credit = new QGraphicsScene(0,0,1280,720,this);
 
-    // setup for logo
-    QGraphicsPixmapItem *back_logo = logo->addPixmap(QPixmap(":images/logo/logo_background.png"));
-    back_logo->setPos(0, 0);
-
-    QGameItem *ok_test = new QGameItem(logo, this);
-    ok_test->setPixmap(QPixmap(":/images/button_ok.png"));
-    ok_test->setPos(600, 550);
-
-    QGraphicsPixmapItem *team_logo = logo->addPixmap(QPixmap(":images/logo/team_logo.png")); //900 170
-    team_logo->setPos(190, 275);
-
 
     // setup for main
     QGraphicsPixmapItem *back_main = menu->addPixmap(QPixmap(":images/main/main_background.png"));
@@ -136,28 +125,4 @@ void MainWindow::setupScenes()
 
 
 
-}
-
-void MainWindow::animateLogo()
-{
-    QGraphicsItem* team_logo = logo->items().value(0);
-
-    QGraphicsOpacityEffect* opacityEffect = new QGraphicsOpacityEffect();
-    opacityEffect->setOpacity(0.0);
-
-    team_logo->setGraphicsEffect(opacityEffect);
-
-    QPropertyAnimation * animation = new QPropertyAnimation();
-    animation->setTargetObject(opacityEffect);
-    animation->setPropertyName("opacity");
-    animation->setDuration(2000);
-    animation->setStartValue(0.0);
-    animation->setEndValue(1.0);
-    animation->setEasingCurve(QEasingCurve::OutQuad);
-
-    QMediaPlayer* sound = new QMediaPlayer();
-    sound->setMedia(QUrl::fromLocalFile("D:/Development/C&C++/CSED232 Project/src/client/sound/logo_dang.mp3"));
-    sound->setVolume(80);
-    animation->start();
-    sound->play();
 }
