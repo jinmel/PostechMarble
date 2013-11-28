@@ -16,14 +16,10 @@ private:
     int cost;
 
 public:
-    SubjectBlock(SubjectType type,std::string subject_name,int cost);
+    SubjectBlock(SubjectType::Type type, std::string subject_name, int cost);
     virtual ~SubjectBlock();
     SubjectType::Type getType() const;
     virtual void enter(Player* player);
-<<<<<<< HEAD
-=======
-    void setSubjectBlock(SubjectType::Type blockdepartment, std::string subjectname);
-    void decideGrade();
 
->>>>>>> d5d57e3563fae4bb0820c19a94ac2b73049c8650
+    void decideGrade();
 };

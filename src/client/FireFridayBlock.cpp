@@ -4,8 +4,7 @@
 #include "player.h"
 #include "dice.h"
 
-
-FireFridayBlock::FireFridayBlock(FireFridayType type)
+FireFridayBlock::FireFridayBlock(Type type)
 {
     block_type = type;
 }
@@ -17,8 +16,6 @@ FireFridayBlock::~FireFridayBlock()
 
 void FireFridayBlock::enter(Player *player)
 {
-    using namespace FireFridayType;
-
     switch(block_type)
    {    
         case SEOULJONGBIN: inSEOULJONGBIN(player);
@@ -32,12 +29,12 @@ void FireFridayBlock::enter(Player *player)
 
 void FireFridayBlock::inSEOULJONGBIN(Player *player)
 {
-    if(getType()!=ALCOHOLIC)
+    if(getType()!=SEOULJONGBIN)
     player->setEnergy(player->getEnergy() - 100);
 }
 
 void FireFridayBlock::inTONGZIP(Player *player)
 {
-    if(getType()!=ALCOHOLIC)
+    if(getType()!=TONGZIP)
     player->setEnergy(player->getEnergy() - 100);
 }

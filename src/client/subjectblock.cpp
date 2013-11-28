@@ -2,13 +2,6 @@
 
 
 // Constructor & Destructor
-SubjectBlock::SubjectBlock()
-{
-    qDebug()<<"Subject Block constructed."<<endl;
-    owner = NULL;
-}
-
-
 SubjectBlock::~SubjectBlock()
 {
     qDebug()<<"Subject Block destroyed."<<endl;
@@ -16,11 +9,12 @@ SubjectBlock::~SubjectBlock()
 
 
 // Methods
-SubjectBlock::SubjectBlock(SubjectType type, std::string subject_name,int cost)
+SubjectBlock::SubjectBlock(SubjectType::Type type, std::string subject_name,int cost)
 {
+    qDebug()<<"Subject Block constructed."<<endl;
     department = type;
     this->subject_name=subject_name;
-    owner = Null;
+    owner = NULL;
     this->cost = cost;
 }
 

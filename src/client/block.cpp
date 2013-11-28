@@ -16,6 +16,12 @@ Block::~Block()
 
 
 // Methods
+int Block::getValue() const
+{
+    return value;
+}
+
+
 BlockType::Type Block::getType() const
 {
     return block_type;
