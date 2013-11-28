@@ -1,6 +1,4 @@
-#ifndef QGAMEITEM_H
-#define QGAMEITEM_H
-
+#pragma once
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include <QObject>
@@ -29,6 +27,10 @@ public:
     void show(bool fase,int duration=1000);
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    virtual void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
+    virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
+
 private:
     QGameItem(); //disabled to explicitly expcify the parent scene of the item
     QGraphicsScene * parent_scene;
@@ -36,5 +38,3 @@ private:
     QPixmap *item_image;
     QGraphicsItemAnimation *animation;
 };
-
-#endif // QGAMEITEM_H
