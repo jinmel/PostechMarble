@@ -33,7 +33,7 @@ LogoScene::~LogoScene()
 // Methods
 void LogoScene::switchtoMain()
 {
-    qDebug() << "Switching to Main" << endl;
+    qDebug() << "Switching to Main";
     window->switchScene(SceneType::MAIN);
 }
 

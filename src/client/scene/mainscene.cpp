@@ -30,13 +30,6 @@ MainScene::~MainScene()
 
 
 // Methods
-void MainScene::switchtoReady()
-{
-    qDebug() << "Switching to Ready" << endl;
-    window->switchScene(SceneType::READY);
-}
-
-
 void MainScene::setupMain()
 {
     // setup for main

@@ -6,9 +6,7 @@
 class MainScene : public QGraphicsScene
 {
     Q_OBJECT
-public slots:
-    void switchtoReady();
-    void switchtoCredit();
+
 private:
     MainWindow* window;
     QGameItem *background;
