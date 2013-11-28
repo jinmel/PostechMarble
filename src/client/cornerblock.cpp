@@ -50,22 +50,22 @@ void CornerBlock::inDormitory(Player* player)
     int takingenergy;
     switch(player->getType())
     {
-        case LOL : takingenergy = 1; //주는 에너지 수치는 상학선배&주현이가 채워주세요 ㅎㅎ
+        case LOL : takingenergy = 100; //주는 에너지 수치는 상학선배&주현이가 채워주세요 ㅎㅎ
             break;
 
-        case GENIUS : takingenergy = 2;
+        case GENIUS : takingenergy = 100;
             break;
 
-        case HARD_WORKER : takingenergy = 3;
+        case HARD_WORKER : takingenergy = 150;
             break;
 
-        case OUTSIDER : takingenergy = 4;
+        case OUTSIDER : takingenergy = 100;
             break;
 
-        case ALCOHOLIC : takingenergy = 5;
+        case ALCOHOLIC : takingenergy = 100;
             break;
 
-        default         : takingenergy = 6;
+        default         : takingenergy = 100;
 
     }
 
