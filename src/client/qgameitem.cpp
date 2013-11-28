@@ -39,7 +39,6 @@ void QGameItem::animate(qreal dest_x,qreal dest_y,int duration,
                         const QEasingCurve & curve){
     // Start animate this class
     QPropertyAnimation* anim = new QPropertyAnimation(this, "pos");
-
     // 2 second duration animation
     anim->setDuration(duration);
     // position to start animation
@@ -54,7 +53,7 @@ void QGameItem::animate(qreal dest_x,qreal dest_y,int duration,
     anim->start(QAbstractAnimation::DeleteWhenStopped);
 }
 
-
+//duration in ms
 void QGameItem::hide(bool fade,int duration){
     if(!fade)
         QGraphicsPixmapItem::hide();
@@ -69,13 +68,14 @@ void QGameItem::hide(bool fade,int duration){
         animation->setDuration(duration);
         animation->setStartValue(1.0);
         animation->setEndValue(0.0);
-        animation->setEasingCurve(QEasingCurve::OutQuad);
+        animation->setEasingCurve(QEasingCurve::Linear);
 
         QObject::connect(animation,SIGNAL(finished()),this,SLOT(hideFinished()));
         animation->start(QAbstractAnimation::DeleteWhenStopped);
     }
 }
 
+//duration in ms
 void QGameItem::show(bool fade,int duration){
     if(!fade){
         QGraphicsPixmapItem::show();
@@ -91,7 +91,7 @@ void QGameItem::show(bool fade,int duration){
         animation->setDuration(duration);
         animation->setStartValue(0.0);
         animation->setEndValue(1.0);
-        animation->setEasingCurve(QEasingCurve::OutQuad);
+        animation->setEasingCurve(QEasingCurve::Linear);
         animation->start(QAbstractAnimation::DeleteWhenStopped);
     }
 }

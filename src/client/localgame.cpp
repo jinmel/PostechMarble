@@ -4,7 +4,6 @@
 #include <iostream>
 #include <QDebug>
 
-
 using namespace std;
 
 // Constructor & Destructor

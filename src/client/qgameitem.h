@@ -21,7 +21,7 @@ public:
     void setImage(char * filename);
     //Game object animation
     void animate(qreal x,qreal y,int duration,
-                 const QEasingCurve & curve=QEasingCurve::InOutElastic);
+                 const QEasingCurve & curve=QEasingCurve::Linear);
     void hide(bool fade=false,int duration=1000);
     void show(bool fase=false,int duration=1000);
 
