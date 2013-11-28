@@ -19,5 +19,4 @@ public:
     void loseSubject(Player* player);
     void lol(Player* player);
     void eatChicken(Player* player);
-    void clubActivity(Player* player);
 };
