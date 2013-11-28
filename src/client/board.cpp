@@ -10,7 +10,7 @@ using namespace std;
 // Constructor & Destructor
 Board::Board()
 {
-    blocks = new Block*[36];
+    blocks = new Block*[32];
 
 
     blocks[0] = new CornerBlock;
@@ -27,51 +27,45 @@ Board::Board()
     blocks[6] = new SubjectBlock;
     blocks[7] = new SubjectBlock;
 
-    blocks[8] = new EventBlock;
+    blocks[8] = new CornerBlock;
     
-    blocks[9] = new CornerBlock;
+    blocks[9] = new SubjectBlock;
 
     blocks[10] = new SubjectBlock;
     blocks[11] = new SubjectBlock;
-    blocks[12] = new SubjectBlock;
+    blocks[12] = new EventBlock;
 
-    blocks[13] = new EventBlock;
+    blocks[13] = new SubjectBlock;
     
     blocks[14] = new SubjectBlock;
     blocks[15] = new SubjectBlock;
-    blocks[16] = new SubjectBlock;
+    blocks[16] = new CornerBlock;
     
-    blocks[17] = new FireFridayBlock;
+    blocks[17] = new SubjectBlock;
 
-    blocks[18] = new CornerBlock;
+    blocks[18] = new SubjectBlock;
     
     blocks[19] = new SubjectBlock;
     blocks[20] = new SubjectBlock;
     blocks[21] = new SubjectBlock;
 
-    blocks[22] = new EventBlock;
+    blocks[22] = new SubjectBlock;
 
-    blocks[23] = new SubjectBlock;
-    blocks[24] = new SubjectBlock;
+    blocks[23] = new FireFridayBlock;
+    blocks[24] = new CornerBlock;
     blocks[25] = new SubjectBlock;
     
-    blocks[26] = new FireFridayBlock;
+    blocks[26] = new SubjectBlock;
 
-    blocks[27] = new CornerBlock;
+    blocks[27] = new SubjectBlock;
     
-    blocks[28] = new FireFridayBlock;
+    blocks[28] = new EventBlock;
 
     blocks[29] = new SubjectBlock;
     blocks[30] = new SubjectBlock;
     blocks[31] = new SubjectBlock;
     
-    blocks[32] = new EventBlock;
-
-    blocks[33] = new SubjectBlock;
-    blocks[34] = new SubjectBlock;
-    blocks[35] = new SubjectBlock;
-
-    for(int i=0; i<36; i++) {
+    for(int i=0; i<32; i++) {
         blocks[i]->setPosition(i);
     }
 
