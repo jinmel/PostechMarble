@@ -3,15 +3,14 @@
 #include "mainwindow.h"
 #include "qgameitem.h"
 
-class LogoScene :  public QGraphicsScene
+class LogoScene : public QGraphicsScene
 {
     Q_OBJECT
 public slots:
     void switchToMain();
 private:
     MainWindow* window;
-    QGameItem *back_logo;
-    QGameItem *ok_test;
+    QGameItem *background;
     QGameItem *team_logo;
 
     void animateLogo();

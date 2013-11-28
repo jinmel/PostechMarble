@@ -9,6 +9,8 @@
 #include <QMediaPlayer>
 #include <QtGlobal>
 
+
+// Constructor & Destructor
 LogoScene::LogoScene(qreal x, qreal y,
                       qreal width, qreal height,
                       QObject *parent)
@@ -28,6 +30,7 @@ LogoScene::~LogoScene()
 }
 
 
+// Methods
 void LogoScene::switchToMain()
 {
     qDebug() << "Switching to Main" << endl;

@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "scene/logoscene.h"
 #include <QGraphicsItem>
 #include <QDebug>
 #include <QGraphicsItemAnimation>
@@ -95,27 +94,15 @@ void MainWindow::setApplication(QApplication* app)
 
 void MainWindow::setupScenes()
 {
-    logo = new LogoScene(0, 0, 1280, 720, this);
+    logo = new QGraphicsScene(0, 0, 1280, 720, this);
     menu = new QGraphicsScene(0, 0, 1280, 720, this);
     ready = new QGraphicsScene(0, 0, 1280, 720, this);
     ingame = new QGraphicsScene(0, 0, 1280, 720, this);
     credit = new QGraphicsScene(0,0,1280,720,this);
 
 
-    // setup for main
-    QGraphicsPixmapItem *back_main = menu->addPixmap(QPixmap(":images/main/main_background.png"));
-    back_main->setPos(0, 0);
-
-    QGameItem *start_button = new QGameItem(menu, this);
-    start_button->setImage(":/images/button_ok.png");
-    start_button->setPos(600,400);
-
-    QGameItem *credit_button = new QGameItem(menu, this);
-    credit_button->setImage(":/images/button_ok.png");
-    credit_button->setPos(600,500);
-
     // setup for ready
-    QGraphicsPixmapItem *ready_logo = ready->addPixmap(QPixmap(":images/logo/logo_background.png"));
+    QGraphicsPixmapItem *ready_logo = logo->addPixmap(QPixmap(":images/logo/logo_background.png"));
     ready_logo->setPos(0, 0);
 
     // setup for ingame

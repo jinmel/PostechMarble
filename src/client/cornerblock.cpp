@@ -13,8 +13,6 @@ CornerBlock::CornerBlock(CornerType::Type type)
 }
 
 
-
-
 CornerBlock::~CornerBlock()
 {
 }
