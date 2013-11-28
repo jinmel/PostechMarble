@@ -13,7 +13,6 @@ class CustomItem : public QGraphicsPixmapItem
 private:
     QApplication *app;
     MainWindow *window;
-
 public:
     void mousePressEvent(QGraphicsSceneMouseEvent *event)
     {
@@ -21,22 +20,6 @@ public:
         setPixmap(QPixmap(":images/button_ok_click.png"));
 
         window->switchToMain();
-
-        /*  Disable Animation
-        QGraphicsItemAnimation * animation = new QGraphicsItemAnimation();
-        animation->setItem(this);
-
-        QTimeLine * timer = new QTimeLine(50000);
-        animation->setTimeLine(timer);
-
-        for(int i =0 ; i < 200; i ++){
-            animation->setPosAt(1/200.0,QPointF(this->x()+ i,this->y()));
-        }
-        timer->start();
-        */
-
-//        app->quit();
-//        QGraphicsItem::mousePressEvent(event);
     }
 
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
@@ -63,7 +46,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setupScenes();
     ui->graphicsView->setScene(logo);
-
     animateLogo();
 }
 
@@ -128,7 +110,6 @@ void MainWindow::animateLogo()
     sound->setMedia(QUrl(":sound/logo_dang.mp3"));
     sound->setVolume(80);
 
-
     animation->start();
     sound->play();
 }
@@ -136,5 +117,7 @@ void MainWindow::animateLogo()
 
 void MainWindow::switchToMain()
 {
+    // implement this with smoother transition
     ui->graphicsView->setScene(menu);
 }
+

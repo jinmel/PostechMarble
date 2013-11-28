@@ -5,7 +5,6 @@
 #include <cstdlib>
 #include "types.h"
 
-
 class CornerBlock : public Block
 {
 private:
