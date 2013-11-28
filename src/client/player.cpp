@@ -7,8 +7,9 @@
 
 using namespace std;
 
-Player::Player()
+Player::Player(int _id)
 {
+    id = _id;
     position = 0;
     energy = 0;
     bankrupt = false;
@@ -266,4 +267,7 @@ void Player::takeEnergy(int paidenergy){
     energy+=paidenergy;
 }
 
+int Player::getId() const {
+    return id;
+}
 

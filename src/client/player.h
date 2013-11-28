@@ -10,6 +10,7 @@ class Block;
 class Player
 {
 private:
+    int     id;
     int     position;
     int     energy;
     bool    bankrupt;
@@ -21,10 +22,11 @@ private:
     CharacterType::Type character_type;
 
 public:
-    Player();
+    Player(int id);
     ~Player();
 
     int  getPosition() const;
+    int  getId() const;
     bool isBankrupt() const;
     bool isMobile() const;
     int  getEnergy() const;
