@@ -1,11 +1,9 @@
 #pragma once
 #include <string>
-#include "block.h"
 #include "player.h"
 #include "types.h"
 
 class Player;
-class Block;
 
 class SubjectBlock : public Block
 {
