@@ -1,5 +1,5 @@
 #include "logoscene.h"
-#include "types.h"
+#include "../types.h"
 #include <QGraphicsItem>
 #include <QDebug>
 #include <QGraphicsItemAnimation>
@@ -40,7 +40,7 @@ void LogoScene::setupLogo()
     // setup for logo
 
     // set background
-    background = new QGameItem(this, window);
+    QGameItem* background = new QGameItem(this, window);
     background->setImage(":images/logo/logo_background.png");
     background->setPos(0, 0);
 

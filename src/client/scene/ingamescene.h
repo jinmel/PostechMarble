@@ -4,8 +4,8 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QPixmap>
-#include "dice.h"
-#include "qgameitem.h"
+#include "../dice.h"
+#include "../qgameitem.h"
 
 class DiceGraphicItem;
 class DiceValuePanel;

@@ -1,19 +1,23 @@
 #include "creditscene.h"
 #include <QGraphicsItem>
+#include <QGraphicsItemAnimation>
+#include <QGraphicsOpacityEffect>
+#include <QPropertyAnimation>
 #include <QDebug>
 #include <QTimeLine>
 #include <QMediaPlayer>
 #include <QtGlobal>
 
-CreditScene::CreditScene(qreal x=0, qreal y=0, qreal width=1280,
-            qreal height=720,
-            QObject* parent=0)
-    : QGraphicsScene(x,y,width,height,parent)
+CreditScene::CreditScene(qreal x, qreal y, qreal width,
+            qreal height,
+            QObject* parent)
+ : QGraphicsScene(x,y,width,height,parent)
 {
     this->window = dynamic_cast<MainWindow*>(parent);
     Q_CHECK_PTR(this->window);
 
     setupCredit();
+    animateCredit();
 }
 
 CreditScene::~CreditScene()
@@ -39,4 +43,16 @@ void CreditScene::setupCredit()
     sound->setMedia(QUrl::fromLocalFile("D:/Development/C&C++/CSED232 Project/src/client/sound/error.mp3"));
     sound->setVolume(90);
     sound->play();
+}
+
+void CreditScene::animateCredit()
+{
+    QGraphicsItem* credit = this->items().value(0);
+
+    QGraphicsOpacityEffect* effect = new QGraphicsOpacityEffect();
+    effect->setOpacity(0.0);
+
+    credit->setGraphicsEffect(effect);
+
+    QPropertyAnimation* animation = new QPropertyAnimation();
 }
