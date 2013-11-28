@@ -101,18 +101,6 @@ void MainWindow::setupScenes()
     credit = new QGraphicsScene(0,0,1280,720,this);
 
 
-    // setup for main
-    QGraphicsPixmapItem *back_main = menu->addPixmap(QPixmap(":images/main/main_background.png"));
-    back_main->setPos(0, 0);
-
-    QGameItem *start_button = new QGameItem(menu, this);
-    start_button->setImage(":/images/button_ok.png");
-    start_button->setPos(600,400);
-
-    QGameItem *credit_button = new QGameItem(menu, this);
-    credit_button->setImage(":/images/button_ok.png");
-    credit_button->setPos(600,500);
-
     // setup for ready
     QGraphicsPixmapItem *ready_logo = logo->addPixmap(QPixmap(":images/logo/logo_background.png"));
     ready_logo->setPos(0, 0);

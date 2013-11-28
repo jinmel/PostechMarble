@@ -6,7 +6,7 @@
 
 
 // Constructor & Destructor
-FireFridayBlock::FireFridayBlock(Type type)
+FireFridayBlock::FireFridayBlock(FireFridayType::Type type)
 {
     block_type = type;
 }
@@ -20,6 +20,8 @@ FireFridayBlock::~FireFridayBlock()
 // Methods
 void FireFridayBlock::enter(Player *player)
 {
+    using namespace FireFridayType;
+
     switch(block_type)
    {    
         case SEOULJONGBIN: inSEOULJONGBIN(player);

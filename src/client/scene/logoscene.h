@@ -3,7 +3,7 @@
 #include "mainwindow.h"
 #include "qgameitem.h"
 
-class LogoScene :  public QGraphicsScene
+class LogoScene : public QGraphicsScene
 {
     Q_OBJECT
 public slots:

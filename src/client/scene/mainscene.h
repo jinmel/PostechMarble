@@ -1,10 +1,24 @@
-#ifndef MAINSCENE_H
-#define MAINSCENE_H
+#pragma once
+#include <QGraphicsScene>
+#include "mainwindow.h"
+#include "qgameitem.h"
 
-class MainScene
+class MainScene : public QGraphicsScene
 {
-public:
-    MainScene();
-};
+    Q_OBJECT
+public slots:
+    void switchToReady();
+private:
+    MainWindow* window;
+    QGameItem *background;
+    QGameItem *start_button;
+    QGameItem *credit_button;
 
-#endif // MAINSCENE_H
+    void animateMain();
+    void setupMain();
+public:
+    MainScene(qreal x=0,qreal y=0,qreal width=1280,
+              qreal height=720,
+              QObject *parent=0);
+    ~MainScene();
+};
