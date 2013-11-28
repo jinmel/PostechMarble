@@ -25,7 +25,7 @@ public:
         qDebug() << "Custom item clicked.";
         setPixmap(QPixmap(":images/button_ok_click.png"));
 
-        window->switchToMain();
+        window->switchScene(SceneType::MAIN);
     }
 
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event)

@@ -31,7 +31,7 @@ LogoScene::~LogoScene()
 
 
 // Methods
-void LogoScene::switchToMain()
+void LogoScene::switchtoMain()
 {
     qDebug() << "Switching to Main" << endl;
     window->switchScene(SceneType::MAIN);
@@ -72,7 +72,7 @@ void LogoScene::animateLogo()
     animation->setEasingCurve(QEasingCurve::OutQuad);
 
     // connect: switch to main when logo animation finished
-    connect(animation,SIGNAL(finished()),this,SLOT(switchToMain()));
+    connect(animation,SIGNAL(finished()),this,SLOT(switchtoMain()));
 
 
     // play sound
