@@ -112,9 +112,16 @@ CharacterStatusBar::CharacterStatusBar(QGraphicsScene *scene, MainWindow *window
     //set these position in appropriate position relative to status bar...
 }
 
+CharacterStatusBar::~CharacterStatusBar(){
+    delete status_text;
+    delete character_image;
+}
+
 void CharacterStatusBar::setEnergyText(int energy){
     status_text->setPlainText(QString::number(energy));
 }
+
+
 
 
 

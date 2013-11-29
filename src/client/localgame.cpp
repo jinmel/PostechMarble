@@ -6,31 +6,35 @@
 
 using namespace std;
 
+//initialize static member instance
+LocalGame* LocalGame::m_inst = NULL;
+
 // Constructor & Destructor
-LocalGame::LocalGame(int num_players)
+LocalGame::LocalGame()
 {
     playerQueue = new PlayerQueue();
-    for (int i = 0; i < num_players; i ++)
-        playerQueue->push(new Player);
-    
     board = new Board();
-
     qDebug() << "LocalGame Initialized" << endl;
 }
-
 
 LocalGame::~LocalGame()
 {
     delete playerQueue;
+    delete board;
 }
 
-// Methods
-void LocalGame::play(){
-
+LocalGame * LocalGame::getInst(){
+    if(!m_inst)
+        m_inst = new LocalGame;
+    return m_inst;
 }
 
+void LocalGame::delInst(){
+    delete m_inst;
+}
 
-void LocalGame::printStats(){
-    //requires qt
-    return;
+void LocalGame::diceRolled(int value, bool is_double){
+    //the most important method in this project.
+    //main routine for the game
+
 }

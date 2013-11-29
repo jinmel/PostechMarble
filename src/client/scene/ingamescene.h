@@ -58,12 +58,12 @@ class CharacterStatusBar : public QGameItem {
     Q_OBJECT
 public:
     CharacterStatusBar(QGraphicsScene* scene,MainWindow * window,int player_num);
+    virtual ~CharacterStatusBar();
 private:
     QGraphicsTextItem *status_text;
     QGraphicsPixmapItem *character_image;
 public slots:
     void setEnergyText(int energy);
-
 };
 
 #endif // INGAMESCENE_H

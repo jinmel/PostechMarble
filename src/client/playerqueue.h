@@ -12,5 +12,6 @@ public:
     ~PlayerQueue();
     void push(Player * p);
     Player* next(void);
+    int getSize();
     
 };
