@@ -1,5 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "qgameitem.h"
+#include "scene/creditscene.h"
+#include "scene/logoscene.h"
+#include "scene/mainscene.h"
+#include "scene/readyscene.h"
 #include <QGraphicsItem>
 #include <QDebug>
 #include <QGraphicsItemAnimation>
@@ -7,7 +12,7 @@
 #include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
 #include <QMediaPlayer>
-#include "qgameitem.h"
+
 
 class CustomItem : public QGraphicsPixmapItem
 {
@@ -20,7 +25,7 @@ public:
         qDebug() << "Custom item clicked.";
         setPixmap(QPixmap(":images/button_ok_click.png"));
 
-        window->switchToMain();
+        window->switchScene(SceneType::MAIN);
     }
 
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
@@ -54,6 +59,11 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete logo;
+    delete menu;
+    delete ready;
+    delete ingame;
+    delete credit;
 }
 
 
@@ -94,15 +104,15 @@ void MainWindow::setApplication(QApplication* app)
 
 void MainWindow::setupScenes()
 {
-    logo = new QGraphicsScene(0, 0, 1280, 720, this);
-    menu = new QGraphicsScene(0, 0, 1280, 720, this);
+    logo = new LogoScene(0, 0, 1280, 720, this);
+    menu = new MainScene(0, 0, 1280, 720, this);
     ready = new QGraphicsScene(0, 0, 1280, 720, this);
     ingame = new QGraphicsScene(0, 0, 1280, 720, this);
-    credit = new QGraphicsScene(0,0,1280,720,this);
+    credit = new CreditScene(0,0,1280,720,this);
 
 
     // setup for ready
-    QGraphicsPixmapItem *ready_logo = logo->addPixmap(QPixmap(":images/logo/logo_background.png"));
+    QGraphicsPixmapItem *ready_logo = ready->addPixmap(QPixmap(":images/logo/logo_background.png"));
     ready_logo->setPos(0, 0);
 
     // setup for ingame

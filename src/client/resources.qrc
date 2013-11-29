@@ -23,5 +23,7 @@
         <file>images/ingame/pieces/piece2.png</file>
         <file>images/ingame/pieces/piece3.png</file>
         <file>images/ingame/pieces/piece4.png</file>
+        <file>images/credit/credit_background.png</file>
+        <file>images/credit/credit_splash.png</file>
     </qresource>
 </RCC>

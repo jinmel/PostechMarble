@@ -17,7 +17,8 @@ public slots:
     void animationFinished();
     void hideFinished();
 public:
-    QGameItem(QGraphicsScene* scene,MainWindow * window);
+    QGameItem(QGraphicsScene* scene, MainWindow *window);
+    virtual ~QGameItem();
     QPixmap* image();
     void setImage(const char * filename);
     //Game object animation
@@ -29,10 +30,12 @@ public:
     void show(bool fase,int duration=1000);
 
 private:
-    MainWindow *window;
     QGameItem(); //disabled to explicitly expcify the parent scene of the item
     QGraphicsScene * parent_scene;
     QTimeLine *timer;
     QPixmap *item_image;
     QGraphicsItemAnimation *animation;
+
+protected:
+    MainWindow *window;
 };

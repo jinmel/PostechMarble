@@ -17,6 +17,7 @@ Player::Player(int _id)
     panelty = 0;
     plural = false;
     character_type = CharacterType::NONE;
+    totalownsubjectenergy=0;
 
     //initialize map
     using namespace SubjectType;
@@ -36,7 +37,7 @@ Player::Player(int _id)
 
 Player::~Player()
 {
-   //delete own_blocks;
+    //delete own_blocks;
 
     qDebug() << "Player Destroyed" << endl;
 }
@@ -80,9 +81,12 @@ bool Player::isPlural() const
 
 CharacterType::Type Player::getType() const
 {
-	return character_type;
+    return character_type;
 }
-
+int Player::getTotalOwnSubjectEnergy() const
+{
+    return totalownsubjectenergy;
+}
 
 // Methods
 void Player::setPosition(int position)
@@ -103,6 +107,20 @@ void Player::setPlural(bool plural)
 }
 
 
+void Player::addTotalOwnSubjectEnergy(int subjectenergy){
+    this->totalownsubjectenergy+=subjectenergy;
+
+    }
+void Player::setBankrupt(bool bankrupt)
+{
+    this->bankrupt=bankrupt;
+}
+
+void Player::pushBlock(Block* block)
+{
+    own_blocks.push_back(block);
+
+}
 // set player to stay mouindo
 // parm: how long to stay in mouindo
 void Player::setMouindo(int panelty)
@@ -119,6 +137,7 @@ bool Player::escapeMouindo()
         return true;
 
     else {
+
         if(panelty == 0) {
             mobile = true;
             return true;
@@ -148,9 +167,10 @@ void Player::moveTo(int dice)
 
     // some character animations
 }
+void Player::removeBlock(Block* block){
+    own_blocks.remove(block);
+}
 
-
-// check whether player has block or not
 bool Player::hasBlock(Block* block)
 {
     list<Block*>::iterator finder = own_blocks.end();
@@ -159,26 +179,72 @@ bool Player::hasBlock(Block* block)
     // no matching
     if(finder == own_blocks.end())
         return false;
-
-    // match found
     else
         return true;
 }
 
 
-//
 void Player::buyBlock(Block* block)
 {
-    takeBlock(block);
-    //energy -= block->getValue();
+    using namespace BlockType;
+
+    if(!hasBlock(block))
+        qDebug() << "You don't have that block. Check Again!" << endl;
+
+    else {
+        switch(block->getType()) {
+        case CORNER:
+            // CornerBlock
+            break;
+        case EVENT:
+            // EventBlock
+            break;
+        case FRIDAY:
+            // FriayBlock
+            break;
+        case SUBJECT:
+            // SubjectBlock
+            registered.find(((SubjectBlock*)block)->getType())->second++;
+            totalownsubjectenergy+=block->getValue();
+            break;
+        }
+
+        own_blocks.push_back(block);
+    }
+    energy -= block->getValue();
 
 }
 
 
 void Player::sellBlock(Block* block)
 {
-    loseBlock(block);
-    //energy += block->getValue();
+    using namespace BlockType;
+
+    if(!hasBlock(block))
+        qDebug() << "You don't have that block. Check Again!" << endl;
+
+    else {
+        switch(block->getType()) {
+        case CORNER:
+            // CornerBlock
+            break;
+        case EVENT:
+            // EventBlock
+            break;
+        case FRIDAY:
+            // FriayBlock
+            break;
+        case SUBJECT:
+            // SubjectBlock
+            registered.find(((SubjectBlock*)block)->getType())->second--;
+            totalownsubjectenergy-=block->getValue();
+            break;
+
+        }
+
+        own_blocks.remove(block);
+    }
+    energy += block->getValue();
 }
 
 
@@ -186,20 +252,29 @@ void Player::takeBlock(Block *block)
 {
     using namespace BlockType;
 
-    // exception handling
-    if(block->getType() != SUBJECT) {
-        qDebug() << "Block is not subject block." << endl;
-        return;
-    }
-
-    if(!hasBlock(block)) {
+    if(!hasBlock(block))
         qDebug() << "You don't have that block. Check Again!" << endl;
-        return;
-    }
 
-    // do some operations
-    registered.find(((SubjectBlock*)block)->getType())->second++;
-    own_blocks.push_back(block);
+    else {
+        switch(block->getType()) {
+        case CORNER:
+            // CornerBlock
+            break;
+        case EVENT:
+            // EventBlock
+            break;
+        case FRIDAY:
+            // FriayBlock
+            break;
+        case SUBJECT:
+            // SubjectBlock
+            registered.find(((SubjectBlock*)block)->getType())->second++;
+            totalownsubjectenergy+=block->getValue();
+            break;
+        }
+
+        own_blocks.push_back(block);
+    }
 }
 
 
@@ -207,29 +282,39 @@ void Player::loseBlock(Block *block)
 {
     using namespace BlockType;
 
-    // exception handling
-    if(block->getType() != SUBJECT) {
-        qDebug() << "Block is not subject block." << endl;
-        return;
-    }
-
-    if(!hasBlock(block)) {
+    if(!hasBlock(block))
         qDebug() << "You don't have that block. Check Again!" << endl;
-        return;
-    }
 
-    // do some operations
-    registered.find(((SubjectBlock*)block)->getType())->second--;
-    own_blocks.remove(block);
+    else {
+        switch(block->getType()) {
+        case CORNER:
+            // CornerBlock
+            break;
+        case EVENT:
+            // EventBlock
+            break;
+        case FRIDAY:
+            // FriayBlock
+            break;
+        case SUBJECT:
+            // SubjectBlock
+            registered.find(((SubjectBlock*)block)->getType())->second--;
+            totalownsubjectenergy-=block->getValue();
+            break;
+
+        }
+
+        own_blocks.remove(block);
+    }
 }
 
 
 void Player::giveSalary()
 {
     if(character_type == CharacterType::HARD_WORKER)
-    	energy += 150;
+        energy += 150;
     else
-    	energy += 100;
+        energy += 100;
 }
 
 
@@ -237,34 +322,27 @@ bool Player::checkWinStatus()
 {
     int majored = 0;
 
-    // iterate map to check completed majors
     for(map<SubjectType::Type, int>::iterator i = registered.begin(); i != registered.end(); i++) {
         if(i->second == 3)
             majored ++;
     }
 
-    // plural major & passed
     if(plural && majored >= 2)
         return true;
-
-    // single major & passed
     else if (!plural && majored >= 1)
         return true;
-
-    // still playing
     else
         return false;
 }
 
-
 void Player::payEnergy(int payenergy)
 {
     energy-=payenergy;
+
 }
-
-
-void Player::takeEnergy(int paidenergy){
+void Player::paidEnergy(int paidenergy){
     energy+=paidenergy;
+
 }
 
 int Player::getId() const {

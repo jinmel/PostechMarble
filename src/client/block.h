@@ -2,7 +2,6 @@
 #include "types.h"
 #include "player.h"
 
-
 // circular dependency
 class Player;
 
@@ -16,7 +15,6 @@ protected:
 public:
     Block();
     virtual ~Block();
-
     int getValue() const;
     BlockType::Type getType() const;
     void setPosition(int position);

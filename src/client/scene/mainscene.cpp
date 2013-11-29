@@ -6,7 +6,6 @@
 #include <QTimeLine>
 #include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
-#include <QMediaPlayer>
 #include <QtGlobal>
 
 
@@ -31,13 +30,6 @@ MainScene::~MainScene()
 
 
 // Methods
-void MainScene::switchToReady()
-{
-    qDebug() << "Switching to Ready" << endl;
-    window->switchScene(SceneType::READY);
-}
-
-
 void MainScene::setupMain()
 {
     // setup for main
@@ -48,17 +40,71 @@ void MainScene::setupMain()
     background->setPos(0, 0);
 
     // set buttons
-    QGameItem *start_button = new QGameItem(this, window);
+    StartButton *start_button = new StartButton(this, window);
     start_button->setImage(":/images/button_ok.png");
-    start_button->setPos(600,400);
+    start_button->setPos(600,500);
 
-    QGameItem *credit_button = new QGameItem(this, window);
+    CreditButton *credit_button = new CreditButton(this, window);
     credit_button->setImage(":/images/button_ok.png");
-    credit_button->setPos(600,500);
+    credit_button->setPos(600,600);
 }
 
 
 void MainScene::animateMain()
 {
 
+}
+
+
+// StartButton
+StartButton::StartButton(QGraphicsScene *scene, MainWindow *window)
+    : QGameItem(scene, window)
+{
+
+}
+
+StartButton::~StartButton()
+{
+
+}
+
+void StartButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    qDebug() << "Start button clicked.";
+    setPixmap(QPixmap(":images/button_ok_click.png"));
+
+    // move to ready scene
+    window->switchScene(SceneType::READY);
+}
+
+void StartButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    setPixmap(QPixmap(":images/button_ok.png"));
+}
+
+
+// CreditButton
+CreditButton::CreditButton(QGraphicsScene *scene, MainWindow *window)
+    : QGameItem(scene, window)
+{
+
+}
+
+CreditButton::~CreditButton()
+{
+
+}
+
+void CreditButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    qDebug() << "Credit button clicked.";
+    setPixmap(QPixmap(":images/button_ok_click.png"));
+
+    // move to ready scene
+    window->switchScene(SceneType::CREDIT);
+}
+
+void CreditButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    setPixmap(QPixmap(":images/button_ok.png"));
 }

@@ -67,11 +67,44 @@ void SubjectBlock::enter(Player* player)
     {
         if(paneltycost>player->getEnergy())
         {
+            player->payEnergy(paneltycost);
+            this->owner->paidEnergy(paneltycost);
+
+            qDebug()<<"Do you want to buy the block?"<<endl;
+            qDebug()<<"1.yes    2.no"<<endl;
+            int userselect;
+            if(userselect==1)//buy the block;
+            {
+                int priceofownedsubject=value+paneltycost*2;//value나 cost나.... 합치는 작업 해줘야할듯!
+                this->owner->removeBlock(this);
+                player->pushBlock(this);
+                player->addTotalOwnSubjectEnergy(value);
+                this->owner->addTotalOwnSubjectEnergy(-value);
+                player->setEnergy(player->getEnergy()-priceofownedsubject);
+                this->owner->setEnergy(this->owner->getEnergy()+priceofownedsubject);
+
+
+
+
+            }
+            else//not buy the block
+            {return;}
+
 
 
         }
-        else{
+        else{//블럭을 팔거나 파산한다.
 
+            if(paneltycost > player->getTotalOwnSubjectEnergy())//가진 모든 과목을 팔아도 안될때 -> bankrupt
+            {
+                player->setBankrupt(true);
+            }
+            else
+            {//과목을 팔도록 한다.
+                //사용자로부터 팔 과목을 선택받는다... panelty cost보다 높은 금액만큼의 과목..
+
+                //player->sellBlock(/*block*/); for문 돌려서 다 팔아줘야할듯~
+            }
 
         }
 
