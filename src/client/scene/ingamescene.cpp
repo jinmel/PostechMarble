@@ -11,24 +11,23 @@ IngameScene::IngameScene(qreal x, qreal y,
 
     Q_CHECK_PTR(window);
 
-    setBackgroundPixmap(":/images/ingame/background.png");
+    setBackgroundPixmap(":/images/ingame/background_test.jpg");
     //주사위 그래픽
     dice_graphic = new DiceGraphicItem(this,window);
-    dice_graphic->setPos(600,600);
+    dice_graphic->setPos(900,400);
 
     //주사위 패널 첫번째
     first_dice_panel = new DiceValuePanel(this,window);
-    first_dice_panel->setPos(500,500);
+    first_dice_panel->setPos(400,400);
     //주사위 패널 두번째
     second_dice_panel = new DiceValuePanel(this,window);
-    second_dice_panel->setPos(300,300);
+    second_dice_panel->setPos(500,400);
 
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
     connect(dice,SIGNAL(secondDiceRolled(int)),second_dice_panel,SLOT(setValue(int)));
 }
-
 
 IngameScene::~IngameScene(){
     delete first_dice_panel;
@@ -50,32 +49,22 @@ DiceGraphicItem::DiceGraphicItem(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene,window){
     //버튼 초기상태 이미지
     this->setImage(":/images/ingame/button.png");
-    //accepts hover events
-    setAcceptHoverEvents(true);
 }
 
 void DiceGraphicItem::mousePressEvent(QGraphicsSceneMouseEvent *event){
     //버튼이 눌렸을 때의 이미지로 바꿈
-    qDebug() << "dice button Pressed";
     this->setImage(":/images/ingame/button_pushed.png");
-    QGameItem::mousePressEvent(event);
 }
 
 void DiceGraphicItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     //마우스에서 땠을 경우 다시 초기상태 이미지로 바꿈
-    qDebug() << "dice button Released";
     this->setImage(":/images/ingame/button.png");
     Dice * dice = Dice::getInst();
     dice->roll();
-    QGameItem::mouseReleaseEvent(event);
-}
-void DiceGraphicItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *event){
-    this->setImage(":/images/ingame/button.png");
-    //dice is not rolled this case
-    QGameItem::hoverLeaveEvent(event);
 }
 
-DiceValuePanel::DiceValuePanel(QGraphicsScene *scene, MainWindow *window) : QGameItem(scene,window)
+DiceValuePanel::DiceValuePanel(QGraphicsScene *scene, MainWindow *window)
+    : QGameItem(scene,window)
 {
     setValue(3);
 }
@@ -106,4 +95,10 @@ void DiceValuePanel::setValue(int value)
 }
 
 
+void DiceValuePanel::mousePressEvent(QGraphicsSceneMouseEvent *event){
 
+}
+
+void DiceValuePanel::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
+
+}

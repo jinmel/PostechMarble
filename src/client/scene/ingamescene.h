@@ -42,7 +42,6 @@ private:
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-    virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
 };
 
 
@@ -56,6 +55,9 @@ private:
     DiceValuePanel();
 public slots:
     void setValue(int value);
+protected:
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 };
 
 
