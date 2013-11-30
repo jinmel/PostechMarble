@@ -6,13 +6,14 @@
 using namespace std;
 
 // Constructor & Destructor
-EventBlock::EventBlock()
+EventBlock::EventBlock(QGameItem * parent) : Block(parent)
 {
 }
 
 
 EventBlock::~EventBlock()
 {
+
 }
 
 

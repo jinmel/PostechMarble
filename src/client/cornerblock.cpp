@@ -7,13 +7,11 @@
 
 using namespace std;
 
-CornerBlock::CornerBlock(CornerType::Type type)
+CornerBlock::CornerBlock(QGameItem * parent,CornerType::Type type)
+    : Block(parent)
 {
     block_type = type;
 }
-
-
-
 
 CornerBlock::~CornerBlock()
 {

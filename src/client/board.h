@@ -13,7 +13,6 @@ public:
     Board(QGraphicsScene * scene,MainWindow * window);
     virtual ~Board();
     void enter(Player* player);
-
     int getLength() const;
     Block* getBlock(int position) const;
 };

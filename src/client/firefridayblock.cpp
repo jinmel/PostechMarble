@@ -4,9 +4,9 @@
 #include "player.h"
 #include "dice.h"
 
-
 // Constructor & Destructor
-FireFridayBlock::FireFridayBlock(FireFridayType::Type type)
+FireFridayBlock::FireFridayBlock(QGameItem * parent,FireFridayType::Type type)
+    : Block(parent)
 {
     block_type = type;
 }

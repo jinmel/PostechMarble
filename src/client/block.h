@@ -1,19 +1,19 @@
 #pragma once
 #include "types.h"
 #include "player.h"
+#include "qgameitem.h"
 
-// circular dependency
+
 class Player;
 
-class Block
+class Block : public QGameItem
 {
 protected:
     int position;
     int value;
     BlockType::Type block_type;
-
 public:
-    Block();
+    Block(QGameItem * parent);
     virtual ~Block();
     int getValue() const;
     BlockType::Type getType() const;
