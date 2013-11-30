@@ -6,29 +6,30 @@
 IngameScene::IngameScene(qreal x, qreal y,
                          qreal width, qreal height,
                          QObject *parent)
-    : QGraphicsScene(x,y,width,height,parent)
+    : QGraphicsScene(x,y,width,height,parent), window(dynamic_cast<MainWindow*>(parent))
 {
-    MainWindow * w = dynamic_cast<MainWindow*>(parent);
-    Q_CHECK_PTR(w);
-    dice_graphic = new DiceGraphicItem(this,w);
+    Q_CHECK_PTR(window);
+    //주사위 그래픽
+    dice_graphic = new DiceGraphicItem(this,window);
     dice_graphic->setPos(800,800);
 
-    first_panel = new DiceValuePanel(this,w);
-    first_panel->setPos(500,500);
-    second_panel = new DiceValuePanel(this,w);
-    second_panel->setPos(300,300);
-    bar1 = new CharacterStatusBar(this,w,1);
-    bar1->setPos(200,200);
-    bar2 = new CharacterStatusBar(this,w,2);
-    bar2->setPos(200,300);
+    //주사위 패널 첫번째
+    first_dice_panel = new DiceValuePanel(this,window);
+    first_dice_panel->setPos(500,500);
+    //주사위 패널 두번째
+    second_dice_panel = new DiceValuePanel(this,window);
+    second_dice_panel->setPos(300,300);
 
-    connect(dice_graphic,SIGNAL(firstValueChanged(int)),first_panel,SLOT(setValue(int)));
-    connect(dice_graphic,SIGNAL(secondValueChanged(int)),second_panel,SLOT(setValue(int)));
+    //Signal / Slots connection
+    Dice * dice = Dice::getInst();
+    connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
+    connect(dice,SIGNAL(secondDiceRolled(int)),second_dice_panel,SLOT(setValue(int)));
+
 }
 
 IngameScene::~IngameScene(){
-    delete first_panel;
-    delete second_panel;
+    delete first_dice_panel;
+    delete second_dice_panel;
     delete dice_graphic;
     delete background;
 }
@@ -41,37 +42,42 @@ QGraphicsPixmapItem* IngameScene::backgroundPixmap(){
     return background;
 }
 
+
 DiceGraphicItem::DiceGraphicItem(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene,window){
+    //버튼 초기상태 이미지
     this->setImage(":/images/ingame/button.png");
+    //accepts hover events
+    setAcceptHoverEvents(true);
 }
 
 void DiceGraphicItem::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    //버튼이 눌렸을 때의 이미지로 바꿈
     this->setImage(":/images/ingame/button_pushed.png");
     QGameItem::mousePressEvent(event);
 }
 
 void DiceGraphicItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
+    //마우스에서 땠을 경우 다시 초기상태 이미지로 바꿈
     this->setImage(":/images/ingame/button.png");
     Dice * dice = Dice::getInst();
     dice->roll();
-    int value1 = dice->getFirstDice();
-    int value2 = dice->getSecondDice();
-
-    //emit two signals to dice panels
-    emit firstValueChanged(value1);
-    emit secondValueChanged(value2);
     QGameItem::mouseReleaseEvent(event);
+}
+void DiceGraphicItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *event){
+    this->setImage(":/images/ingame/button.png");
+    //dice is not rolled this case
+    QGameItem::hoverLeaveEvent(event);
 }
 
 DiceValuePanel::DiceValuePanel(QGraphicsScene *scene, MainWindow *window) : QGameItem(scene,window)
 {
-    this->setImage(":/images/ingame/dice/dice3.png");
-    diceValue = 3; //default value
+    setValue(3);
 }
 
 void DiceValuePanel::setValue(int value)
 {
+    diceValue = value;
     switch(value){
     case 1:
         this->setImage(":/images/ingame/dice/dice1.png");
@@ -93,37 +99,6 @@ void DiceValuePanel::setValue(int value)
         break;
     }
 }
-
-CharacterStatusBar::CharacterStatusBar(QGraphicsScene *scene, MainWindow *window,int player_num)
-    :QGameItem(scene,window)
-{
-    Q_ASSERT(player_num <= 2 && player_num >= 1);
-    QString filename = ":/images/ingame/status/status";
-    filename += QString(static_cast<char>(player_num) + '0');
-    filename += ".png";
-    qDebug() << filename;
-    setImage(filename.toUtf8().constData());
-
-    status_text = new QGraphicsTextItem(this);
-    character_image = new QGraphicsPixmapItem(this);
-    //character_image->setPixmap(QPixmap(QString(":/images/ingame/"));
-    status_text->setPlainText(QString::number(0));
-
-    //set these position in appropriate position relative to status bar...
-}
-
-CharacterStatusBar::~CharacterStatusBar(){
-    delete status_text;
-    delete character_image;
-}
-
-void CharacterStatusBar::setEnergyText(int energy){
-    status_text->setPlainText(QString::number(energy));
-}
-
-
-
-
 
 
 
