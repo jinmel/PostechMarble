@@ -8,7 +8,7 @@
 using namespace std;
 
 // Constructor & Destructor
-Board::Board()
+Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,window)
 {
     using namespace SubjectType;
 
