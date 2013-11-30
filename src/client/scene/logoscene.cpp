@@ -3,11 +3,11 @@
 #include <QGraphicsItem>
 #include <QDebug>
 #include <QGraphicsItemAnimation>
-#include <QTimeLine>
 #include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
 #include <QtGlobal>
 #include <QMediaPlayer>
+#include <QFileInfo>
 
 
 // Constructor & Destructor
@@ -20,14 +20,15 @@ LogoScene::LogoScene(qreal x, qreal y,
     if(this->window == NULL) qDebug() <<"window is null!";
     Q_CHECK_PTR(this->window);
 
-    //setupLogo();
-    //animateLogo();
+    // setup Logo Scene
+    setupLogo();
 }
 
 
 LogoScene::~LogoScene()
 {
-
+    delete background;
+    delete team_logo;
 }
 
 
@@ -44,7 +45,7 @@ void LogoScene::setupLogo()
     // setup for logo
 
     // set background
-    QGameItem* background = new QGameItem(this, window);
+    background = new QGameItem(this, window);
     background->setImage(":images/logo/logo_background.png");
     background->setPos(0, 0);
 
@@ -57,8 +58,6 @@ void LogoScene::setupLogo()
 
 void LogoScene::animateLogo()
 {
-    QGraphicsItem* team_logo = this->items().value(0);
-
     QGraphicsOpacityEffect* opacityEffect = new QGraphicsOpacityEffect();
     opacityEffect->setOpacity(0.0);
 
@@ -75,11 +74,12 @@ void LogoScene::animateLogo()
     // connect: switch to main when logo animation finished
     connect(animation,SIGNAL(finished()),this,SLOT(switchtoMain()));
 
-
-    // play sound
+    // set sound
     QMediaPlayer* player = new QMediaPlayer();
-    player->setMedia(QUrl::fromLocalFile("D:/Development/C&C++/CSED232 Project/src/client/sound/logo_dang.mp3"));
+    player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/logo_dang.mp3").absoluteFilePath()));
     player->setVolume(80);
+    
+    // play sound & animate    
     animation->start();
     player->play();
 }
