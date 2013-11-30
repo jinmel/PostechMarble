@@ -25,5 +25,6 @@
         <file>images/ingame/pieces/piece4.png</file>
         <file>images/credit/credit_background.png</file>
         <file>images/credit/credit_splash.png</file>
+        <file>images/ingame/background_test.jpg</file>
     </qresource>
 </RCC>
