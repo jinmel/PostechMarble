@@ -48,6 +48,7 @@ void Dice::delInst()
 // Methods
 void Dice::roll()
 {
+    qDebug() << "Dice Rolled";
     value1 = rand() % 6 + 1;
     value2 = rand() % 6 + 1;
     emit diceRolled(this->getValue(),this->isDouble());

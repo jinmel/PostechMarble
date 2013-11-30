@@ -30,9 +30,8 @@ public:
     virtual ~IngameScene();
     QGraphicsPixmapItem* setBackgroundPixmap(const char * filename);
     QGraphicsPixmapItem* backgroundPixmap();
+
 };
-
-
 
 class DiceGraphicItem: public QGameItem {
     Q_OBJECT

@@ -8,10 +8,13 @@ IngameScene::IngameScene(qreal x, qreal y,
                          QObject *parent)
     : QGraphicsScene(x,y,width,height,parent), window(dynamic_cast<MainWindow*>(parent))
 {
+
     Q_CHECK_PTR(window);
+
+    setBackgroundPixmap(":/images/ingame/background.png");
     //주사위 그래픽
     dice_graphic = new DiceGraphicItem(this,window);
-    dice_graphic->setPos(800,800);
+    dice_graphic->setPos(600,600);
 
     //주사위 패널 첫번째
     first_dice_panel = new DiceValuePanel(this,window);
@@ -24,8 +27,8 @@ IngameScene::IngameScene(qreal x, qreal y,
     Dice * dice = Dice::getInst();
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
     connect(dice,SIGNAL(secondDiceRolled(int)),second_dice_panel,SLOT(setValue(int)));
-
 }
+
 
 IngameScene::~IngameScene(){
     delete first_dice_panel;
@@ -53,12 +56,14 @@ DiceGraphicItem::DiceGraphicItem(QGraphicsScene *scene, MainWindow *window)
 
 void DiceGraphicItem::mousePressEvent(QGraphicsSceneMouseEvent *event){
     //버튼이 눌렸을 때의 이미지로 바꿈
+    qDebug() << "dice button Pressed";
     this->setImage(":/images/ingame/button_pushed.png");
     QGameItem::mousePressEvent(event);
 }
 
 void DiceGraphicItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     //마우스에서 땠을 경우 다시 초기상태 이미지로 바꿈
+    qDebug() << "dice button Released";
     this->setImage(":/images/ingame/button.png");
     Dice * dice = Dice::getInst();
     dice->roll();

@@ -17,6 +17,7 @@ LogoScene::LogoScene(qreal x, qreal y,
  : QGraphicsScene(x,y,width,height,parent)
 {
     this->window = dynamic_cast<MainWindow*>(parent);
+    if(this->window == NULL) qDebug() <<"window is null!";
     Q_CHECK_PTR(this->window);
 
     //setupLogo();

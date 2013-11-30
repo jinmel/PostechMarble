@@ -4,6 +4,7 @@
 #include "scene/creditscene.h"
 #include "scene/logoscene.h"
 #include "scene/mainscene.h"
+#include "scene/ingamescene.h"
 #include "scene/readyscene.h"
 #include <QGraphicsItem>
 #include <QDebug>
@@ -52,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setupScenes();
-    ui->graphicsView->setScene(logo);
+    switchScene(SceneType::INGAME);
 }
 
 
@@ -65,7 +66,6 @@ MainWindow::~MainWindow()
     delete ingame;
     delete credit;
 }
-
 
 // Methods
 // Utility Functions
@@ -95,7 +95,6 @@ void MainWindow::switchScene(int scenetype)
     ui->graphicsView->setScene(scene);
 }
 
-
 void MainWindow::setApplication(QApplication* app)
 {
     this->app = app;
@@ -107,19 +106,11 @@ void MainWindow::setupScenes()
     logo = new LogoScene(0, 0, 1280, 720, this);
     menu = new MainScene(0, 0, 1280, 720, this);
     ready = new QGraphicsScene(0, 0, 1280, 720, this);
-    ingame = new QGraphicsScene(0, 0, 1280, 720, this);
+    ingame = new IngameScene(0,0,1280,720,this);
     credit = new CreditScene(0,0,1280,720,this);
 
-
-    // setup for ready
-    QGraphicsPixmapItem *ready_logo = ready->addPixmap(QPixmap(":images/logo/logo_background.png"));
-    ready_logo->setPos(0, 0);
-
-    // setup for ingame
-    QGraphicsPixmapItem *game_board = ingame->addPixmap(QPixmap(":images/ingame/background.png"));
-    game_board->setPos(0,0);
-
-
-
+//    // setup for ready
+//    QGraphicsPixmapItem *ready_logo = ready->addPixmap(QPixmap(":images/logo/logo_background.png"));
+//    ready_logo->setPos(0, 0);
 
 }
