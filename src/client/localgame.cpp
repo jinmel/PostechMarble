@@ -12,8 +12,6 @@ LocalGame* LocalGame::m_inst = NULL;
 // Constructor & Destructor
 LocalGame::LocalGame()
 {
-    playerQueue = new PlayerQueue();
-    board = new Board();
     qDebug() << "LocalGame Initialized" << endl;
 }
 

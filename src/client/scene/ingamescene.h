@@ -5,9 +5,9 @@
 #include <QObject>
 #include <QPixmap>
 #include <QTimeLine>
-#include "../dice.h"
-#include "../qgameitem.h"
-
+#include "dice.h"
+#include "qgameitem.h"
+#include "board.h"
 
 //주사위 클래스의 그래픽
 class DiceGraphicItem;
@@ -24,6 +24,7 @@ private:
     DiceGraphicItem *dice_graphic;
     DiceValuePanel *first_dice_panel;
     DiceValuePanel *second_dice_panel;
+    Board * board;
 public:
     IngameScene(qreal x=0,qreal y=0,qreal width=1280,
                 qreal height=720,
@@ -31,7 +32,6 @@ public:
     virtual ~IngameScene();
     QGraphicsPixmapItem* setBackgroundPixmap(const char * filename);
     QGraphicsPixmapItem* backgroundPixmap();
-
 };
 
 class DiceGraphicItem: public QGameItem {
@@ -44,8 +44,6 @@ protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 };
-
-
 
 class DiceValuePanel : public QGameItem {
     Q_OBJECT

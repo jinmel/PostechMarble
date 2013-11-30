@@ -67,7 +67,8 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
         blocks[i]->setPosition(i);
     }
 
-    cout << "Board Created" << endl;
+    //Qtgraphics
+    setImage(":/images/ingame/board/back_white.png");
 }
 
 

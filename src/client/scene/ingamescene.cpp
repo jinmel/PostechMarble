@@ -5,27 +5,35 @@
 #include <QTimeLine>
 #include <QEasingCurve>
 
+
 IngameScene::IngameScene(qreal x, qreal y,
                          qreal width, qreal height,
                          QObject *parent)
     : QGraphicsScene(x,y,width,height,parent), window(dynamic_cast<MainWindow*>(parent))
 {
-
     Q_CHECK_PTR(window);
 
     setBackgroundPixmap(":/images/ingame/background_test.jpg");
+
+    board = new Board(this,window);
+    board->setPos(200,10);
+    qDebug() << board->image()->size();
+
     //주사위 그래픽
     dice_graphic = new DiceGraphicItem(this,window);
     dice_graphic->setPos(900,400);
+    dice_graphic->setZValue(2);
 
     //주사위 패널 첫번째
     first_dice_panel = new DiceValuePanel(this,window);
     first_dice_panel->setPos(400,400);
+    first_dice_panel->setZValue(2);
     //주사위 패널 두번째
     second_dice_panel = new DiceValuePanel(this,window);
     second_dice_panel->setPos(500,400);
+    second_dice_panel->setZValue(2);
 
-    //Block.. 들을 넣어봅시다 ㅠㅠ
+
 
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
@@ -47,7 +55,6 @@ QGraphicsPixmapItem* IngameScene::setBackgroundPixmap(const char * filename){
 QGraphicsPixmapItem* IngameScene::backgroundPixmap(){
     return background;
 }
-
 
 DiceGraphicItem::DiceGraphicItem(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene,window){
