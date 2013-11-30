@@ -2,6 +2,8 @@
 #include <QPixmap>
 #include <QtGlobal>
 #include "dice.h"
+#include <QTimeLine>
+#include <QEasingCurve>
 
 IngameScene::IngameScene(qreal x, qreal y,
                          qreal width, qreal height,
@@ -22,6 +24,8 @@ IngameScene::IngameScene(qreal x, qreal y,
     //주사위 패널 두번째
     second_dice_panel = new DiceValuePanel(this,window);
     second_dice_panel->setPos(500,400);
+
+    //Block.. 들을 넣어봅시다 ㅠㅠ
 
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
@@ -59,6 +63,7 @@ void DiceGraphicItem::mousePressEvent(QGraphicsSceneMouseEvent *event){
 void DiceGraphicItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     //마우스에서 땠을 경우 다시 초기상태 이미지로 바꿈
     this->setImage(":/images/ingame/button.png");
+    //여기에 게임 스테이트 머신을 추가해서 롤할지 안할지 결정하게 해야함
     Dice * dice = Dice::getInst();
     dice->roll();
 }
@@ -66,13 +71,17 @@ void DiceGraphicItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
 DiceValuePanel::DiceValuePanel(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene,window)
 {
-    setValue(3);
+    setImage(":/images/ingame/dice/dice3.png"); //default image
+    timeline = new QTimeLine(1500); //spin for 1.5 second
+    timeline->setFrameRange(0,50); // 50 spins
+    timeline->setEasingCurve(QEasingCurve::InOutCirc);
+    connect(this->timeline,SIGNAL(frameChanged(int)),this,SLOT(spinValue(int)));
+    connect(timeline,SIGNAL(finished()),this,SLOT(endSpin()));
 }
 
-void DiceValuePanel::setValue(int value)
-{
-    diceValue = value;
-    switch(value){
+void DiceValuePanel::endSpin(){
+    //finally fix dice image to diceValue
+    switch(diceValue){
     case 1:
         this->setImage(":/images/ingame/dice/dice1.png");
         break;
@@ -94,6 +103,34 @@ void DiceValuePanel::setValue(int value)
     }
 }
 
+void DiceValuePanel::setValue(int value){
+    diceValue = value;
+    timeline->start();
+}
+
+void DiceValuePanel::spinValue(int frame){
+    int value = rand() % 6 + 1;
+    switch(value){
+    case 1:
+        this->setImage(":/images/ingame/dice/dice1.png");
+        break;
+    case 2:
+        this->setImage(":/images/ingame/dice/dice2.png");
+        break;
+    case 3:
+        this->setImage(":/images/ingame/dice/dice3.png");
+        break;
+    case 4:
+        this->setImage(":/images/ingame/dice/dice4.png");
+        break;
+    case 5:
+        this->setImage(":/images/ingame/dice/dice5.png");
+        break;
+    case 6:
+        this->setImage(":/images/ingame/dice/dice6.png");
+        break;
+    }
+}
 
 void DiceValuePanel::mousePressEvent(QGraphicsSceneMouseEvent *event){
 

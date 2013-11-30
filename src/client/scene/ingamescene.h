@@ -4,6 +4,7 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QPixmap>
+#include <QTimeLine>
 #include "../dice.h"
 #include "../qgameitem.h"
 
@@ -52,9 +53,14 @@ public:
     DiceValuePanel(QGraphicsScene * scene,MainWindow * window);
 private:
     int diceValue;
+    QTimeLine * timeline;
     DiceValuePanel();
 public slots:
+    void endSpin();
     void setValue(int value);
+    void spinValue(int frame);
+signals:
+    void diceDetermined(int value,bool is_double);
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
