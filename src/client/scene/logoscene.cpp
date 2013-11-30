@@ -19,8 +19,8 @@ LogoScene::LogoScene(qreal x, qreal y,
     this->window = dynamic_cast<MainWindow*>(parent);
     Q_CHECK_PTR(this->window);
 
-    setupLogo();
-    animateLogo();
+    //setupLogo();
+    //animateLogo();
 }
 
 
