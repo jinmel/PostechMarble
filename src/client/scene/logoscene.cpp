@@ -6,8 +6,8 @@
 #include <QTimeLine>
 #include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
-#include <QMediaPlayer>
 #include <QtGlobal>
+#include <QMediaPlayer>
 
 
 // Constructor & Destructor
@@ -76,9 +76,9 @@ void LogoScene::animateLogo()
 
 
     // play sound
-    QMediaPlayer* sound = new QMediaPlayer();
-    sound->setMedia(QUrl::fromLocalFile("D:/Development/C&C++/CSED232 Project/src/client/sound/logo_dang.mp3"));
-    sound->setVolume(80);
+    QMediaPlayer* player = new QMediaPlayer();
+    player->setMedia(QUrl::fromLocalFile("D:/Development/C&C++/CSED232 Project/src/client/sound/logo_dang.mp3"));
+    player->setVolume(80);
     animation->start();
-    sound->play();
+    player->play();
 }

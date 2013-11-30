@@ -1,13 +1,16 @@
 #include "creditscene.h"
+#include "types.h"
 #include <QGraphicsItem>
 #include <QGraphicsItemAnimation>
 #include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
 #include <QDebug>
 #include <QTimeLine>
-#include <QMediaPlayer>
 #include <QtGlobal>
+#include <QMediaPlayer>
 
+
+// Constructor & Destructor
 CreditScene::CreditScene(qreal x, qreal y, qreal width,
             qreal height,
             QObject* parent)
@@ -25,6 +28,8 @@ CreditScene::~CreditScene()
 
 }
 
+
+// Methods
 void CreditScene::switchToMain()
 {
     qDebug() << "Switching to Main" << endl;
@@ -39,10 +44,9 @@ void CreditScene::setupCredit()
     credit->setPos(0, 0);
 
     // sound
-    QMediaPlayer* sound = new QMediaPlayer();
-    sound->setMedia(QUrl::fromLocalFile("D:/Development/C&C++/CSED232 Project/src/client/sound/error.mp3"));
-    sound->setVolume(90);
-    sound->play();
+    QMediaPlayer* player = new QMediaPlayer();
+    player->setMedia(QUrl::fromLocalFile("D:/Development/C&C++/CSED232 Project/src/client/sound/error.mp3"));
+    player->play();
 }
 
 void CreditScene::animateCredit()
