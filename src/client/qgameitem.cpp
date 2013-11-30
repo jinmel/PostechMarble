@@ -17,7 +17,9 @@ QGameItem::~QGameItem()
 
 }
 
-QGameItem::QGameItem(QGraphicsScene *scene, MainWindow *window){
+QGameItem::QGameItem(QGraphicsScene *scene, MainWindow *window) :
+    QObject(scene)
+{
     parent_scene = scene;
     parent_scene->addItem(this);
     timer = NULL;
