@@ -54,11 +54,17 @@ DiceGraphicItem::DiceGraphicItem(QGraphicsScene *scene, MainWindow *window)
     setAcceptHoverEvents(true);
 }
 
+void DiceGraphicItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
+{
+    //hover event
+    this->setImage(":/images/ingame/button2.png");
+}
+
 void DiceGraphicItem::mousePressEvent(QGraphicsSceneMouseEvent *event){
     //버튼이 눌렸을 때의 이미지로 바꿈
     qDebug() << "dice button Pressed";
-    this->setImage(":/images/ingame/button_pushed.png");
-    QGameItem::mousePressEvent(event);
+    this->setImage(":/images/ingame/button2_pushed.png");
+    //QGameItem::mousePressEvent(event);
 }
 
 void DiceGraphicItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
@@ -67,12 +73,12 @@ void DiceGraphicItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     this->setImage(":/images/ingame/button.png");
     Dice * dice = Dice::getInst();
     dice->roll();
-    QGameItem::mouseReleaseEvent(event);
+    //QGameItem::mouseReleaseEvent(event);
 }
 void DiceGraphicItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *event){
     this->setImage(":/images/ingame/button.png");
     //dice is not rolled this case
-    QGameItem::hoverLeaveEvent(event);
+    //QGameItem::hoverLeaveEvent(event);
 }
 
 DiceValuePanel::DiceValuePanel(QGraphicsScene *scene, MainWindow *window) : QGameItem(scene,window)
