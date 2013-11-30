@@ -50,6 +50,9 @@ void Dice::roll()
 {
     value1 = rand() % 6 + 1;
     value2 = rand() % 6 + 1;
+    emit diceRolled(this->getValue(),this->isDouble());
+    emit firstDiceRolled(value1);
+    emit secondDiceRolled(value2);
 }
 
 bool Dice::isDouble()
