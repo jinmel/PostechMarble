@@ -28,6 +28,5 @@
         <file>images/ingame/background_test.jpg</file>
         <file>images/ingame/button2.png</file>
         <file>images/ingame/button2_pushed.png</file>
-        <file>sound/logo_dang.mp3</file>
     </qresource>
 </RCC>

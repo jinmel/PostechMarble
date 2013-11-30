@@ -42,11 +42,9 @@ void MainScene::setupMain()
 
     // set buttons
     start_button = new StartButton(this, window);
-    start_button->setImage(":/images/button_ok.png");
     start_button->setPos(600,500);
 
     credit_button = new CreditButton(this, window);
-    credit_button->setImage(":/images/button_ok.png");
     credit_button->setPos(600,600);
 }
 
@@ -61,7 +59,8 @@ void MainScene::animateMain()
 StartButton::StartButton(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene, window)
 {
-
+    // 버튼 초기 이미
+    this->setImage(":/images/button_ok.png");
 }
 
 StartButton::~StartButton()
@@ -95,7 +94,8 @@ void StartButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 CreditButton::CreditButton(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene, window)
 {
-
+    // 버튼 초기 이미지
+    this->setImage(":/images/button_ok.png");
 }
 
 CreditButton::~CreditButton()
