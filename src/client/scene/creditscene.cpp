@@ -5,9 +5,9 @@
 #include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
 #include <QDebug>
-#include <QTimeLine>
 #include <QtGlobal>
 #include <QMediaPlayer>
+#include <QFileInfo>
 
 
 // Constructor & Destructor
@@ -17,10 +17,10 @@ CreditScene::CreditScene(qreal x, qreal y, qreal width,
  : QGraphicsScene(x,y,width,height,parent)
 {
     this->window = dynamic_cast<MainWindow*>(parent);
+    if(this->window == NULL) qDebug() <<"window is null!";
     Q_CHECK_PTR(this->window);
 
     setupCredit();
-    animateCredit();
 }
 
 CreditScene::~CreditScene()
@@ -32,31 +32,44 @@ CreditScene::~CreditScene()
 // Methods
 void CreditScene::switchToMain()
 {
-    qDebug() << "Switching to Main" << endl;
+    qDebug() << "Switching to Main";
     window->switchScene(SceneType::MAIN);
 }
 
 void CreditScene::setupCredit()
 {
+    // load splash logo
+    splash_logo = new QGameItem(this, window);
+    splash_logo->setImage(":images/credit/credit_splash.png");
+    splash_logo->setPos(0, 0);
+
     // load credit file
     credit = new QGameItem(this, window);
     credit->setImage(":images/credit/credit_background.png");
     credit->setPos(0, 0);
-
-    // sound
-    QMediaPlayer* player = new QMediaPlayer();
-    player->setMedia(QUrl::fromLocalFile("D:/Development/C&C++/CSED232 Project/src/client/sound/error.mp3"));
-    player->play();
 }
 
 void CreditScene::animateCredit()
 {
-    /*QGraphicsItem* credit = this->items().value(0);
+    QGraphicsOpacityEffect* opacityEffect = new QGraphicsOpacityEffect();
+    opacityEffect->setOpacity(0.0);
 
-    QGraphicsOpacityEffect* effect = new QGraphicsOpacityEffect();
-    effect->setOpacity(0.0);
+    credit->setGraphicsEffect(opacityEffect);
 
-    credit->setGraphicsEffect(effect);
+    QPropertyAnimation* animation = new QPropertyAnimation();
+    animation->setTargetObject(opacityEffect);
+    animation->setPropertyName("opacity");
+    animation->setDuration(3000);
+    animation->setStartValue(0.0);
+    animation->setEndValue(1.0);
+    animation->setEasingCurve(QEasingCurve::OutQuad);
 
-    QPropertyAnimation* animation = new QPropertyAnimation();*/
+    // sound
+    QMediaPlayer* player = new QMediaPlayer();
+    player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/error.mp3").absoluteFilePath()));
+    player->setVolume(80);
+    
+    // play sound & animate
+    animation->start();
+    player->play();
 }

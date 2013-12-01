@@ -53,7 +53,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setupScenes();
-    switchScene(SceneType::INGAME);
+    switchScene(SceneType::LOGO);
+
+    // animate logo
+    dynamic_cast<LogoScene*>(logo)->animateLogo();
 }
 
 
@@ -105,12 +108,31 @@ void MainWindow::setupScenes()
 {
     logo = new LogoScene(0, 0, 1280, 720, this);
     menu = new MainScene(0, 0, 1280, 720, this);
-    ready = new QGraphicsScene(0, 0, 1280, 720, this);
+    ready = new ReadyScene(0, 0, 1280, 720, this);
     ingame = new IngameScene(0,0,1280,720,this);
     credit = new CreditScene(0,0,1280,720,this);
+}
 
-//    // setup for ready
-//    QGraphicsPixmapItem *ready_logo = ready->addPixmap(QPixmap(":images/logo/logo_background.png"));
-//    ready_logo->setPos(0, 0);
 
+void MainWindow::animateScene(int scenetype)
+{
+    using namespace SceneType;
+
+    switch(scenetype) {
+        case LOGO:
+            dynamic_cast<LogoScene*>(logo)->animateLogo();
+            break;
+        case MAIN:
+            dynamic_cast<MainScene*>(menu)->animateMain();
+            break;
+        case READY:
+            dynamic_cast<ReadyScene*>(ready)->animateReady();
+            break;
+        case INGAME:
+            //dynamic_cast<IngameScene*>(ingame)->animateIngame();
+            break;
+        case CREDIT:
+            dynamic_cast<CreditScene*>(credit)->animateCredit();
+            break;
+    }
 }

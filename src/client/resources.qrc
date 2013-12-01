@@ -53,5 +53,8 @@
         <file>images/ingame/block/vertical/ME_background_vertical.png</file>
         <file>images/ingame/block/vertical/PHYS_background_vertical.png</file>
         <file>images/ingame/block/corner.png</file>
+        <file>images/ingame/button2.png</file>
+        <file>images/ingame/button2_pushed.png</file>
+
     </qresource>
 </RCC>

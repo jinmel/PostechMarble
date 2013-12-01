@@ -19,13 +19,14 @@ MainScene::MainScene(qreal x, qreal y,
     Q_CHECK_PTR(this->window);
 
     setupMain();
-    animateMain();
 }
 
 
 MainScene::~MainScene()
 {
-
+    delete background;
+    delete start_button;
+    delete credit_button;
 }
 
 
@@ -40,12 +41,10 @@ void MainScene::setupMain()
     background->setPos(0, 0);
 
     // set buttons
-    StartButton *start_button = new StartButton(this, window);
-    start_button->setImage(":/images/button_ok.png");
+    start_button = new StartButton(this, window);
     start_button->setPos(600,500);
 
-    CreditButton *credit_button = new CreditButton(this, window);
-    credit_button->setImage(":/images/button_ok.png");
+    credit_button = new CreditButton(this, window);
     credit_button->setPos(600,600);
 }
 
@@ -60,7 +59,8 @@ void MainScene::animateMain()
 StartButton::StartButton(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene, window)
 {
-
+    // 버튼 초기 이미
+    this->setImage(":/images/button_ok.png");
 }
 
 StartButton::~StartButton()
@@ -71,15 +71,22 @@ StartButton::~StartButton()
 void StartButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     qDebug() << "Start button clicked.";
-    setPixmap(QPixmap(":images/button_ok_click.png"));
-
-    // move to ready scene
-    window->switchScene(SceneType::READY);
+    setImage(":images/button_ok_click.png");
 }
 
 void StartButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    setPixmap(QPixmap(":images/button_ok.png"));
+    setImage(":images/button_ok.png");
+
+    // move to ready scene
+    window->switchScene(SceneType::READY);
+    //window->animateScene(SceneType::READY);
+}
+
+void StartButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+{
+    // ignore input in this case
+    setImage(":images/button_ok.png");
 }
 
 
@@ -87,7 +94,8 @@ void StartButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 CreditButton::CreditButton(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene, window)
 {
-
+    // 버튼 초기 이미지
+    this->setImage(":/images/button_ok.png");
 }
 
 CreditButton::~CreditButton()
@@ -98,13 +106,20 @@ CreditButton::~CreditButton()
 void CreditButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     qDebug() << "Credit button clicked.";
-    setPixmap(QPixmap(":images/button_ok_click.png"));
-
-    // move to ready scene
-    window->switchScene(SceneType::CREDIT);
+    setImage(":images/button_ok_click.png");
 }
 
 void CreditButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    setPixmap(QPixmap(":images/button_ok.png"));
+    setImage(":images/button_ok.png");
+
+    // move to ready scene
+    window->switchScene(SceneType::CREDIT);
+    window->animateScene(SceneType::CREDIT);
+}
+
+void CreditButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+{
+    // ignore input in this case
+    setImage(":images/button_ok.png");
 }

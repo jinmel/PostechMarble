@@ -16,6 +16,8 @@ public:
     ~MainWindow();
     void setApplication(QApplication* app);
     void switchScene(int scenetype);
+    void animateScene(int scenetype);
+
 private:
     Ui::MainWindow *ui;
     QApplication *app;

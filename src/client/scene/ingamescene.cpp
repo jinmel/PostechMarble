@@ -62,9 +62,19 @@ DiceGraphicItem::DiceGraphicItem(QGraphicsScene *scene, MainWindow *window)
     this->setImage(":/images/ingame/button.png");
 }
 
+void DiceGraphicItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
+{
+    //hover event
+    this->setImage(":/images/ingame/button2.png");
+}
+
 void DiceGraphicItem::mousePressEvent(QGraphicsSceneMouseEvent *event){
     //버튼이 눌렸을 때의 이미지로 바꿈
-    this->setImage(":/images/ingame/button_pushed.png");
+
+    qDebug() << "dice button Pressed";
+    this->setImage(":/images/ingame/button2_pushed.png");
+    //QGameItem::mousePressEvent(event);
+
 }
 
 void DiceGraphicItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
@@ -73,6 +83,7 @@ void DiceGraphicItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     //여기에 게임 스테이트 머신을 추가해서 롤할지 안할지 결정하게 해야함
     Dice * dice = Dice::getInst();
     dice->roll();
+
 }
 
 DiceValuePanel::DiceValuePanel(QGraphicsScene *scene, MainWindow *window)

@@ -43,6 +43,11 @@ private:
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+<<<<<<< HEAD
+=======
+    virtual void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
+    virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
+>>>>>>> master
 };
 
 class DiceValuePanel : public QGameItem {
