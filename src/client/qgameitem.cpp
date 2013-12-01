@@ -139,6 +139,10 @@ void QGameItem::show(bool fade,int duration){
 }
 
 void QGameItem::rotateImage(qreal angle){
+    //check if item_image is initialized
+    if(!item_image)
+        return;
+
     QTransform rotation;
     rotation.rotate(angle);
     QPixmap * rotated_pixmap = new QPixmap(item_image->transformed(rotation));
