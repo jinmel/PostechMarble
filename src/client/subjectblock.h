@@ -14,7 +14,7 @@ private:
 
     int grade;          //4->A 3->B 3->C
     int cost;
-    int paneltycost;    //타인이 블럭을 밟았을 때 내야 하는 금액
+    int penaltycost;    //타인이 블럭을 밟았을 때 내야 하는 금액
 
 public:
     SubjectBlock(QGameItem* parent,
@@ -24,4 +24,6 @@ public:
     virtual void enter(Player* player);
 
     void decideGrade();
+protected:
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
 };

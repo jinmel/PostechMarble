@@ -67,17 +67,17 @@ void SubjectBlock::enter(Player* player)
     }
     else    //타인의 블럭
     {
-        if(paneltycost>player->getEnergy())
+        if(penaltycost>player->getEnergy())
         {
-            player->payEnergy(paneltycost);
-            this->owner->paidEnergy(paneltycost);
+            player->payEnergy(penaltycost);
+            this->owner->paidEnergy(penaltycost);
 
             qDebug()<<"Do you want to buy the block?"<<endl;
             qDebug()<<"1.yes    2.no"<<endl;
             int userselect;
             if(userselect==1)//buy the block;
             {
-                int priceofownedsubject=value+paneltycost*2;//value나 cost나.... 합치는 작업 해줘야할듯!
+                int priceofownedsubject=value+penaltycost*2;//value나 cost나.... 합치는 작업 해줘야할듯!
                 this->owner->removeBlock(this);
                 player->pushBlock(this);
                 player->addTotalOwnSubjectEnergy(value);
@@ -94,7 +94,7 @@ void SubjectBlock::enter(Player* player)
         }
         else{//블럭을 팔거나 파산한다.
 
-            if(paneltycost > player->getTotalOwnSubjectEnergy())//가진 모든 과목을 팔아도 안될때 -> bankrupt
+            if(penaltycost > player->getTotalOwnSubjectEnergy())//가진 모든 과목을 팔아도 안될때 -> bankrupt
             {
                 player->setBankrupt(true);
             }
@@ -118,16 +118,20 @@ void SubjectBlock::enter(Player* player)
     }
 }
 
-    void SubjectBlock::decideGrade(){
-        srand((unsigned)time(NULL));
-        int randomvalue;
-        randomvalue = rand() % 100 + 1;
+void SubjectBlock::decideGrade(){
+    srand((unsigned)time(NULL));
+    int randomvalue;
+    randomvalue = rand() % 100 + 1;
 
-        if(randomvalue<=20)
-            grade = 4;      //A
-        else if(randomvalue<=60)
-            grade = 3;      //B
-        else
-            grade = 2;      //C
+    if(randomvalue<=20)
+        grade = 4;      //A
+    else if(randomvalue<=60)
+        grade = 3;      //B
+    else
+        grade = 2;      //C
 
-    }
+}
+
+void SubjectBlock::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    qDebug() << "subject name:" << this->subject_name.c_str();
+}
