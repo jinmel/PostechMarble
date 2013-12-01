@@ -92,7 +92,7 @@ void CornerBlock::in61Call(Player* player) {        //원하는 블럭을 선택
 }
 void CornerBlock::inBreakSemester(Player* player) {     //무인도
 
-    if(player->getPanelty()==0)//다른 블럭에서 들어왔을 경우
+    if(player->getPenalty()==0)//다른 블럭에서 들어왔을 경우
     {
         qDebug()<<"You have to break the 3 semesters in this block."<<endl;
         player->setMouindo(3);
@@ -109,7 +109,7 @@ void CornerBlock::inBreakSemester(Player* player) {     //무인도
         {
             player->payEnergy(1/*내야하는 벌금만큼*/);
 
-            while(player->getPanelty() >=0)//panelty 없애주고
+            while(player->getPenalty() >=0)//panelty 없애주고
             {
                 player->escapeMouindo();
             }
@@ -124,7 +124,7 @@ void CornerBlock::inBreakSemester(Player* player) {     //무인도
             Dice::getInst()->roll();
             if(Dice::getInst()->isDouble())
             {
-                while(player->getPanelty() >=0)
+                while(player->getPenalty() >=0)
                 {
                     player->escapeMouindo();
                 }

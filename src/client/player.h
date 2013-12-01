@@ -16,7 +16,7 @@ private:
     int     energy;
     bool    bankrupt;
     bool    mobile;                    // is player movable? (Mouindo, Drink...)
-    int     panelty;                   // how long to be punished 
+    int     penalty;                   // how long to be punished
     bool    plural;                    // plural major status
     int     totalownsubjectenergy;
     std::map<SubjectType::Type, int> registered;     // registered class for each subject
@@ -33,7 +33,7 @@ public:
     bool isBankrupt() const;
     bool isMobile() const;
     int  getEnergy() const;
-    int  getPanelty() const;
+    int  getPenalty() const;
     bool isPlural() const;
     int getTotalOwnSubjectEnergy() const;
     CharacterType::Type getType() const;
@@ -42,7 +42,7 @@ public:
     void setPosition(int position);
     void setEnergy(int getenergy);
     void setPlural(bool plural);
-    void setMouindo(int panelty);
+    void setMouindo(int penalty);
     bool escapeMouindo();
     void moveTo(int dice);
     void addTotalOwnSubjectEnergy(int subjectenergy);

@@ -14,7 +14,7 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     energy = 0;
     bankrupt = false;
     mobile = true;
-    panelty = 0;
+    penalty = 0;
     plural = false;
     character_type = CharacterType::NONE;
     totalownsubjectenergy=0;
@@ -68,9 +68,9 @@ int Player::getEnergy() const
 }
 
 
-int Player::getPanelty() const
+int Player::getPenalty() const
 {
-    return panelty;
+    return penalty;
 }
 
 bool Player::isPlural() const
@@ -125,7 +125,7 @@ void Player::pushBlock(Block* block)
 // parm: how long to stay in mouindo
 void Player::setMouindo(int panelty)
 {
-    this->panelty = panelty;
+    this->penalty = panelty;
     mobile = false;
 }
 
@@ -138,14 +138,14 @@ bool Player::escapeMouindo()
 
     else {
 
-        if(panelty == 0) {
+        if(penalty == 0) {
             mobile = true;
             return true;
         }
 
         else {
             // roll a dice
-            panelty--;
+            penalty--;
             return false;
 
         }
