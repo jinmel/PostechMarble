@@ -3,11 +3,12 @@
 #include <map>
 #include "block.h"
 #include "types.h"
+#include "qgameitem.h"
 
 // circular dependency
 class Block;
 
-class Player
+class Player : public QGameItem
 {
 private:
     int     id;
@@ -23,7 +24,7 @@ private:
     CharacterType::Type character_type;
 
 public:
-    Player(int id);
+    Player(QGameItem * parent,int id);
     ~Player();
 
     int  getPosition() const;

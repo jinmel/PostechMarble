@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Player::Player(int _id)
+Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 {
     id = _id;
     position = 0;
