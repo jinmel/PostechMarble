@@ -22,6 +22,7 @@ public:
     virtual ~QGameItem();
     QPixmap* image();
     void setImage(const char * filename);
+    void rotateImage(qreal angle);
     //Game object animation
     void animateTo(qreal x,qreal y,int duration,
                  const QEasingCurve & curve=QEasingCurve::Linear);

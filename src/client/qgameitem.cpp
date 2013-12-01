@@ -4,6 +4,7 @@
 #include <QLine>
 #include <QPropertyAnimation>
 #include <QGraphicsOpacityEffect>
+#include <QTransform>
 
 
 QGameItem::QGameItem()
@@ -135,6 +136,15 @@ void QGameItem::show(bool fade,int duration){
         animation->setEasingCurve(QEasingCurve::Linear);
         animation->start(QAbstractAnimation::DeleteWhenStopped);
     }
+}
+
+void QGameItem::rotateImage(qreal angle){
+    QTransform rotation;
+    rotation.rotate(angle);
+    QPixmap * rotated_pixmap = new QPixmap(item_image->transformed(rotation));
+    setPixmap(*rotated_pixmap);
+    delete item_image;
+    item_image = rotated_pixmap;
 }
 
 void QGameItem::animationFinished(){
