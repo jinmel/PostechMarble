@@ -23,7 +23,7 @@ Player::Player(int _id)
     using namespace SubjectType;
     registered[BIO] = 0;
     registered[CHEM] = 0;
-    registered[CSE] = 0;
+    registered[CSED] = 0;
     registered[EE] = 0;
     registered[MATH] = 0;
     registered[ME] = 0;

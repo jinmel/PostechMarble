@@ -21,7 +21,7 @@ namespace FireFridayType {
 
 namespace SubjectType {
     enum Type {
-        CSE, ME, MATH, EE, PHYS, BIO, CHEM, MSE
+        CSED, ME, MATH, EE, PHYS, BIO, CHEM, MSE
     };
 }
 
