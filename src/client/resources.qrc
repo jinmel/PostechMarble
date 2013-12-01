@@ -61,5 +61,6 @@
         <file>images/main/button_main_credit_pressed.png</file>
         <file>images/main/button_main_start.png</file>
         <file>images/main/button_main_start_pressed.png</file>
+        <file>images/ingame/block/vertical/Event_block_vertical.png</file>
     </qresource>
 </RCC>
