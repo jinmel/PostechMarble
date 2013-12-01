@@ -44,13 +44,14 @@ public:
     void setPlural(bool plural);
     void setMouindo(int penalty);
     bool escapeMouindo();
-    void moveTo(int dice);
+
+    void walkTo(int dice);
+    void jumpTo(int block_num);
+
     void addTotalOwnSubjectEnergy(int subjectenergy);
     void setBankrupt(bool bankrupt);
     void pushBlock(Block* block);
     void removeBlock(Block* block);
-
-
 
     bool hasBlock(Block* block);
     void buyBlock(Block* block);
@@ -60,7 +61,6 @@ public:
     void giveSalary();
     void payEnergy(int payenergy);
     void paidEnergy(int paidenergy);
-
     void takeEnergy(int paidenergy);
 
     bool checkWinStatus();
