@@ -54,7 +54,7 @@ public:
     void loseBlock(Block* block);
     void giveSalary();
     void payEnergy(int payenergy);
-    void takeEnergy(int paidenergy);
+    void paidEnergy(int paidenergy);
 
     bool checkWinStatus();
 };
