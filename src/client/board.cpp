@@ -15,8 +15,8 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks = new Block*[32];
 
     //TODO : set position and images... -ㅁ-;;
-
     blocks[0] = new CornerBlock(this,CornerType::DORM); // dorm
+    blocks[0]->setPixmap(QPixmap(QString(":/images/ingame/block/corner.png")));
     blocks[1] = new SubjectBlock(this,CSE,"CSE1",45); // cse 전산 45
     blocks[2] = new SubjectBlock(this,CSE,"CSE2",85); // cse 객체 85
     blocks[3] = new SubjectBlock(this,CSE,"CSE3",125); // cse OS 125
