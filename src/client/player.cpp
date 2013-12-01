@@ -27,7 +27,7 @@ Player::Player(int _id)
     registered[EE] = 0;
     registered[MATH] = 0;
     registered[ME] = 0;
-    registered[MSE] = 0;
+    registered[IME] = 0;
     registered[PHYS] = 0;
 
     // end initialize
