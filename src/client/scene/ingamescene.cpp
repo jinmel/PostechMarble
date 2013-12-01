@@ -49,7 +49,8 @@ IngameScene::~IngameScene(){
 }
 
 QGraphicsPixmapItem* IngameScene::setBackgroundPixmap(const char * filename){
-    return this->addPixmap(QPixmap(filename));
+    background = this->addPixmap(QPixmap(filename));
+    return background;
 }
 
 QGraphicsPixmapItem* IngameScene::backgroundPixmap(){
