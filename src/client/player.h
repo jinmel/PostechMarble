@@ -59,10 +59,8 @@ public:
     void giveSalary();
     void payEnergy(int payenergy);
     void paidEnergy(int paidenergy);
-<<<<<<< HEAD
-=======
+
     void takeEnergy(int paidenergy);
->>>>>>> 2f279de623f17bc282f985e1405d381db6a8abc7
 
     bool checkWinStatus();
 };
