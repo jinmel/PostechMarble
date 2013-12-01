@@ -1,7 +1,7 @@
 #pragma once
 #include <QGraphicsScene>
-#include "mainwindow.h"
-#include "qgameitem.h"
+#include "../mainwindow.h"
+#include "../qgameitem.h"
 
 // Ingame Scene으로 가는 버튼
 class ReadyButton;

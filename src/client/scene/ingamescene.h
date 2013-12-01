@@ -5,10 +5,10 @@
 #include <QObject>
 #include <QPixmap>
 #include <QTimeLine>
-#include "dice.h"
-#include "qgameitem.h"
-#include "board.h"
-#include "player.h"
+#include "../dice.h"
+#include "../qgameitem.h"
+#include "../board.h"
+#include "../player.h"
 
 //주사위 클래스의 그래픽
 class DiceGraphicItem;
