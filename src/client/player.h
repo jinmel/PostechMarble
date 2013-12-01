@@ -10,6 +10,7 @@ class Block;
 class Player
 {
 private:
+    int     id;
     int     position;
     int     energy;
     bool    bankrupt;
@@ -22,10 +23,12 @@ private:
     CharacterType::Type character_type;
 
 public:
-    Player();
+    Player(int id);
     ~Player();
 
     int  getPosition() const;
+    int  getId() const;
+
     bool isBankrupt() const;
     bool isMobile() const;
     int  getEnergy() const;
@@ -34,6 +37,7 @@ public:
     int getTotalOwnSubjectEnergy() const;
     CharacterType::Type getType() const;
 
+    void setType(CharacterType::Type new_type);
     void setPosition(int position);
     void setEnergy(int getenergy);
     void setPlural(bool plural);
@@ -55,6 +59,10 @@ public:
     void giveSalary();
     void payEnergy(int payenergy);
     void paidEnergy(int paidenergy);
+<<<<<<< HEAD
+=======
+    void takeEnergy(int paidenergy);
+>>>>>>> 2f279de623f17bc282f985e1405d381db6a8abc7
 
     bool checkWinStatus();
 };

@@ -7,8 +7,9 @@
 
 using namespace std;
 
-Player::Player()
+Player::Player(int _id)
 {
+    id = _id;
     position = 0;
     energy = 0;
     bankrupt = false;
@@ -344,4 +345,11 @@ void Player::paidEnergy(int paidenergy){
 
 }
 
+int Player::getId() const {
+    return id;
+}
+
+void Player::setType(CharacterType::Type type) {
+    character_type = type;
+}
 

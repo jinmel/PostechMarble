@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include "subjectblock.h"
 #include "dice.h"
+#include "qgameitem.h"
 
 // Constructor & Destructor
 SubjectBlock::~SubjectBlock()
@@ -12,7 +13,9 @@ SubjectBlock::~SubjectBlock()
 
 
 // Methods
-SubjectBlock::SubjectBlock(SubjectType::Type type, std::string subject_name, int cost)
+SubjectBlock::SubjectBlock(QGameItem * parent,
+                           SubjectType::Type type, std::string subject_name, int cost)
+    : Block(parent)
 {
     qDebug() << "Subject Block constructed." << endl;
     department = type;

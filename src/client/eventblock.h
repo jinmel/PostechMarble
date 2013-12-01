@@ -6,7 +6,7 @@
 class EventBlock : public Block
 {
 public:
-    EventBlock();
+    EventBlock(QGameItem * parent);
     virtual ~EventBlock();
 
     virtual void enter(Player* player);

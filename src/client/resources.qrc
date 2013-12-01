@@ -25,5 +25,41 @@
         <file>images/ingame/pieces/piece4.png</file>
         <file>images/credit/credit_background.png</file>
         <file>images/credit/credit_splash.png</file>
+        <file>images/ingame/background_test.jpg</file>
+        <file>images/ingame/board/back_white.png</file>
+        <file>images/ingame/block/BIO_background.png</file>
+        <file>images/ingame/block/CHEM_background.png</file>
+        <file>images/ingame/block/CSED_background.png</file>
+        <file>images/ingame/block/EE_background.png</file>
+        <file>images/ingame/block/Event_block.png</file>
+        <file>images/ingame/block/Grade_A.png</file>
+        <file>images/ingame/block/Grade_B.png</file>
+        <file>images/ingame/block/Grade_C.png</file>
+        <file>images/ingame/block/IME_background.png</file>
+        <file>images/ingame/block/MATH_background.png</file>
+        <file>images/ingame/block/ME_background.png</file>
+        <file>images/ingame/block/PHYS_background.png</file>
+        <file>images/ingame/block/player1.png</file>
+        <file>images/ingame/block/player2.png</file>
+        <file>images/ingame/block/player3.png</file>
+        <file>images/ingame/block/player4.png</file>
+        <file>images/ingame/block/Question_mark.png</file>
+        <file>images/ingame/block/vertical/BIO_background_vertical.png</file>
+        <file>images/ingame/block/vertical/CHEM_background_vertical.png</file>
+        <file>images/ingame/block/vertical/CSED_background_vertical.png</file>
+        <file>images/ingame/block/vertical/EE_background_vertical.png</file>
+        <file>images/ingame/block/vertical/IME_background_vertical.png</file>
+        <file>images/ingame/block/vertical/MATH_background_vertical.png</file>
+        <file>images/ingame/block/vertical/ME_background_vertical.png</file>
+        <file>images/ingame/block/vertical/PHYS_background_vertical.png</file>
+        <file>images/ingame/block/corner.png</file>
+        <file>images/ingame/button2.png</file>
+        <file>images/ingame/button2_pushed.png</file>
+        <file>images/ready/button_start.png</file>
+        <file>images/ready/button_start_pressed.png</file>
+        <file>images/main/button_main_credit.png</file>
+        <file>images/main/button_main_credit_pressed.png</file>
+        <file>images/main/button_main_start.png</file>
+        <file>images/main/button_main_start_pressed.png</file>
     </qresource>
 </RCC>

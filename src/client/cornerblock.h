@@ -4,6 +4,7 @@
 #include <ctime>
 #include <cstdlib>
 #include "types.h"
+#include "qgameitem.h"
 
 class CornerBlock : public Block
 {
@@ -11,7 +12,7 @@ private:
     CornerType::Type block_type;
 
 public:
-    CornerBlock(CornerType::Type type);
+    CornerBlock(QGameItem * parent,CornerType::Type type);
     virtual ~CornerBlock();
 
     virtual void enter(Player* player);

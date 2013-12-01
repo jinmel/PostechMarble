@@ -1,13 +1,12 @@
 #include "block.h"
 
 // Constructor & Destructor
-Block::Block()
+Block::Block(QGameItem * parent) : QGameItem(parent)
 {
     // dummy
     position = -1;
     value = 0;
     block_type = BlockType::NONE;
-
 }
 
 

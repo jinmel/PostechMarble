@@ -4,22 +4,27 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QPixmap>
-#include "../dice.h"
-#include "../qgameitem.h"
+#include <QTimeLine>
+#include "dice.h"
+#include "qgameitem.h"
+#include "board.h"
 
+//주사위 클래스의 그래픽
 class DiceGraphicItem;
+//주사위 표시기
 class DiceValuePanel;
+//캐릭터 상태창
 class CharacterStatusBar;
 
 class IngameScene : public QGraphicsScene
 {
 private:
+    MainWindow * const window; //cannot be changed
     QGraphicsPixmapItem *background;
     DiceGraphicItem *dice_graphic;
-    DiceValuePanel *first_panel;
-    DiceValuePanel *second_panel;
-    CharacterStatusBar *bar1;
-    CharacterStatusBar *bar2;
+    DiceValuePanel *first_dice_panel;
+    DiceValuePanel *second_dice_panel;
+    Board * board;
 public:
     IngameScene(qreal x=0,qreal y=0,qreal width=1280,
                 qreal height=720,
@@ -31,9 +36,6 @@ public:
 
 class DiceGraphicItem: public QGameItem {
     Q_OBJECT
-signals:
-    void firstValueChanged(int value);
-    void secondValueChanged(int value);
 public:
     DiceGraphicItem(QGraphicsScene * scene, MainWindow * window);
 private:
@@ -49,21 +51,18 @@ public:
     DiceValuePanel(QGraphicsScene * scene,MainWindow * window);
 private:
     int diceValue;
+    QTimeLine * timeline;
     DiceValuePanel();
 public slots:
+    void endSpin();
     void setValue(int value);
+    void spinValue(int frame);
+signals:
+    void diceDetermined(int value,bool is_double);
+protected:
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 };
 
-class CharacterStatusBar : public QGameItem {
-    Q_OBJECT
-public:
-    CharacterStatusBar(QGraphicsScene* scene,MainWindow * window,int player_num);
-private:
-    QGraphicsTextItem *status_text;
-    QGraphicsPixmapItem *character_image;
-public slots:
-    void setEnergyText(int energy);
-
-};
 
 #endif // INGAMESCENE_H

@@ -18,6 +18,7 @@ public slots:
     void hideFinished();
 public:
     QGameItem(QGraphicsScene* scene, MainWindow *window);
+    QGameItem(QGameItem * parent);
     virtual ~QGameItem();
     QPixmap* image();
     void setImage(const char * filename);
@@ -28,6 +29,7 @@ public:
                    const QEasingCurve & curve=QEasingCurve::Linear);
     void hide(bool fade,int duration=1000);
     void show(bool fase,int duration=1000);
+    MainWindow* getWindow();
 
 private:
     QGameItem(); //disabled to explicitly expcify the parent scene of the item
@@ -35,7 +37,6 @@ private:
     QTimeLine *timer;
     QPixmap *item_image;
     QGraphicsItemAnimation *animation;
-
 protected:
     MainWindow *window;
 };
