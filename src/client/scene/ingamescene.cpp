@@ -62,11 +62,6 @@ DiceGraphicItem::DiceGraphicItem(QGraphicsScene *scene, MainWindow *window)
     this->setImage(":/images/ingame/button.png");
 }
 
-void DiceGraphicItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
-{
-    //hover event
-    this->setImage(":/images/ingame/button2.png");
-}
 
 void DiceGraphicItem::mousePressEvent(QGraphicsSceneMouseEvent *event){
     //버튼이 눌렸을 때의 이미지로 바꿈
