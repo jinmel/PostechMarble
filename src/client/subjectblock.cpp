@@ -83,9 +83,6 @@ void SubjectBlock::enter(Player* player)
                 player->setEnergy(player->getEnergy()-priceofownedsubject);
                 this->owner->setEnergy(this->owner->getEnergy()+priceofownedsubject);
 
-
-
-
             }
             else//not buy the block
             {return;}
@@ -100,10 +97,16 @@ void SubjectBlock::enter(Player* player)
                 player->setBankrupt(true);
             }
             else
-            {//과목을 팔도록 한다.
-                //사용자로부터 팔 과목을 선택받는다... panelty cost보다 높은 금액만큼의 과목..
+            {
 
-                //player->sellBlock(/*block*/); for문 돌려서 다 팔아줘야할듯~
+                //과목을 팔도록 한다.
+                //사용자로부터 팔 과목을 선택받는다... panelty cost보다 높은 금액만큼의 과목..
+                std::list<Block*> delete_blocks;//블럭을 선택받아온다....
+
+
+                /*while(!delete_blocks->empty())
+               {  player->sellBlock(//block); }for문 돌려서 다 팔아줘야할듯~
+            */
             }
 
         }
