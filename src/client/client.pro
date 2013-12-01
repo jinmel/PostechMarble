@@ -12,7 +12,7 @@ TARGET = client
 TEMPLATE = app
 #QMAKE_CXXFLAGS += -std=c++11
 
-INCLUDEPATH = ./
+INCLUDEPATH += "./"
 
 SOURCES += main.cpp\
         mainwindow.cpp \
