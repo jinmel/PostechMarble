@@ -1,5 +1,5 @@
 #include "readyscene.h"
-#include "types.h"
+#include "../types.h"
 #include <QGraphicsItem>
 #include <QDebug>
 #include <QGraphicsItemAnimation>

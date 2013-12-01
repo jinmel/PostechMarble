@@ -1,7 +1,7 @@
 #include "ingamescene.h"
 #include <QPixmap>
 #include <QtGlobal>
-#include "dice.h"
+#include "../dice.h"
 #include <QTimeLine>
 #include <QEasingCurve>
 
@@ -17,11 +17,14 @@ IngameScene::IngameScene(qreal x, qreal y,
 
     board = new Board(this,window);
     board->setPos(200,10);
-    qDebug() << board->image()->size();
+
+    player = new Player(board,1);
+    player->setImage(":/images/ingame/block/player1.png");
+    player->setPos(10,10);
 
     //주사위 그래픽
     dice_graphic = new DiceGraphicItem(this,window);
-    dice_graphic->setPos(900,400);
+    dice_graphic->setPos(800,400);
     dice_graphic->setZValue(2);
 
     //주사위 패널 첫번째
@@ -32,8 +35,6 @@ IngameScene::IngameScene(qreal x, qreal y,
     second_dice_panel = new DiceValuePanel(this,window);
     second_dice_panel->setPos(500,400);
     second_dice_panel->setZValue(2);
-
-
 
     //Signal / Slots connection
     Dice * dice = Dice::getInst();

@@ -1,5 +1,5 @@
 #include "creditscene.h"
-#include "types.h"
+#include "../types.h"
 #include <QGraphicsItem>
 #include <QGraphicsItemAnimation>
 #include <QGraphicsOpacityEffect>
