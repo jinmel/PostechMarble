@@ -19,5 +19,7 @@ public:
     BlockType::Type getType() const;
     void setPosition(int position);
     virtual void enter(Player* player) = 0;
+protected:
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
 };
 

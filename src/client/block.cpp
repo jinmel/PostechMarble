@@ -32,3 +32,7 @@ void Block::setPosition(int position)
 {
     this->position = position;
 }
+
+void Block::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    qDebug() << "block:" << position;
+}
