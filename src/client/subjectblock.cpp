@@ -8,7 +8,7 @@
 // Constructor & Destructor
 SubjectBlock::~SubjectBlock()
 {
-    qDebug() << "Subject Block destroyed." << endl;
+
 }
 
 
@@ -17,7 +17,6 @@ SubjectBlock::SubjectBlock(QGameItem * parent,
                            SubjectType::Type type, std::string subject_name, int cost)
     : Block(parent)
 {
-    qDebug() << "Subject Block constructed." << endl;
     department = type;
     this->subject_name = subject_name;
     owner = NULL;
