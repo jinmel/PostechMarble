@@ -60,7 +60,7 @@ StartButton::StartButton(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene, window)
 {
     // 버튼 초기 이미
-    this->setImage(":/images/main/main_start.png");
+    this->setImage(":/images/main/button_main_start.png");
 }
 
 StartButton::~StartButton()
@@ -71,12 +71,12 @@ StartButton::~StartButton()
 void StartButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     qDebug() << "Start button clicked.";
-    setImage(":images/main/main_start_press.png");
+    setImage(":images/main/button_main_start_press.png");
 }
 
 void StartButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    setImage(":images/main/main_start.png");
+    setImage(":images/main/button_main_start.png");
 
     // move to ready scene
     window->switchScene(SceneType::READY);
@@ -86,7 +86,7 @@ void StartButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 void StartButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
     // ignore input in this case
-    setImage(":images/main/main_start.png");
+    setImage(":images/main/button_main_start.png");
 }
 
 
@@ -95,7 +95,7 @@ CreditButton::CreditButton(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene, window)
 {
     // 버튼 초기 이미지
-    this->setImage(":/images/main/main_credit.png");
+    this->setImage(":/images/main/button_main_credit.png");
 }
 
 CreditButton::~CreditButton()
@@ -106,12 +106,12 @@ CreditButton::~CreditButton()
 void CreditButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     qDebug() << "Credit button clicked.";
-    setImage(":images/main/main_credit_press.png");
+    setImage(":images/main/button_main_credit_pressed.png");
 }
 
 void CreditButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    setImage(":images/main/main_credit.png");
+    setImage(":images/main/button_main_credit.png");
 
     // move to ready scene
     window->switchScene(SceneType::CREDIT);
@@ -121,5 +121,5 @@ void CreditButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 void CreditButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
     // ignore input in this case
-    setImage(":images/main/main_credit.png");
+    setImage(":images/main/button_main_credit.png");
 }
