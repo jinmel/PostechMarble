@@ -55,6 +55,11 @@
         <file>images/ingame/block/corner.png</file>
         <file>images/ingame/button2.png</file>
         <file>images/ingame/button2_pushed.png</file>
-
+        <file>images/ready/button_start.png</file>
+        <file>images/ready/button_start_pressed.png</file>
+        <file>images/main/button_main_credit.png</file>
+        <file>images/main/button_main_credit_pressed.png</file>
+        <file>images/main/button_main_start.png</file>
+        <file>images/main/button_main_start_pressed.png</file>
     </qresource>
 </RCC>
