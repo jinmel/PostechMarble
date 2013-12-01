@@ -8,6 +8,7 @@
 #include "dice.h"
 #include "qgameitem.h"
 #include "board.h"
+#include "player.h"
 
 //주사위 클래스의 그래픽
 class DiceGraphicItem;
@@ -24,7 +25,9 @@ private:
     DiceGraphicItem *dice_graphic;
     DiceValuePanel *first_dice_panel;
     DiceValuePanel *second_dice_panel;
-    Board * board;
+    Board *board;
+    Player *player;
+
 public:
     IngameScene(qreal x=0,qreal y=0,qreal width=1280,
                 qreal height=720,

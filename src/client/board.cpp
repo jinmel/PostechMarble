@@ -41,7 +41,6 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[0] = new CornerBlock(this,CornerType::DORM); // dorm
     blocks[0]->setImage(":/images/ingame/block/corner.png");
     blocks[0]->setPos(0,corner_h + vblock_h * 7);
-
     //CSED subject block
     blocks[1] = new SubjectBlock(this,CSED,"CSED1",45); // cse 전산 45
     blocks[1]->setImage(":/images/ingame/block/vertical/CSED_background_vertical.png");
@@ -174,6 +173,7 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[31]->setImage(":/images/ingame/block/IME_background.png");
     blocks[31]->setPos(corner_w + hblock_w * 0,corner_h + vblock_h * 7);
     blocks[31]->rotateImage(180);
+
     for(int i=0; i<32; i++)
     {
         blocks[i]->setPosition(i);
@@ -207,4 +207,3 @@ void Board::enter(Player* player)
 {
     blocks[player->getPosition()]->enter(player);
 }
-
