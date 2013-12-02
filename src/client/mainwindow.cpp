@@ -52,22 +52,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setupScenes();
     switchScene(SceneType::LOGO);
 
     // animate logo
-    dynamic_cast<LogoScene*>(logo)->animateLogo();
+    dynamic_cast<LogoScene*>(scene)->animateLogo();
 }
 
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete logo;
-    delete menu;
-    delete ready;
-    delete ingame;
-    delete credit;
+    delete scene;
 }
 
 // Methods
@@ -75,42 +70,32 @@ MainWindow::~MainWindow()
 void MainWindow::switchScene(int scenetype)
 {
     using namespace SceneType;
-    QGraphicsScene* scene;
 
     switch(scenetype) {
         case LOGO:
-            scene = logo;
+            scene = new LogoScene(0, 0, 1280, 720, this);
             break;
         case MAIN:
-            scene = menu;
+            scene = new MainScene(0, 0, 1280, 720, this);
             break;
         case READY:
-            scene = ready;
+            scene = new ReadyScene(0, 0, 1280, 720, this);
             break;
         case INGAME:
-            scene = ingame;
+            scene = new IngameScene(0,0,1280,720,this);
             break;
         case CREDIT:
-            scene = credit;
+            scene = new CreditScene(0,0,1280,720,this);
             break;
     }
 
     ui->graphicsView->setScene(scene);
 }
 
+
 void MainWindow::setApplication(QApplication* app)
 {
     this->app = app;
-}
-
-
-void MainWindow::setupScenes()
-{
-    logo = new LogoScene(0, 0, 1280, 720, this);
-    menu = new MainScene(0, 0, 1280, 720, this);
-    ready = new ReadyScene(0, 0, 1280, 720, this);
-    ingame = new IngameScene(0,0,1280,720,this);
-    credit = new CreditScene(0,0,1280,720,this);
 }
 
 
@@ -120,19 +105,19 @@ void MainWindow::animateScene(int scenetype)
 
     switch(scenetype) {
         case LOGO:
-            dynamic_cast<LogoScene*>(logo)->animateLogo();
+            dynamic_cast<LogoScene*>(scene)->animateLogo();
             break;
         case MAIN:
-            dynamic_cast<MainScene*>(menu)->animateMain();
+            dynamic_cast<MainScene*>(scene)->animateMain();
             break;
         case READY:
-            dynamic_cast<ReadyScene*>(ready)->animateReady();
+            dynamic_cast<ReadyScene*>(scene)->animateReady();
             break;
         case INGAME:
             //dynamic_cast<IngameScene*>(ingame)->animateIngame();
             break;
         case CREDIT:
-            dynamic_cast<CreditScene*>(credit)->animateCredit();
+            dynamic_cast<CreditScene*>(scene)->animateCredit();
             break;
     }
 }

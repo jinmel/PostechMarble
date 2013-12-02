@@ -22,11 +22,5 @@ private:
     Ui::MainWindow *ui;
     QApplication *app;
     QGraphicsView *viewWindow;
-    QGraphicsScene *logo;
-    QGraphicsScene *menu;
-    QGraphicsScene *ready;
-    QGraphicsScene *ingame;
-    QGraphicsScene *credit;
-
-    void setupScenes();
+    QGraphicsScene *scene;
 };
