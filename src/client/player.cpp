@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <QDebug>
+#include <QtGlobal>
 
 using namespace std;
 
@@ -153,20 +154,23 @@ bool Player::escapeMouindo()
 }
 
 
-void Player::moveTo(int dice)
+void Player::walkTo(int dice)
 {
-    int moveValue = position + dice;
-
-    // pay check
-    if(moveValue >= 36) {
+    Q_ASSERT(dice <= 12 && dice >=2);
+    int currentpos = position;
+    int next_pos = position + dice;
+    if(next_pos >= 36) {
         giveSalary();
-        moveValue %= 36;
+        next_pos %= 36;
     }
 
-    setPosition(moveValue);
-
-    // some character animations
+    setPosition(next_pos);
 }
+
+void Player::jumpTo(int block_num){
+    setPosition(block_num);
+}
+
 void Player::removeBlock(Block* block){
     own_blocks.remove(block);
 }
