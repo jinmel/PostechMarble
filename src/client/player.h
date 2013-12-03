@@ -9,6 +9,8 @@
 // circular dependency
 class Block;
 
+class Player;
+
 class Player : public QGameItem
 {
     Q_OBJECT
@@ -55,8 +57,10 @@ public:
     void payEnergy(int payenergy);
     void giveEnergy(int paidenergy);
     bool checkWinStatus();
-
+signals:
+    void playerArrived(Player * player);
 public slots:
+    void arrived();
     void walkBy(int dice);
     void jumpTo(int block_num);
 

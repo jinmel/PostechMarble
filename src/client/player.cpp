@@ -8,6 +8,7 @@
 #include <QtGlobal>
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>
+#include "localgame.h"
 #define NUMBER_OF_BLOCKS 32
 #define NEXT_POS(current_pos) ((current_pos + 1) % 32)
 
@@ -39,8 +40,9 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 
     // end initialize
     qDebug() << "Player Created" << endl;
+    //connect player event
+    connect(this,SIGNAL(playerArrived(Player*)),LocalGame::getInst(),SLOT(playerEvent(Player*)));
 }
-
 
 Player::~Player()
 {
@@ -183,18 +185,30 @@ void Player::walkBy(int steps)
         }
     }
     seq_animation_group->start(QAbstractAnimation::DeleteWhenStopped);
+
+    connect(seq_animation_group,SIGNAL(finished()),this,SLOT(arrived()));
     position = current_pos;
 }
-
 
 void Player::jumpTo(int block_num){
     using namespace BlockCoords;
     QPointF target = block_coord[block_num];
-    animateTo(target.x(),target.y(),2000);
-    position = block_num;
+    QPropertyAnimation * step_animation
+            = new QPropertyAnimation(this,"pos");
+    step_animation->setDuration(2000);
+    step_animation->setStartValue(block_coord[getPosition()]);
+    step_animation->setEndValue(block_coord[block_num]);
+    step_animation->setEasingCurve(QEasingCurve::InOutQuint);
+    step_animation->start(QAbstractAnimation::DeleteWhenStopped);
 
+    connect(step_animation,SIGNAL(finished()),this,SLOT(arrived()));
+    position = block_num;
 }
 
+void Player::arrived(){
+    qDebug() << position;
+    emit playerArrived(this);
+}
 
 bool Player::hasBlock(Block* block)
 {
