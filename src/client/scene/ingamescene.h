@@ -27,6 +27,8 @@ private:
     DiceValuePanel *second_dice_panel;
     Board *board;
     Player *player;
+    QGameItem *status1;
+    QGameItem *status2;
 
 public:
     IngameScene(qreal x=0,qreal y=0,qreal width=1280,

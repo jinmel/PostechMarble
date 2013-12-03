@@ -44,6 +44,14 @@ IngameScene::IngameScene(qreal x, qreal y,
     second_dice_panel->setPos(500,400);
     second_dice_panel->setZValue(2);
 
+    status1 = new QGameItem(this, window);
+    status1->setImage(":images/ingame/status/status1.png");
+    status1->setPos(350, 140);
+
+    status2 = new QGameItem(this, window);
+    status2->setImage(":images/ingame/status/status2.png");
+    status2->setPos(660, 140);
+
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
