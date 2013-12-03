@@ -3,6 +3,7 @@
 #include <QWidget>
 #include <QCheckBox>
 #include "player.h"
+#include "subjectblock.h"
 
 namespace Ui {
 class Sellpopup;
@@ -14,18 +15,19 @@ class Sellpopup : public QWidget
 
 public:
     explicit Sellpopup(QWidget *parent = 0);
-    //explicit Sellpopup(QWidget *parent = 0, Player *player = NULL);
     ~Sellpopup();
 private:
     Ui::Sellpopup *ui;
     QVBoxLayout *layout;
     QCheckBox** checks;
+    SubjectBlock** blocks;
+    Player *player;
+    int block_num;
 
     QString convertDept(SubjectType::Type type);
     QString convertGrade(int grade);
 
-public signals:
+private slots:
     void sell();
-    void cancel();
-
+    void bankrupt();
 };
