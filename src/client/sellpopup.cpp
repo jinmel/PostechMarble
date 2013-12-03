@@ -111,6 +111,7 @@ QString Sellpopup::convertDept(SubjectType::Type type)
     return dept;
 }
 
+
 QString Sellpopup::convertGrade(int grade)
 {
     QString str = "";
@@ -141,12 +142,13 @@ void Sellpopup::sell()
             player->sellBlock(blocks[i]);
     }
     */
-
+    this->close();
 }
 
 void Sellpopup::bankrupt()
 {
-    qDebug() << "Player " << player->getId() << "bankrupted!";
+    //qDebug() << "Player " << player->getId() << "bankrupted!";
 
     //player->setBankrupt();
+    this->close();
 }
