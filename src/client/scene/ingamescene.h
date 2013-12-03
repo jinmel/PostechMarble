@@ -27,11 +27,7 @@ private:
     DiceValuePanel *second_dice_panel;
     QGameItem *double_graphic;
     Board *board;
-<<<<<<< HEAD
-=======
-    Player *player;
     QTimeLine *double_timeline;
->>>>>>> 94af50ac5edaafbe32a8764419d5010364ad799b
     QGameItem *status1;
     QGameItem *status2;
 
