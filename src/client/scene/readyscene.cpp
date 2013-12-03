@@ -37,7 +37,7 @@ void ReadyScene::setupReady()
 
     // set background
     background = new QGameItem(this, window);
-    background->setImage(":images/main/main_background.png");
+    background->setImage(":images/ready/ready_background.png");
     background->setPos(0, 0);
 
     // set buttons

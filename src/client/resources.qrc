@@ -62,5 +62,10 @@
         <file>images/main/button_main_start.png</file>
         <file>images/main/button_main_start_pressed.png</file>
         <file>images/ingame/block/vertical/Event_block_vertical.png</file>
+        <file>images/main/social_fb.png</file>
+        <file>images/main/social_fb_pressed.png</file>
+        <file>images/main/social_g+.png</file>
+        <file>images/main/social_g+_pressed.png</file>
+        <file>images/ready/ready_background.png</file>
     </qresource>
 </RCC>
