@@ -17,8 +17,10 @@ LocalGame::LocalGame(){
 LocalGame * LocalGame::m_inst = NULL;
 
 LocalGame * LocalGame::getInst(){
-    if(m_inst == NULL)
+    if(m_inst == NULL){
         m_inst = new LocalGame;
+    }
+
     return m_inst;
 }
 
@@ -31,6 +33,8 @@ void LocalGame::delInst(){
 
 void LocalGame::addPlayer(Player *new_player){
     player_queue->push(new_player);
+    nPlayers++;
+    connect(new_player,SIGNAL(playerArrived(Player*)),this,SLOT(playerEvent(Player*)));
 }
 
 void LocalGame::init(Board * board, Dice * dice){
@@ -38,6 +42,8 @@ void LocalGame::init(Board * board, Dice * dice){
     Q_CHECK_PTR(m_current_player);
     m_board = board;
     m_dice = dice;
+    nPlayers = 0;
+    connect(m_dice,SIGNAL(diceRolled(Dice*)),this,SLOT(diceEvent(Dice*)));
 }
 
 Board* LocalGame::getBoard(){
@@ -69,6 +75,7 @@ void LocalGame::setGameState(State new_state){
 }
 
 void LocalGame::diceEvent(Dice * dice){
+    qDebug() << "dice event caught by localgame";
     if(m_state == ROLL_DICE){
         setGameState(LocalGameState::PLAYER_MOVING);
         m_current_player->walkBy(dice->getValue());
@@ -79,12 +86,11 @@ void LocalGame::diceEvent(Dice * dice){
 void LocalGame::turnOver(){
     //switch current player to next player and change state
     if(m_current_player->checkWinStatus()){
-        //need to emit signal to notify gameover
+        //TODO: need to emit signal to notify gameover
         m_state = GAME_OVER;
         return;
     }
     else{
-
         m_state = ROLL_DICE;
     }
 }
@@ -92,12 +98,13 @@ void LocalGame::turnOver(){
 void LocalGame::blockEvent(Block *block){
     if(m_state == JUMP_PLAYER){
         m_current_player->jumpTo(block->getPosition());
-        block->enter(m_current_player);
     }
 }
 
 void LocalGame::playerEvent(Player *player){
+    qDebug() << "signal emmited by Player" << player->getId();
     if(m_state == PLAYER_MOVING){
+        qDebug() << "Player in block!";
         int position = player->getPosition();
         Block * cur_block = m_board->getBlock(position);
         cur_block->enter(player);
