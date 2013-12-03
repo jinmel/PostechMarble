@@ -72,10 +72,10 @@
         <file>images/ingame/status/status1.png</file>
         <file>images/ingame/status/status2.png</file>
         <file>images/ingame/board/board_back.png</file>
-        <file>images/main/main_background.png</file>
         <file>images/ingame/block/corner/Dormitory.png</file>
         <file>images/ingame/block/corner/gap_year.png</file>
         <file>images/ingame/block/corner/plurar_major.png</file>
         <file>images/ingame/block/corner/taxi.png</file>
+        <file>images/main/main_background.png</file>
     </qresource>
 </RCC>
