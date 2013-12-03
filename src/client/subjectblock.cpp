@@ -65,6 +65,7 @@ void SubjectBlock::enter(Player* player)
         if(player->getEnergy() >= cost)
         {
             mbox.setText("이 과목을 수강하시겠습니까?");
+            mbox.setInformativeText("수강료:",QString::number(cost));
             mbox.exec();
             int userselect = mbox.exec();
 
@@ -79,8 +80,7 @@ void SubjectBlock::enter(Player* player)
     {
         mbox.setText("이 과목을 재수강하시겠습니까?");
         int userselect = mbox.exec();
-        if(userselect== QMessageBox::Ok)   //if yes
-        {
+        if(userselect== QMessageBox::Ok){   //if yes
             decideGrade();
         }
     }
@@ -96,16 +96,17 @@ void SubjectBlock::enter(Player* player)
                 if(userselect == QMessageBox::Ok)//buy the block;
                 {
                     this->owner->removeBlock(this);
-                    player->payEnergy(this->getBuyOutPrice());\
+                    this->owner->giveEnergy(getBuyOutPrice());
+                    player->payEnergy(getBuyOutPrice());
                     player->addBlock(this);
                 }
             }
         }
-        else{//블럭을 팔거나 파산한다.
+        else {//블럭을 팔거나 파산한다.
             //자산을 팔아서 메꿀수 있을 경우
-            if(player->getAssetValue() > getPenalyCost()){
+            if(player->getAssetValue() > getPenalyCost()) {
                 Sellpopup * popup = new Sellpopup;
-                popup->show();
+                popup->show(); //내부에서 매각하는것을 구현했음
             }
             //소 팔고 외양간 팔아도 파산 ㅠㅠ
             else {
