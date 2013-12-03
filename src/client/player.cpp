@@ -9,6 +9,8 @@
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>
 #include "localgame.h"
+#include <QMediaPlayer>
+#include <QFileInfo>
 #define NUMBER_OF_BLOCKS 32
 #define NEXT_POS(current_pos) ((current_pos + 1) % 32)
 
@@ -210,6 +212,10 @@ void Player::walkBy(int steps)
         if(current_pos == 0){
             //maybe add animation for gaining energy
             giveSalary();
+            QMediaPlayer* player = new QMediaPlayer();
+            player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coin.wav").absoluteFilePath()));
+            player->setVolume(100);
+            player->play();
         }
     }
     seq_animation_group->start(QAbstractAnimation::DeleteWhenStopped);
