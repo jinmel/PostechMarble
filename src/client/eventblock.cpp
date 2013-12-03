@@ -85,9 +85,15 @@ void EventBlock::lol(Player* player)
 {
     // 50:50으로 행동력 증가 또는 감소, lol타입 캐릭터의 경우 항상 증가
     if(getType()==CharacterType::LOL)
-    player->setEnergy(player->getEnergy() +100); //
+    player->setEnergy(player->getEnergy() +50); //
     else
     {
+        int outcome;
+        outcome=rand()%2;
+        if(outcome==0)
+        player->setEnergy(player->getEnergy()+50);
+        else
+        player->setEnergy(player->getEnergy()-100);
     }
 }
 
