@@ -46,11 +46,11 @@ int SubjectBlock::getGrade() const
 }
 
 int SubjectBlock::getBuyOutPrice(){
-    return cost + getPenalyCost() * 2;
+    return cost + getPenaltyCost() * 2;
 }
 
 
-int SubjectBlock::getPenalyCost(){
+int SubjectBlock::getPenaltyCost(){
     if(grade == A)
         return int(cost * 0.8);
     else if(grade == B)
