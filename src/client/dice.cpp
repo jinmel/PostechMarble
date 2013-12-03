@@ -18,16 +18,18 @@ Dice::Dice()
     roll_sound->setVolume(100);
     effect_sound = new QMediaPlayer();
     effect_sound->setVolume(100);
-    timeline = new QTimeLine(1500);
+    timeline = new QTimeLine(1000);
 
     connect(timeline, SIGNAL(finished()), this, SIGNAL(diceDouble()));
-    connect(roll_sound, SIGNAL(stateChanged(QMediaPlayer::State)), this, SLOT(afterRollSound(QMediaPlayer::State)));
+    connect(timeline, SIGNAL(finished()), this, SLOT(afterRollSound()));
 }
 
 Dice::~Dice()
 {
     qDebug() << "Dice Destroyed";
-
+    delete roll_sound;
+    delete effect_sound;
+    delete timeline;
 }
 
 
@@ -69,9 +71,8 @@ void Dice::roll()
     emit diceRolled(getValue());
     emit diceRolled(this);
 
-    // if double: emit double signal
+    // if double
     if(isDouble()) {
-        emit diceDouble();
         // wait for roll
         timeline->start();
     }
@@ -100,53 +101,52 @@ int Dice::getSecondDice()
     return value2;
 }
 
-void Dice::afterRollSound(QMediaPlayer::State state)
+void Dice::afterRollSound()
 {
     QString path = "";
 
-    if(state == QMediaPlayer::StoppedState) {
-        if(isDouble())
-            path += "sound/double.wav";
+    if(isDouble())
+        path += "sound/double.wav";
 
-        else {
-            switch(value1 + value2) {
-                case 2:
-                    path += "sound/two.wav";
-                    break;
-                case 3:
-                    path += "sound/three.wav";
-                    break;
-                case 4:
-                    path += "sound/four.wav";
-                    break;
-                case 5:
-                    path += "sound/five.wav";
-                    break;
-                case 6:
-                    path += "sound/six.wav";
-                    break;
-                case 7:
-                    path += "sound/seven.wav";
-                    break;
-                case 8:
-                    path += "sound/eight.wav";
-                    break;
-                case 9:
-                    path += "sound/nine.wav";
-                    break;
-                case 10:
-                    path += "sound/ten.wav";
-                    break;
-                case 11:
-                    path += "sound/eleven.wav";
-                    break;
-                case 12:
-                    path += "sound/twelve.wav";
-                    break;
-            }
+    else {
+        switch(value1 + value2) {
+            case 2:
+                path += "sound/two.wav";
+                break;
+            case 3:
+                path += "sound/three.wav";
+                break;
+            case 4:
+                path += "sound/four.wav";
+                break;
+            case 5:
+                path += "sound/five.wav";
+                break;
+            case 6:
+                path += "sound/six.wav";
+                break;
+            case 7:
+                path += "sound/seven.wav";
+                break;
+            case 8:
+                path += "sound/eight.wav";
+                break;
+            case 9:
+                path += "sound/nine.wav";
+                break;
+            case 10:
+                path += "sound/ten.wav";
+                break;
+            case 11:
+                path += "sound/eleven.wav";
+                break;
+            case 12:
+                path += "sound/twelve.wav";
+                break;
         }
-        
-        effect_sound->setMedia(QUrl::fromLocalFile(QFileInfo(path).absoluteFilePath()));
-        effect_sound->play();
     }
+        
+    effect_sound->setMedia(QUrl::fromLocalFile(QFileInfo(path).absoluteFilePath()));
+    effect_sound->play();
+
 }

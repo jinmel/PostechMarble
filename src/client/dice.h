@@ -12,7 +12,7 @@ private:
 	Dice();
 	static Dice* m_inst;
 	int value1;
-	int value2;
+    int value2;
     QTimeLine *timeline;
     QMediaPlayer *roll_sound;
     QMediaPlayer *effect_sound;
@@ -36,7 +36,7 @@ signals:
     void diceRolled(Dice *dice);
     void diceDouble();
 private slots:
-    void afterRollSound(QMediaPlayer::State state);
+    void afterRollSound();
 };
 
 
