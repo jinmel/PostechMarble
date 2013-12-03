@@ -72,5 +72,6 @@
         <file>images/main/copy.png</file>
         <file>images/ingame/status/status1.png</file>
         <file>images/ingame/status/status2.png</file>
+        <file>images/ingame/board/board_back.png</file>
     </qresource>
 </RCC>
