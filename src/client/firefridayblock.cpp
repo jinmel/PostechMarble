@@ -50,5 +50,14 @@ void FireFridayBlock::inSEOULJONGBIN(Player *player)
 void FireFridayBlock::inTONGZIP(Player *player)
 {
     if(player->getType()!=CharacterType::ALCOHOLIC)
-    player->setEnergy(player->getEnergy() - 100);
+    {
+        if(player->getEnergy()>=100)
+        player->setEnergy(player->getEnergy() - 100);
+        else
+        {
+                Sellpopup * popup = Sellpopup();
+                popup->show();
+                player->setEnergy(player->getEnergy()-100);
+        }
+    }
 }
