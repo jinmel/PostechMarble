@@ -6,6 +6,8 @@
 #include <QEasingCurve>
 #include "block.h"
 #include "localgame.h"
+#include <QMediaPlayer>
+#include <QFileInfo>
 
 
 IngameScene::IngameScene(qreal x, qreal y,
@@ -112,14 +114,12 @@ void IngameScene::hideDouble()
     double_graphic->hide(true, 0.3);
 }
 
-void IngameScene::showPhotoGenic()
+
+void IngameScene::animateIngame()
 {
-
-}
-
-void IngameScene::hidePhotoGenic()
-{
-
+    QMediaPlayer *player = new QMediaPlayer();
+    player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/gamestart.wav").absoluteFilePath()));
+    player->play();
 }
 
 // DiceGrahicItem
@@ -221,6 +221,7 @@ void DiceValuePanel::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
 }
 
 
+// PhotoGenicItem
 PhotoGenicItem::PhotoGenicItem(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene,window){
 
