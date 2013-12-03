@@ -8,6 +8,7 @@
 #include <QtGlobal>
 #include <QMediaPlayer>
 #include <QFileInfo>
+#include <QKeyEvent>
 
 
 // Constructor & Destructor
@@ -44,8 +45,7 @@ void CreditScene::setupCredit()
     splash_logo->setPos(0, 0);
 
     // load credit file
-    credit = new QGameItem(this, window);
-    credit->setImage(":images/credit/credit_background.png");
+    credit = new Credit(this, window);
     credit->setPos(0, 0);
 }
 
@@ -72,4 +72,27 @@ void CreditScene::animateCredit()
     // play sound & animate
     animation->start();
     player->play();
+}
+
+Credit::Credit(QGraphicsScene *scene, MainWindow *window)
+    : QGameItem(scene, window)
+{
+    qDebug() << "load";
+    this->setImage(":/images/credit/credit_background.png");
+}
+
+Credit::~Credit()
+{
+
+}
+
+void Credit::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+
+}
+
+void Credit::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    // move to main
+    window->switchScene(SceneType::MAIN);
 }

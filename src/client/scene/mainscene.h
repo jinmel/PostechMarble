@@ -19,6 +19,7 @@ private:
     QGameItem *credit_button;
     QGameItem *gplus_button;
     QGameItem *fb_button;
+    QGameItem *all;
 
     void setupMain();
 
