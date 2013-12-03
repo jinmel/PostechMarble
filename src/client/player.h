@@ -11,14 +11,14 @@ class Block;
 class Player : public QGameItem
 {
 private:
-    int     id;
-    int     position;
-    int     energy;
-    bool    bankrupt;
-    bool    mobile;                    // is player movable? (Mouindo, Drink...)
-    int     penalty;                   // how long to be punished
-    bool    plural;                    // plural major status
-    int     totalownsubjectenergy;
+    int         id;
+    int         position;
+    int         energy;
+    bool        bankrupt;
+    bool        mobile;                    // is player movable? (Mouindo, Drink...)
+    int         penalty;                   // how long to be punished
+    bool        plural;                    // plural major status
+    int         totalownsubjectenergy;
     std::map<SubjectType::Type, int> registered;     // registered class for each subject
     std::list<Block*> own_blocks;
     CharacterType::Type character_type;
@@ -39,7 +39,6 @@ public:
     CharacterType::Type getType() const;
 
     void setType(CharacterType::Type new_type);
-    void setPosition(int position);
     void setEnergy(int getenergy);
     void setPlural(bool plural);
     void setMouindo(int penalty);
@@ -64,5 +63,8 @@ public:
     void takeEnergy(int paidenergy);
 
     bool checkWinStatus();
+
+private:
+    //void moveAnimation(int block_num);
 };
       

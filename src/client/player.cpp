@@ -31,6 +31,7 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     registered[IME] = 0;
     registered[PHYS] = 0;
 
+
     // end initialize
     qDebug() << "Player Created" << endl;
 }
@@ -90,12 +91,6 @@ int Player::getTotalOwnSubjectEnergy() const
 }
 
 // Methods
-void Player::setPosition(int position)
-{
-    this->position = position;
-}
-
-
 void Player::setEnergy(int energy)
 {
     this->energy = energy;
@@ -164,11 +159,14 @@ void Player::walkTo(int dice)
         next_pos %= 36;
     }
 
-    setPosition(next_pos);
+    jumpTo(next_pos);
 }
 
 void Player::jumpTo(int block_num){
-    setPosition(block_num);
+    this->position = block_num;
+
+    // some kind of animation?: NO
+    //this->setPos(getCoord());
 }
 
 void Player::removeBlock(Block* block){
@@ -215,6 +213,7 @@ void Player::buyBlock(Block* block)
 
         own_blocks.push_back(block);
     }
+
     energy -= block->getValue();
 
 }
