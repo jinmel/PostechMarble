@@ -178,6 +178,13 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
 }
 
+void Board::diceRolled(int dice, bool is_double){
+    //do something if is_double
+    if(is_double){
+        QGameItem * double_img = new QGameItem(this);
+        double_img->setImage(":/images/ingame/double.png");
+    }
+}
 
 Board::~Board()
 {

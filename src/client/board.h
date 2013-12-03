@@ -7,6 +7,7 @@
 
 class Board : public QGameItem
 {
+    Q_OBJECT
 private:
     Block** blocks;
     int length;
@@ -16,6 +17,8 @@ public:
     void enter(Player* player);
     int getLength() const;
     Block* getBlock(int position) const;
+public slots:
+    void diceRolled(int dice,bool is_double);
 };
 
 namespace BlockCoords {
