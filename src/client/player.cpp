@@ -157,8 +157,20 @@ bool Player::escapeMouindo()
 void Player::walkTo(int dice)
 {
     Q_ASSERT(dice <= 12 && dice >=2);
-    int currentpos = position;
+    int current_pos = position;
     int next_pos = position + dice;
+
+    int current_zone = (current_pos /8);
+    int next_zone = (next_pos /8);
+    int nCorners = next_zone - current_zone;
+
+    while(nCorners){
+        int target_corner = current_zone;
+
+    }
+
+
+
     if(next_pos >= 36) {
         giveSalary();
         next_pos %= 36;
