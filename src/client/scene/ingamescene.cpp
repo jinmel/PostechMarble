@@ -41,6 +41,7 @@ IngameScene::IngameScene(qreal x, qreal y,
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
     connect(dice,SIGNAL(diceRolled(int)),player,SLOT(walkBy(int)));
+    connect(dice, SIGNAL(diceDouble(bool)), this, SLOT(showDouble(bool)));
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
     connect(dice,SIGNAL(secondDiceRolled(int)),second_dice_panel,SLOT(setValue(int)));
 }
@@ -61,6 +62,36 @@ QGraphicsPixmapItem* IngameScene::backgroundPixmap(){
     return background;
 }
 
+
+void IngameScene::showDouble(bool isDouble)
+{
+    if(isDouble) {
+        qDebug() << "Dice is Double";
+        QGameItem *item = new QGameItem(this, window);
+        item->setImage(":images/ingame/double.png");
+        item->setPos(640, 360);
+
+        QTimeLine *timeline = new QTimeLine(1500);
+        connect(timeline, SIGNAL(finished()), this, SLOT(hideDouble(item)));
+    }
+}
+
+void IngameScene::hideDouble(QGameItem* item)
+{
+    delete item;
+}
+
+void IngameScene::showPhotoGenic()
+{
+
+}
+
+void IngameScene::hidePhotoGenic(QGameItem* item)
+{
+    delete item;
+}
+
+// DiceGrahicItem
 DiceGraphicItem::DiceGraphicItem(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene,window){
     //버튼 초기상태 이미지
@@ -84,6 +115,8 @@ void DiceGraphicItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
 
 }
 
+
+// DiceValuePanel
 DiceValuePanel::DiceValuePanel(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene,window)
 {
