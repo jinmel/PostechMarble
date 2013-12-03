@@ -20,7 +20,7 @@ IngameScene::IngameScene(qreal x, qreal y,
     board->setPos(200,10);
 
     player = new Player(board,1);
-    player->setImage(":/images/ingame/block/player1.png");
+    player->setImage(":/images/ingame/pieces/blue.png");
     player->setPos(BlockCoords::corner_coord[0]);
     player->setZValue(3);
 
