@@ -52,3 +52,8 @@ $RECYCLE.BIN/
 GPATH
 GRTAGS
 GTAGS
+src/build-client-Desktop_Qt_5_1_1_MinGW_32bit-Debug/Makefile.Debug
+src/build-client-Desktop_Qt_5_1_1_MinGW_32bit-Debug/Makefile.Release
+src/build-client-Desktop_Qt_5_1_1_MinGW_32bit-Debug/object_script.client.Debug
+src/build-client-Desktop_Qt_5_1_1_MinGW_32bit-Debug/object_script.client.Release
+src/client/images/ingame/block/Event_block2.png
