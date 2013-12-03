@@ -1,7 +1,8 @@
 #pragma once
-#include <string>
+#include <QString>
 #include "player.h"
 #include "types.h"
+#include "block.h"
 
 class Player;
 
@@ -9,18 +10,19 @@ class SubjectBlock : public Block
 {
 private:
     SubjectType::Type   department;
-    std::string         subject_name;
+    QString             subject_name;
     Player*             owner;
 
-    int grade;          //4->A 3->B 3->C
-    int cost;
+    int grade;          //4->A 3->B 2->C
     int penaltycost;    //타인이 블럭을 밟았을 때 내야 하는 금액
 
 public:
     SubjectBlock(QGameItem* parent,
-                 SubjectType::Type type, std::string subject_name, int cost);
+                 SubjectType::Type type, QString subject_name, int cost);
     virtual ~SubjectBlock();
-    SubjectType::Type getType() const;
+    SubjectType::Type getDept() const;
+    QString getName() const;
+    int getGrade() const;
     virtual void enter(Player* player);
 
     void decideGrade();

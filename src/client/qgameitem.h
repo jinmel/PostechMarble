@@ -17,6 +17,7 @@ public slots:
     void animationFinished();
     void hideFinished();
 public:
+    QGameItem();
     QGameItem(QGraphicsScene* scene, MainWindow *window);
     QGameItem(QGameItem * parent);
     virtual ~QGameItem();
@@ -33,7 +34,7 @@ public:
     MainWindow* getWindow();
 
 private:
-    QGameItem(); //disabled to explicitly expcify the parent scene of the item
+    //QGameItem(); //disabled to explicitly expcify the parent scene of the item
     QGraphicsScene * parent_scene;
     QTimeLine *timer;
     QPixmap *item_image;

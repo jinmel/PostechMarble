@@ -23,3 +23,13 @@ public:
     ~CreditScene();
     void animateCredit();
 };
+
+class Credit : public QGameItem
+{
+    Q_OBJECT
+public:
+    Credit(QGraphicsScene *scene, MainWindow *window);
+    virtual ~Credit();
+    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
+};

@@ -68,5 +68,8 @@
         <file>images/main/social_g+_pressed.png</file>
         <file>images/ready/ready_background.png</file>
         <file>images/ingame/double.png</file>
+        <file>images/ingame/pieces/piece_blue.png</file>
+        <file>images/ingame/pieces/piece_red.png</file>
+        <file>images/main/all.png</file>
     </qresource>
 </RCC>

@@ -27,6 +27,7 @@ MainScene::~MainScene()
     delete background;
     delete start_button;
     delete credit_button;
+    delete all;
 }
 
 
@@ -54,6 +55,10 @@ void MainScene::setupMain()
     fb_button = new QGameItem(this, window);
     fb_button->setImage(":images/main/social_fb.png");
     fb_button->setPos(1170, 610);
+
+    all = new QGameItem(this, window);
+    all->setImage(":images/main/all.png");
+    all->setPos(1180, 0);
 }
 
 
@@ -115,6 +120,10 @@ void CreditButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     qDebug() << "Credit button clicked.";
     setImage(":images/main/button_main_credit_pressed.png");
+    {
+        qDebug() << "Credit button clicked.";
+        setImage(":images/main/button_main_credit_pressed.png");
+    }
 }
 
 void CreditButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
