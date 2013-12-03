@@ -16,7 +16,7 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     using namespace SubjectType;
     using namespace BlockCoords;
     //set background
-    setImage(":/images/ingame/board/back_white.png");
+    setImage(":/images/ingame/board/back_inv.png");
     blocks = new Block*[32];
 
     QTransform flip;
