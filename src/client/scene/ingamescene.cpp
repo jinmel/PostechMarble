@@ -227,10 +227,11 @@ PhotoGenicItem::PhotoGenicItem(QGraphicsScene *scene, MainWindow *window)
 }
 
 void PhotoGenicItem::showPhotos(){
-    timeline = new QTimeLine(10000); //spin for 3 second
-    timeline->setFrameRange(0,3); // 3 spins
+    timeline = new QTimeLine(3000); //spin for 3 second
+    timeline->setFrameRange(0,5); // 3 spins
     timeline->setEasingCurve(QEasingCurve::Linear);
     connect(this->timeline,SIGNAL(frameChanged(int)),this,SLOT(slidePhoto(int)));
+    connect(this->timeline,SIGNAL(finished()),this,SLOT(slideFinish()));
     timeline->start();
     setZValue(10);
 }
@@ -241,17 +242,19 @@ PhotoGenicItem::~PhotoGenicItem()
 }
 
 void PhotoGenicItem::slidePhoto(int frame){
-    qDebug() << frame;
-    qDebug() << this->pos();
-        switch(frame){
-        case 1:
-            this->setImage(":/images/ourphots/photo1.png");
-            break;
-        case 2:
-            this->setImage(":/images/ourphots/photo2.png");
-            break;
-        case 3:
-            this->setImage(":/images/ourphotos/photo3.png");
-            break;
-        }
+    switch(frame){
+    case 1:
+        setImage(":/images/ourphotos/photo1.png");
+        break;
+    case 2:
+        setImage(":/images/ourphotos/photo2.png");
+        break;
+    case 3:
+        setImage(":/images/ourphotos/photo3.png");
+        break;
+    }
+}
+
+void PhotoGenicItem::slideFinish(){
+    delete this;
 }
