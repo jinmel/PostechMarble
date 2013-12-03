@@ -6,7 +6,6 @@
 #include <QEasingCurve>
 #include "block.h"
 #include "localgame.h"
-#include <QMediaPlayer>
 #include <QFileInfo>
 
 
@@ -76,6 +75,10 @@ IngameScene::IngameScene(qreal x, qreal y,
     status2->setImage(":images/ingame/status/status2.png");
     status2->setPos(660, 160);
 
+    // setup BGM
+    bgm_player = new QMediaPlayer();
+    bgm_player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/bgm.mp3").absoluteFilePath()));
+
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
 
@@ -104,14 +107,14 @@ QGraphicsPixmapItem* IngameScene::backgroundPixmap(){
 void IngameScene::showDouble()
 {
     qDebug() << "Show Double";
-    double_graphic->show(true, 1000);
+    double_graphic->show(true, 300);
     double_timeline->start();
 }
 
 void IngameScene::hideDouble()
 {
     qDebug() << "Hide Double";
-    double_graphic->hide(true, 1000);
+    double_graphic->hide(true, 300);
 }
 
 
@@ -120,6 +123,8 @@ void IngameScene::animateIngame()
     QMediaPlayer *player = new QMediaPlayer();
     player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/gamestart.wav").absoluteFilePath()));
     player->play();
+
+    //bgm_player->play();
 }
 
 // DiceGrahicItem

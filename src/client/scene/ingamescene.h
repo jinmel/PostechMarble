@@ -8,6 +8,7 @@
 #include <QTimeLine>
 #include <QWidget>
 #include <QLayout>
+#include <QMediaPlayer>
 #include "../dice.h"
 #include "../qgameitem.h"
 #include "../board.h"
@@ -40,6 +41,7 @@ private:
     QTimeLine *double_timeline;
     QGameItem *status1;
     QGameItem *status2;
+    QMediaPlayer *bgm_player;
 
 public:
     IngameScene(qreal x=0,qreal y=0,qreal width=1280,
