@@ -29,6 +29,8 @@ private:
     Board *board;
     Player *player;
     QTimeLine *double_timeline;
+    QGameItem *status1;
+    QGameItem *status2;
 
 public:
     IngameScene(qreal x=0,qreal y=0,qreal width=1280,
