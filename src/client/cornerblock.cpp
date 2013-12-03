@@ -82,7 +82,8 @@ void CornerBlock::in61Call(Player* player)
         qDebug() <<"You can choose any block.";
         //player->walkBy(blocknum);//moveTo에서 포인터가지고 어찌어찌해서 옮겨줘야될꺼같은데!!
     }
-    /*moveTo 를 숫자로 넣을수 있도록 해야할듯!! 현재 있는 칸도 번호 저장해둬서 주사위 돌렸을 때 현재 숫자+주사위 눈 으로 이동하든지
+    /*
+     *moveTo 를 숫자로 넣을수 있도록 해야할듯!! 현재 있는 칸도 번호 저장해둬서 주사위 돌렸을 때 현재 숫자+주사위 눈 으로 이동하든지
     이런 경우에 바로 숫자 입력해서 이동할 수 있도록 하든지*/
     //--------->ok!
     else

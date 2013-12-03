@@ -111,8 +111,7 @@ void QGameItem::hide(bool fade,int duration){
         animation->setStartValue(1.0);
         animation->setEndValue(0.0);
         animation->setEasingCurve(QEasingCurve::Linear);
-
-        QObject::connect(animation,SIGNAL(finished()),this,SLOT(hideFinished()));
+        connect(animation,SIGNAL(finished()),this,SLOT(hideFinished()));
         animation->start(QAbstractAnimation::DeleteWhenStopped);
     }
 }
@@ -123,6 +122,8 @@ void QGameItem::show(bool fade,int duration){
         QGraphicsPixmapItem::show();
     }
     else{
+        QGraphicsPixmapItem::show();
+        qDebug() << " show!";
         QGraphicsOpacityEffect* opacityEffect = new QGraphicsOpacityEffect();
         opacityEffect->setOpacity(0.0);
         this->setGraphicsEffect(opacityEffect);
@@ -142,7 +143,6 @@ void QGameItem::rotateImage(qreal angle){
     //check if item_image is initialized
     if(!item_image)
         return;
-
     QTransform rotation;
     rotation.rotate(angle);
     QPixmap * rotated_pixmap = new QPixmap(item_image->transformed(rotation));
