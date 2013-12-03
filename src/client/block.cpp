@@ -24,11 +24,10 @@ void Block::setPosition(int position)
     this->position = position;
 }
 
-void Block::mousePressEvent(QGraphicsSceneMouseEvent *event){
-    qDebug() << "block:" << position;
+int Block::getPosition(){
+    return position;
 }
 
-void Block::setPos(const QPointF &pos){
-    this->coord = QPointF(pos);
-    QGameItem::setPos(pos);
+void Block::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    qDebug() << "block:" << position;
 }
