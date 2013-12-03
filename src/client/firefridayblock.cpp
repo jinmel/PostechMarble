@@ -3,7 +3,7 @@
 #include "firefridayblock.h"
 #include "player.h"
 #include "dice.h"
-
+#include "sellpopup.h"
 // Constructor & Destructor
 FireFridayBlock::FireFridayBlock(QGameItem * parent,FireFridayType::Type type)
     : Block(parent)
@@ -35,11 +35,33 @@ void FireFridayBlock::enter(Player *player)
 void FireFridayBlock::inSEOULJONGBIN(Player *player)
 {
     if(player->getType()!=CharacterType::ALCOHOLIC)
-    player->setEnergy(player->getEnergy() - 100);
+    {
+        if(player->getEnergy()>=100)
+        player->setEnergy(player->getEnergy() - 100);
+        else
+        {
+            if(player->getAssetValue() > penaltycost){
+
+                Sellpopup * popup = Sellpopup();
+                popup->show();
+
+            }
+        }
+    }
 }
 
 void FireFridayBlock::inTONGZIP(Player *player)
 {
     if(player->getType()!=CharacterType::ALCOHOLIC)
-    player->setEnergy(player->getEnergy() - 100);
+    {
+        if(player->getEnergy()>=100)
+        player->setEnergy(player->getEnergy() - 100);
+        else
+        {
+            if(player->getAssetValue() > penaltycost)
+            {
+                Sellpopup * popup = Sellpopup();
+                popup->show();
+            }
+    }
 }
