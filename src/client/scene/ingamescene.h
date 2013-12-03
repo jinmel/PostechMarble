@@ -5,6 +5,8 @@
 #include <QObject>
 #include <QPixmap>
 #include <QTimeLine>
+#include <QWidget>
+#include <QLayout>
 #include "../dice.h"
 #include "../qgameitem.h"
 #include "../board.h"
@@ -16,6 +18,12 @@ class DiceGraphicItem;
 class DiceValuePanel;
 //캐릭터 상태창
 class CharacterStatusBar;
+//포토제닉
+class PhotoGenicItem;
+
+namespace Ui{
+class PhotoGenicPopup;
+}
 
 class IngameScene : public QGraphicsScene
 {
@@ -65,6 +73,25 @@ signals:
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+};
+
+class PhotoGenicItem : public QGameItem {
+    Q_OBJECT
+public:
+    PhotoGenicItem(QGraphicsScene * scene, MainWindow * window);
+    ~PhotoGenicItem();
+
+public slots:
+    void showPhotos();
+private:
+    //Ui::PhotoGenicPopup *ui;
+    //QVBoxLayout *layout;
+    QTimeLine * timeline;
+
+    void slidePhoto(int frame);
+    void endSlide();
+signals:
+protected:
 };
 
 

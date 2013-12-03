@@ -2,11 +2,12 @@
 #include <ctime>
 #include <iostream>
 #include <cstdlib>
+#include "scene/ingamescene.h"
 
 using namespace std;
 
 // Constructor & Destructor
-EventBlock::EventBlock(QGameItem * parent) : Block(parent)
+EventBlock::EventBlock(QGameItem * parent,QGraphicsScene * scene, MainWindow * window) : Block(parent)
 {
 }
 
@@ -24,7 +25,7 @@ void EventBlock::enter(Player* player)
 }
 
 
-void EventBlock::checkEvent(Player* player)
+void EventBlock::checkEvent(Player* player,QGraphicsScene * scene, MainWindow * window)
 {
     // 이벤트 블럭을 밟을시 실행하여 랜덤한 이벤트 발생
     srand((unsigned)time(NULL));
@@ -49,7 +50,7 @@ void EventBlock::checkEvent(Player* player)
         eatChicken(player);
         break;
     case 6:
-        photoGenic();
+        photoGenic(scene, window);
         break;
     }
 }
@@ -104,7 +105,11 @@ void EventBlock::eatChicken(Player* player)
 
 }
 
-void EventBlock::photoGenic()
+void EventBlock::photoGenic(QGraphicsScene * scene, MainWindow * window)
 {
     //팀원 사진 띄우기
+    PhotoGenicItem* photogenicitem=new PhotoGenicItem(scene, window);
+    photogenicitem->showPhotos();
+    photogenicitem->~PhotoGenicItem();
+
 }

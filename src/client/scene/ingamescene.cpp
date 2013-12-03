@@ -155,3 +155,39 @@ void DiceValuePanel::mousePressEvent(QGraphicsSceneMouseEvent *event){
 void DiceValuePanel::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
 
 }
+
+
+PhotoGenicItem::PhotoGenicItem(QGraphicsScene *scene, MainWindow *window)
+    : QGameItem(scene,window){}
+void PhotoGenicItem::showPhotos(){
+
+
+    timeline = new QTimeLine(3000); //spin for 3 second
+    timeline->setFrameRange(0,3); // 3 spins
+    timeline->setEasingCurve(QEasingCurve::Linear);
+    connect(this->timeline,SIGNAL(frameChanged(int)),this,SLOT(slidePhoto(int)));
+    connect(timeline,SIGNAL(finished()),this,SLOT(endSlide()));
+
+}
+PhotoGenicItem::~PhotoGenicItem()
+{
+    qDebug()<<"photogenic item destoyed."<<endl;
+}
+
+void PhotoGenicItem::slidePhoto(int frame){
+    for(int i = 0;i<3;i++){
+        switch(value){
+        case 1:
+            this->setImage(":/images/outphots/photo1.png");
+            break;
+        case 2:
+            this->setImage(":/images/outphots/photo2.png");
+            break;
+        case 3:
+            this->setImage(":/images/outphotos/photo3.png");
+            break;
+\
+        }
+    }
+}
+void PhotoGenicItem::endSlide(){}
