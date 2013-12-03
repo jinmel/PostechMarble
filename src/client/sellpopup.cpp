@@ -10,8 +10,7 @@ Sellpopup::Sellpopup(QWidget *parent) :
     layout = new QVBoxLayout(ui->scrollAreaWidgetContents);
 
     /*
-    Player* player = new Player(new QGameItem(), 1);
-
+    // setup blocks that player owns
     std::list<Block*> block_list = player->getBlocks();
     block_num = block_list.size();
     blocks = new SubjectBlock*[block_num];
@@ -23,6 +22,7 @@ Sellpopup::Sellpopup(QWidget *parent) :
         index++;
     }
 
+    // list up checkbox elements
     for(int i=0; i < block_num; i++) {
         QString string = "Test";
 
@@ -44,6 +44,8 @@ Sellpopup::Sellpopup(QWidget *parent) :
 
         checks[i] = newCheck;
         layout->addWidget(newCheck);
+
+        connect(newCheck, SIGNAL(toggled(bool)), this, SLOT(calculate()));
     }
     */
 
@@ -59,14 +61,21 @@ Sellpopup::Sellpopup(QWidget *parent) :
 
         checks[i] = newCheck;
         layout->addWidget(newCheck);
+
+        connect(newCheck, SIGNAL(toggled(bool)), this, SLOT(calculate()));
     }
     // test end
+
+    // set labels
+    //needed_value = block->getPaneltyCost() - player->getEnergy();
+    ui->neededValue->setText("100");
+    //ui->neededValue->setText(QString::number(needed_value));
+    ui->selectedValue->setText("0");
 
     // connect
     connect(ui->sellButton, SIGNAL(clicked()), this, SLOT(sell()));
     connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->bankruptButton, SIGNAL(clicked()), this, SLOT(bankrupt()));
-
 
 }
 
@@ -137,6 +146,7 @@ void Sellpopup::sell()
     qDebug() << "Selling Block!";
 
     /*
+    // calculated selected value
     for(int i=0; i<block_num; i++) {
         if(checks[i]->isChecked())
             player->sellBlock(blocks[i]);
@@ -151,4 +161,24 @@ void Sellpopup::bankrupt()
 
     //player->setBankrupt();
     this->close();
+}
+
+void Sellpopup::calculate()
+{
+    qDebug() << "Select";
+    /*
+    int selected = 0;
+
+    // calculate selected
+    for(int i=0; i<block_num; i++)
+        if(checks[i]->isChecked())
+            selected += blocks[i]->getSellCost();
+
+    // update label
+    ui->selectedValue->setText(QString::number(selected));
+
+    // is enough?
+    if(selected >= needed_value)
+        ui->sellButton->setEnabled(true);
+    */
 }
