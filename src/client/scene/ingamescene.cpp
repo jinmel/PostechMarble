@@ -14,7 +14,7 @@ IngameScene::IngameScene(qreal x, qreal y,
 {
     Q_CHECK_PTR(window);
 
-    setBackgroundPixmap(":/images/ingame/background_test.jpg");
+    setBackgroundPixmap(":/images/ingame/board/board_back.png");
 
     board = new Board(this,window);
     board->setPos(200,10);
