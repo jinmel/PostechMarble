@@ -16,7 +16,7 @@ IngameScene::IngameScene(qreal x, qreal y,
 {
     Q_CHECK_PTR(window);
 
-    setBackgroundPixmap(":/images/ingame/board/board_back.png");
+    setBackgroundPixmap(":/images/ingame/board/background.png");
     LocalGame * game = LocalGame::getInst();
 
     board = new Board(this,window);
@@ -70,10 +70,12 @@ IngameScene::IngameScene(qreal x, qreal y,
     status1 = new QGameItem(this, window);
     status1->setImage(":images/ingame/status/status1.png");
     status1->setPos(350, 160);
+    status1->setZValue(2);
 
     status2 = new QGameItem(this, window);
     status2->setImage(":images/ingame/status/status2.png");
     status2->setPos(660, 160);
+    status2->setZValue(2);
 
     // setup BGM
     bgm_player = new QMediaPlayer();
