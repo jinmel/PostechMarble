@@ -1,5 +1,6 @@
 #pragma once
 #include <QObject>
+#include <QTimeLine>
 
 class Dice : public QObject
 {
@@ -9,6 +10,8 @@ private:
 	static Dice* m_inst;
 	int value1;
 	int value2;
+    QTimeLine *timeline;
+
 public:
 	~Dice();
 	void roll();

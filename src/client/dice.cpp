@@ -15,6 +15,9 @@ Dice::Dice()
     srand((unsigned)time(NULL));
     value1 = 0;
     value2 = 0;
+
+    timeline = new QTimeLine(1500);
+    connect(timeline, SIGNAL(finished()), this, SIGNAL(diceDouble()));
 }
 
 Dice::~Dice()
@@ -62,7 +65,7 @@ void Dice::roll()
     // if double: emit double signal
     if(isDouble()) {
         // wait for roll
-        connect(new QTimeLine(1500), SIGNAL(finished()), this, SIGNAL(diceDouble()));
+        timeline->start();
     }
 
     // play sound
