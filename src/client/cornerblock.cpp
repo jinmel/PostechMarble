@@ -103,49 +103,64 @@ void CornerBlock::inBreakSemester(Player* player) {     //무인도
     }
     else//원래 이 블럭에 있었을 경우.. 근데 enter라는 함수로 해결이 되는가?
     {
-
-        qDebug()<<"You can escape the mouindo if you pay energy or get a double dice"<<endl;
-        qDebug()<<"1. pay energy    2. roll a dice"<<endl;//나중에 애니메이션 넣어서 바꿀 부분
-        qDebug()<<">>";
-        int userselect;
-        cin>>userselect;
-        if(userselect==1)
+        if(player->getEnergy()>=200)
         {
-            player->payEnergy(200);
-
-            while(player->getPenalty() >=0)//panelty 없애주고
+            qDebug()<<"You can escape the mouindo if you pay energy or get a double dice"<<endl;
+            qDebug()<<"1. pay energy    2. roll a dice"<<endl;//나중에 애니메이션 넣어서 바꿀 부분
+            qDebug()<<">>";
+            int userselect;
+            cin>>userselect;
+            if(userselect==1 && player->getEnergy()>=200)
             {
-                player->escapeMouindo();
-            }
-            qDebug()<<"Rolling a dice to go another block."<<endl;
-            Dice::getInst()->roll();
-            player->walkBy(Dice::getInst()->getValue());
+                player->payEnergy(200);
 
-
-        }
-        else if(userselect==2)
-        {
-            Dice::getInst()->roll();
-            if(Dice::getInst()->isDouble())
-            {
-                while(player->getPenalty() >=0)
+                while(player->getPenalty() >=0)//panelty 없애주고
                 {
-                    player->escapeMouindo();
+                 player->escapeMouindo();
                 }
                 qDebug()<<"Rolling a dice to go another block."<<endl;
                 Dice::getInst()->roll();
                 player->walkBy(Dice::getInst()->getValue());
-
             }
-            else//not double
+            else if(userselect==2)
             {
-                player->escapeMouindo();//(panelty 1개 감소)
+                Dice::getInst()->roll();
+                if(Dice::getInst()->isDouble())
+                {
+                    while(player->getPenalty() >=0)
+                    {
+                        player->escapeMouindo();
+                    }
+                    qDebug()<<"Rolling a dice to go another block."<<endl;
+                    Dice::getInst()->roll();
+                    player->walkBy(Dice::getInst()->getValue());
+                }
+                else//not double
+                {
+                    player->escapeMouindo();//(panelty 1개 감소)
+                }
             }
-
-        }
-        else
+            else
             qDebug()<<"wrong input"<<endl;
-
+        }
+        else //행동력이 200보다 적은 경우 묻지 않고 자동으로 더블 확인
+        {
+                Dice::getInst()->roll();
+                if(Dice::getInst()->isDouble())
+                {
+                    while(player->getPenalty() >=0)
+                    {
+                        player->escapeMouindo();
+                    }
+                    qDebug()<<"Rolling a dice to go another block."<<endl;
+                    Dice::getInst()->roll();
+                    player->walkBy(Dice::getInst()->getValue());
+                }
+                else//not double
+                {
+                    player->escapeMouindo();//(panelty 1개 감소)
+                }
+        }
     }
     //아... 무인도에 갇힌 횟수 !!!!***********구현해야즤
 
