@@ -65,7 +65,6 @@ void EventBlock::cc(Player* player)
     // 행동력 감소 + 일정 확률로 휴학 또는 61콜 이동
     if(getType()!=CharacterType::OUTSIDER)
     {
-        player->setEnergy(player->getEnergy() - 100); //
     }
 }
 
