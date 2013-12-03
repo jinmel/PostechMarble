@@ -6,6 +6,8 @@
 #include <QEasingCurve>
 #include "block.h"
 #include "localgame.h"
+#include <QMediaPlayer>
+#include <QFileInfo>
 
 
 IngameScene::IngameScene(qreal x, qreal y,
@@ -79,7 +81,7 @@ IngameScene::IngameScene(qreal x, qreal y,
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
 
-    connect(dice, SIGNAL(diceDouble()), this, SLOT(showDouble()));
+    connect(dice,SIGNAL(diceDouble()), this, SLOT(showDouble()));
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
     connect(dice,SIGNAL(secondDiceRolled(int)),second_dice_panel,SLOT(setValue(int)));
 }
@@ -104,24 +106,22 @@ QGraphicsPixmapItem* IngameScene::backgroundPixmap(){
 void IngameScene::showDouble()
 {
     qDebug() << "Show Double";
-    double_graphic->show(true, 0.3);
+    double_graphic->show(true, 1000);
     double_timeline->start();
 }
 
 void IngameScene::hideDouble()
 {
     qDebug() << "Hide Double";
-    double_graphic->hide(true, 0.3);
+    double_graphic->hide(true, 1000);
 }
 
-void IngameScene::showPhotoGenic()
+
+void IngameScene::animateIngame()
 {
-
-}
-
-void IngameScene::hidePhotoGenic()
-{
-
+    QMediaPlayer *player = new QMediaPlayer();
+    player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/gamestart.wav").absoluteFilePath()));
+    player->play();
 }
 
 // DiceGrahicItem
@@ -223,19 +223,22 @@ void DiceValuePanel::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
 }
 
 
+// PhotoGenicItem
 PhotoGenicItem::PhotoGenicItem(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene,window){
 
 }
 
 void PhotoGenicItem::showPhotos(){
-    timeline = new QTimeLine(3000); //spin for 3 second
-    timeline->setFrameRange(0,5); // 3 spins
+    timeline = new QTimeLine(12000); //spin for 3 second
+    timeline->setFrameRange(0,8); // 3 spins
     timeline->setEasingCurve(QEasingCurve::Linear);
     connect(this->timeline,SIGNAL(frameChanged(int)),this,SLOT(slidePhoto(int)));
     connect(this->timeline,SIGNAL(finished()),this,SLOT(slideFinish()));
     timeline->start();
     setZValue(10);
+    setPos(QPointF(1280/2,720/2) + QPointF(-200,-150));
+    hide(false);
 }
 
 PhotoGenicItem::~PhotoGenicItem()
@@ -247,12 +250,24 @@ void PhotoGenicItem::slidePhoto(int frame){
     switch(frame){
     case 1:
         setImage(":/images/ourphotos/photo1.png");
+        show(true);
         break;
     case 2:
-        setImage(":/images/ourphotos/photo2.png");
+        hide(true);
         break;
     case 3:
+        setImage(":/images/ourphotos/photo2.png");
+        show(true);
+        break;
+    case 4:
+        hide(true);
+        break;
+    case 5:
         setImage(":/images/ourphotos/photo3.png");
+        show(true);
+        break;
+    case 6:
+        hide(true);
         break;
     }
 }

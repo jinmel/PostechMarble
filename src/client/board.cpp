@@ -154,7 +154,7 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     
     //Event block
     blocks[28] = new EventBlock(this,scene, window); // Event
-    blocks[28]->setImage(":/images/ingame/block/Event_block.png");
+    blocks[28]->setImage(":/images/ingame/block/Event_block2.png");
     blocks[28]->setPos(block_coord[28]);
 
     //IME block

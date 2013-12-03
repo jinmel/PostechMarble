@@ -114,7 +114,7 @@ void MainWindow::animateScene(int scenetype)
             dynamic_cast<ReadyScene*>(scene)->animateReady();
             break;
         case INGAME:
-            //dynamic_cast<IngameScene*>(ingame)->animateIngame();
+            dynamic_cast<IngameScene*>(scene)->animateIngame();
             break;
         case CREDIT:
             dynamic_cast<CreditScene*>(scene)->animateCredit();

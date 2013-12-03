@@ -1,6 +1,7 @@
 #pragma once
 #include <QObject>
 #include <QTimeLine>
+#include <QMediaPlayer>
 
 class Dice;
 
@@ -13,6 +14,8 @@ private:
 	int value1;
 	int value2;
     QTimeLine *timeline;
+    QMediaPlayer *roll_sound;
+    QMediaPlayer *effect_sound;
 
 public:
 	~Dice();
@@ -32,6 +35,8 @@ signals:
     void diceRolled(int value);
     void diceRolled(Dice *dice);
     void diceDouble();
+private slots:
+    void afterRollSound(QMediaPlayer::State state);
 };
 
 

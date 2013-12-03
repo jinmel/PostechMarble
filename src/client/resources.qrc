@@ -84,5 +84,6 @@
         <file>images/ingame/block/fire/tongzip.png</file>
         <file>images/ingame/board/background.png</file>
         <file>images/ingame/board/back_inv.png</file>
+        <file>images/ingame/block/Event_block2.png</file>
     </qresource>
 </RCC>
