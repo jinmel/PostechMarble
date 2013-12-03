@@ -15,10 +15,6 @@
         <file>images/ingame/dice/dice4.png</file>
         <file>images/ingame/dice/dice5.png</file>
         <file>images/ingame/dice/dice6.png</file>
-        <file>images/ingame/status/status1.png</file>
-        <file>images/ingame/status/status2.png</file>
-        <file>images/ingame/status/status3.png</file>
-        <file>images/ingame/status/status4.png</file>
         <file>images/ingame/pieces/piece1.png</file>
         <file>images/ingame/pieces/piece2.png</file>
         <file>images/ingame/pieces/piece3.png</file>
@@ -74,5 +70,7 @@
         <file>images/ingame/pieces/red.png</file>
         <file>images/ingame/pieces/blue.png</file>
         <file>images/main/copy.png</file>
+        <file>images/ingame/status/status1.png</file>
+        <file>images/ingame/status/status2.png</file>
     </qresource>
 </RCC>
