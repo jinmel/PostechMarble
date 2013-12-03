@@ -82,7 +82,7 @@ void CornerBlock::in61Call(Player* player) {        //원하는 블럭을 선택
     int blocknum;//0~35까지의 숫자로 block 번호 관리... 이렇게 안하면 board 어레이로 올라가야하는데.. 뭐 할라면 할순잇겟지..
     cin >> blocknum; //ui는 블럭을 클릭 할 수 있도록, 우리는 클릭받은 블럭의 입력받아서 여기에 cin대신에 넣을 수 있어야겠지.. clicked()이용해야할듯 ㅎ
     qDebug() <<" "<<endl;
-    player->walkTo(blocknum);//moveTo에서 포인터가지고 어찌어찌해서 옮겨줘야될꺼같은데!!
+    player->walkBy(blocknum);//moveTo에서 포인터가지고 어찌어찌해서 옮겨줘야될꺼같은데!!
 
 
     /*moveTo 를 숫자로 넣을수 있도록 해야할듯!! 현재 있는 칸도 번호 저장해둬서 주사위 돌렸을 때 현재 숫자+주사위 눈 으로 이동하든지
@@ -115,7 +115,7 @@ void CornerBlock::inBreakSemester(Player* player) {     //무인도
             }
             qDebug()<<"Rolling a dice to go another block."<<endl;
             Dice::getInst()->roll();
-            player->walkTo(Dice::getInst()->getValue());
+            player->walkBy(Dice::getInst()->getValue());
 
 
         }
@@ -130,7 +130,7 @@ void CornerBlock::inBreakSemester(Player* player) {     //무인도
                 }
                 qDebug()<<"Rolling a dice to go another block."<<endl;
                 Dice::getInst()->roll();
-                player->walkTo(Dice::getInst()->getValue());
+                player->walkBy(Dice::getInst()->getValue());
 
             }
             else//not double

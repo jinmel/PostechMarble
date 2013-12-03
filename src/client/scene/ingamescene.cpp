@@ -21,6 +21,7 @@ IngameScene::IngameScene(qreal x, qreal y,
     player = new Player(board,1);
     player->setImage(":/images/ingame/block/player1.png");
     player->setPos(10,10);
+    player->walkBy(65);
 
     //주사위 그래픽
     dice_graphic = new DiceGraphicItem(this,window);
