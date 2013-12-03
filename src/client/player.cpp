@@ -291,7 +291,20 @@ void Player::setType(CharacterType::Type type) {
     character_type = type;
 }
 
-int Player::getAssetValue() const {
-    return 0;
+int Player::getAssetValue() {
+
+    int asset = 0;
+
+    if(own_blocks.empty()) {
+        qDebug() << "Player has nothing!";
+        asset = 0;
+    }
+    else {
+        for(list<Block*>::iterator itor = own_blocks.begin(); itor != own_blocks.end(); itor++) {
+           asset += dynamic_cast<SubjectBlock*>(*itor)->getSellCost();
+        }
+    }
+
+    return asset;
 }
 

@@ -41,7 +41,7 @@ public:
     bool isPlural() const;
     CharacterType::Type getType() const;
     std::list<Block*> getBlocks() const;
-    int getAssetValue() const;
+    int getAssetValue();
 
     void setType(CharacterType::Type new_type);
     void setEnergy(int getenergy);
