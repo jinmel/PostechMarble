@@ -12,12 +12,14 @@ protected:
     int position;
     int value;
     BlockType::Type block_type;
+    QPointF pos;
 public:
     Block(QGameItem * parent);
     virtual ~Block();
     int getValue() const;
     BlockType::Type getType() const;
     void setPosition(int position);
+    void setPos(const QPointF &pos);
     virtual void enter(Player* player) = 0;
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
