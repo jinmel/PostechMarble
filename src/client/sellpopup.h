@@ -14,8 +14,9 @@ class Sellpopup : public QWidget
     Q_OBJECT
 
 public:
-    //explicit Sellpopup(QWidget *parent = 0, Player *playuer, SubjectBlock *block);
-    explicit Sellpopup(QWidget *parent = 0);
+    explicit Sellpopup(QWidget *parent = 0,
+                       Player *player = NULL,
+                       SubjectBlock *block = NULL);
     ~Sellpopup();
 private:
     Ui::Sellpopup *ui;
