@@ -11,6 +11,7 @@ using namespace std;
 Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 {
     id = _id;
+    name = "";
     position = 0;
     energy = 0;
     bankrupt = false;

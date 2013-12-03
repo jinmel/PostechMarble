@@ -1,4 +1,5 @@
 #pragma once
+#include <QString>
 #include <list>
 #include <map>
 #include "block.h"
@@ -12,6 +13,7 @@ class Player : public QGameItem
 {
 private:
     int         id;
+    QString     name;
     int         position;
     int         energy;
     bool        bankrupt;
