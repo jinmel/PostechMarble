@@ -123,7 +123,6 @@ void QGameItem::show(bool fade,int duration){
     }
     else{
         QGraphicsPixmapItem::show();
-        qDebug() << " show!";
         QGraphicsOpacityEffect* opacityEffect = new QGraphicsOpacityEffect();
         opacityEffect->setOpacity(0.0);
         this->setGraphicsEffect(opacityEffect);
