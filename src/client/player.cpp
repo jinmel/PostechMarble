@@ -383,7 +383,7 @@ void Player::payEnergy(int payenergy)
     energy-=payenergy;
 
 }
-void Player::paidEnergy(int paidenergy){
+void Player::giveEnergy(int paidenergy){
     energy+=paidenergy;
 
 }

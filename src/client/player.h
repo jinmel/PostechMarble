@@ -60,7 +60,7 @@ public:
     void loseBlock(Block* block);
     void giveSalary();
     void payEnergy(int payenergy);
-    void paidEnergy(int paidenergy);
+    void giveEnergy(int paidenergy);
     void takeEnergy(int paidenergy);
     bool checkWinStatus();
 
