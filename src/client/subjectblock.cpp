@@ -105,7 +105,7 @@ void SubjectBlock::enter(Player* player)
             //자산을 팔아서 메꿀수 있을 경우
             if(player->getAssetValue() > getPenaltyCost()){
 
-                Sellpopup * popup = new Sellpopup;
+                Sellpopup *popup = new Sellpopup(QGameItem::getWindow(), player, this);
                 popup->show(); //내부에서 매각하는것을 구현했음
             }
             //소 팔고 외양간 팔아도 파산 ㅠㅠ
