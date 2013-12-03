@@ -36,8 +36,8 @@ void LocalGame::addPlayer(Player *new_player){
 void LocalGame::init(Board * board, Dice * dice){
     m_current_player = player_queue->next();
     Q_CHECK_PTR(m_current_player);
-    setDice(dice);
-    setBoard(board);
+    m_board = board;
+    m_dice = dice;
 }
 
 Board* LocalGame::getBoard(){
@@ -83,7 +83,9 @@ void LocalGame::turnOver(){
 }
 
 void LocalGame::blockEvent(Block *block){
+    if(m_state == JUMP_PLAYER){
 
+    }
 }
 
 void LocalGame::playerEvent(Player *player){
