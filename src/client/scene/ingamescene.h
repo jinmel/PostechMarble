@@ -1,5 +1,4 @@
-#ifndef INGAMESCENE_H
-#define INGAMESCENE_H
+#pragma once
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 #include <QObject>
@@ -19,14 +18,17 @@ class CharacterStatusBar;
 
 class IngameScene : public QGraphicsScene
 {
+    Q_OBJECT
 private:
     MainWindow * const window; //cannot be changed
     QGraphicsPixmapItem *background;
     DiceGraphicItem *dice_graphic;
     DiceValuePanel *first_dice_panel;
     DiceValuePanel *second_dice_panel;
+    QGameItem *double_graphic;
     Board *board;
     Player *player;
+    QTimeLine *double_timeline;
     QGameItem *status1;
     QGameItem *status2;
 
@@ -37,10 +39,18 @@ public:
     virtual ~IngameScene();
     QGraphicsPixmapItem* setBackgroundPixmap(const char * filename);
     QGraphicsPixmapItem* backgroundPixmap();
+    void showPhotoGenic();
+
+private slots:
+    void showDouble();
+    void hideDouble();
+    void hidePhotoGenic();
 };
 
-class DiceGraphicItem: public QGameItem {
+class DiceGraphicItem: public QGameItem
+{
     Q_OBJECT
+
 public:
     DiceGraphicItem(QGraphicsScene * scene, MainWindow * window);
 private:
@@ -50,8 +60,10 @@ protected:
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 };
 
-class DiceValuePanel : public QGameItem {
+class DiceValuePanel : public QGameItem
+{
     Q_OBJECT
+
 public:
     DiceValuePanel(QGraphicsScene * scene,MainWindow * window);
 private:
@@ -68,6 +80,3 @@ protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 };
-
-
-#endif // INGAMESCENE_H

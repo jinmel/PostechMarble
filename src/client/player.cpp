@@ -229,12 +229,7 @@ bool Player::hasBlock(Block* block)
 }
 
 void Player::addBlock(Block *block)
-{
-    if(!hasBlock(block)) {
-        qDebug() << "You don't have that block. Check Again!";
-        return;
-    }
-    
+{    
     registered.find(((SubjectBlock*)block)->getDept())->second++;
     own_blocks.push_back(block);
 }
