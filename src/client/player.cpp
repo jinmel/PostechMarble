@@ -131,7 +131,6 @@ void Player::setMouindo(int panelty)
     mobile = false;
 }
 
-
 // check player escaped or not
 bool Player::escapeMouindo()
 {
@@ -161,15 +160,23 @@ void Player::walkBy(int steps)
     const int step_interval = 300; //0.1 seconds
     int current_pos = position;
     int next_pos;
-    int index = 0;
 
     QSequentialAnimationGroup * seq_animation_group
             = new QSequentialAnimationGroup;
 
+    //add sleep animation
+    QPropertyAnimation * sleep
+            = new QPropertyAnimation(this,"pos");
+    sleep->setDuration(1800);
+    //don't move
+    sleep->setStartValue(block_coord[current_pos]);
+    sleep->setEndValue(block_coord[current_pos]);
+    seq_animation_group->addAnimation(sleep);
+
     while(steps){
         next_pos = NEXT_POS(current_pos);
         QPropertyAnimation * step_animation
-                = new QPropertyAnimation(this,"pos");
+                = new QPropertyAnimation(this,"pos");        
         step_animation->setDuration(step_interval);
         step_animation->setStartValue(block_coord[current_pos]);
         step_animation->setEndValue(block_coord[next_pos]);
