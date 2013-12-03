@@ -46,14 +46,25 @@ int SubjectBlock::getGrade() const
 }
 
 int SubjectBlock::getBuyOutPrice(){
-    int buyoutprice = cost;
-    //calculate
-    return buyoutprice;
+    return cost + getPenaltyCost() * 2;
 }
 
+
 int SubjectBlock::getPenaltyCost(){
-    return cost;
+    if(grade == A)
+        return int(cost * 0.8);
+    else if(grade == B)
+        return int(cost * 0.4);
+    else if(grade == C)
+        return int(cost * 0.2);
 }
+
+
+int SubjectBlock::getSellCost(){
+    return getBuyOutPrice() /2;
+
+}
+
 
 void SubjectBlock::enter(Player* player)
 {
@@ -72,6 +83,7 @@ void SubjectBlock::enter(Player* player)
             {
                 player->payEnergy(cost);
                 player->addBlock(this);
+                decideGrade();
             }
         }
     }
@@ -129,10 +141,6 @@ void SubjectBlock::decideGrade(){
         grade = B;      //B
     else
         grade = C;      //C
-}
-
-int SubjectBlock::getSellCost(){
-    return cost;
 }
 
 void SubjectBlock::mousePressEvent(QGraphicsSceneMouseEvent *event){

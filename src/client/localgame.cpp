@@ -60,36 +60,48 @@ Player* LocalGame::getCurrentPlayer(){
     return m_current_player;
 }
 
-LocalGameState::State LocalGame::getCurrentGameState(){
+LocalGameState::State LocalGame::getGameState(){
     return m_state;
 }
 
-void LocalGame::setCurrentGameState(State new_state){
+void LocalGame::setGameState(State new_state){
     m_state = new_state;
 }
 
 void LocalGame::diceEvent(Dice * dice){
     if(m_state == ROLL_DICE){
+        setGameState(LocalGameState::PLAYER_MOVING);
         m_current_player->walkBy(dice->getValue());
-        Block * current_block = m_board->getBlock(m_current_player->getPosition());
-        current_block->enter(m_current_player);
+        m_state = PLAYER_MOVING;
     }
 }
 
 void LocalGame::turnOver(){
     //switch current player to next player and change state
-    m_current_player = player_queue->next();
-    m_state = ROLL_DICE;
+    if(m_current_player->checkWinStatus()){
+        //need to emit signal to notify gameover
+        m_state = GAME_OVER;
+        return;
+    }
+    else{
+
+        m_state = ROLL_DICE;
+    }
 }
 
 void LocalGame::blockEvent(Block *block){
     if(m_state == JUMP_PLAYER){
-
+        m_current_player->jumpTo(block->getPosition());
+        block->enter(m_current_player);
     }
 }
 
 void LocalGame::playerEvent(Player *player){
-
+    if(m_state == PLAYER_MOVING){
+        int position = player->getPosition();
+        Block * cur_block = m_board->getBlock(position);
+        cur_block->enter(player);
+    }
 }
 
 void LocalGame::boardEvent(Board *board){
