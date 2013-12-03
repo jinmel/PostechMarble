@@ -38,6 +38,6 @@ void Block::mousePressEvent(QGraphicsSceneMouseEvent *event){
 }
 
 void Block::setPos(const QPointF &pos){
-    this->pos = QPointF(pos);
+    this->coord = QPointF(pos);
     QGameItem::setPos(pos);
 }
