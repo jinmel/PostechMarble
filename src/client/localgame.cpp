@@ -77,9 +77,20 @@ void LocalGame::setGameState(State new_state){
 void LocalGame::diceEvent(Dice * dice){
     qDebug() << "dice event caught by localgame";
     if(m_state == ROLL_DICE){
-        setGameState(LocalGameState::PLAYER_MOVING);
-        m_current_player->walkBy(dice->getValue());
-        m_state = PLAYER_MOVING;
+        if(m_current_player->isMobile()){
+            m_current_player->walkBy(dice->getValue());
+            m_state = PLAYER_MOVING;
+        }
+        else{
+            if(dice->isDouble()){
+                m_current_player->setMobile(true);
+                m_current_player->walkBy(dice->getValue());
+                m_state = PLAYER_MOVING;
+            }
+            else{
+                turnOver();
+            }
+        }
     }
 }
 
@@ -87,12 +98,28 @@ void LocalGame::turnOver(){
     //switch current player to next player and change state
     if(m_current_player->checkWinStatus()){
         //TODO: need to emit signal to notify gameover
+        winner = m_current_player;
+        qDebug() << "winner! player:" << m_current_player->getId();
         m_state = GAME_OVER;
         return;
     }
-    else{
-        m_state = ROLL_DICE;
+    if(m_current_player->isBankrupt()){
+        nPlayers--;
+        if(nPlayers == 1) {
+            winner = player_queue->next();
+            m_state = GAME_OVER;
+            return;
+        }
     }
+    //should never happen
+    Q_ASSERT(nPlayers != 1);
+    //update current Player if dice is not double
+    if(!Dice::getInst()->isDouble()){
+        do {
+            m_current_player = player_queue->next();
+        } while(m_current_player->isBankrupt());
+    }
+    m_state = ROLL_DICE;
 }
 
 void LocalGame::blockEvent(Block *block){

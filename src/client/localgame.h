@@ -32,6 +32,7 @@ private:
     LocalGameState::State m_state;
     PlayerQueue * player_queue;
     Player *m_current_player;
+    Player *winner;
     int nPlayers;
     Board *m_board;
     Dice *m_dice;
