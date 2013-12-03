@@ -49,10 +49,8 @@ public:
 
     void setBankrupt();
     bool hasBlock(Block* block);
-    void buyBlock(Block* block);
-    void sellBlock(Block* block);
-    void takeBlock(Block* block);
-    void loseBlock(Block* block);
+    void addBlock(Block* block);
+    void removeBlock(Block* block);
     void giveSalary();
     void payEnergy(int payenergy);
     void paidEnergy(int paidenergy);
