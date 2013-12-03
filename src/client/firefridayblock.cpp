@@ -42,7 +42,7 @@ void FireFridayBlock::inSEOULJONGBIN(Player *player)
         {
                 Sellpopup * popup = Sellpopup();
                 popup->show();
-
+                player->setEnergy(player->getEnergy()-100);
         }
     }
 }
