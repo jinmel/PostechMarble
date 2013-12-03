@@ -39,7 +39,7 @@ public:
     bool isPlural() const;
     int getTotalOwnSubjectEnergy() const;
     CharacterType::Type getType() const;
-    Block** getBlocks() const;
+    std::list<Block*> getBlocks() const;
 
     void setType(CharacterType::Type new_type);
     void setEnergy(int getenergy);

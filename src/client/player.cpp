@@ -88,14 +88,9 @@ CharacterType::Type Player::getType() const
 }
 
 
-Block** Player::getBlocks() const
+list<Block*> Player::getBlocks() const
 {
-    Block** blocks = new Block*[own_blocks.size()];
-
-    for (int i=0; i< own_blocks.size(); i++)
-        blocks[i] = own_blocks[i];
-
-    return blocks;
+    return own_blocks;
 }
 
 
@@ -220,7 +215,7 @@ void Player::buyBlock(Block* block)
             break;
         case SUBJECT:
             // SubjectBlock
-            registered.find(((SubjectBlock*)block)->getType())->second++;
+            registered.find(((SubjectBlock*)block)->getDept())->second++;
             totalownsubjectenergy+=block->getValue();
             break;
         }
@@ -253,7 +248,7 @@ void Player::sellBlock(Block* block)
             break;
         case SUBJECT:
             // SubjectBlock
-            registered.find(((SubjectBlock*)block)->getType())->second--;
+            registered.find(((SubjectBlock*)block)->getDept())->second--;
             totalownsubjectenergy-=block->getValue();
             break;
 
@@ -285,7 +280,7 @@ void Player::takeBlock(Block *block)
             break;
         case SUBJECT:
             // SubjectBlock
-            registered.find(((SubjectBlock*)block)->getType())->second++;
+            registered.find(((SubjectBlock*)block)->getDept())->second++;
             totalownsubjectenergy+=block->getValue();
             break;
         }
@@ -315,7 +310,7 @@ void Player::loseBlock(Block *block)
             break;
         case SUBJECT:
             // SubjectBlock
-            registered.find(((SubjectBlock*)block)->getType())->second--;
+            registered.find(((SubjectBlock*)block)->getDept())->second--;
             totalownsubjectenergy-=block->getValue();
             break;
 

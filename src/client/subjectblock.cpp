@@ -14,25 +14,36 @@ SubjectBlock::~SubjectBlock()
 
 // Methods
 SubjectBlock::SubjectBlock(QGameItem * parent,
-                           SubjectType::Type type, std::string subject_name, int cost)
+                           SubjectType::Type type, QString subject_name, int cost)
     : Block(parent)
 {
     department = type;
     this->subject_name = subject_name;
     owner = NULL;
-    this->cost = cost;
+    this->value = cost;
 }
 
-SubjectType::Type SubjectBlock::getType() const
+SubjectType::Type SubjectBlock::getDept() const
 {
     return department;
+}
+
+
+QString SubjectBlock::getName() const
+{
+    return subject_name;
+}
+
+int SubjectBlock::getGrade() const
+{
+    return grade;
 }
 
 void SubjectBlock::enter(Player* player)
 {
     if(owner == NULL)   //빈블럭
     {
-        if(player->getEnergy()>=cost){
+        if(player->getEnergy() >= value){
 
 
             qDebug()<<"Do you want to buy this subject?"<<endl;
@@ -133,5 +144,5 @@ void SubjectBlock::decideGrade(){
 }
 
 void SubjectBlock::mousePressEvent(QGraphicsSceneMouseEvent *event){
-    qDebug() << "subject name:" << this->subject_name.c_str();
+    qDebug() << "subject name:" << this->subject_name;
 }

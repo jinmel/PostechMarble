@@ -13,10 +13,19 @@ class Sellpopup : public QWidget
     Q_OBJECT
 
 public:
-    explicit Sellpopup(QWidget *parent = 0, Player *player);
+    explicit Sellpopup(QWidget *parent = 0);
+    //explicit Sellpopup(QWidget *parent = 0, Player *player = NULL);
     ~Sellpopup();
 private:
     Ui::Sellpopup *ui;
     QVBoxLayout *layout;
-    QCheckBox* blocks;
+    QCheckBox** checks;
+
+    QString convertDept(SubjectType::Type type);
+    QString convertGrade(int grade);
+
+public signals:
+    void sell();
+    void cancel();
+
 };
