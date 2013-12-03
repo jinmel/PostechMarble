@@ -56,7 +56,6 @@ public:
     void giveSalary();
     void payEnergy(int payenergy);
     void giveEnergy(int paidenergy);
-    void takeEnergy(int paidenergy);
     bool checkWinStatus();
 
 public slots:
