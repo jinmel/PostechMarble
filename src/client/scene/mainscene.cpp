@@ -43,10 +43,10 @@ void MainScene::setupMain()
 
     // set buttons
     start_button = new StartButton(this, window);
-    start_button->setPos(535,430);
+    start_button->setPos(535,470);
 
     credit_button = new CreditButton(this, window);
-    credit_button->setPos(535,520);
+    credit_button->setPos(535,560);
 
     gplus_button = new QGameItem(this, window);
     gplus_button->setImage(":images/main/social_g+.png");
