@@ -1,4 +1,5 @@
 #include "eventblock.h"
+#include "scene/ingamescene.h"
 #include <ctime>
 #include <iostream>
 #include <cstdlib>
@@ -26,34 +27,35 @@ void EventBlock::enter(Player* player)
 
 void EventBlock::checkEvent(Player* player)
 {
-    // 이벤트 블럭을 밟을시 실행하여 랜덤한 이벤트 발생
+    // generate random event
     srand((unsigned)time(NULL));
     int value = rand() % 7;
+
     switch(value) {
-    case 0:
-        drink(player);
-        break;
-    case 1:
-        cc(player);
-        break;
-    case 2:
-        takeSubject(player);
-        break;
-    case 3:
-        loseSubject(player);
-        break;
-    case 4:
-        lol(player);
-        break;
-    case 5:
-        eatChicken(player);
-        break;
-    case 6:
-        photoGenic();
-        break;
+        case 0:
+            drink(player);
+            break;
+        case 1:
+            cc(player);
+            break;
+        case 2:
+            takeSubject(player);
+            break;
+        case 3:
+            loseSubject(player);
+            break;
+        case 4:
+            lol(player);
+            break;
+        case 5:
+            eatChicken(player);
+            break;
+        case 6:
+            photoGenic();
+            break;
     }
 }
-//전체적으로 수정 바람.
+
 void EventBlock::drink(Player* player)
 {
     // 음주칸으로 이동
@@ -106,5 +108,5 @@ void EventBlock::eatChicken(Player* player)
 
 void EventBlock::photoGenic()
 {
-    //팀원 사진 띄우기
+    dynamic_cast<IngameScene*>(QGameItem::parent_scene)->showPhotoGenic();
 }
