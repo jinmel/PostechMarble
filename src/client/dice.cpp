@@ -57,10 +57,11 @@ void Dice::roll()
     emit firstDiceRolled(value1);
     emit secondDiceRolled(value2);
     emit diceRolled(getValue());
+
+    // play sound
     QMediaPlayer* player = new QMediaPlayer();
     player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/roll.mp3").absoluteFilePath()));
-    player->setVolume(80);
-
+    player->setVolume(100);
     player->play();
 }
 
