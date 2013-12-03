@@ -58,7 +58,7 @@ void MainScene::setupMain()
 
     all = new QGameItem(this, window);
     all->setImage(":images/main/all.png");
-    all->setPos(1180, 720);
+    all->setPos(1180, 0);
 }
 
 
