@@ -99,11 +99,6 @@ list<Block*> Player::getBlocks() const
 }
 
 
-int Player::getTotalOwnSubjectEnergy() const
-{
-    return totalownsubjectenergy;
-}
-
 // Methods
 void Player::setEnergy(int energy)
 {
@@ -220,34 +215,7 @@ bool Player::hasBlock(Block* block)
         return true;
 }
 
-
-void Player::buyBlock(Block* block)
-{
-    if(!hasBlock(block)) {
-        qDebug() << "You don't have that block. Check Again!";
-        return;
-    }
-    
-    registered.find(((SubjectBlock*)block)->getDept())->second++;
-    own_blocks.push_back(block);
-    energy -= block->getValue();
-}
-
-
-void Player::sellBlock(Block* block)
-{
-    if(!hasBlock(block)) {
-        qDebug() << "You don't have that block. Check Again!";
-        return;
-    }
-
-    registered.find(((SubjectBlock*)block)->getDept())->second--;
-    own_blocks.remove(block);
-    energy += block->getValue();
-}
-
-
-void Player::takeBlock(Block *block)
+void Player::addBlock(Block *block)
 {
     if(!hasBlock(block)) {
         qDebug() << "You don't have that block. Check Again!";
@@ -259,7 +227,7 @@ void Player::takeBlock(Block *block)
 }
 
 
-void Player::loseBlock(Block *block)
+void Player::removeBlock(Block *block)
 {
     if(!hasBlock(block)) {
         qDebug() << "You don't have that block. Check Again!";
