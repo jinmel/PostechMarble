@@ -23,7 +23,7 @@ SubjectBlock::SubjectBlock(QGameItem * parent,
     department = type;
     this->subject_name = subject_name;
     owner = NULL;
-    cost = cost;
+    this->cost = cost;
 }
 
 int SubjectBlock::getCost() const{
@@ -68,6 +68,8 @@ int SubjectBlock::getSellCost(){
 
 void SubjectBlock::enter(Player* player)
 {
+    qDebug() << "subjectblock enter" << getPosition();
+    qDebug() << "cost:" << cost;
     QMessageBox mbox;
     mbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     mbox.setDefaultButton(QMessageBox::Ok);
@@ -77,7 +79,6 @@ void SubjectBlock::enter(Player* player)
         {
             mbox.setText("이 과목을 수강하시겠습니까?");
             mbox.setInformativeText("수강료:" + QString::number(cost));
-            mbox.exec();
             int userselect = mbox.exec();
             if(userselect==QMessageBox::Ok)   //if buy
             {
