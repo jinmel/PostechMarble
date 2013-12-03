@@ -25,8 +25,10 @@ private:
     DiceGraphicItem *dice_graphic;
     DiceValuePanel *first_dice_panel;
     DiceValuePanel *second_dice_panel;
+    QGameItem *double_graphic;
     Board *board;
     Player *player;
+    QTimeLine *double_timeline;
 
 public:
     IngameScene(qreal x=0,qreal y=0,qreal width=1280,
@@ -38,9 +40,9 @@ public:
     void showPhotoGenic();
 
 private slots:
-    void showDouble(bool isDouble);
-    void hideDouble(QGameItem *item);
-    void hidePhotoGenic(QGameItem *item);
+    void showDouble();
+    void hideDouble();
+    void hidePhotoGenic();
 };
 
 class DiceGraphicItem: public QGameItem

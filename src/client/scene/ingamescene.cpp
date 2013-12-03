@@ -24,6 +24,17 @@ IngameScene::IngameScene(qreal x, qreal y,
     player->setPos(BlockCoords::corner_coord[0]);
     player->setZValue(3);
 
+    // double graphic: hide
+    double_graphic = new QGameItem(this, window);
+    double_graphic->setImage(":images/ingame/double.png");
+    double_graphic->setPos(440, 300);
+    double_graphic->setZValue(4);
+    double_graphic->hide(false, 0);
+
+    // timeline for double graphic
+    double_timeline = new QTimeLine(1500);
+    connect(double_timeline, SIGNAL(finished()), this, SLOT(hideDouble()));
+
     //주사위 그래픽
     dice_graphic = new DiceGraphicItem(this,window);
     dice_graphic->setPos(800,400);
@@ -33,6 +44,7 @@ IngameScene::IngameScene(qreal x, qreal y,
     first_dice_panel = new DiceValuePanel(this,window);
     first_dice_panel->setPos(400,400);
     first_dice_panel->setZValue(2);
+
     //주사위 패널 두번째
     second_dice_panel = new DiceValuePanel(this,window);
     second_dice_panel->setPos(500,400);
@@ -41,7 +53,7 @@ IngameScene::IngameScene(qreal x, qreal y,
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
     connect(dice,SIGNAL(diceRolled(int)),player,SLOT(walkBy(int)));
-    connect(dice, SIGNAL(diceDouble(bool)), this, SLOT(showDouble(bool)));
+    connect(dice, SIGNAL(diceDouble()), this, SLOT(showDouble()));
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
     connect(dice,SIGNAL(secondDiceRolled(int)),second_dice_panel,SLOT(setValue(int)));
 }
@@ -63,22 +75,17 @@ QGraphicsPixmapItem* IngameScene::backgroundPixmap(){
 }
 
 
-void IngameScene::showDouble(bool isDouble)
+void IngameScene::showDouble()
 {
-    if(isDouble) {
-        qDebug() << "Dice is Double";
-        QGameItem *item = new QGameItem(this, window);
-        item->setImage(":images/ingame/double.png");
-        item->setPos(640, 360);
-
-        QTimeLine *timeline = new QTimeLine(1500);
-        connect(timeline, SIGNAL(finished()), this, SLOT(hideDouble(item)));
-    }
+    qDebug() << "Show Double";
+    double_graphic->show(true, 0.3);
+    double_timeline->start();
 }
 
-void IngameScene::hideDouble(QGameItem* item)
+void IngameScene::hideDouble()
 {
-    delete item;
+    qDebug() << "Hide Double";
+    double_graphic->hide(true, 0.3);
 }
 
 void IngameScene::showPhotoGenic()
@@ -86,9 +93,9 @@ void IngameScene::showPhotoGenic()
 
 }
 
-void IngameScene::hidePhotoGenic(QGameItem* item)
+void IngameScene::hidePhotoGenic()
 {
-    delete item;
+
 }
 
 // DiceGrahicItem
