@@ -24,7 +24,6 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     penalty = 0;
     plural = false;
     character_type = CharacterType::NONE;
-    totalownsubjectenergy=0;
 
     //initialize map
     using namespace SubjectType;
