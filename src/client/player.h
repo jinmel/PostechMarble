@@ -49,7 +49,7 @@ public:
     bool escapeMouindo();
 
     void addTotalOwnSubjectEnergy(int subjectenergy);
-    void setBankrupt(bool bankrupt);
+    void setBankrupt();
     void pushBlock(Block* block);
     void removeBlock(Block* block);
 

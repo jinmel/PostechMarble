@@ -1,7 +1,6 @@
 #include "sellpopup.h"
 #include "ui_sellpopup.h"
 #include <list>
-#include "subjectblock.h"
 
 Sellpopup::Sellpopup(QWidget *parent) :
     QWidget(parent),
@@ -14,8 +13,9 @@ Sellpopup::Sellpopup(QWidget *parent) :
     Player* player = new Player(new QGameItem(), 1);
 
     std::list<Block*> block_list = player->getBlocks();
-    SubjectBlock** blocks = new SubjectBlock*[block_list.size()];
-    checks = new QCheckBox*[block_list.size()];
+    block_num = block_list.size();
+    blocks = new SubjectBlock*[block_num];
+    checks = new QCheckBox*[block_num];
 
     int index = 0;
     for(std::list<Block*>::iterator itor = block_list.begin(); itor != block_list.end(); itor++) {
@@ -23,7 +23,7 @@ Sellpopup::Sellpopup(QWidget *parent) :
         index++;
     }
 
-    for(int i=0; i < block_list.size(); i++) {
+    for(int i=0; i < block_num; i++) {
         QString string = "Test";
 
         // append department
@@ -47,6 +47,9 @@ Sellpopup::Sellpopup(QWidget *parent) :
     }
     */
 
+    // for test use
+    block_num = 10;
+
     for(int i=0; i < 10; i++) {
         QString string = "Test";
 
@@ -57,6 +60,12 @@ Sellpopup::Sellpopup(QWidget *parent) :
         checks[i] = newCheck;
         layout->addWidget(newCheck);
     }
+    // test end
+
+    // connect
+    connect(ui->sellButton, SIGNAL(clicked()), this, SLOT(sell()));
+    connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(close()));
+    connect(ui->bankruptButton, SIGNAL(clicked()), this, SLOT(bankrupt()));
 
 
 }
@@ -102,6 +111,7 @@ QString Sellpopup::convertDept(SubjectType::Type type)
     return dept;
 }
 
+
 QString Sellpopup::convertGrade(int grade)
 {
     QString str = "";
@@ -119,4 +129,26 @@ QString Sellpopup::convertGrade(int grade)
     }  
 
     return str;
+}
+
+
+void Sellpopup::sell()
+{
+    qDebug() << "Selling Block!";
+
+    /*
+    for(int i=0; i<block_num; i++) {
+        if(checks[i]->isChecked())
+            player->sellBlock(blocks[i]);
+    }
+    */
+    this->close();
+}
+
+void Sellpopup::bankrupt()
+{
+    //qDebug() << "Player " << player->getId() << "bankrupted!";
+
+    //player->setBankrupt();
+    this->close();
 }

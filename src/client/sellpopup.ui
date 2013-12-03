@@ -89,7 +89,7 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="okButton">
+  <widget class="QPushButton" name="sellButton">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -125,7 +125,7 @@
     <string>싫다능</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="bankruptButton">
    <property name="geometry">
     <rect>
      <x>200</x>
