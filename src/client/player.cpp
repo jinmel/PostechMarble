@@ -283,6 +283,6 @@ void Player::setType(CharacterType::Type type) {
 }
 
 int Player::getAssetValue() const {
-
+    return 0;
 }
 
