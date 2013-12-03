@@ -107,7 +107,7 @@ void CornerBlock::inBreakSemester(Player* player) {     //무인도
         cin>>userselect;
         if(userselect==1)
         {
-            player->payEnergy(1/*내야하는 벌금만큼*/);
+            player->payEnergy(200);
 
             while(player->getPenalty() >=0)//panelty 없애주고
             {
