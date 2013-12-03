@@ -76,7 +76,7 @@ void LogoScene::animateLogo()
 
     // set sound
     QMediaPlayer* player = new QMediaPlayer();
-    player->setMedia(QUrl::fromLocalFile(QFileInfo(":sound/logo_dang.mp3").absoluteFilePath()));
+    player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/logo_dang.mp3").absoluteFilePath()));
     player->setVolume(80);
     
     // play sound & animate    

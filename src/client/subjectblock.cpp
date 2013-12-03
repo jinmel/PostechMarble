@@ -49,6 +49,7 @@ int SubjectBlock::getBuyOutPrice(){
     return cost + getPenalyCost() * 2;
 }
 
+
 int SubjectBlock::getPenalyCost(){
     if(grade == A)
         return int(cost * 0.8);
@@ -61,6 +62,7 @@ int SubjectBlock::getPenalyCost(){
 
 int SubjectBlock::getSellCost(){
     return getBuyOutPrice() /2;
+
 }
 
 
@@ -95,10 +97,10 @@ void SubjectBlock::enter(Player* player)
     }
     else    //타인의 블럭
     {
-        if(getPenalyCost()<player->getEnergy())
+        if(getPenaltyCost() < player->getEnergy())
         {
-            player->payEnergy(getPenalyCost());
-            this->owner->giveEnergy(getPenalyCost());
+            player->payEnergy(getPenaltyCost());
+            this->owner->giveEnergy(getPenaltyCost());
             if(player->getEnergy() > getBuyOutPrice()){
                 mbox.setText("블럭을 인수하시겠습니까?");
                 int userselect = mbox.exec();
@@ -113,8 +115,9 @@ void SubjectBlock::enter(Player* player)
         }
         else {//블럭을 팔거나 파산한다.
             //자산을 팔아서 메꿀수 있을 경우
-            if(player->getAssetValue() > getPenalyCost()) {
-                Sellpopup * popup = new Sellpopup;
+            if(player->getAssetValue() > getPenaltyCost()){
+
+                Sellpopup *popup = new Sellpopup(QGameItem::getWindow(), player, this);
                 popup->show(); //내부에서 매각하는것을 구현했음
             }
             //소 팔고 외양간 팔아도 파산 ㅠㅠ
