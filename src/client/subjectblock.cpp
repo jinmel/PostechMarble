@@ -107,7 +107,7 @@ void SubjectBlock::enter(Player* player)
 
             if(penaltycost > player->getTotalOwnSubjectEnergy())//가진 모든 과목을 팔아도 안될때 -> bankrupt
             {
-                player->setBankrupt(true);
+                player->setBankrupt();
             }
             else
             {
