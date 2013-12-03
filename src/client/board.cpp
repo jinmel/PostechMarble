@@ -80,7 +80,7 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[11]->setPos(block_coord[11]);
 
     //Event block
-    blocks[12] = new EventBlock(this); //Event
+    blocks[12] = new EventBlock(this,scene, window); //Event
     blocks[12]->setImage(":/images/ingame/block/Event_block.png");
     blocks[12]->setPos(block_coord[12]);
 
@@ -153,7 +153,7 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[27]->rotateImage(180);
     
     //Event block
-    blocks[28] = new EventBlock(this); // Event
+    blocks[28] = new EventBlock(this,scene, window); // Event
     blocks[28]->setImage(":/images/ingame/block/Event_block.png");
     blocks[28]->setPos(block_coord[28]);
 

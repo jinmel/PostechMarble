@@ -48,6 +48,9 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     penalty = 0;
     plural = false;
 
+    character_type = CharacterType::NONE;
+    //totalownsubjectenergy=0;//지우고 동적으로 계산하라
+
     //initialize map
     using namespace SubjectType;
     registered[BIO] = 0;
@@ -274,6 +277,8 @@ void Player::removeBlock(Block *block)
 
 void Player::giveSalary()
 {
+    qDebug() << "Player " << id << " received salary";
+
     if(character_type == CharacterType::HARD_WORKER)
         energy += 150;
     else

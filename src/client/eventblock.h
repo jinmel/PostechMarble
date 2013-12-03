@@ -2,16 +2,18 @@
 #include "player.h"
 #include "block.h"
 #include "types.h"
+#include <QGraphicsScene>
+
 
 class EventBlock : public Block
 {
 public:
-    EventBlock(QGameItem * parent);
+    EventBlock(QGameItem * parent, QGraphicsScene * scene, MainWindow * window);
     virtual ~EventBlock();
 
     virtual void enter(Player* player);
 
-    void checkEvent(Player* player); 
+    void checkEvent(Player* player,QGraphicsScene * scene, MainWindow * window);
 
     void drink(Player* player);
     void cc(Player* player);
@@ -19,5 +21,5 @@ public:
     void loseSubject(Player* player);
     void lol(Player* player);
     void eatChicken(Player* player);
-    void photoGenic();
+    void photoGenic(QGraphicsScene * scene, MainWindow * window);
 };

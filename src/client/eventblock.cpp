@@ -3,13 +3,14 @@
 #include <ctime>
 #include <iostream>
 #include <cstdlib>
+#include "scene/ingamescene.h"
 #include "localgame.h"
 #include "sellpopup.h"
 
 using namespace std;
 
 // Constructor & Destructor
-EventBlock::EventBlock(QGameItem * parent) : Block(parent)
+EventBlock::EventBlock(QGameItem * parent,QGraphicsScene * scene, MainWindow * window) : Block(parent)
 {
 }
 
@@ -28,33 +29,34 @@ void EventBlock::enter(Player* player)
     //checkEvent(player);
 }
 
-void EventBlock::checkEvent(Player* player)
+
+void EventBlock::checkEvent(Player* player,QGraphicsScene * scene, MainWindow * window)
 {
     // generate random event
     int value = rand() % 7;
 
     switch(value) {
-        case 0:
-            drink(player);
-            break;
-        case 1:
-            cc(player);
-            break;
-        case 2:
-            takeSubject(player);
-            break;
-        case 3:
-            loseSubject(player);
-            break;
-        case 4:
-            lol(player);
-            break;
-        case 5:
-            eatChicken(player);
-            break;
-        case 6:
-            photoGenic();
-            break;
+    case 0:
+        drink(player);
+        break;
+    case 1:
+        cc(player);
+        break;
+    case 2:
+        takeSubject(player);
+        break;
+    case 3:
+        loseSubject(player);
+        break;
+    case 4:
+        lol(player);
+        break;
+    case 5:
+        eatChicken(player);
+        break;
+    case 6:
+        photoGenic(scene, window);
+        break;
     }
 }
 
@@ -117,7 +119,11 @@ void EventBlock::eatChicken(Player* player)
     player->setEnergy(player->getEnergy() + 100);
 }
 
-void EventBlock::photoGenic()
+void EventBlock::photoGenic(QGraphicsScene * scene, MainWindow * window)
 {
-    dynamic_cast<IngameScene*>(QGameItem::parent_scene)->showPhotoGenic();
+
+    //팀원 사진 띄우기
+    PhotoGenicItem* photogenicitem = new PhotoGenicItem(scene, window);
+    photogenicitem->showPhotos();
+    photogenicitem->~PhotoGenicItem();
 }
