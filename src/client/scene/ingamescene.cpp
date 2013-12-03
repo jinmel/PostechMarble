@@ -19,7 +19,8 @@ IngameScene::IngameScene(qreal x, qreal y,
     LocalGame * game = LocalGame::getInst();
 
     board = new Board(this,window);
-    board->setPos(200,720-board->boundingRect().size().height());
+    board->setPos(200,720 - board->boundingRect().size().height());
+    board->setZValue(2);
 
     Player * player = new Player(board,1);
     player->setImage(":/images/ingame/pieces/blue.png");
@@ -31,6 +32,10 @@ IngameScene::IngameScene(qreal x, qreal y,
     player->setImage(":/images/ingame/pieces/red.png");
     player->setPos(BlockCoords::corner_coord[0]);
     player->setZValue(3);
+    player->setEnergy(0);
+    player->addBlock(board->getBlock(10));
+    player->addBlock(board->getBlock(11));
+    player->addBlock(board->getBlock(13));
     game->addPlayer(player);
 
     game->init(board,Dice::getInst());
@@ -217,36 +222,36 @@ void DiceValuePanel::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
 
 
 PhotoGenicItem::PhotoGenicItem(QGraphicsScene *scene, MainWindow *window)
-    : QGameItem(scene,window){}
+    : QGameItem(scene,window){
+
+}
+
 void PhotoGenicItem::showPhotos(){
-
-
-    timeline = new QTimeLine(3000); //spin for 3 second
+    timeline = new QTimeLine(10000); //spin for 3 second
     timeline->setFrameRange(0,3); // 3 spins
     timeline->setEasingCurve(QEasingCurve::Linear);
     connect(this->timeline,SIGNAL(frameChanged(int)),this,SLOT(slidePhoto(int)));
-    connect(timeline,SIGNAL(finished()),this,SLOT(endSlide()));
-
+    timeline->start();
+    setZValue(10);
 }
+
 PhotoGenicItem::~PhotoGenicItem()
 {
     qDebug()<<"photogenic item destoyed."<<endl;
 }
 
 void PhotoGenicItem::slidePhoto(int frame){
-    for(int i = 0;i<3;i++){
-        switch(i){
+    qDebug() << frame;
+    qDebug() << this->pos();
+        switch(frame){
         case 1:
-            this->setImage(":/images/outphots/photo1.png");
+            this->setImage(":/images/ourphots/photo1.png");
             break;
         case 2:
-            this->setImage(":/images/outphots/photo2.png");
+            this->setImage(":/images/ourphots/photo2.png");
             break;
         case 3:
-            this->setImage(":/images/outphotos/photo3.png");
+            this->setImage(":/images/ourphotos/photo3.png");
             break;
-\
         }
-    }
 }
-void PhotoGenicItem::endSlide(){}

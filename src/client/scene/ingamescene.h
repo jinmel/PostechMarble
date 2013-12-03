@@ -98,13 +98,14 @@ public:
 
 public slots:
     void showPhotos();
+
+    void slidePhoto(int frame);
 private:
     //Ui::PhotoGenicPopup *ui;
     //QVBoxLayout *layout;
     QTimeLine * timeline;
 
-    void slidePhoto(int frame);
-    void endSlide();
+
 signals:
 protected:
 };

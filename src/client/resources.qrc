@@ -78,5 +78,8 @@
         <file>images/ingame/block/corner/gap_year.png</file>
         <file>images/ingame/block/corner/plurar_major.png</file>
         <file>images/ingame/block/corner/taxi.png</file>
+        <file>images/ourphotos/photo1.png</file>
+        <file>images/ourphotos/photo2.png</file>
+        <file>images/ourphotos/photo3.png</file>
     </qresource>
 </RCC>
