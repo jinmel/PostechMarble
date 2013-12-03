@@ -56,8 +56,8 @@ void EventBlock::checkEvent(Player* player)
 //전체적으로 수정 바람.
 void EventBlock::drink(Player* player)
 {
-    // 음주칸으로 이동, alcoholic의 경우 움직이되 pay는 하지 않음
-    player->setEnergy(player->getEnergy() - 100); //
+    // 원하는 불금칸을 이동
+     
 }
 
 void EventBlock::cc(Player* player)
@@ -65,6 +65,17 @@ void EventBlock::cc(Player* player)
     // 행동력 감소 + 일정 확률로 휴학 또는 61콜 이동
     if(getType()!=CharacterType::OUTSIDER)
     {
+        int c;
+        c= rand()%2;
+        switch(c)
+        {
+        case 0:
+            // 휴학블록으로 이동
+            break;
+        case 1:
+            //61블록으로 이동
+            break;
+        }
     }
 }
 
@@ -90,9 +101,9 @@ void EventBlock::lol(Player* player)
         int outcome;
         outcome=rand()%2;
         if(outcome==0)
-        player->setEnergy(player->getEnergy()+50);
+        player->setEnergy(player->getEnergy()+50); //승리
         else
-        player->setEnergy(player->getEnergy()-100);
+        player->setEnergy(player->getEnergy()-100); // 패배
     }
 }
 
