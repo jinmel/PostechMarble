@@ -5,7 +5,6 @@
         <file>images/logo/team_logo.png</file>
         <file>images/button_ok_click.png</file>
         <file>images/logo/logo_background.png</file>
-        <file>images/main/main_background.png</file>
         <file>images/ingame/background.png</file>
         <file>images/ingame/button.png</file>
         <file>images/ingame/button_pushed.png</file>
@@ -73,5 +72,6 @@
         <file>images/ingame/status/status1.png</file>
         <file>images/ingame/status/status2.png</file>
         <file>images/ingame/board/board_back.png</file>
+        <file>images/main/main_background.png</file>
     </qresource>
 </RCC>
