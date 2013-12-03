@@ -24,6 +24,7 @@ EventBlock::~EventBlock()
 // Methods
 void EventBlock::enter(Player* player)
 {
+    checkEvent(player,this->scene(),this->getWindow());
     LocalGame::getInst()->turnOver();
     return;
     //checkEvent(player);
@@ -33,7 +34,7 @@ void EventBlock::enter(Player* player)
 void EventBlock::checkEvent(Player* player,QGraphicsScene * scene, MainWindow * window)
 {
     // generate random event
-    int value = rand() % 7;
+    int value = 6;
 
     switch(value) {
     case 0:
@@ -55,6 +56,7 @@ void EventBlock::checkEvent(Player* player,QGraphicsScene * scene, MainWindow * 
         eatChicken(player);
         break;
     case 6:
+        qDebug() << "photogenic";
         photoGenic(scene, window);
         break;
     }
@@ -64,7 +66,6 @@ void EventBlock::drink(Player* player)
 {
     qDebug() << "Drink event!";
     // 원하는 불금칸을 이동
-     
 }
 
 void EventBlock::cc(Player* player)
@@ -125,5 +126,4 @@ void EventBlock::photoGenic(QGraphicsScene * scene, MainWindow * window)
     //팀원 사진 띄우기
     PhotoGenicItem* photogenicitem = new PhotoGenicItem(scene, window);
     photogenicitem->showPhotos();
-    photogenicitem->~PhotoGenicItem();
 }

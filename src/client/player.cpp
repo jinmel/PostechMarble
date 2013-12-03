@@ -258,6 +258,8 @@ bool Player::hasBlock(Block* block)
 
 void Player::addBlock(Block *block)
 {
+    SubjectBlock * subj_block = dynamic_cast<SubjectBlock*>(block);
+    subj_block->setOwner(this);
     registered.find(((SubjectBlock*)block)->getDept())->second++;
     own_blocks.push_back(block);
 }
@@ -273,7 +275,6 @@ void Player::removeBlock(Block *block)
     registered.find(((SubjectBlock*)block)->getDept())->second--;
     own_blocks.remove(block);
 }
-
 
 void Player::giveSalary()
 {

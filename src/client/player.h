@@ -8,7 +8,6 @@
 
 // circular dependency
 class Block;
-
 class Player;
 
 class Player : public QGameItem
@@ -59,7 +58,6 @@ public:
     void giveEnergy(int paidenergy);
     bool checkWinStatus();
     QPointF adjustCoord(QPointF & coord);
-
 signals:
     void playerArrived(Player * player);
 public slots:
