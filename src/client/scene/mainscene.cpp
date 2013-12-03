@@ -46,6 +46,14 @@ void MainScene::setupMain()
 
     credit_button = new CreditButton(this, window);
     credit_button->setPos(535,590);
+
+    gplus_button = new QGameItem(this, window);
+    gplus_button->setImage(":images/main/social_g+.png");
+    gplus_button->setPos(1080, 610);
+
+    fb_button = new QGameItem(this, window);
+    fb_button->setImage(":images/main/social_fb.png");
+    fb_button->setPos(1170, 610);
 }
 
 
@@ -71,7 +79,7 @@ StartButton::~StartButton()
 void StartButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     qDebug() << "Start button clicked.";
-    setImage(":images/main/button_main_start_press.png");
+    setImage(":images/main/button_main_start_pressed.png");
 }
 
 void StartButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)

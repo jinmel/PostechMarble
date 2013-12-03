@@ -16,6 +16,7 @@ using namespace std;
 Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 {
     id = _id;
+    name = "";
     position = 0;
     energy = 0;
     bankrupt = false;
@@ -35,6 +36,7 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     registered[ME] = 0;
     registered[IME] = 0;
     registered[PHYS] = 0;
+
 
     // end initialize
     qDebug() << "Player Created" << endl;
@@ -95,12 +97,6 @@ int Player::getTotalOwnSubjectEnergy() const
 }
 
 // Methods
-void Player::setPosition(int position)
-{
-    this->position = position;
-}
-
-
 void Player::setEnergy(int energy)
 {
     this->energy = energy;
@@ -162,7 +158,7 @@ bool Player::escapeMouindo()
 void Player::walkBy(int steps)
 {
     using namespace BlockCoords;
-    const int step_interval = 100; //0.1 seconds
+    const int step_interval = 300; //0.1 seconds
     int current_pos = position;
     int next_pos;
     int index = 0;
@@ -177,7 +173,7 @@ void Player::walkBy(int steps)
         step_animation->setDuration(step_interval);
         step_animation->setStartValue(block_coord[current_pos]);
         step_animation->setEndValue(block_coord[next_pos]);
-        step_animation->setEasingCurve(QEasingCurve::Linear);
+        step_animation->setEasingCurve(QEasingCurve::InOutQuint);
         seq_animation_group->addAnimation(step_animation);
         steps--; //decrease one step
         current_pos = next_pos;
@@ -187,14 +183,15 @@ void Player::walkBy(int steps)
         }
     }
     seq_animation_group->start(QAbstractAnimation::DeleteWhenStopped);
-    setPosition(current_pos);
+    position = current_pos;
 }
 
 void Player::jumpTo(int block_num){
     using namespace BlockCoords;
     QPointF target = block_coord[block_num];
     animateTo(target.x(),target.y(),2000);
-    setPosition(block_num);
+    position = block_num;
+
 }
 
 void Player::removeBlock(Block* block){
@@ -241,6 +238,7 @@ void Player::buyBlock(Block* block)
 
         own_blocks.push_back(block);
     }
+
     energy -= block->getValue();
 
 }
