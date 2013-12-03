@@ -20,6 +20,8 @@ void PlayerQueue::push(Player * p){
 }
 
 Player * PlayerQueue::next(){
+    if(playerQueue->empty())
+        return NULL;
     Player * ret = playerQueue->front();
     playerQueue->pop();
     playerQueue->push(ret);
