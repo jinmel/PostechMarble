@@ -77,10 +77,11 @@ void SubjectBlock::enter(Player* player)
     {
         if(player->getEnergy() >= cost)
         {
-            mbox.windowTitle("과목 수강");
+            mbox.setWindowTitle("과목 수강");
             mbox.setText("이 과목을 수강하시겠습니까?");
             mbox.setInformativeText("수강료: " + QString::number(cost));
             int userselect = mbox.exec();
+
             if(userselect==QMessageBox::Ok)   //if buy
             {
                 player->payEnergy(cost);
@@ -91,7 +92,7 @@ void SubjectBlock::enter(Player* player)
     }
     else if(owner==player)  //자신의 블럭
     {
-        mbox.windowTitle("과목 재수강");
+        mbox.setWindowTitle("과목 재수강");
         mbox.setText("이 과목을 재수강하시겠습니까?");
         int userselect = mbox.exec();
         if(userselect== QMessageBox::Ok){   //if yes
@@ -107,7 +108,7 @@ void SubjectBlock::enter(Player* player)
             player->payEnergy(getPenaltyCost());
             this->owner->giveEnergy(getPenaltyCost());
             if(player->getEnergy() > getBuyOutPrice()) {
-                mbox.windowTitle("과목 인수");
+                mbox.setWindowTitle("과목 인수");
                 mbox.setText("과목을 인수하시겠습니까?");
                 int userselect = mbox.exec();
                 if(userselect == QMessageBox::Ok)//buy the block;
@@ -119,13 +120,16 @@ void SubjectBlock::enter(Player* player)
                 }
             }
         }
-        else {//블럭을 팔거나 파산한다.
+        else{//블럭을 팔거나 파산한다.
+
             //자산을 팔아서 메꿀수 있을 경우
             qDebug() << "sell asset!";
             if(player->getAssetValue() > getPenaltyCost()){
-
-                Sellpopup *popup = new Sellpopup(QGameItem::getWindow(), player, this);
+             {
+            qDebug() << "sell asset!";
+            Sellpopup *popup = new Sellpopup(QGameItem::getWindow(), player, this);
                 popup->show(); //내부에서 매각하는것을 구현했음
+            }
             }
             //소 팔고 외양간 팔아도 파산 ㅠㅠ
             else {
@@ -137,7 +141,7 @@ void SubjectBlock::enter(Player* player)
     return;
 }
 
-void SubjectBlock::decideGrade(){
+void SubjectBlock::decideGrade(){//random 받아서 20% A, 40% B, 40% C
     int randomvalue = rand() % 100 + 1;
 
     if(randomvalue<=20)
