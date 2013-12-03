@@ -16,7 +16,7 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     using namespace SubjectType;
     using namespace BlockCoords;
     //set background
-    //setImage(":/images/ingame/board/back_white.png");
+    setImage(":/images/ingame/board/back_white.png");
     blocks = new Block*[32];
 
     QTransform flip;
@@ -33,7 +33,7 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
     //corner block
     blocks[0] = new CornerBlock(this,CornerType::DORM); // dorm
-    blocks[0]->setImage(":/images/ingame/block/corner.png");
+    blocks[0]->setImage(":/images/ingame/block/corner/Dormitory.png");
     blocks[0]->setPos(block_coord[0]);
     //CSED subject block
     blocks[1] = new SubjectBlock(this,CSED,"CSED1",45); // cse 전산 45
@@ -64,7 +64,7 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
     //corner block
     blocks[8] = new CornerBlock(this,CornerType::BREAKSEM); // 휴학
-    blocks[8]->setImage(":/images/ingame/block/corner.png");
+    blocks[8]->setImage(":/images/ingame/block/corner/gap_year.png");
     blocks[8]->setPos(block_coord[8]);
 
 
@@ -98,7 +98,7 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
     //Corner block
     blocks[16] = new CornerBlock(this,CornerType::PLURAL); //복수전공
-    blocks[16]->setImage(":/images/ingame/block/corner.png");
+    blocks[16]->setImage(":/images/ingame/block/corner/plurar_major.png");
     blocks[16]->setPos(block_coord[16]);
 
     //PHYS subject block
@@ -135,7 +135,7 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[23]->rotateImage(180);
     //Corner block
     blocks[24] = new CornerBlock(this,CornerType::CALLTAXI); //61콜
-    blocks[24]->setImage(":/images/ingame/block/corner.png");
+    blocks[24]->setImage(":/images/ingame/block/corner/taxi.png");
     blocks[24]->setPos(block_coord[24]);
 
     //CHEM block
