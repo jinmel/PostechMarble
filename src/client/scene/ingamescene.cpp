@@ -234,6 +234,7 @@ void PhotoGenicItem::showPhotos(){
     connect(this->timeline,SIGNAL(finished()),this,SLOT(slideFinish()));
     timeline->start();
     setZValue(10);
+    setPos(QPointF(1280/2,720/2) + QPointF(-200,-150));
 }
 
 PhotoGenicItem::~PhotoGenicItem()
