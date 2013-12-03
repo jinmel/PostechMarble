@@ -16,18 +16,22 @@ IngameScene::IngameScene(qreal x, qreal y,
     Q_CHECK_PTR(window);
 
     setBackgroundPixmap(":/images/ingame/background_test.jpg");
-
+    LocalGame * game = LocalGame::getInst();
     board = new Board(this,window);
     board->setPos(200,720-board->boundingRect().size().height());
 
-
-    player = new Player(board,1);
+    Player * player = new Player(board,1);
     player->setImage(":/images/ingame/pieces/blue.png");
     player->setPos(BlockCoords::corner_coord[0]);
     player->setZValue(3);
-
-    LocalGame * game = LocalGame::getInst();
     game->addPlayer(player);
+
+    player = new Player(board,2);
+    player->setImage(":/images/ingame/pieces/red.png");
+    player->setPos(BlockCoords::corner_coord[0]);
+    player->setZValue(3);
+    game->addPlayer(player);
+
     game->init(board,Dice::getInst());
 
     //주사위 그래픽

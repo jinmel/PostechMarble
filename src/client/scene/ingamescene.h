@@ -26,7 +26,6 @@ private:
     DiceValuePanel *first_dice_panel;
     DiceValuePanel *second_dice_panel;
     Board *board;
-    Player *player;
     QGameItem *status1;
     QGameItem *status2;
 
