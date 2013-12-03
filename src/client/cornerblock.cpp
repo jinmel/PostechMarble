@@ -99,11 +99,12 @@ void CornerBlock::inBreakSemester(Player* player)
 
     if(player->getPenalty()==0)//다른 블럭에서 들어왔을 경우
     {
-        qDebug()<< "You have to break the 3 semesters in this block.";
+        qDebug() << "You have to break the 3 semesters in this block.";
         player->setMouindo(3);
     }
-    else//원래 이 블럭에 있었을 경우.. 근데 enter라는 함수로 해결이 되는가?
+    else
     {
+        qDebug() << "Can you escape in this turn?";
         if(player->getEnergy()>=200)
         {
             qDebug()<<"You can escape the mouindo if you pay energy or get a double dice";
