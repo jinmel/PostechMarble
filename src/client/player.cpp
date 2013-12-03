@@ -16,15 +16,37 @@ using namespace std;
 
 Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 {
+    //randomly determine CharacterType
+    int n = rand() % 5;
+    switch(n){
+    case 0:
+        character_type = CharacterType::LOL;
+        break;
+    case 1:
+        character_type = CharacterType::GENIUS;
+        break;
+    case 2:
+        character_type = CharacterType::HARD_WORKER;
+        break;
+    case 3:
+        character_type = CharacterType::OUTSIDER;
+        break;
+    case 4:
+        character_type = CharacterType::ALCOHOLIC;
+    }
+
     id = _id;
     name = "";
     position = 0;
-    energy = 0;
+
+    energy = 1000;
+    if(character_type == CharacterType::GENIUS)
+        energy += 200;
+
     bankrupt = false;
     mobile = true;
     penalty = 0;
     plural = false;
-    character_type = CharacterType::NONE;
 
     //initialize map
     using namespace SubjectType;
@@ -37,11 +59,8 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     registered[IME] = 0;
     registered[PHYS] = 0;
 
-
     // end initialize
     qDebug() << "Player Created" << endl;
-    //connect player event
-    connect(this,SIGNAL(playerArrived(Player*)),LocalGame::getInst(),SLOT(playerEvent(Player*)));
 }
 
 Player::~Player()
@@ -56,6 +75,10 @@ Player::~Player()
 int Player::getPosition() const
 {
     return position;
+}
+
+QPointF Player::adjustCoord(QPointF &coord){
+    return coord;
 }
 
 
@@ -99,13 +122,11 @@ list<Block*> Player::getBlocks() const
     return own_blocks;
 }
 
-
 // Methods
 void Player::setEnergy(int energy)
 {
     this->energy = energy;
 }
-
 
 void Player::setPlural(bool plural)
 {
@@ -120,10 +141,14 @@ void Player::setBankrupt()
 
 // set player to stay mouindo
 // parm: how long to stay in mouindo
-void Player::setMouindo(int panelty)
+void Player::setMouindo(int penalty)
 {
-    this->penalty = panelty;
+    this->penalty = penalty;
     mobile = false;
+}
+
+void Player::setMobile(bool mobile){
+    this->mobile = mobile;
 }
 
 // check player escaped or not
@@ -206,7 +231,7 @@ void Player::jumpTo(int block_num){
 }
 
 void Player::arrived(){
-    qDebug() << position;
+    qDebug() << "arrived at:"<<position;
     emit playerArrived(this);
 }
 
@@ -229,7 +254,7 @@ bool Player::hasBlock(Block* block)
 }
 
 void Player::addBlock(Block *block)
-{    
+{
     registered.find(((SubjectBlock*)block)->getDept())->second++;
     own_blocks.push_back(block);
 }
@@ -291,7 +316,20 @@ void Player::setType(CharacterType::Type type) {
     character_type = type;
 }
 
-int Player::getAssetValue() const {
-    return 0;
+int Player::getAssetValue() {
+
+    int asset = 0;
+
+    if(own_blocks.empty()) {
+        qDebug() << "Player has nothing!";
+        asset = 0;
+    }
+    else {
+        for(list<Block*>::iterator itor = own_blocks.begin(); itor != own_blocks.end(); itor++) {
+           asset += dynamic_cast<SubjectBlock*>(*itor)->getSellCost();
+        }
+    }
+
+    return asset;
 }
 

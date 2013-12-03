@@ -23,7 +23,7 @@ SubjectBlock::SubjectBlock(QGameItem * parent,
     department = type;
     this->subject_name = subject_name;
     owner = NULL;
-    cost = cost;
+    this->cost = cost;
 }
 
 int SubjectBlock::getCost() const{
@@ -68,6 +68,8 @@ int SubjectBlock::getSellCost(){
 
 void SubjectBlock::enter(Player* player)
 {
+    qDebug() << "subjectblock enter" << getPosition();
+    qDebug() << "cost:" << cost;
     QMessageBox mbox;
     mbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     mbox.setDefaultButton(QMessageBox::Ok);
@@ -77,7 +79,6 @@ void SubjectBlock::enter(Player* player)
         {
             mbox.setText("이 과목을 수강하시겠습니까?");
             mbox.setInformativeText("수강료:" + QString::number(cost));
-            mbox.exec();
             int userselect = mbox.exec();
             if(userselect==QMessageBox::Ok)   //if buy
             {
@@ -97,8 +98,10 @@ void SubjectBlock::enter(Player* player)
     }
     else    //타인의 블럭
     {
+        qDebug() << "penalty!";
         if(getPenaltyCost() < player->getEnergy())
         {
+            qDebug() <<"pay!";
             player->payEnergy(getPenaltyCost());
             this->owner->giveEnergy(getPenaltyCost());
             if(player->getEnergy() > getBuyOutPrice()){
@@ -115,6 +118,7 @@ void SubjectBlock::enter(Player* player)
         }
         else {//블럭을 팔거나 파산한다.
             //자산을 팔아서 메꿀수 있을 경우
+            qDebug() << "sell asset!";
             if(player->getAssetValue() > getPenaltyCost()){
 
                 Sellpopup *popup = new Sellpopup(QGameItem::getWindow(), player, this);
@@ -145,4 +149,11 @@ void SubjectBlock::decideGrade(){
 
 void SubjectBlock::mousePressEvent(QGraphicsSceneMouseEvent *event){
     qDebug() << "subject name:" << this->subject_name;
+}
+
+void SubjectBlock::setOwner(Player *player){
+    //cannot be called
+    Q_ASSERT(owner == NULL);
+    if(owner == NULL)
+        owner = player;
 }

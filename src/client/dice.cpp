@@ -11,7 +11,6 @@ using namespace std;
 Dice::Dice()
 {
     qDebug() << "Dice Created";
-
     srand((unsigned)time(NULL));
     value1 = 0;
     value2 = 0;
@@ -61,6 +60,7 @@ void Dice::roll()
     emit firstDiceRolled(value1);
     emit secondDiceRolled(value2);
     emit diceRolled(getValue());
+    emit diceRolled(this);
 
     // if double: emit double signal
     if(isDouble()) {

@@ -3,6 +3,7 @@
 #include <ctime>
 #include <iostream>
 #include <cstdlib>
+#include "localgame.h"
 
 using namespace std;
 
@@ -21,9 +22,9 @@ EventBlock::~EventBlock()
 // Methods
 void EventBlock::enter(Player* player)
 {
-
+    LocalGame::getInst()->turnOver();
+    return;
 }
-
 
 void EventBlock::checkEvent(Player* player)
 {
@@ -104,8 +105,17 @@ void EventBlock::lol(Player* player)
         outcome=rand()%2;
         if(outcome==0)
         player->setEnergy(player->getEnergy()+50); //승리
+        else if(player->getEnergy()>=100)
+            player->setEnergy(player->getEnergy() - 100);
         else
-        player->setEnergy(player->getEnergy()-100); // 패배
+        {
+            if(player->getAssetValue() > 100){
+
+                Sellpopup * popup = new Sellpopup();
+                popup->show();
+
+            }
+        } // 패배
     }
 }
 

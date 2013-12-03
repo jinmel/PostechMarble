@@ -5,6 +5,7 @@
 #include <QTimeLine>
 #include <QEasingCurve>
 #include "block.h"
+#include "localgame.h"
 
 
 IngameScene::IngameScene(qreal x, qreal y,
@@ -15,14 +16,24 @@ IngameScene::IngameScene(qreal x, qreal y,
     Q_CHECK_PTR(window);
 
     setBackgroundPixmap(":/images/ingame/board/board_back.png");
+    LocalGame * game = LocalGame::getInst();
 
     board = new Board(this,window);
-    board->setPos(200,10);
+    board->setPos(200,720-board->boundingRect().size().height());
 
-    player = new Player(board,1);
+    Player * player = new Player(board,1);
     player->setImage(":/images/ingame/pieces/blue.png");
     player->setPos(BlockCoords::corner_coord[0]);
     player->setZValue(3);
+    game->addPlayer(player);
+
+    player = new Player(board,2);
+    player->setImage(":/images/ingame/pieces/red.png");
+    player->setPos(BlockCoords::corner_coord[0]);
+    player->setZValue(3);
+    game->addPlayer(player);
+
+    game->init(board,Dice::getInst());
 
     // double graphic: hide
     double_graphic = new QGameItem(this, window);
@@ -60,8 +71,10 @@ IngameScene::IngameScene(qreal x, qreal y,
 
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
+
     connect(dice,SIGNAL(diceRolled(int)),player,SLOT(walkBy(int)));
     connect(dice, SIGNAL(diceDouble()), this, SLOT(showDouble()));
+
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
     connect(dice,SIGNAL(secondDiceRolled(int)),second_dice_panel,SLOT(setValue(int)));
 }
