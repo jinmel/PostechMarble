@@ -97,6 +97,7 @@ public:
     ~PhotoGenicItem();
 
 public slots:
+    void slideFinish();
     void showPhotos();
 
     void slidePhoto(int frame);
