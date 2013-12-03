@@ -21,7 +21,7 @@ Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
 
     int index = 0;
     for(std::list<Block*>::iterator itor = block_list.begin(); itor != block_list.end(); itor++) {
-        blocks[index] = (SubjectBlock*)*itor;
+        blocks[index] = dynamic_cast<SubjectBlock*>(*itor);
         index++;
     }
 
