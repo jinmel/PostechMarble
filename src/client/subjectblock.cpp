@@ -51,7 +51,7 @@ int SubjectBlock::getBuyOutPrice(){
     return buyoutprice;
 }
 
-int SubjectBlock::getPenalyCost(){
+int SubjectBlock::getPenaltyCost(){
     return cost;
 }
 
@@ -86,10 +86,10 @@ void SubjectBlock::enter(Player* player)
     }
     else    //타인의 블럭
     {
-        if(getPenalyCost()<player->getEnergy())
+        if(getPenaltyCost() < player->getEnergy())
         {
-            player->payEnergy(getPenalyCost());
-            this->owner->giveEnergy(getPenalyCost());
+            player->payEnergy(getPenaltyCost());
+            this->owner->giveEnergy(getPenaltyCost());
             if(player->getEnergy() > getBuyOutPrice()){
                 mbox.setText("블럭을 인수하시겠습니까?");
                 int userselect = mbox.exec();
@@ -103,7 +103,7 @@ void SubjectBlock::enter(Player* player)
         }
         else{//블럭을 팔거나 파산한다.
             //자산을 팔아서 메꿀수 있을 경우
-            if(player->getAssetValue() > getPenalyCost()){
+            if(player->getAssetValue() > getPenaltyCost()){
                 Sellpopup * popup = new Sellpopup;
                 popup->show();
             }
