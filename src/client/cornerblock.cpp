@@ -116,8 +116,6 @@ void CornerBlock::inBreakSemester(Player* player) {     //무인도
             qDebug()<<"Rolling a dice to go another block."<<endl;
             Dice::getInst()->roll();
             player->walkBy(Dice::getInst()->getValue());
-
-
         }
         else if(userselect==2)
         {
@@ -148,7 +146,7 @@ void CornerBlock::inBreakSemester(Player* player) {     //무인도
     //1.원래 무인도에 있다가 다시 턴이 된 경우 -> 주사위를 굴릴 수 있게 한다.
     //2.다른 칸에 있다가 갑자기 무인도에 온 경우->바로 쉬게 한다.
     //3.휴식 횟수 새는 기능.
-
+    //돈을 낼 수 있는지 없는지도 검사해야하는 것 아닙니까
 }
 
 void CornerBlock::inPluralMajor(Player* player) {//복수전공
