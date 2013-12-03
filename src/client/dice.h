@@ -1,6 +1,8 @@
 #pragma once
 #include <QObject>
 
+class Dice;
+
 class Dice : public QObject
 {
     Q_OBJECT
@@ -25,6 +27,7 @@ signals:
     void secondDiceRolled(int value);
     void diceRolled(int value,bool is_double);
     void diceRolled(int value);
+    void diceRolled(Dice *dice);
 };
 
 

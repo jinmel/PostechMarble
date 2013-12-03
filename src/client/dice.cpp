@@ -55,6 +55,7 @@ void Dice::roll()
     emit firstDiceRolled(value1);
     emit secondDiceRolled(value2);
     emit diceRolled(getValue());
+    emit diceRolled(this);
 }
 
 bool Dice::isDouble()
