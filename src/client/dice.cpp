@@ -57,7 +57,12 @@ void Dice::roll()
     emit firstDiceRolled(value1);
     emit secondDiceRolled(value2);
     emit diceRolled(getValue());
-    emit diceDouble(isDouble());
+
+    // if double: emit double signal
+    if(isDouble()) {
+        // wait for roll
+        connect(new QTimeLine(1500), SIGNAL(finished()), this, SIGNAL(diceDouble());
+    }
 
     // play sound
     QMediaPlayer* player = new QMediaPlayer();

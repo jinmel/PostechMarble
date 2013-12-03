@@ -25,7 +25,7 @@ signals:
     void secondDiceRolled(int value);
     void diceRolled(int value,bool is_double);
     void diceRolled(int value);
-    void diceDouble(bool doubled);
+    void diceDouble();
 };
 
 
