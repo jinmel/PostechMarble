@@ -278,6 +278,8 @@ void Player::removeBlock(Block *block)
 
 void Player::giveSalary()
 {
+    qDebug() << "Player " << id << " received salary";
+
     if(character_type == CharacterType::HARD_WORKER)
         energy += 150;
     else
