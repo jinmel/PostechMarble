@@ -12,9 +12,13 @@ private:
     SubjectType::Type   department;
     QString             subject_name;
     Player*             owner;
-
-    int grade;          //4->A 3->B 2->C
-    int penaltycost;    //타인이 블럭을 밟았을 때 내야 하는 금액
+    int                 cost;
+    int                 grade; //4->A 3->B 2->C
+    enum Grade{
+        A = 4,
+        B = 3,
+        C = 2
+    };
 
 public:
     SubjectBlock(QGameItem* parent,
@@ -23,11 +27,12 @@ public:
     SubjectType::Type getDept() const;
     QString getName() const;
     int getGrade() const;
+    int getCost() const;
     virtual void enter(Player* player);
     void decideGrade();
-    int getBuyOutPrice();
-    int getPenalyCost();
-    int getSellCost();
+    int getBuyOutPrice(); //인수할때 가격
+    int getPenalyCost(); //남이 수강한 땅을 밟았을 때 내야 하는 통행료
+    int getSellCost(); //팔 때 가격
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
 };
