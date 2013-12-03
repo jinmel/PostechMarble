@@ -67,7 +67,7 @@ void EventBlock::cc(Player* player)
     {
         int c;
         c= rand()%2;
-        case(c)
+        switch(c)
         {
         case 0:
             // 휴학블록으로 이동
