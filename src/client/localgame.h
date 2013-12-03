@@ -3,6 +3,17 @@
 #include "board.h"
 #include "block.h"
 #include <QObject>
+#include "dice.h"
+
+namespace LocalGameState {
+    enum State {
+        ROLL_DICE,
+        SELL_SUBJECT,
+        JUMP_PLAYER,
+        TURN_OVER,
+        GAME_OVER
+    };
+}
 
 class LocalGame;
 
@@ -10,23 +21,34 @@ class LocalGame : public QObject
 {
     Q_OBJECT
 public slots:
-    void diceRolled(int value,bool is_double);
+    void diceEvent(Dice * m_dice);
+    void blockEvent(Block * block);
+    void playerEvent(Player * player);
+    void boardEvent(Board * m_board);
 signals:
-    //signal to energy label
-    void energyChanged(int player_num,int energy);
-    //signal to status bar
-    void activatePlayer(int player_num);
-    //signal to player pieces
-    void playerMoved(int block_num);
+    void signalAll();
 private:
-    PlayerQueue * playerQueue;
-    Board * board;
-    Player * curPlayer;
-    static LocalGame* m_inst;
-    LocalGame();
+    LocalGameState::State m_state;
+    PlayerQueue * player_queue;
+    Player *m_current_player;
+    Board *m_board;
+    Dice *m_dice;
+    static LocalGame * m_inst;
 public:
-    virtual ~LocalGame();
-    //singleton static methods
-    static LocalGame *getInst();
+    LocalGame();
+    static LocalGame * getInst();
     static void delInst();
+    void init(Board * board,Dice * dice);
+    void addPlayer(Player * player);
+
+    void turnOver();
+
+    Dice* getDice();
+    Board* getBoard();
+    Player* getCurrentPlayer();
+    LocalGameState::State getCurrentGameState();
+
+    void setDice(Dice * dice);
+    void setBoard(Board * board);
+    void setCurrentGameState(LocalGameState::State new_state);
 };

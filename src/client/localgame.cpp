@@ -3,36 +3,93 @@
 #include "board.h"
 #include <iostream>
 #include <QDebug>
+#include <QtGlobal>
 
 using namespace std;
+using namespace LocalGameState;
 
-//initialize static member instance
-LocalGame* LocalGame::m_inst = NULL;
-
-// Constructor & Destructor
-LocalGame::LocalGame()
-{
-    qDebug() << "LocalGame Initialized" << endl;
+LocalGame::LocalGame(){
+    m_state = ROLL_DICE;
+    player_queue = new PlayerQueue;
 }
 
-LocalGame::~LocalGame()
-{
-    delete playerQueue;
-    delete board;
-}
+//Singleton methods
+LocalGame * LocalGame::m_inst = NULL;
 
 LocalGame * LocalGame::getInst(){
-    if(!m_inst)
+    if(m_inst == NULL)
         m_inst = new LocalGame;
     return m_inst;
 }
 
 void LocalGame::delInst(){
-    delete m_inst;
+    if(m_inst != NULL){
+        delete m_inst;
+        m_inst = NULL;
+    }
 }
 
-void LocalGame::diceRolled(int value, bool is_double){
-    //the most important method in this project.
-    //main routine for the game
+void LocalGame::addPlayer(Player *new_player){
+    player_queue->push(new_player);
+}
+
+void LocalGame::init(Board * board, Dice * dice){
+    m_current_player = player_queue->next();
+    Q_CHECK_PTR(m_current_player);
+    setDice(dice);
+    setBoard(board);
+}
+
+Board* LocalGame::getBoard(){
+    return m_board;
+}
+
+void LocalGame::setBoard(Board *board){
+    m_board = board;
+}
+
+Dice* LocalGame::getDice(){
+    return m_dice;
+}
+
+void LocalGame::setDice(Dice * dice){
+    m_dice = dice;
+}
+
+Player* LocalGame::getCurrentPlayer(){
+    return m_current_player;
+}
+
+LocalGameState::State LocalGame::getCurrentGameState(){
+    return m_state;
+}
+
+void LocalGame::setCurrentGameState(State new_state){
+    m_state = new_state;
+}
+
+void LocalGame::diceEvent(Dice * dice){
+    if(m_state == ROLL_DICE){
+        m_current_player->walkBy(dice->getValue());
+        Block * current_block = m_board->getBlock(m_current_player->getPosition());
+        current_block->enter(m_current_player);
+    }
+}
+
+void LocalGame::turnOver(){
+    //switch current player to next player and change state
+    m_current_player = player_queue->next();
+    m_state = ROLL_DICE;
+}
+
+void LocalGame::blockEvent(Block *block){
+
+}
+
+void LocalGame::playerEvent(Player *player){
+
+}
+
+void LocalGame::boardEvent(Board *board){
 
 }
