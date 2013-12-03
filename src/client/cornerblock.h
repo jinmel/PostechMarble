@@ -9,15 +9,12 @@
 class CornerBlock : public Block
 {
 private:
-    CornerType::Type block_type;
-
+    CornerType::Type corner_type;
 public:
     CornerBlock(QGameItem * parent,CornerType::Type type);
     virtual ~CornerBlock();
 
     virtual void enter(Player* player);
-    void inCornerBlock(Player* player);//in Cornerblock, execute this function
-                        //This function : type check and call correct function
     void inDormitory(Player* player);
     void in61Call(Player* player);
     void inBreakSemester(Player* player);

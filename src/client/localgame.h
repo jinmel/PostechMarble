@@ -8,6 +8,7 @@
 namespace LocalGameState {
     enum State {
         ROLL_DICE,
+        PLAYER_MOVING,
         SELL_SUBJECT,
         JUMP_PLAYER,
         TURN_OVER,
@@ -31,6 +32,8 @@ private:
     LocalGameState::State m_state;
     PlayerQueue * player_queue;
     Player *m_current_player;
+    Player *winner;
+    int nPlayers;
     Board *m_board;
     Dice *m_dice;
     static LocalGame * m_inst;
@@ -46,9 +49,9 @@ public:
     Dice* getDice();
     Board* getBoard();
     Player* getCurrentPlayer();
-    LocalGameState::State getCurrentGameState();
+    LocalGameState::State getGameState();
 
     void setDice(Dice * dice);
     void setBoard(Board * board);
-    void setCurrentGameState(LocalGameState::State new_state);
+    void setGameState(LocalGameState::State new_state);
 };

@@ -2,16 +2,18 @@
 #include "ui_sellpopup.h"
 #include <list>
 
-Sellpopup::Sellpopup(QWidget *parent) :
+Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
     QWidget(parent),
     ui(new Ui::Sellpopup)
 {
     ui->setupUi(this);
     layout = new QVBoxLayout(ui->scrollAreaWidgetContents);
 
-    /*
-    Player* player = new Player(new QGameItem(), 1);
+    // initialize
+    this->player = player;
+    needed_value = block->getPenaltyCost() - player->getEnergy();
 
+    // setup blocks list that player owns
     std::list<Block*> block_list = player->getBlocks();
     block_num = block_list.size();
     blocks = new SubjectBlock*[block_num];
@@ -19,10 +21,11 @@ Sellpopup::Sellpopup(QWidget *parent) :
 
     int index = 0;
     for(std::list<Block*>::iterator itor = block_list.begin(); itor != block_list.end(); itor++) {
-        blocks[index] = (SubjectBlock*)*itor;
+        blocks[index] = dynamic_cast<SubjectBlock*>(*itor);
         index++;
     }
 
+    // list up checkbox elements
     for(int i=0; i < block_num; i++) {
         QString string = "Test";
 
@@ -44,29 +47,19 @@ Sellpopup::Sellpopup(QWidget *parent) :
 
         checks[i] = newCheck;
         layout->addWidget(newCheck);
+
+        connect(newCheck, SIGNAL(toggled(bool)), this, SLOT(calculate()));
     }
-    */
-
-    // for test use
-    block_num = 10;
-
-    for(int i=0; i < 10; i++) {
-        QString string = "Test";
 
 
-        QCheckBox* newCheck = new QCheckBox();
-        newCheck->setText(string);
-
-        checks[i] = newCheck;
-        layout->addWidget(newCheck);
-    }
-    // test end
+    // set labels
+    ui->neededValue->setText(QString::number(needed_value));
+    ui->selectedValue->setText("0");
 
     // connect
     connect(ui->sellButton, SIGNAL(clicked()), this, SLOT(sell()));
     connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->bankruptButton, SIGNAL(clicked()), this, SLOT(bankrupt()));
-
 
 }
 
@@ -136,19 +129,38 @@ void Sellpopup::sell()
 {
     qDebug() << "Selling Block!";
 
-    /*
+    // calculated selected value
     for(int i=0; i<block_num; i++) {
         if(checks[i]->isChecked())
-            player->sellBlock(blocks[i]);
+            player->removeBlock(blocks[i]);
     }
-    */
+
     this->close();
 }
 
 void Sellpopup::bankrupt()
 {
-    //qDebug() << "Player " << player->getId() << "bankrupted!";
+    qDebug() << "Player " << player->getId() << "bankrupted!";
 
-    //player->setBankrupt();
+    player->setBankrupt();
     this->close();
+}
+
+void Sellpopup::calculate()
+{
+    qDebug() << "Select";
+
+    int selected = 0;
+
+    // calculate selected
+    for(int i=0; i<block_num; i++)
+        if(checks[i]->isChecked())
+            selected += blocks[i]->getSellCost();
+
+    // update label
+    ui->selectedValue->setText(QString::number(selected));
+
+    // is enough?
+    if(selected >= needed_value)
+        ui->sellButton->setEnabled(true);
 }

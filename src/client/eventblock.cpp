@@ -1,8 +1,10 @@
 #include "eventblock.h"
+#include "scene/ingamescene.h"
 #include <ctime>
 #include <iostream>
 #include <cstdlib>
 #include "scene/ingamescene.h"
+#include "localgame.h"
 
 using namespace std;
 
@@ -21,15 +23,17 @@ EventBlock::~EventBlock()
 // Methods
 void EventBlock::enter(Player* player)
 {
-
+    LocalGame::getInst()->turnOver();
+    return;
 }
 
 
 void EventBlock::checkEvent(Player* player,QGraphicsScene * scene, MainWindow * window)
 {
-    // 이벤트 블럭을 밟을시 실행하여 랜덤한 이벤트 발생
+    // generate random event
     srand((unsigned)time(NULL));
     int value = rand() % 7;
+
     switch(value) {
     case 0:
         drink(player);
@@ -54,11 +58,11 @@ void EventBlock::checkEvent(Player* player,QGraphicsScene * scene, MainWindow * 
         break;
     }
 }
-//전체적으로 수정 바람.
+
 void EventBlock::drink(Player* player)
 {
-    // 음주칸으로 이동
-    player->setEnergy(player->getEnergy() - 100); //
+    // 원하는 불금칸을 이동
+     
 }
 
 void EventBlock::cc(Player* player)
@@ -66,7 +70,17 @@ void EventBlock::cc(Player* player)
     // 행동력 감소 + 일정 확률로 휴학 또는 61콜 이동
     if(getType()!=CharacterType::OUTSIDER)
     {
-        player->setEnergy(player->getEnergy() - 100); //
+        int c;
+        c= rand()%2;
+        switch(c)
+        {
+        case 0:
+            // 휴학블록으로 이동
+            break;
+        case 1:
+            //61블록으로 이동
+            break;
+        }
     }
 }
 
@@ -92,9 +106,9 @@ void EventBlock::lol(Player* player)
         int outcome;
         outcome=rand()%2;
         if(outcome==0)
-        player->setEnergy(player->getEnergy()+50);
+        player->setEnergy(player->getEnergy()+50); //승리
         else
-        player->setEnergy(player->getEnergy()-100);
+        player->setEnergy(player->getEnergy()-100); // 패배
     }
 }
 
@@ -107,9 +121,9 @@ void EventBlock::eatChicken(Player* player)
 
 void EventBlock::photoGenic(QGraphicsScene * scene, MainWindow * window)
 {
+
     //팀원 사진 띄우기
-    PhotoGenicItem* photogenicitem=new PhotoGenicItem(scene, window);
+    PhotoGenicItem* photogenicitem = new PhotoGenicItem(scene, window);
     photogenicitem->showPhotos();
     photogenicitem->~PhotoGenicItem();
-
 }

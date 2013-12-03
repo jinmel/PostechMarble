@@ -4,13 +4,14 @@
 #include "cornerblock.h"
 #include "player.h"
 #include "dice.h"
+#include "localgame.h"
 
 using namespace std;
 
 CornerBlock::CornerBlock(QGameItem * parent,CornerType::Type type)
     : Block(parent)
 {
-    block_type = type;
+    corner_type = type;
 }
 
 CornerBlock::~CornerBlock()
@@ -21,15 +22,9 @@ CornerBlock::~CornerBlock()
 // Methods
 void CornerBlock::enter(Player* player)
 {
-    inCornerBlock(player);
-}
-
-
-void CornerBlock::inCornerBlock(Player* player)
-{
+    qDebug() << "In corner block " << corner_type;
     using namespace CornerType;
-
-    switch(block_type)
+    switch(corner_type)
     {
     case DORM : inDormitory(player);
         break;
@@ -42,6 +37,7 @@ void CornerBlock::inCornerBlock(Player* player)
     default : qDebug() << "CornerBlock error!" << endl;
         break;
     }
+    LocalGame::getInst()->turnOver();
 }
 
 void CornerBlock::inDormitory(Player* player)
@@ -51,43 +47,51 @@ void CornerBlock::inDormitory(Player* player)
     int takingenergy;
     switch(player->getType())
     {
-    case LOL : takingenergy = 100; //주는 에너지 수치는 상학선배&주현이가 채워주세요 ㅎㅎ
+    case LOL :
+        takingenergy = 100; //주는 에너지 수치는 상학선배&주현이가 채워주세요 ㅎㅎ
         break;
 
-    case GENIUS : takingenergy = 100;
+    case GENIUS :
+        takingenergy = 100;
         break;
 
-    case HARD_WORKER : takingenergy = 150;
+    case HARD_WORKER :
+        takingenergy = 150;
         break;
 
-    case OUTSIDER : takingenergy = 100;
+    case OUTSIDER :
+        takingenergy = 100;
         break;
 
-    case ALCOHOLIC : takingenergy = 100;
+    case ALCOHOLIC :
+        takingenergy = 100;
         break;
-
-    default         : takingenergy = 100;
-
+    default :
+        takingenergy = 100;
     }
-
     player->setEnergy(player->getEnergy() + takingenergy);
 
 }
 
 
 void CornerBlock::in61Call(Player* player) {        //원하는 블럭을 선택할 수 있게 함
-
-    qDebug() <<"You can choose any block."<< endl;
-    qDebug() <<">>";
-    int blocknum;//0~35까지의 숫자로 block 번호 관리... 이렇게 안하면 board 어레이로 올라가야하는데.. 뭐 할라면 할순잇겟지..
-    cin >> blocknum; //ui는 블럭을 클릭 할 수 있도록, 우리는 클릭받은 블럭의 입력받아서 여기에 cin대신에 넣을 수 있어야겠지.. clicked()이용해야할듯 ㅎ
-    qDebug() <<" "<<endl;
-    player->walkBy(blocknum);//moveTo에서 포인터가지고 어찌어찌해서 옮겨줘야될꺼같은데!!
-
-
+    int value=rand()%6;
+    if(value==0)
+    {
+        qDebug() <<"You can choose any block."<< endl;
+        qDebug() <<">>";
+        int blocknum;//0~35까지의 숫자로 block 번호 관리... 이렇게 안하면 board 어레이로 올라가야하는데.. 뭐 할라면 할순잇겟지..
+        cin >> blocknum; //ui는 블럭을 클릭 할 수 있도록, 우리는 클릭받은 블럭의 입력받아서 여기에 cin대신에 넣을 수 있어야겠지.. clicked()이용해야할듯 ㅎ
+        qDebug() <<" "<<endl;
+        player->walkBy(blocknum);//moveTo에서 포인터가지고 어찌어찌해서 옮겨줘야될꺼같은데!!
+    }
     /*moveTo 를 숫자로 넣을수 있도록 해야할듯!! 현재 있는 칸도 번호 저장해둬서 주사위 돌렸을 때 현재 숫자+주사위 눈 으로 이동하든지
     이런 경우에 바로 숫자 입력해서 이동할 수 있도록 하든지*/
     //--------->ok!
+    else
+    {
+        qDebug() <<"You failed to take 61 call taxi."<<endl;
+    }
 
 }
 void CornerBlock::inBreakSemester(Player* player) {     //무인도

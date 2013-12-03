@@ -5,6 +5,7 @@
 #include <QTimeLine>
 #include <QEasingCurve>
 #include "block.h"
+#include "localgame.h"
 
 
 IngameScene::IngameScene(qreal x, qreal y,
@@ -14,15 +15,36 @@ IngameScene::IngameScene(qreal x, qreal y,
 {
     Q_CHECK_PTR(window);
 
-    setBackgroundPixmap(":/images/ingame/background_test.jpg");
+    setBackgroundPixmap(":/images/ingame/board/board_back.png");
+    LocalGame * game = LocalGame::getInst();
 
     board = new Board(this,window);
-    board->setPos(200,10);
+    board->setPos(200,720-board->boundingRect().size().height());
 
-    player = new Player(board,1);
-    player->setImage(":/images/ingame/block/player1.png");
+    Player * player = new Player(board,1);
+    player->setImage(":/images/ingame/pieces/blue.png");
     player->setPos(BlockCoords::corner_coord[0]);
     player->setZValue(3);
+    game->addPlayer(player);
+
+    player = new Player(board,2);
+    player->setImage(":/images/ingame/pieces/red.png");
+    player->setPos(BlockCoords::corner_coord[0]);
+    player->setZValue(3);
+    game->addPlayer(player);
+
+    game->init(board,Dice::getInst());
+
+    // double graphic: hide
+    double_graphic = new QGameItem(this, window);
+    double_graphic->setImage(":images/ingame/double.png");
+    double_graphic->setPos(440, 300);
+    double_graphic->setZValue(4);
+    double_graphic->hide(false, 0);
+
+    // timeline for double graphic
+    double_timeline = new QTimeLine(1500);
+    connect(double_timeline, SIGNAL(finished()), this, SLOT(hideDouble()));
 
     //주사위 그래픽
     dice_graphic = new DiceGraphicItem(this,window);
@@ -33,14 +55,26 @@ IngameScene::IngameScene(qreal x, qreal y,
     first_dice_panel = new DiceValuePanel(this,window);
     first_dice_panel->setPos(400,400);
     first_dice_panel->setZValue(2);
+
     //주사위 패널 두번째
     second_dice_panel = new DiceValuePanel(this,window);
     second_dice_panel->setPos(500,400);
     second_dice_panel->setZValue(2);
 
+    status1 = new QGameItem(this, window);
+    status1->setImage(":images/ingame/status/status1.png");
+    status1->setPos(350, 140);
+
+    status2 = new QGameItem(this, window);
+    status2->setImage(":images/ingame/status/status2.png");
+    status2->setPos(660, 140);
+
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
+
     connect(dice,SIGNAL(diceRolled(int)),player,SLOT(walkBy(int)));
+    connect(dice, SIGNAL(diceDouble()), this, SLOT(showDouble()));
+
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
     connect(dice,SIGNAL(secondDiceRolled(int)),second_dice_panel,SLOT(setValue(int)));
 }
@@ -61,6 +95,31 @@ QGraphicsPixmapItem* IngameScene::backgroundPixmap(){
     return background;
 }
 
+
+void IngameScene::showDouble()
+{
+    qDebug() << "Show Double";
+    double_graphic->show(true, 0.3);
+    double_timeline->start();
+}
+
+void IngameScene::hideDouble()
+{
+    qDebug() << "Hide Double";
+    double_graphic->hide(true, 0.3);
+}
+
+void IngameScene::showPhotoGenic()
+{
+
+}
+
+void IngameScene::hidePhotoGenic()
+{
+
+}
+
+// DiceGrahicItem
 DiceGraphicItem::DiceGraphicItem(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene,window){
     //버튼 초기상태 이미지
@@ -84,6 +143,8 @@ void DiceGraphicItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
 
 }
 
+
+// DiceValuePanel
 DiceValuePanel::DiceValuePanel(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene,window)
 {
@@ -176,7 +237,7 @@ PhotoGenicItem::~PhotoGenicItem()
 
 void PhotoGenicItem::slidePhoto(int frame){
     for(int i = 0;i<3;i++){
-        switch(value){
+        switch(i){
         case 1:
             this->setImage(":/images/outphots/photo1.png");
             break;

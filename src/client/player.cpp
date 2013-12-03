@@ -8,6 +8,7 @@
 #include <QtGlobal>
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>
+#include "localgame.h"
 #define NUMBER_OF_BLOCKS 32
 #define NEXT_POS(current_pos) ((current_pos + 1) % 32)
 
@@ -15,14 +16,38 @@ using namespace std;
 
 Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 {
+    //randomly determine CharacterType
+    int n = rand() % 5;
+    switch(n){
+    case 0:
+        character_type = CharacterType::LOL;
+        break;
+    case 1:
+        character_type = CharacterType::GENIUS;
+        break;
+    case 2:
+        character_type = CharacterType::HARD_WORKER;
+        break;
+    case 3:
+        character_type = CharacterType::OUTSIDER;
+        break;
+    case 4:
+        character_type = CharacterType::ALCOHOLIC;
+    }
+
     id = _id;
     name = "";
     position = 0;
-    energy = 0;
+
+    energy = 1000;
+    if(character_type == CharacterType::GENIUS)
+        energy += 200;
+
     bankrupt = false;
     mobile = true;
     penalty = 0;
     plural = false;
+
     character_type = CharacterType::NONE;
     //totalownsubjectenergy=0;//지우고 동적으로 계산하라
 
@@ -37,11 +62,9 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     registered[IME] = 0;
     registered[PHYS] = 0;
 
-
     // end initialize
     qDebug() << "Player Created" << endl;
 }
-
 
 Player::~Player()
 {
@@ -55,6 +78,10 @@ Player::~Player()
 int Player::getPosition() const
 {
     return position;
+}
+
+QPointF Player::adjustCoord(QPointF &coord){
+    return coord;
 }
 
 
@@ -98,13 +125,11 @@ list<Block*> Player::getBlocks() const
     return own_blocks;
 }
 
-
 // Methods
 void Player::setEnergy(int energy)
 {
     this->energy = energy;
 }
-
 
 void Player::setPlural(bool plural)
 {
@@ -119,10 +144,14 @@ void Player::setBankrupt()
 
 // set player to stay mouindo
 // parm: how long to stay in mouindo
-void Player::setMouindo(int panelty)
+void Player::setMouindo(int penalty)
 {
-    this->penalty = panelty;
+    this->penalty = penalty;
     mobile = false;
+}
+
+void Player::setMobile(bool mobile){
+    this->mobile = mobile;
 }
 
 // check player escaped or not
@@ -184,18 +213,30 @@ void Player::walkBy(int steps)
         }
     }
     seq_animation_group->start(QAbstractAnimation::DeleteWhenStopped);
+
+    connect(seq_animation_group,SIGNAL(finished()),this,SLOT(arrived()));
     position = current_pos;
 }
-
 
 void Player::jumpTo(int block_num){
     using namespace BlockCoords;
     QPointF target = block_coord[block_num];
-    animateTo(target.x(),target.y(),2000);
-    position = block_num;
+    QPropertyAnimation * step_animation
+            = new QPropertyAnimation(this,"pos");
+    step_animation->setDuration(2000);
+    step_animation->setStartValue(block_coord[getPosition()]);
+    step_animation->setEndValue(block_coord[block_num]);
+    step_animation->setEasingCurve(QEasingCurve::InOutQuint);
+    step_animation->start(QAbstractAnimation::DeleteWhenStopped);
 
+    connect(step_animation,SIGNAL(finished()),this,SLOT(arrived()));
+    position = block_num;
 }
 
+void Player::arrived(){
+    qDebug() << "arrived at:"<<position;
+    emit playerArrived(this);
+}
 
 bool Player::hasBlock(Block* block)
 {
@@ -217,11 +258,6 @@ bool Player::hasBlock(Block* block)
 
 void Player::addBlock(Block *block)
 {
-    if(!hasBlock(block)) {
-        qDebug() << "You don't have that block. Check Again!";
-        return;
-    }
-    
     registered.find(((SubjectBlock*)block)->getDept())->second++;
     own_blocks.push_back(block);
 }
@@ -283,7 +319,20 @@ void Player::setType(CharacterType::Type type) {
     character_type = type;
 }
 
-int Player::getAssetValue() const {
+int Player::getAssetValue() {
 
+    int asset = 0;
+
+    if(own_blocks.empty()) {
+        qDebug() << "Player has nothing!";
+        asset = 0;
+    }
+    else {
+        for(list<Block*>::iterator itor = own_blocks.begin(); itor != own_blocks.end(); itor++) {
+           asset += dynamic_cast<SubjectBlock*>(*itor)->getSellCost();
+        }
+    }
+
+    return asset;
 }
 

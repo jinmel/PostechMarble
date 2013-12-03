@@ -23,14 +23,17 @@ SubjectBlock::SubjectBlock(QGameItem * parent,
     department = type;
     this->subject_name = subject_name;
     owner = NULL;
-    this->value = cost;
+    this->cost = cost;
+}
+
+int SubjectBlock::getCost() const{
+    return cost;
 }
 
 SubjectType::Type SubjectBlock::getDept() const
 {
     return department;
 }
-
 
 QString SubjectBlock::getName() const
 {
@@ -43,83 +46,96 @@ int SubjectBlock::getGrade() const
 }
 
 int SubjectBlock::getBuyOutPrice(){
-    int buyoutprice = value;
-    //calculate
-    return buyoutprice;
+    return cost + getPenaltyCost() * 2;
 }
 
-int SubjectBlock::getPenalyCost(){
-    int p = penaltycost;
-    //calculate
-    return p;
+
+int SubjectBlock::getPenaltyCost(){
+    if(grade == A)
+        return int(cost * 0.8);
+    else if(grade == B)
+        return int(cost * 0.4);
+    else if(grade == C)
+        return int(cost * 0.2);
 }
+
+
+int SubjectBlock::getSellCost(){
+    return getBuyOutPrice() /2;
+
+}
+
 
 void SubjectBlock::enter(Player* player)
 {
+    qDebug() << "subjectblock enter" << getPosition();
+    qDebug() << "cost:" << cost;
     QMessageBox mbox;
     mbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     mbox.setDefaultButton(QMessageBox::Ok);
     if(owner == NULL)   //빈블럭
     {
-        if(player->getEnergy() >= value){
-
+        if(player->getEnergy() >= cost)
+        {
             mbox.setText("이 과목을 수강하시겠습니까?");
-            mbox.exec();
+            mbox.setInformativeText("수강료:" + QString::number(cost));
             int userselect = mbox.exec();
 
             if(userselect==QMessageBox::Ok)   //if buy
             {
-                player->buyBlock(this);
+                player->payEnergy(cost);
+                player->addBlock(this);
+                decideGrade();
             }
-            LocalGame::getInst()->turnOver();
-            return;
         }
     }
     else if(owner==player)  //자신의 블럭
     {
         mbox.setText("이 과목을 재수강하시겠습니까?");
         int userselect = mbox.exec();
-        if(userselect== QMessageBox::Ok)   //if yes
-        {
+        if(userselect== QMessageBox::Ok){   //if yes
             decideGrade();
         }
-
-        LocalGame::getInst()->turnOver();
-        return;
     }
     else    //타인의 블럭
     {
-        if(getPenalyCost()<player->getEnergy())
+        qDebug() << "penalty!";
+        if(getPenaltyCost() < player->getEnergy())
         {
-            player->payEnergy(penaltycost);
-            this->owner->giveEnergy(penaltycost);
-
+            qDebug() <<"pay!";
+            player->payEnergy(getPenaltyCost());
+            this->owner->giveEnergy(getPenaltyCost());
             if(player->getEnergy() > getBuyOutPrice()){
                 mbox.setText("블럭을 인수하시겠습니까?");
                 int userselect = mbox.exec();
                 if(userselect == QMessageBox::Ok)//buy the block;
                 {
-                    int priceofownedsubject=value+penaltycost*2;//value나 cost나.... 합치는 작업 해줘야할듯!
                     this->owner->removeBlock(this);
-                    player->pushBlock(this);
-                    player->addTotalOwnSubjectEnergy(value);
-                    this->owner->addTotalOwnSubjectEnergy(-value);
-                    player->setEnergy(player->getEnergy()-priceofownedsubject);
-                    this->owner->setEnergy(this->owner->getEnergy()+priceofownedsubject);
+                    this->owner->giveEnergy(getBuyOutPrice());
+                    player->payEnergy(getBuyOutPrice());
+                    player->addBlock(this);
                 }
             }
-            return;
         }
         else{//블럭을 팔거나 파산한다.
-            //popup gogo
-            if(player->getAssetValue() > penaltycost){
 
-                Sellpopup * popup = new Sellpopup();
-                popup->show();
-
+            //자산을 팔아서 메꿀수 있을 경우
+            qDebug() << "sell asset!";
+            if(player->getAssetValue() > getPenaltyCost()){
+             {
+            qDebug() << "sell asset!";
+            Sellpopup *popup = new Sellpopup(QGameItem::getWindow(), player, this);
+                popup->show(); //내부에서 매각하는것을 구현했음
+            }
+            }
+            //소 팔고 외양간 팔아도 파산 ㅠㅠ
+            else {
+                player->setBankrupt();
             }
         }
     }
+    LocalGame::getInst()->turnOver();
+    return;
 }
 
 void SubjectBlock::decideGrade(){//random 받아서 20% A, 40% B, 40% C
@@ -128,14 +144,20 @@ void SubjectBlock::decideGrade(){//random 받아서 20% A, 40% B, 40% C
     randomvalue = rand() % 100 + 1;
 
     if(randomvalue<=20)
-        grade = 4;      //A
+        grade = A;      //A
     else if(randomvalue<=60)
-        grade = 3;      //B
+        grade = B;      //B
     else
-        grade = 2;      //C
-
+        grade = C;      //C
 }
 
 void SubjectBlock::mousePressEvent(QGraphicsSceneMouseEvent *event){
     qDebug() << "subject name:" << this->subject_name;
+}
+
+void SubjectBlock::setOwner(Player *player){
+    //cannot be called
+    Q_ASSERT(owner == NULL);
+    if(owner == NULL)
+        owner = player;
 }
