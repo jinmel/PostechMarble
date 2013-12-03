@@ -4,6 +4,7 @@
 #include "player.h"
 #include "dice.h"
 #include "sellpopup.h"
+#include "localgame.h"
 // Constructor & Destructor
 FireFridayBlock::FireFridayBlock(QGameItem * parent,FireFridayType::Type type)
     : Block(parent)
@@ -29,7 +30,7 @@ void FireFridayBlock::enter(Player *player)
     case TONGZIP: inTONGZIP(player);
         break;
     }
-
+    LocalGame::getInst()->turnOver();
 }
 
 void FireFridayBlock::inSEOULJONGBIN(Player *player)

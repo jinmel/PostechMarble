@@ -2,6 +2,7 @@
 #include <ctime>
 #include <iostream>
 #include <cstdlib>
+#include "localgame.h"
 
 using namespace std;
 
@@ -20,9 +21,9 @@ EventBlock::~EventBlock()
 // Methods
 void EventBlock::enter(Player* player)
 {
-
+    LocalGame::getInst()->turnOver();
+    return;
 }
-
 
 void EventBlock::checkEvent(Player* player)
 {
