@@ -4,7 +4,12 @@
 #include <iostream>
 #include <algorithm>
 #include <QDebug>
+#include "board.h"
 #include <QtGlobal>
+#include <QPropertyAnimation>
+#include <QSequentialAnimationGroup>
+#define NUMBER_OF_BLOCKS 32
+#define NEXT_POS(current_pos) ((current_pos + 1) % 32)
 
 using namespace std;
 
@@ -158,24 +163,43 @@ bool Player::escapeMouindo()
 }
 
 
-void Player::walkTo(int dice)
+void Player::walkBy(int steps)
 {
-    Q_ASSERT(dice <= 12 && dice >=2);
-    int currentpos = position;
-    int next_pos = position + dice;
-    if(next_pos >= 36) {
-        giveSalary();
-        next_pos %= 36;
-    }
+    using namespace BlockCoords;
+    const int step_interval = 300; //0.1 seconds
+    int current_pos = position;
+    int next_pos;
+    int index = 0;
 
-    jumpTo(next_pos);
+    QSequentialAnimationGroup * seq_animation_group
+            = new QSequentialAnimationGroup;
+
+    while(steps){
+        next_pos = NEXT_POS(current_pos);
+        QPropertyAnimation * step_animation
+                = new QPropertyAnimation(this,"pos");
+        step_animation->setDuration(step_interval);
+        step_animation->setStartValue(block_coord[current_pos]);
+        step_animation->setEndValue(block_coord[next_pos]);
+        step_animation->setEasingCurve(QEasingCurve::InOutQuint);
+        seq_animation_group->addAnimation(step_animation);
+        steps--; //decrease one step
+        current_pos = next_pos;
+        if(current_pos == 0){
+            //maybe add animation for gaining energy
+            giveSalary();
+        }
+    }
+    seq_animation_group->start(QAbstractAnimation::DeleteWhenStopped);
+    position = current_pos;
 }
 
 void Player::jumpTo(int block_num){
-    this->position = block_num;
+    using namespace BlockCoords;
+    QPointF target = block_coord[block_num];
+    animateTo(target.x(),target.y(),2000);
+    position = block_num;
 
-    // some kind of animation?: NO
-    //this->setPos(getCoord());
 }
 
 void Player::removeBlock(Block* block){

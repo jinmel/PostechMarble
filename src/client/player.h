@@ -11,6 +11,7 @@ class Block;
 
 class Player : public QGameItem
 {
+    Q_OBJECT
 private:
     int         id;
     QString     name;
@@ -47,9 +48,6 @@ public:
     void setMouindo(int penalty);
     bool escapeMouindo();
 
-    void walkTo(int dice);
-    void jumpTo(int block_num);
-
     void addTotalOwnSubjectEnergy(int subjectenergy);
     void setBankrupt(bool bankrupt);
     void pushBlock(Block* block);
@@ -64,10 +62,11 @@ public:
     void payEnergy(int payenergy);
     void paidEnergy(int paidenergy);
     void takeEnergy(int paidenergy);
-
     bool checkWinStatus();
 
-private:
-    //void moveAnimation(int block_num);
+public slots:
+    void walkBy(int dice);
+    void jumpTo(int block_num);
+
 };
       
