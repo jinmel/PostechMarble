@@ -27,6 +27,7 @@ public:
     void decideGrade();
     int getBuyOutPrice();
     int getPenalyCost();
+    int getSellCost();
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
 };
