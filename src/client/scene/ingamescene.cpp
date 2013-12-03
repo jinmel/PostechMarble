@@ -73,7 +73,6 @@ IngameScene::IngameScene(qreal x, qreal y,
     Dice * dice = Dice::getInst();
 
     connect(dice, SIGNAL(diceDouble()), this, SLOT(showDouble()));
-
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
     connect(dice,SIGNAL(secondDiceRolled(int)),second_dice_panel,SLOT(setValue(int)));
 }
