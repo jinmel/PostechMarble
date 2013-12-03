@@ -133,10 +133,20 @@ QString Sellpopup::convertGrade(int grade)
 
 void Sellpopup::sell()
 {
+    qDebug() << "Selling Block!";
+
     /*
     for(int i=0; i<block_num; i++) {
         if(checks[i]->isChecked())
             player->sellBlock(blocks[i]);
     }
     */
+
+}
+
+void Sellpopup::bankrupt()
+{
+    qDebug() << "Player " << player->getId() << "bankrupted!";
+
+    //player->setBankrupt();
 }
