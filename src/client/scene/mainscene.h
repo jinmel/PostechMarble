@@ -20,6 +20,7 @@ private:
     QGameItem *gplus_button;
     QGameItem *fb_button;
     QGameItem *all;
+    QGameItem *copy;
 
     void setupMain();
 
