@@ -40,9 +40,12 @@ void FireFridayBlock::inSEOULJONGBIN(Player *player)
         player->setEnergy(player->getEnergy() - 100);
         else
         {
+            if(player->getAssetValue() > penaltycost){
+
                 Sellpopup * popup = Sellpopup();
                 popup->show();
-                player->setEnergy(player->getEnergy()-100);
+
+            }
         }
     }
 }
@@ -55,9 +58,10 @@ void FireFridayBlock::inTONGZIP(Player *player)
         player->setEnergy(player->getEnergy() - 100);
         else
         {
+            if(player->getAssetValue() > penaltycost)
+            {
                 Sellpopup * popup = Sellpopup();
                 popup->show();
-                player->setEnergy(player->getEnergy()-100);
-        }
+            }
     }
 }
