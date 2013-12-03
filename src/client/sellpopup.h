@@ -1,19 +1,22 @@
 #pragma once
-
+#include <QLayout>
 #include <QWidget>
+#include <QCheckBox>
+#include "player.h"
 
 namespace Ui {
-class sellpopup;
+class Sellpopup;
 }
 
-class sellpopup : public QWidget
+class Sellpopup : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit sellpopup(QWidget *parent = 0);
-    ~sellpopup();
-
+    explicit Sellpopup(QWidget *parent = 0, Player *player);
+    ~Sellpopup();
 private:
-    Ui::sellpopup *ui;
+    Ui::Sellpopup *ui;
+    QVBoxLayout *layout;
+    QCheckBox* blocks;
 };

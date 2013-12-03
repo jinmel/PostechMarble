@@ -86,6 +86,19 @@ CharacterType::Type Player::getType() const
 {
     return character_type;
 }
+
+
+Block** Player::getBlocks() const
+{
+    Block** blocks = new Block*[own_blocks.size()];
+
+    for (int i=0; i< own_blocks.size(); i++)
+        blocks[i] = own_blocks[i];
+
+    return blocks;
+}
+
+
 int Player::getTotalOwnSubjectEnergy() const
 {
     return totalownsubjectenergy;
