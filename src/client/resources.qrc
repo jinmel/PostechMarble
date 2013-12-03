@@ -83,5 +83,6 @@
         <file>images/ourphotos/photo3.png</file>
         <file>images/ingame/block/fire/seouljongbin.png</file>
         <file>images/ingame/block/fire/tongzip.png</file>
+        <file>images/ingame/block/Event_block2.png</file>
     </qresource>
 </RCC>
