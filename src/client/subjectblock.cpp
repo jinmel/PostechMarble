@@ -67,7 +67,7 @@ void SubjectBlock::enter(Player* player)
             mbox.exec();
             int userselect = mbox.exec();
 
-            if(userselect==QMessageBox::ok)   //if buy
+            if(userselect==QMessageBox::Ok)   //if buy
             {
                 player->buyBlock(this);
             }
@@ -114,7 +114,7 @@ void SubjectBlock::enter(Player* player)
             //popup gogo
             if(player->getAssetValue() > penaltycost){
 
-                Sellpopup * popup = Sellpopup();
+                Sellpopup * popup = new Sellpopup();
                 popup->show();
 
             }
@@ -122,7 +122,7 @@ void SubjectBlock::enter(Player* player)
     }
 }
 
-void SubjectBlock::decideGrade(){
+void SubjectBlock::decideGrade(){//random 받아서 20% A, 40% B, 40% C
     srand((unsigned)time(NULL));
     int randomvalue;
     randomvalue = rand() % 100 + 1;
