@@ -47,6 +47,7 @@ public:
     void setEnergy(int getenergy);
     void setPlural(bool plural);
     void setMouindo(int penalty);
+    void setMobile(bool mobile);
     bool escapeMouindo();
 
     void setBankrupt();
@@ -57,6 +58,8 @@ public:
     void payEnergy(int payenergy);
     void giveEnergy(int paidenergy);
     bool checkWinStatus();
+    QPointF adjustCoord(QPointF & coord);
+
 signals:
     void playerArrived(Player * player);
 public slots:

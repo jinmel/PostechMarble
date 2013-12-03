@@ -77,6 +77,10 @@ int Player::getPosition() const
     return position;
 }
 
+QPointF Player::adjustCoord(QPointF &coord){
+    return coord;
+}
+
 
 bool Player::isBankrupt() const
 {
@@ -118,13 +122,11 @@ list<Block*> Player::getBlocks() const
     return own_blocks;
 }
 
-
 // Methods
 void Player::setEnergy(int energy)
 {
     this->energy = energy;
 }
-
 
 void Player::setPlural(bool plural)
 {
@@ -139,10 +141,14 @@ void Player::setBankrupt()
 
 // set player to stay mouindo
 // parm: how long to stay in mouindo
-void Player::setMouindo(int panelty)
+void Player::setMouindo(int penalty)
 {
-    this->penalty = panelty;
+    this->penalty = penalty;
     mobile = false;
+}
+
+void Player::setMobile(bool mobile){
+    this->mobile = mobile;
 }
 
 // check player escaped or not
