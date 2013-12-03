@@ -99,11 +99,6 @@ list<Block*> Player::getBlocks() const
 }
 
 
-int Player::getTotalOwnSubjectEnergy() const
-{
-    return totalownsubjectenergy;
-}
-
 // Methods
 void Player::setEnergy(int energy)
 {
@@ -117,20 +112,11 @@ void Player::setPlural(bool plural)
 }
 
 
-void Player::addTotalOwnSubjectEnergy(int subjectenergy){
-    this->totalownsubjectenergy+=subjectenergy;
-
-    }
 void Player::setBankrupt()
 {
     bankrupt = true;
 }
 
-void Player::pushBlock(Block* block)
-{
-    own_blocks.push_back(block);
-
-}
 // set player to stay mouindo
 // parm: how long to stay in mouindo
 void Player::setMouindo(int panelty)
@@ -201,6 +187,7 @@ void Player::walkBy(int steps)
     position = current_pos;
 }
 
+
 void Player::jumpTo(int block_num){
     using namespace BlockCoords;
     QPointF target = block_coord[block_num];
@@ -209,12 +196,15 @@ void Player::jumpTo(int block_num){
 
 }
 
-void Player::removeBlock(Block* block){
-    own_blocks.remove(block);
-}
 
 bool Player::hasBlock(Block* block)
 {
+    // subject block check
+    if(block->getType() != BlockType::SUBJECT) {
+        qDebug() << "This is not a Subject Block!";
+        return false;
+    }
+
     list<Block*>::iterator finder = own_blocks.end();
     finder = find(own_blocks.begin(), own_blocks.end(), block);
 
@@ -225,130 +215,27 @@ bool Player::hasBlock(Block* block)
         return true;
 }
 
-
-void Player::buyBlock(Block* block)
+void Player::addBlock(Block *block)
 {
-    using namespace BlockType;
-
-    if(!hasBlock(block))
-        qDebug() << "You don't have that block. Check Again!" << endl;
-
-    else {
-        switch(block->getType()) {
-        case CORNER:
-            // CornerBlock
-            break;
-        case EVENT:
-            // EventBlock
-            break;
-        case FRIDAY:
-            // FriayBlock
-            break;
-        case SUBJECT:
-            // SubjectBlock
-            registered.find(((SubjectBlock*)block)->getDept())->second++;
-            totalownsubjectenergy+=block->getValue();
-            break;
-        }
-
-        own_blocks.push_back(block);
+    if(!hasBlock(block)) {
+        qDebug() << "You don't have that block. Check Again!";
+        return;
     }
-
-    energy -= block->getValue();
-
+    
+    registered.find(((SubjectBlock*)block)->getDept())->second++;
+    own_blocks.push_back(block);
 }
 
 
-void Player::sellBlock(Block* block)
+void Player::removeBlock(Block *block)
 {
-    using namespace BlockType;
-
-    if(!hasBlock(block))
-        qDebug() << "You don't have that block. Check Again!" << endl;
-
-    else {
-        switch(block->getType()) {
-        case CORNER:
-            // CornerBlock
-            break;
-        case EVENT:
-            // EventBlock
-            break;
-        case FRIDAY:
-            // FriayBlock
-            break;
-        case SUBJECT:
-            // SubjectBlock
-            registered.find(((SubjectBlock*)block)->getDept())->second--;
-            totalownsubjectenergy-=block->getValue();
-            break;
-
-        }
-
-        own_blocks.remove(block);
+    if(!hasBlock(block)) {
+        qDebug() << "You don't have that block. Check Again!";
+        return;
     }
-    energy += block->getValue();
-}
 
-
-void Player::takeBlock(Block *block)
-{
-    using namespace BlockType;
-
-    if(!hasBlock(block))
-        qDebug() << "You don't have that block. Check Again!" << endl;
-
-    else {
-        switch(block->getType()) {
-        case CORNER:
-            // CornerBlock
-            break;
-        case EVENT:
-            // EventBlock
-            break;
-        case FRIDAY:
-            // FriayBlock
-            break;
-        case SUBJECT:
-            // SubjectBlock
-            registered.find(((SubjectBlock*)block)->getDept())->second++;
-            totalownsubjectenergy+=block->getValue();
-            break;
-        }
-
-        own_blocks.push_back(block);
-    }
-}
-
-
-void Player::loseBlock(Block *block)
-{
-    using namespace BlockType;
-
-    if(!hasBlock(block))
-        qDebug() << "You don't have that block. Check Again!" << endl;
-
-    else {
-        switch(block->getType()) {
-        case CORNER:
-            // CornerBlock
-            break;
-        case EVENT:
-            // EventBlock
-            break;
-        case FRIDAY:
-            // FriayBlock
-            break;
-        case SUBJECT:
-            // SubjectBlock
-            registered.find(((SubjectBlock*)block)->getDept())->second--;
-            totalownsubjectenergy-=block->getValue();
-            break;
-
-        }
-
-        own_blocks.remove(block);
-    }
+    registered.find(((SubjectBlock*)block)->getDept())->second--;
+    own_blocks.remove(block);
 }
 
 
@@ -394,5 +281,9 @@ int Player::getId() const {
 
 void Player::setType(CharacterType::Type type) {
     character_type = type;
+}
+
+int Player::getAssetValue() const {
+
 }
 
