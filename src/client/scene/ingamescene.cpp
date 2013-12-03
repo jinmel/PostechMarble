@@ -5,6 +5,7 @@
 #include <QTimeLine>
 #include <QEasingCurve>
 #include "block.h"
+#include "localgame.h"
 
 
 IngameScene::IngameScene(qreal x, qreal y,
@@ -17,12 +18,17 @@ IngameScene::IngameScene(qreal x, qreal y,
     setBackgroundPixmap(":/images/ingame/background_test.jpg");
 
     board = new Board(this,window);
-    board->setPos(200,10);
+    board->setPos(200,720-board->boundingRect().size().height());
+
 
     player = new Player(board,1);
     player->setImage(":/images/ingame/pieces/blue.png");
     player->setPos(BlockCoords::corner_coord[0]);
     player->setZValue(3);
+
+    LocalGame * game = LocalGame::getInst();
+    game->addPlayer(player);
+    game->init(board,Dice::getInst());
 
     //주사위 그래픽
     dice_graphic = new DiceGraphicItem(this,window);
@@ -40,7 +46,6 @@ IngameScene::IngameScene(qreal x, qreal y,
 
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
-    connect(dice,SIGNAL(diceRolled(int)),player,SLOT(walkBy(int)));
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
     connect(dice,SIGNAL(secondDiceRolled(int)),second_dice_panel,SLOT(setValue(int)));
 }
