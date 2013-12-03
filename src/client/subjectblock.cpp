@@ -65,10 +65,9 @@ void SubjectBlock::enter(Player* player)
         if(player->getEnergy() >= cost)
         {
             mbox.setText("이 과목을 수강하시겠습니까?");
-            mbox.setInformativeText("수강료:",QString::number(cost));
+            mbox.setInformativeText("수강료:" + QString::number(cost));
             mbox.exec();
             int userselect = mbox.exec();
-
             if(userselect==QMessageBox::Ok)   //if buy
             {
                 player->payEnergy(cost);
@@ -129,6 +128,10 @@ void SubjectBlock::decideGrade(){
         grade = B;      //B
     else
         grade = C;      //C
+}
+
+int SubjectBlock::getSellCost(){
+    return cost;
 }
 
 void SubjectBlock::mousePressEvent(QGraphicsSceneMouseEvent *event){
