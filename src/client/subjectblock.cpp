@@ -98,8 +98,10 @@ void SubjectBlock::enter(Player* player)
     }
     else    //타인의 블럭
     {
+        qDebug() << "penalty!";
         if(getPenaltyCost() < player->getEnergy())
         {
+            qDebug() <<"pay!";
             player->payEnergy(getPenaltyCost());
             this->owner->giveEnergy(getPenaltyCost());
             if(player->getEnergy() > getBuyOutPrice()){
@@ -116,6 +118,7 @@ void SubjectBlock::enter(Player* player)
         }
         else {//블럭을 팔거나 파산한다.
             //자산을 팔아서 메꿀수 있을 경우
+            qDebug() << "sell asset!";
             if(player->getAssetValue() > getPenaltyCost()){
 
                 Sellpopup *popup = new Sellpopup(QGameItem::getWindow(), player, this);
@@ -146,4 +149,11 @@ void SubjectBlock::decideGrade(){
 
 void SubjectBlock::mousePressEvent(QGraphicsSceneMouseEvent *event){
     qDebug() << "subject name:" << this->subject_name;
+}
+
+void SubjectBlock::setOwner(Player *player){
+    //cannot be called
+    Q_ASSERT(owner == NULL);
+    if(owner == NULL)
+        owner = player;
 }
