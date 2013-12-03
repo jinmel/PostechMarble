@@ -74,6 +74,7 @@ void CreditScene::animateCredit()
     player->play();
 }
 
+// Credit
 Credit::Credit(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene, window)
 {
