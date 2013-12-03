@@ -72,7 +72,6 @@ IngameScene::IngameScene(qreal x, qreal y,
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
 
-    connect(dice,SIGNAL(diceRolled(int)),player,SLOT(walkBy(int)));
     connect(dice, SIGNAL(diceDouble()), this, SLOT(showDouble()));
 
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));

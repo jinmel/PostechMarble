@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "localgame.h"
+#include "sellpopup.h"
 
 using namespace std;
 
