@@ -5,7 +5,6 @@ Block::Block(QGameItem * parent) : QGameItem(parent)
 {
     // dummy
     position = -1;
-    value = 0;
     block_type = BlockType::NONE;
 }
 
@@ -13,14 +12,6 @@ Block::Block(QGameItem * parent) : QGameItem(parent)
 Block::~Block()
 {
 }
-
-
-// Methods
-int Block::getValue() const
-{
-    return value;
-}
-
 
 BlockType::Type Block::getType() const
 {

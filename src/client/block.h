@@ -10,13 +10,11 @@ class Block : public QGameItem
 {
 protected:
     int position;
-    int value;
     BlockType::Type block_type;
     QPointF coord;
 public:
     Block(QGameItem * parent);
     virtual ~Block();
-    int getValue() const;
     BlockType::Type getType() const;
     void setPosition(int position);
     void setPos(const QPointF &coord);
