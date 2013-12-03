@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <QMediaPlayer>
 #include <QFileInfo>
+#include <QTimeLine>
 
 using namespace std;
 
@@ -61,7 +62,7 @@ void Dice::roll()
     // if double: emit double signal
     if(isDouble()) {
         // wait for roll
-        connect(new QTimeLine(1500), SIGNAL(finished()), this, SIGNAL(diceDouble());
+        connect(new QTimeLine(1500), SIGNAL(finished()), this, SIGNAL(diceDouble()));
     }
 
     // play sound
