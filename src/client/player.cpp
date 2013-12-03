@@ -121,9 +121,9 @@ void Player::addTotalOwnSubjectEnergy(int subjectenergy){
     this->totalownsubjectenergy+=subjectenergy;
 
     }
-void Player::setBankrupt(bool bankrupt)
+void Player::setBankrupt()
 {
-    this->bankrupt=bankrupt;
+    bankrupt = true;
 }
 
 void Player::pushBlock(Block* block)
