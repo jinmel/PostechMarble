@@ -77,8 +77,9 @@ void SubjectBlock::enter(Player* player)
     {
         if(player->getEnergy() >= cost)
         {
+            mbox.windowTitle("과목 수강");
             mbox.setText("이 과목을 수강하시겠습니까?");
-            mbox.setInformativeText("수강료:" + QString::number(cost));
+            mbox.setInformativeText("수강료: " + QString::number(cost));
             int userselect = mbox.exec();
             if(userselect==QMessageBox::Ok)   //if buy
             {
@@ -90,6 +91,7 @@ void SubjectBlock::enter(Player* player)
     }
     else if(owner==player)  //자신의 블럭
     {
+        mbox.windowTitle("과목 재수강");
         mbox.setText("이 과목을 재수강하시겠습니까?");
         int userselect = mbox.exec();
         if(userselect== QMessageBox::Ok){   //if yes
@@ -104,8 +106,9 @@ void SubjectBlock::enter(Player* player)
             qDebug() <<"pay!";
             player->payEnergy(getPenaltyCost());
             this->owner->giveEnergy(getPenaltyCost());
-            if(player->getEnergy() > getBuyOutPrice()){
-                mbox.setText("블럭을 인수하시겠습니까?");
+            if(player->getEnergy() > getBuyOutPrice()) {
+                mbox.windowTitle("과목 인수");
+                mbox.setText("과목을 인수하시겠습니까?");
                 int userselect = mbox.exec();
                 if(userselect == QMessageBox::Ok)//buy the block;
                 {
@@ -135,9 +138,7 @@ void SubjectBlock::enter(Player* player)
 }
 
 void SubjectBlock::decideGrade(){
-    srand((unsigned)time(NULL));
-    int randomvalue;
-    randomvalue = rand() % 100 + 1;
+    int randomvalue = rand() % 100 + 1;
 
     if(randomvalue<=20)
         grade = A;      //A
@@ -147,8 +148,8 @@ void SubjectBlock::decideGrade(){
         grade = C;      //C
 }
 
-void SubjectBlock::mousePressEvent(QGraphicsSceneMouseEvent *event){
-    qDebug() << "subject name:" << this->subject_name;
+void SubjectBlock::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+    qDebug() << "subject name: " << this->subject_name;
 }
 
 void SubjectBlock::setOwner(Player *player){
