@@ -46,9 +46,9 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[3]->setImage(":/images/ingame/block/vertical/CSED_background_vertical.png");
     blocks[3]->setPos(block_coord[3]);
 
-    //Event block
+    //Fire block
     blocks[4] = new FireFridayBlock(this,FireFridayType::TONGZIP); //통집
-    blocks[4]->setImage(":/images/ingame/block/vertical/Event_block_vertical.png");
+    blocks[4]->setImage(":/images/ingame/block/fire/tongzip.png");
     blocks[4]->setPos(block_coord[4]);
 
     //ME subject block
@@ -115,9 +115,9 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[19]->setPos(block_coord[19]);
     blocks[19]->rotateImage(180);
 
-    //Event block
+    //Fire block
     blocks[20] = new FireFridayBlock(this,FireFridayType::SEOULJONGBIN); // 설종빈
-    blocks[20]->setImage(":/images/ingame/block/vertical/Event_block_vertical.png");
+    blocks[20]->setImage(":/images/ingame/block/fire/seouljongbin.png");
     blocks[20]->setPos(block_coord[20]);
 
     //BIO subject block
