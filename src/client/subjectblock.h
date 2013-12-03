@@ -24,8 +24,9 @@ public:
     QString getName() const;
     int getGrade() const;
     virtual void enter(Player* player);
-
     void decideGrade();
+    int getBuyOutPrice();
+    int getPenalyCost();
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
 };

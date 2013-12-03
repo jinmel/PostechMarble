@@ -4,6 +4,7 @@
 #include "../dice.h"
 #include <QTimeLine>
 #include <QEasingCurve>
+#include "block.h"
 
 
 IngameScene::IngameScene(qreal x, qreal y,
@@ -20,8 +21,8 @@ IngameScene::IngameScene(qreal x, qreal y,
 
     player = new Player(board,1);
     player->setImage(":/images/ingame/block/player1.png");
-    player->setPos(10,10);
-    player->walkBy(65);
+    player->setPos(BlockCoords::corner_coord[0]);
+    player->setZValue(3);
 
     //주사위 그래픽
     dice_graphic = new DiceGraphicItem(this,window);
@@ -39,6 +40,7 @@ IngameScene::IngameScene(qreal x, qreal y,
 
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
+    connect(dice,SIGNAL(diceRolled(int)),player,SLOT(walkBy(int)));
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
     connect(dice,SIGNAL(secondDiceRolled(int)),second_dice_panel,SLOT(setValue(int)));
 }
@@ -68,8 +70,6 @@ DiceGraphicItem::DiceGraphicItem(QGraphicsScene *scene, MainWindow *window)
 
 void DiceGraphicItem::mousePressEvent(QGraphicsSceneMouseEvent *event){
     //버튼이 눌렸을 때의 이미지로 바꿈
-
-    qDebug() << "dice button Pressed";
     this->setImage(":/images/ingame/button2_pushed.png");
     //QGameItem::mousePressEvent(event);
 

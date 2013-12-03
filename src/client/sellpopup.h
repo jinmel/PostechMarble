@@ -23,10 +23,8 @@ private:
     SubjectBlock** blocks;
     Player *player;
     int block_num;
-
     QString convertDept(SubjectType::Type type);
     QString convertGrade(int grade);
-
 private slots:
     void sell();
     void bankrupt();

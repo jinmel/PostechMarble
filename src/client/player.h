@@ -53,8 +53,7 @@ public:
     void removeBlock(Block* block);
     void giveSalary();
     void payEnergy(int payenergy);
-    void paidEnergy(int paidenergy);
-    void takeEnergy(int paidenergy);
+    void giveEnergy(int paidenergy);
     bool checkWinStatus();
 
 public slots:

@@ -4,6 +4,9 @@
 #include "subjectblock.h"
 #include "dice.h"
 #include "qgameitem.h"
+#include <QMessageBox>
+#include "localgame.h"
+#include "sellpopup.h"
 
 // Constructor & Destructor
 SubjectBlock::~SubjectBlock()
@@ -39,93 +42,83 @@ int SubjectBlock::getGrade() const
     return grade;
 }
 
+int SubjectBlock::getBuyOutPrice(){
+    int buyoutprice = value;
+    //calculate
+    return buyoutprice;
+}
+
+int SubjectBlock::getPenalyCost(){
+    int p = penaltycost;
+    //calculate
+    return p;
+}
+
 void SubjectBlock::enter(Player* player)
 {
+    QMessageBox mbox;
+    mbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    mbox.setDefaultButton(QMessageBox::Ok);
     if(owner == NULL)   //빈블럭
     {
         if(player->getEnergy() >= value){
 
+            mbox.setText("이 과목을 수강하시겠습니까?");
+            mbox.exec();
+            int userselect = mbox.exec();
 
-            qDebug()<<"Do you want to buy this subject?"<<endl;
-            int userselect;
-            qDebug()<<"1.Yes    2.No"<<endl;
-            qDebug()<<">>";
-            //cin<<userselect;
-
-            if(userselect==1)   //if buy
+            if(userselect==QMessageBox::ok)   //if buy
             {
                 player->buyBlock(this);
-
             }
-            else                //not buy
-                return;
+            LocalGame::getInst()->turnOver();
+            return;
         }
     }
-    
     else if(owner==player)  //자신의 블럭
     {
-        qDebug()<<"Do you want to take this subject again?"<<endl;//재수강 여부 확인
-        int userselect;
-        qDebug()<<"1.yes    2.no";
-        //cin>>userselect;
-        if(userselect==1)   //if yes
+        mbox.setText("이 과목을 재수강하시겠습니까?");
+        int userselect = mbox.exec();
+        if(userselect== QMessageBox::Ok)   //if yes
         {
             decideGrade();
         }
-        else//if no
-            return;
 
+        LocalGame::getInst()->turnOver();
+        return;
     }
     else    //타인의 블럭
     {
-        if(penaltycost>player->getEnergy())
+        if(getPenalyCost()<player->getEnergy())
         {
             player->payEnergy(penaltycost);
-            this->owner->paidEnergy(penaltycost);
+            this->owner->giveEnergy(penaltycost);
 
-            qDebug()<<"Do you want to buy the block?"<<endl;
-            qDebug()<<"1.yes    2.no"<<endl;
-            int userselect;
-            if(userselect==1)//buy the block;
-            {
-                int priceofownedsubject=value+penaltycost*2;//value나 cost나.... 합치는 작업 해줘야할듯!
-                this->owner->removeBlock(this);
-                player->pushBlock(this);
-                player->addTotalOwnSubjectEnergy(value);
-                this->owner->addTotalOwnSubjectEnergy(-value);
-                player->setEnergy(player->getEnergy()-priceofownedsubject);
-                this->owner->setEnergy(this->owner->getEnergy()+priceofownedsubject);
-
+            if(player->getEnergy() > getBuyOutPrice()){
+                mbox.setText("블럭을 인수하시겠습니까?");
+                int userselect = mbox.exec();
+                if(userselect == QMessageBox::Ok)//buy the block;
+                {
+                    int priceofownedsubject=value+penaltycost*2;//value나 cost나.... 합치는 작업 해줘야할듯!
+                    this->owner->removeBlock(this);
+                    player->pushBlock(this);
+                    player->addTotalOwnSubjectEnergy(value);
+                    this->owner->addTotalOwnSubjectEnergy(-value);
+                    player->setEnergy(player->getEnergy()-priceofownedsubject);
+                    this->owner->setEnergy(this->owner->getEnergy()+priceofownedsubject);
+                }
             }
-            else//not buy the block
-            {return;}
-
-
-
+            return;
         }
         else{//블럭을 팔거나 파산한다.
+            //popup gogo
+            if(player->getAssetValue() > penaltycost){
 
-            if(penaltycost > player->getTotalOwnSubjectEnergy())//가진 모든 과목을 팔아도 안될때 -> bankrupt
-            {
-                player->setBankrupt();
+                Sellpopup * popup = Sellpopup();
+                popup->show();
+
             }
-            else
-            {
-
-                //과목을 팔도록 한다.
-                //사용자로부터 팔 과목을 선택받는다... panelty cost보다 높은 금액만큼의 과목..
-                std::list<Block*> delete_blocks;//블럭을 선택받아온다....
-
-
-                /*while(!delete_blocks->empty())
-               {  player->sellBlock(//block); }for문 돌려서 다 팔아줘야할듯~
-            */
-            }
-
         }
-
-
-
     }
 }
 
