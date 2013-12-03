@@ -29,7 +29,7 @@ public:
     void animateBy(qreal x,qreal y,int duration,
                    const QEasingCurve & curve=QEasingCurve::Linear);
     void hide(bool fade,int duration=1000);
-    void show(bool fase,int duration=1000);
+    void show(bool fade,int duration=1000);
     MainWindow* getWindow();
 
 private:
