@@ -2,13 +2,14 @@
 #include <qDebug>
 #include <ctime>
 #include <cstdlib>
+#include <QMediaPlayer>
+#include <QFileInfo>
 
 using namespace std;
 
 Dice::Dice()
 {
     qDebug() << "Dice Created";
-
     srand((unsigned)time(NULL));
     value1 = 0;
     value2 = 0;
@@ -56,6 +57,12 @@ void Dice::roll()
     emit secondDiceRolled(value2);
     emit diceRolled(getValue());
     emit diceRolled(this);
+
+    // play sound
+    QMediaPlayer* player = new QMediaPlayer();
+    player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/roll.mp3").absoluteFilePath()));
+    player->setVolume(100);
+    player->play();
 }
 
 bool Dice::isDouble()

@@ -59,6 +59,10 @@ void MainScene::setupMain()
     all = new QGameItem(this, window);
     all->setImage(":images/main/all.png");
     all->setPos(1180, 0);
+
+    copy = new QGameItem(this, window);
+    copy->setImage(":images/main/copy.png");
+    copy->setPos(350, 690);
 }
 
 

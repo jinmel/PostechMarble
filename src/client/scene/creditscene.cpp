@@ -67,7 +67,7 @@ void CreditScene::animateCredit()
     // sound
     QMediaPlayer* player = new QMediaPlayer();
     player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/error.mp3").absoluteFilePath()));
-    player->setVolume(80);
+    player->setVolume(100);
     
     // play sound & animate
     animation->start();
