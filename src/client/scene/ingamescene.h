@@ -1,5 +1,3 @@
-#ifndef INGAMESCENE_H
-#define INGAMESCENE_H
 #pragma once
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
@@ -126,6 +124,3 @@ private:
     Player * m_player;
     QGraphicsTextItem * m_energy_label;
 };
-
-
-#endif // INGAMESCENE_H

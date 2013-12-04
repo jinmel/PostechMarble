@@ -300,7 +300,7 @@ PlayerStatusDisplay::~PlayerStatusDisplay(){
 }
 
 void PlayerStatusDisplay::setEnergyText(int energy){
-    QString labelhtml("<h1>" + QString::number(energy) + "</h1>");
+    QString labelhtml("<h1> <font face='나눔고딕'>" + QString::number(energy) + "</h1></font>");
     m_energy_label->setHtml(labelhtml);
 }
 
