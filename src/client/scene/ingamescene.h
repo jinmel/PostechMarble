@@ -1,4 +1,5 @@
 #pragma once
+#include "pausepanel.h"
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 #include <QObject>
@@ -40,6 +41,8 @@ private:
     QGameItem *status1;
     QGameItem *status2;
     QMediaPlayer *bgm_player;
+    PausePanel *pause_panel;
+    PauseButton *pause_button;
 
 public:
     IngameScene(qreal x=0,qreal y=0,qreal width=1280,

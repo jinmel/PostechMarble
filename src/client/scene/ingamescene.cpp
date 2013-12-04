@@ -8,6 +8,7 @@
 #include "localgame.h"
 #include <QFileInfo>
 #include <QGraphicsOpacityEffect>
+#include "pausepanel.h"
 
 
 IngameScene::IngameScene(qreal x, qreal y,
@@ -40,7 +41,16 @@ IngameScene::IngameScene(qreal x, qreal y,
     player2->addBlock(board->getBlock(13));
 
 
+    // pause panel
+    pause_panel = new PausePanel(this, window);
+    pause_panel->setPos(440, 280);
+    pause_panel->setZValue(20);
+    pause_panel->hide(false);
 
+    // pause button
+    pause_button = new PauseButton(this, window, pause_panel);
+    pause_button->setPos(1200, 10);
+    pause_button->setZValue(2);
 
     // double graphic: hide
     double_graphic = new QGameItem(this, window);
@@ -96,6 +106,11 @@ IngameScene::~IngameScene(){
     delete second_dice_panel;
     delete dice_graphic;
     delete background;
+    delete board;
+    delete double_timeline;
+    delete bgm_player;
+    delete pause_button;
+    delete pause_panel;
 }
 
 QGraphicsPixmapItem* IngameScene::setBackgroundPixmap(const char * filename){
