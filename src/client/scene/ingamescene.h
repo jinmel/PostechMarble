@@ -21,6 +21,7 @@ class DiceValuePanel;
 class CharacterStatusBar;
 //포토제닉
 class PhotoGenicItem;
+class PlayerStatusDisplay;
 
 namespace Ui{
 class PhotoGenicPopup;
@@ -38,8 +39,8 @@ private:
     QGameItem *double_graphic;
     Board *board;
     QTimeLine *double_timeline;
-    QGameItem *status1;
-    QGameItem *status2;
+    PlayerStatusDisplay *status1;
+    PlayerStatusDisplay *status2;
     QMediaPlayer *bgm_player;
     PausePanel *pause_panel;
     PauseButton *pause_button;
@@ -121,9 +122,14 @@ public:
     ~PlayerStatusDisplay();
 public slots:
     void setEnergyText(int energy);
+    void spinNumber(int frame);
+    void endSpin();
     void activate();
     void disable();
 private:
-    Player * m_player;
+    QTimeLine * m_timeline;
+    int m_last_energy;
+    int m_display_energy;
+    Player const * const m_player;
     QGraphicsTextItem * m_energy_label;
 };

@@ -301,19 +301,46 @@ PlayerStatusDisplay::PlayerStatusDisplay(QGameItem *parent,Player * player)
     m_energy_label = new QGraphicsTextItem(this);
     m_energy_label->setPos(170,55);
     m_energy_label->setZValue(100);
-    setEnergyText(player->getEnergy());
+    m_timeline = new QTimeLine(1000,this);
+    m_timeline->setFrameRange(0,20); //20 changes
+    m_last_energy = player->getEnergy();
+    QString labelhtml("<h1><font face='나눔고딕'>" + QString::number(player->getEnergy()) + "</font></h1>");
+    m_energy_label->setHtml(labelhtml);
+
+    //connect all signals and slots
+    connect(m_timeline,SIGNAL(finished()),this,SLOT(endSpin()));
+    connect(m_timeline,SIGNAL(frameChanged(int)),this,SLOT(spinNumber(int)));
     connect(player,SIGNAL(activate()),this,SLOT(activate()));
     connect(player,SIGNAL(disable()),this,SLOT(disable()));
     connect(player,SIGNAL(energyChanged(int)),this,SLOT(setEnergyText(int)));
+
+}
+
+void PlayerStatusDisplay::spinNumber(int frame){
+    int spin_num = (((m_display_energy - m_last_energy) / 20) * frame) + m_last_energy;
+    QString labelhtml("<h1><font face='나눔고딕'>" + QString::number(spin_num) + "</font></h1>");
+    m_energy_label->setHtml(labelhtml);
+}
+
+void PlayerStatusDisplay::endSpin(){
+    //finally determine energy display value
+    QString labelhtml("<h1><font face='나눔고딕'>" + QString::number(this->m_display_energy) + "</font></h1>");
+    m_energy_label->setHtml(labelhtml);
+    m_last_energy = m_display_energy;
 }
 
 PlayerStatusDisplay::~PlayerStatusDisplay(){
+    qDebug() << "called";
     delete m_energy_label;
+    delete m_timeline;
+    delete m_player;
 }
 
 void PlayerStatusDisplay::setEnergyText(int energy){
-    QString labelhtml("<h1> <font face='나눔고딕'>" + QString::number(energy) + "</h1></font>");
-    m_energy_label->setHtml(labelhtml);
+    qDebug() << "display energy :" << energy;
+    qDebug() << "start energy:" << m_last_energy;
+    m_display_energy = energy;
+    m_timeline->start();
 }
 
 void PlayerStatusDisplay::activate(){
@@ -329,7 +356,6 @@ void PlayerStatusDisplay::disable(){
     effect->setOpacity(0.3);
     this->setGraphicsEffect(effect);
 }
-
 
 
 
