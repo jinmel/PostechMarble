@@ -9,6 +9,7 @@
 #include <QFileInfo>
 #include <QGraphicsOpacityEffect>
 #include "pausepanel.h"
+#include "subjectblock.h"
 
 
 IngameScene::IngameScene(qreal x, qreal y,
@@ -35,11 +36,6 @@ IngameScene::IngameScene(qreal x, qreal y,
     player2->setImage(":/images/ingame/pieces/red.png");
     player2->setPos(BlockCoords::corner_coord[0]);
     player2->setZValue(3);
-    player2->setEnergy(0);
-    player2->addBlock(board->getBlock(10));
-    player2->addBlock(board->getBlock(11));
-    player2->addBlock(board->getBlock(13));
-
 
     // pause panel
     pause_panel = new PausePanel(this, window);
@@ -164,10 +160,11 @@ void DiceGraphicItem::mousePressEvent(QGraphicsSceneMouseEvent *event){
 void DiceGraphicItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     //마우스에서 땠을 경우 다시 초기상태 이미지로 바꿈
     this->setImage(":/images/ingame/button.png");
-    //여기에 게임 스테이트 머신을 추가해서 롤할지 안할지 결정하게 해야함
-    Dice * dice = Dice::getInst();
-    dice->roll();
-
+    //roll dice only when localgame state permits this
+    if(LocalGame::getInst()->getGameState() == LocalGameState::ROLL_DICE){
+        Dice * dice = Dice::getInst();
+        dice->roll();
+    }
 }
 
 
