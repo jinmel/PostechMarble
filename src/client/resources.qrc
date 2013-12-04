@@ -20,7 +20,6 @@
         <file>images/ingame/pieces/piece4.png</file>
         <file>images/credit/credit_background.png</file>
         <file>images/credit/credit_splash.png</file>
-        <file>images/ingame/background_test.jpg</file>
         <file>images/ingame/board/back_white.png</file>
         <file>images/ingame/block/BIO_background.png</file>
         <file>images/ingame/block/CHEM_background.png</file>
@@ -94,5 +93,6 @@
         <file>images/ingame/pause/pause_pressed.png</file>
         <file>images/ingame/pause/reload_pressed.png</file>
         <file>images/ingame/pause/resume_pressed.png</file>
+        <file>images/ingame/sellpopup_panel.png</file>
     </qresource>
 </RCC>

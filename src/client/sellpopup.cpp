@@ -10,6 +10,7 @@ Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
     layout = new QVBoxLayout(ui->scrollAreaWidgetContents);
 
     // initialize
+    this->move(365, 152.5);
     this->player = player;
     needed_value = block->getPenaltyCost() - player->getEnergy();
 
@@ -27,7 +28,7 @@ Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
 
     // list up checkbox elements
     for(int i=0; i < block_num; i++) {
-        QString string = "Test";
+        QString string = "";
 
         // append department
         string +=  convertDept(blocks[i]->getDept());
@@ -71,6 +72,9 @@ Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
 Sellpopup::~Sellpopup()
 {
     delete ui;
+    delete layout;
+    delete[] checks;
+    delete[] blocks;
 }
 
 
