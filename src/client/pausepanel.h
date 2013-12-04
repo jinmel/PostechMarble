@@ -1,25 +1,24 @@
 #pragma once
+#pragma once
+#include <QGraphicsScene>
+#include "mainwindow.h"
+#include "qgameitem.h"
 
-/*
- *400X180
- *65, 75
- *167 75
- *273 75
- */
-class PausePopup : public QGameItem
+class ResumeButton;
+class MenuButton;
+class ReloadButton;
+
+class PausePanel : public QGameItem
 {
     Q_OBJECT
 public:
-    CreditButton(QGraphicsScene *scene, MainWindow *window);
-    virtual ~CreditButton();
-    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-    virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
+    PausePanel(QGraphicsScene *scene, MainWindow *window);
+    virtual ~PausePanel();
 
 private:
     ResumeButton    *resume;
     MenuButton      *menu;
-
+    ReloadButton    *reload;
 };
 
 
@@ -27,38 +26,45 @@ class ResumeButton : public QGameItem
 {
     Q_OBJECT
 public:
-    ResumeButton(QGraphicsScene *scene, MainWindow *window);
+    ResumeButton(QGameItem *parent);
     virtual ~ResumeButton();
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
 };
 
 class MenuButton : public QGameItem
 {
     Q_OBJECT
 public:
-    MenuButton(QGraphicsScene *scene, MainWindow *window);
+    MenuButton(QGameItem *parent);
     virtual ~MenuButton();
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
 };
 
 class ReloadButton : public QGameItem
 {
     Q_OBJECT
 public:
-    ReloadButton(QGraphicsScene *scene, MainWindow *window);
+    ReloadButton(QGameItem *parent);
     virtual ~ReloadButton();
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
 };
 
-class BackButton : public QGameItem
+class PauseButton : public QGameItem
 {
     Q_OBJECT
 public:
-    BackButton(QGraphicsScene *scene, MainWindow *window);
-    virtual ~BackButton();
+    PauseButton(QGraphicsScene *scene, MainWindow *window, PausePanel *panel);
+    virtual ~PauseButton();
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
+
+private:
+    PausePanel *panel;
 };
