@@ -12,6 +12,7 @@ namespace LocalGameState {
         SELL_SUBJECT,
         JUMP_PLAYER,
         TURN_OVER,
+        EVENT_DRINK,
         GAME_OVER
     };
 }

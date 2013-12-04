@@ -4,6 +4,7 @@
 #include <iostream>
 #include <QDebug>
 #include <QtGlobal>
+#include <QMessageBox>
 
 using namespace std;
 using namespace LocalGameState;
@@ -76,26 +77,7 @@ void LocalGame::setGameState(State new_state){
     m_state = new_state;
 }
 
-void LocalGame::diceEvent(Dice * dice){
-    qDebug() << "dice event caught by localgame";
-    if(m_state == ROLL_DICE){
-        if(m_current_player->isMobile()){
-            m_current_player->walkBy(dice->getValue());
-            m_state = PLAYER_MOVING;
-        }
-        else{
-            if(dice->isDouble()){
-                m_current_player->setMobile(true);
-                m_current_player->walkBy(dice->getValue());
-                m_state = PLAYER_MOVING;
-            }
-            else{
-                m_current_player->escapeAttempt(); //decreases one immobile penalty
-                turnOver();
-            }
-        }
-    }
-}
+
 
 void LocalGame::turnOver(){
     //switch current player to next player and change state
@@ -128,9 +110,46 @@ void LocalGame::turnOver(){
     m_state = ROLL_DICE;
 }
 
+void LocalGame::diceEvent(Dice * dice){
+    qDebug() << "dice event caught by localgame";
+    if(m_state == ROLL_DICE){
+        if(m_current_player->isMobile()){
+            m_current_player->walkBy(dice->getValue());
+            m_state = PLAYER_MOVING;
+        }
+        else{
+            if(dice->isDouble()){
+                m_current_player->setMobile(true);
+                m_current_player->walkBy(dice->getValue());
+                m_state = PLAYER_MOVING;
+            }
+            else{
+                m_current_player->escapeAttempt(); //decreases one immobile penalty
+                turnOver();
+            }
+        }
+    }
+}
+
 void LocalGame::blockEvent(Block *block){
+    qDebug() << "block event caught:" << block->getPosition();
     if(m_state == JUMP_PLAYER){
         m_current_player->jumpTo(block->getPosition());
+    }
+    if(m_state == EVENT_DRINK){
+        if (block->getPosition() != 20 && block->getPosition() != 4){
+            //not a valid location to jump.
+            QMessageBox mbox;
+            mbox.setStandardButtons(QMessageBox::Ok);
+            mbox.setDefaultButton(QMessageBox::Ok);
+            mbox.setWindowTitle(QString("이벤트: 음주"));
+            mbox.setText(QString("불금칸으로만 갈 수 있어요!"));
+            mbox.exec();
+        }
+        else{
+            m_current_player->jumpTo(block->getPosition());
+            m_state = PLAYER_MOVING;
+        }
     }
 }
 
