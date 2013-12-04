@@ -64,7 +64,6 @@ Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
 
     // connect
     connect(ui->sellButton, SIGNAL(clicked()), this, SLOT(sell()));
-    connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->bankruptButton, SIGNAL(clicked()), this, SLOT(bankrupt()));
 
 }

@@ -74,7 +74,7 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>108</x>
+     <x>190</x>
      <y>360</y>
      <width>75</width>
      <height>30</height>
@@ -89,31 +89,13 @@
     <string>판다능</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="cancelButton">
-   <property name="geometry">
-    <rect>
-     <x>348</x>
-     <y>360</y>
-     <width>75</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>싫다능</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="bankruptButton">
    <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
-     <x>228</x>
+     <x>300</x>
      <y>360</y>
      <width>75</width>
      <height>30</height>
@@ -125,13 +107,13 @@
     </font>
    </property>
    <property name="text">
-    <string>파산</string>
+    <string>망했다능</string>
    </property>
   </widget>
   <widget class="QLabel" name="neededValue">
    <property name="geometry">
     <rect>
-     <x>278</x>
+     <x>290</x>
      <y>330</y>
      <width>40</width>
      <height>25</height>
@@ -151,7 +133,7 @@
   <widget class="QLabel" name="selectedValue">
    <property name="geometry">
     <rect>
-     <x>218</x>
+     <x>235</x>
      <y>330</y>
      <width>40</width>
      <height>25</height>
@@ -172,7 +154,7 @@
   <widget class="QLabel" name="slash">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>275</x>
      <y>330</y>
      <width>16</width>
      <height>25</height>
@@ -211,7 +193,6 @@
   <zorder>label</zorder>
   <zorder>scrollArea</zorder>
   <zorder>sellButton</zorder>
-  <zorder>cancelButton</zorder>
   <zorder>bankruptButton</zorder>
   <zorder>neededValue</zorder>
   <zorder>selectedValue</zorder>
