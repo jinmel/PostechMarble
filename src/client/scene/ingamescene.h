@@ -113,5 +113,19 @@ signals:
 protected:
 };
 
+class PlayerStatusDisplay : public QGameItem{
+    Q_OBJECT
+public:
+    PlayerStatusDisplay(QGameItem * parent,Player * player);
+    ~PlayerStatusDisplay();
+public slots:
+    void setEnergyText(int energy);
+    void activate();
+    void disable();
+private:
+    Player * m_player;
+    QGraphicsTextItem * m_energy_label;
+};
+
 
 #endif // INGAMESCENE_H

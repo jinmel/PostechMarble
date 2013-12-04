@@ -34,12 +34,14 @@ void LocalGame::delInst(){
 void LocalGame::addPlayer(Player *new_player){
     player_queue->push(new_player);
     nPlayers++;
+    emit new_player->disable();
     connect(new_player,SIGNAL(playerArrived(Player*)),this,SLOT(playerEvent(Player*)));
 }
 
 void LocalGame::init(Board * board, Dice * dice){
     m_current_player = player_queue->next();
     Q_CHECK_PTR(m_current_player);
+    emit m_current_player->activate();
     m_board = board;
     m_dice = dice;
     nPlayers = 0;
@@ -114,11 +116,13 @@ void LocalGame::turnOver(){
     //should never happen
     Q_ASSERT(nPlayers != 1);
     //update current Player if dice is not double
+    emit m_current_player->disable();
     if(!Dice::getInst()->isDouble()){
         do {
             m_current_player = player_queue->next();
         } while(m_current_player->isBankrupt());
     }
+    emit m_current_player->activate();
     m_state = ROLL_DICE;
 }
 
