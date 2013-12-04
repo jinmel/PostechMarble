@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     scene/logoscene.cpp \
     scene/creditscene.cpp \
     scene/mainscene.cpp \
-    scene/readyscene.cpp
+    scene/readyscene.cpp \
+    pausepopup.cpp
 
 HEADERS  += mainwindow.h \
     player.h \
@@ -52,7 +53,8 @@ HEADERS  += mainwindow.h \
     scene/logoscene.h \
     scene/creditscene.h \
     scene/mainscene.h \
-    scene/readyscene.h
+    scene/readyscene.h \
+    pausepopup.h
 
 FORMS    += mainwindow.ui \
     sellpopup.ui
