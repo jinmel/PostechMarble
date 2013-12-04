@@ -56,6 +56,7 @@ void MainWindow::switchScene(int scenetype)
     }
 
     ui->graphicsView->setScene(scene);
+    this->animateScene(scenetype);
 }
 
 
