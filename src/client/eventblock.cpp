@@ -111,7 +111,12 @@ void EventBlock::loseSubject(Player* player)
 
 void EventBlock::lol(Player* player)
 {
-    qDebug() << "LOL event!";
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
+    warn_box.setWindowTitle("이벤트: 롤 중독");
+    warn_box.setText("롤에 중독되어 에너지가 감소합니다!");
+    warn_box.exec();
 
     // 50:50으로 행동력 증가 또는 감소, lol타입 캐릭터의 경우 항상 증가
     if(getType() == CharacterType::LOL)
@@ -123,12 +128,19 @@ void EventBlock::lol(Player* player)
         else
             player->setEnergy(player->getEnergy() - 100); // 패배
     }
+    LocalGame::getInst()->turnOver();
 }
 
 void EventBlock::eatChicken(Player* player)
 {
-    // 치느님을 영접하여 행동력 증가
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
+    warn_box.setWindowTitle("이벤트: 치느님");
+    warn_box.setText("치느님을 영접하여 에너지가 증가합니다!");
+    warn_box.exec();
     player->setEnergy(player->getEnergy() + 100);
+    LocalGame::getInst()->turnOver();
 }
 
 void EventBlock::photoGenic(QGraphicsScene * scene, MainWindow * window)

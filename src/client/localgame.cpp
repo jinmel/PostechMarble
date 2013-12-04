@@ -85,15 +85,15 @@ void LocalGame::turnOver(){
     if(m_current_player->checkWinStatus()){
         //TODO: need to emit signal to notify gameover
         winner = m_current_player;
-        qDebug() << "winner! player:" << m_current_player->getId();
+        qDebug() << "winner! player:" << winner->getId();
         m_state = GAME_OVER;
         return;
     }
     if(m_current_player->isBankrupt()){
         nPlayers--;
         if(nPlayers == 1) {
-            qDebug() << "winner! player:" << m_current_player->getId();
             winner = player_queue->next();
+            qDebug() << "winner! player:" << winner->getId();
             m_state = GAME_OVER;
             return;
         }
