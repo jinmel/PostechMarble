@@ -108,6 +108,7 @@ void LocalGame::turnOver(){
     if(m_current_player->isBankrupt()){
         nPlayers--;
         if(nPlayers == 1) {
+            qDebug() << "winner! player:" << m_current_player->getId();
             winner = player_queue->next();
             m_state = GAME_OVER;
             return;
