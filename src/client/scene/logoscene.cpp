@@ -27,6 +27,7 @@ LogoScene::LogoScene(qreal x, qreal y,
 
 LogoScene::~LogoScene()
 {
+    qDebug() << "LOGO destroy";
     delete background;
     delete team_logo;
 }
