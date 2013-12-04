@@ -237,7 +237,7 @@ void Player::jumpTo(int block_num){
             = new QPropertyAnimation(this,"pos");
     step_animation->setDuration(2000);
     step_animation->setStartValue(block_coord[getPosition()]);
-    step_animation->setEndValue(block_coord[block_num]);
+    step_animation->setEndValue(target);
     step_animation->setEasingCurve(QEasingCurve::InOutQuint);
     step_animation->start(QAbstractAnimation::DeleteWhenStopped);
 
