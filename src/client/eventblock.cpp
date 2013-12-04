@@ -31,11 +31,10 @@ void EventBlock::enter(Player* player)
     //checkEvent(player);
 }
 
-
 void EventBlock::checkEvent(Player* player,QGraphicsScene * scene, MainWindow * window)
 {
     // generate random event
-    int value = 0;
+    int value = rand() % 7;
 
     switch(value) {
     case 0:
@@ -120,13 +119,15 @@ void EventBlock::lol(Player* player)
 
     // 50:50으로 행동력 증가 또는 감소, lol타입 캐릭터의 경우 항상 증가
     if(getType() == CharacterType::LOL)
-        player->setEnergy(player->getEnergy() + 50); //
+        player->setEnergy(player->getEnergy() + 50);
     else
     {
-        if((rand() % 2) == 0)
-            player->setEnergy(player->getEnergy() + 50); //승리
-        else
-            player->setEnergy(player->getEnergy() - 100); // 패배
+        if((rand() % 2) == 0){
+            player->giveEnergy(50);
+        }
+        else{
+            player->takeEnergy(100);
+        }
     }
     LocalGame::getInst()->turnOver();
 }
@@ -139,7 +140,7 @@ void EventBlock::eatChicken(Player* player)
     warn_box.setWindowTitle("이벤트: 치느님");
     warn_box.setText("치느님을 영접하여 에너지가 증가합니다!");
     warn_box.exec();
-    player->setEnergy(player->getEnergy() + 100);
+    player->giveEnergy(100);
     LocalGame::getInst()->turnOver();
 }
 
