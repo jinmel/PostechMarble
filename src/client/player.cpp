@@ -47,7 +47,7 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 
     bankrupt = false;
     mobile = true;
-    penalty = 0;
+    immobile_penalty = 0;
     plural = false;
 
     character_type = CharacterType::NONE;
@@ -107,7 +107,7 @@ int Player::getEnergy() const
 
 int Player::getPenalty() const
 {
-    return penalty;
+    return immobile_penalty;
 }
 
 bool Player::isPlural() const
@@ -149,7 +149,7 @@ void Player::setBankrupt()
 // parm: how long to stay in mouindo
 void Player::setMouindo(int penalty)
 {
-    this->penalty = penalty;
+    this->immobile_penalty = penalty;
     mobile = false;
 }
 
@@ -157,7 +157,13 @@ void Player::setMobile(bool mobile){
     this->mobile = mobile;
 }
 
-// check player escaped or not
+void Player::escapeAttempt(){
+    immobile_penalty--;
+    if(immobile_penalty==0)
+        mobile = true;
+}
+
+//probably unused forever...
 bool Player::escapeMouindo()
 {
     if(mobile)
@@ -165,16 +171,15 @@ bool Player::escapeMouindo()
 
     else {
 
-        if(penalty == 0) {
+        if(immobile_penalty == 0) {
             mobile = true;
             return true;
         }
 
         else {
             // roll a dice
-            penalty--;
+            immobile_penalty--;
             return false;
-
         }
     }
 }
