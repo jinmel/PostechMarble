@@ -14,14 +14,22 @@ Dice::Dice()
     srand((unsigned)time(NULL));
     value1 = 0;
     value2 = 0;
+    roll_sound = new QMediaPlayer();
+    roll_sound->setVolume(100);
+    effect_sound = new QMediaPlayer();
+    effect_sound->setVolume(100);
+    timeline = new QTimeLine(1000);
 
-    timeline = new QTimeLine(1500);
     connect(timeline, SIGNAL(finished()), this, SIGNAL(diceDouble()));
+    connect(timeline, SIGNAL(finished()), this, SLOT(afterRollSound()));
 }
 
 Dice::~Dice()
 {
     qDebug() << "Dice Destroyed";
+    delete roll_sound;
+    delete effect_sound;
+    delete timeline;
 }
 
 
@@ -54,27 +62,24 @@ void Dice::delInst()
 void Dice::roll()
 {
     qDebug() << "Dice Rolled";
-//    value1 = rand() % 6 + 1;
-//    value2 = rand() % 6 + 1;
-    value1 = 6;
-    value2 = 6;
+    value1 = rand() % 6 + 1;
+    value2 = rand() % 6 + 1;
+
     emit diceRolled(getValue(),isDouble());
     emit firstDiceRolled(value1);
     emit secondDiceRolled(value2);
     emit diceRolled(getValue());
     emit diceRolled(this);
 
-    // if double: emit double signal
+    // if double
     if(isDouble()) {
         // wait for roll
         timeline->start();
     }
 
     // play sound
-    QMediaPlayer* player = new QMediaPlayer();
-    player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/roll.mp3").absoluteFilePath()));
-    player->setVolume(100);
-    player->play();
+    roll_sound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/roll.mp3").absoluteFilePath()));
+    roll_sound->play();
 }
 
 bool Dice::isDouble()
@@ -94,4 +99,54 @@ int Dice::getFirstDice()
 int Dice::getSecondDice()
 {
     return value2;
+}
+
+void Dice::afterRollSound()
+{
+    QString path = "";
+
+    if(isDouble())
+        path += "sound/double.wav";
+
+    else {
+        switch(value1 + value2) {
+            case 2:
+                path += "sound/two.wav";
+                break;
+            case 3:
+                path += "sound/three.wav";
+                break;
+            case 4:
+                path += "sound/four.wav";
+                break;
+            case 5:
+                path += "sound/five.wav";
+                break;
+            case 6:
+                path += "sound/six.wav";
+                break;
+            case 7:
+                path += "sound/seven.wav";
+                break;
+            case 8:
+                path += "sound/eight.wav";
+                break;
+            case 9:
+                path += "sound/nine.wav";
+                break;
+            case 10:
+                path += "sound/ten.wav";
+                break;
+            case 11:
+                path += "sound/eleven.wav";
+                break;
+            case 12:
+                path += "sound/twelve.wav";
+                break;
+        }
+    }
+        
+    effect_sound->setMedia(QUrl::fromLocalFile(QFileInfo(path).absoluteFilePath()));
+    effect_sound->play();
+
 }

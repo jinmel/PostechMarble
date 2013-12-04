@@ -6,6 +6,8 @@
 #include <QEasingCurve>
 #include "block.h"
 #include "localgame.h"
+#include <QFileInfo>
+#include <QGraphicsOpacityEffect>
 
 
 IngameScene::IngameScene(qreal x, qreal y,
@@ -15,30 +17,30 @@ IngameScene::IngameScene(qreal x, qreal y,
 {
     Q_CHECK_PTR(window);
 
-    setBackgroundPixmap(":/images/ingame/board/board_back.png");
+    setBackgroundPixmap(":/images/ingame/board/background.png");
     LocalGame * game = LocalGame::getInst();
 
     board = new Board(this,window);
     board->setPos(200,720 - board->boundingRect().size().height());
     board->setZValue(2);
 
-    Player * player = new Player(board,1);
-    player->setImage(":/images/ingame/pieces/blue.png");
-    player->setPos(BlockCoords::corner_coord[0]);
-    player->setZValue(3);
-    game->addPlayer(player);
+    Player * player1 = new Player(board,1);
+    player1->setImage(":/images/ingame/pieces/blue.png");
+    player1->setPos(BlockCoords::corner_coord[0]);
+    player1->setZValue(3);
 
-    player = new Player(board,2);
-    player->setImage(":/images/ingame/pieces/red.png");
-    player->setPos(BlockCoords::corner_coord[0]);
-    player->setZValue(3);
-    player->setEnergy(0);
-    player->addBlock(board->getBlock(10));
-    player->addBlock(board->getBlock(11));
-    player->addBlock(board->getBlock(13));
-    game->addPlayer(player);
 
-    game->init(board,Dice::getInst());
+    Player * player2 = new Player(board,2);
+    player2->setImage(":/images/ingame/pieces/red.png");
+    player2->setPos(BlockCoords::corner_coord[0]);
+    player2->setZValue(3);
+    player2->setEnergy(0);
+    player2->addBlock(board->getBlock(10));
+    player2->addBlock(board->getBlock(11));
+    player2->addBlock(board->getBlock(13));
+
+
+
 
     // double graphic: hide
     double_graphic = new QGameItem(this, window);
@@ -66,16 +68,23 @@ IngameScene::IngameScene(qreal x, qreal y,
     second_dice_panel->setPos(500,400);
     second_dice_panel->setZValue(2);
 
-    status1 = new QGameItem(board);
+    status1 = new PlayerStatusDisplay(board,player1);
     status1->setImage(":images/ingame/status/status1.png");
     status1->setPos(150, 120);
-
-    status2 = new QGameItem(board);
+    status2 = new PlayerStatusDisplay(board,player2);
     status2->setImage(":images/ingame/status/status2.png");
     status2->setPos(460, 120);
 
+    // setup BGM
+    bgm_player = new QMediaPlayer();
+    bgm_player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/bgm.mp3").absoluteFilePath()));
+    game->addPlayer(player1);
+    game->addPlayer(player2);
+    game->init(board,Dice::getInst());
+
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
+
 
     connect(dice,SIGNAL(diceDouble()), this, SLOT(showDouble()));
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
@@ -102,24 +111,24 @@ QGraphicsPixmapItem* IngameScene::backgroundPixmap(){
 void IngameScene::showDouble()
 {
     qDebug() << "Show Double";
-    double_graphic->show(true, 1000);
+    double_graphic->show(true, 300);
     double_timeline->start();
 }
 
 void IngameScene::hideDouble()
 {
     qDebug() << "Hide Double";
-    double_graphic->hide(true, 1000);
+    double_graphic->hide(true, 300);
 }
 
-void IngameScene::showPhotoGenic()
+
+void IngameScene::animateIngame()
 {
+    QMediaPlayer *player = new QMediaPlayer();
+    player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/gamestart.wav").absoluteFilePath()));
+    player->play();
 
-}
-
-void IngameScene::hidePhotoGenic()
-{
-
+    //bgm_player->play();
 }
 
 // DiceGrahicItem
@@ -221,6 +230,7 @@ void DiceValuePanel::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
 }
 
 
+// PhotoGenicItem
 PhotoGenicItem::PhotoGenicItem(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene,window){
 
@@ -272,3 +282,45 @@ void PhotoGenicItem::slidePhoto(int frame){
 void PhotoGenicItem::slideFinish(){
     delete this;
 }
+
+PlayerStatusDisplay::PlayerStatusDisplay(QGameItem *parent,Player * player)
+    : QGameItem(parent),m_player(player)
+{
+    m_energy_label = new QGraphicsTextItem(this);
+    m_energy_label->setPos(170,55);
+    m_energy_label->setZValue(100);
+    setEnergyText(player->getEnergy());
+    connect(player,SIGNAL(activate()),this,SLOT(activate()));
+    connect(player,SIGNAL(disable()),this,SLOT(disable()));
+    connect(player,SIGNAL(energyChanged(int)),this,SLOT(setEnergyText(int)));
+}
+
+PlayerStatusDisplay::~PlayerStatusDisplay(){
+    delete m_energy_label;
+}
+
+void PlayerStatusDisplay::setEnergyText(int energy){
+    QString labelhtml("<h1>" + QString::number(energy) + "</h1>");
+    m_energy_label->setHtml(labelhtml);
+}
+
+void PlayerStatusDisplay::activate(){
+    qDebug() << "active";
+    QGraphicsOpacityEffect * effect = new QGraphicsOpacityEffect;
+    effect->setOpacity(1.0);
+    this->setGraphicsEffect(effect);
+}
+
+void PlayerStatusDisplay::disable(){
+    qDebug() <<"disable";
+    QGraphicsOpacityEffect * effect = new QGraphicsOpacityEffect;
+    effect->setOpacity(0.3);
+    this->setGraphicsEffect(effect);
+}
+
+
+
+
+
+
+
