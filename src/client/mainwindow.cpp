@@ -15,37 +15,6 @@
 #include <QMediaPlayer>
 
 
-class CustomItem : public QGraphicsPixmapItem
-{
-private:
-    QApplication *app;
-    MainWindow *window;
-public:
-    void mousePressEvent(QGraphicsSceneMouseEvent *event)
-    {
-        qDebug() << "Custom item clicked.";
-        setPixmap(QPixmap(":images/button_ok_click.png"));
-
-        window->switchScene(SceneType::MAIN);
-    }
-
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
-    {
-        setPixmap(QPixmap(":images/button_ok.png"));
-    }
-
-    void setApplication(QApplication* app)
-    {
-        this->app = app;
-    }
-
-    void setMainWindow(MainWindow *window)
-    {
-        this->window = window;
-    }
-};
-
-
 // Constructor & Destructor
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -87,6 +56,7 @@ void MainWindow::switchScene(int scenetype)
     }
 
     ui->graphicsView->setScene(scene);
+    animateScene(scenetype);
 }
 
 
