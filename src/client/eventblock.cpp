@@ -126,7 +126,7 @@ void EventBlock::lol(Player* player)
             player->giveEnergy(50);
         }
         else{
-            player->takeEnergy(100);
+            player->payEnergy(100);
         }
     }
     LocalGame::getInst()->turnOver();

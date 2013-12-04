@@ -322,12 +322,12 @@ bool Player::checkWinStatus()
         return false;
 }
 
-void Player::takeEnergy(int payenergy)
+void Player::payEnergy(int payenergy)
 {
     if(energy >= payenergy)
         energy-=payenergy;
     else{
-        if(getAssetValue() >= 100){
+        if(getAssetValue() >= payenergy){
             Sellpopup * popup = new Sellpopup;
             popup->show();
         }

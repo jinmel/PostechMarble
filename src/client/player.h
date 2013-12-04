@@ -55,7 +55,7 @@ public:
     void addBlock(Block* block);
     void removeBlock(Block* block);
     void giveSalary();
-    void takeEnergy(int payenergy);
+    void payEnergy(int payenergy);
     void giveEnergy(int paidenergy);
     bool checkWinStatus();
     QPointF adjustCoord(QPointF & coord);
