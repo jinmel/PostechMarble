@@ -13,6 +13,8 @@ namespace LocalGameState {
         JUMP_PLAYER,
         TURN_OVER,
         EVENT_DRINK,
+        EVENT_TAKE_SUBJECT,
+        EVENT_LOSE_SUBJECT,
         GAME_OVER
     };
 }

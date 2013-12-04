@@ -2,6 +2,7 @@
 #include "scene/ingamescene.h"
 #include <ctime>
 #include <iostream>
+#include <QMessageBox>
 #include <cstdlib>
 #include "scene/ingamescene.h"
 #include "localgame.h"
@@ -87,16 +88,25 @@ void EventBlock::cc(Player* player)
 
 void EventBlock::takeSubject(Player* player)
 {
-    qDebug() << "Take Subject";
-    // 플레이어가 과목을 하나 선택한 후 buyBlock을 실행한다
-    //player->addBlock();
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
+    warn_box.setWindowTitle("이벤트: 과목 수강");
+    warn_box.setText("수강할 과목 블럭을 선택해 주세요!");
+    warn_box.exec();
+
+    LocalGame::getInst()->setGameState(LocalGameState::EVENT_TAKE_SUBJECT);
 }
 
 void EventBlock::loseSubject(Player* player)
 {
-    qDebug() << "Lose Subject";
-    // 플레이어가 과목 하나를 잃는다. (랜덤 or 선택)
-    //player->sellBlock();
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
+    warn_box.setWindowTitle("이벤트: 과목 포기");
+    warn_box.setText("포기할 과목 블럭을 선택해 주세요!");
+    warn_box.exec();
+    LocalGame::getInst()->setGameState(LocalGameState::EVENT_LOSE_SUBJECT);
 }
 
 void EventBlock::lol(Player* player)

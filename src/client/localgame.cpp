@@ -1,6 +1,7 @@
 #include "localgame.h"
 #include "dice.h"
 #include "board.h"
+#include "subjectblock.h"
 #include <iostream>
 #include <QDebug>
 #include <QtGlobal>
@@ -131,21 +132,48 @@ void LocalGame::diceEvent(Dice * dice){
 
 void LocalGame::blockEvent(Block *block){
     qDebug() << "block event caught:" << block->getPosition();
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
     if(m_state == JUMP_PLAYER){
         m_current_player->jumpTo(block->getPosition());
     }
+    //drink event
     if(m_state == EVENT_DRINK){
         if (block->getPosition() != 20 && block->getPosition() != 4){
             //not a valid location to jump.
-            QMessageBox mbox;
-            mbox.setStandardButtons(QMessageBox::Ok);
-            mbox.setDefaultButton(QMessageBox::Ok);
-            mbox.setWindowTitle(QString("이벤트: 음주"));
-            mbox.setText(QString("불금칸으로만 갈 수 있어요!"));
-            mbox.exec();
+            warn_box.setWindowTitle(QString("이벤트: 음주"));
+            warn_box.setText(QString("불금칸으로만 갈 수 있어요!"));
+            warn_box.exec();
         }
         else{
             m_current_player->jumpTo(block->getPosition());
+        }
+    }
+    //take subject event
+    if(m_state == EVENT_TAKE_SUBJECT){
+        if(block->getType() == BlockType::SUBJECT){
+            m_current_player->addBlock(block);
+            SubjectBlock * subj = dynamic_cast<SubjectBlock*>(block);
+            subj->decideGrade();
+            LocalGame::getInst()->turnOver();
+        }
+        else{
+            warn_box.setWindowTitle("이벤트: 과목 수강");
+            warn_box.setText("과목 블럭을 선택해 주세요!");
+            warn_box.exec();
+        }
+    }
+
+    if(m_state == EVENT_LOSE_SUBJECT){
+        if(block->getType() == BlockType::SUBJECT){
+            m_current_player->removeBlock(block);
+            LocalGame::getInst()->turnOver();
+        }
+        else{
+            warn_box.setWindowTitle("이벤트: 과목 포기");
+            warn_box.setText("과목 블럭을 선택해 주세요!");
+            warn_box.exec();
         }
     }
 }
