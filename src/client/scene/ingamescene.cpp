@@ -36,6 +36,11 @@ IngameScene::IngameScene(qreal x, qreal y,
     player2->setImage(":/images/ingame/pieces/red.png");
     player2->setPos(BlockCoords::corner_coord[0]);
     player2->setZValue(3);
+    player2->setEnergy(0);
+    SubjectBlock * tmpblock = dynamic_cast<SubjectBlock*>(board->getBlock(10));
+    tmpblock->decideGrade();
+    player2->addBlock(tmpblock);
+    qDebug() << player2->hasBlock(tmpblock);
 
     // pause panel
     pause_panel = new PausePanel(this, window);
