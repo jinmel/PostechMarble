@@ -22,11 +22,16 @@ CreditScene::CreditScene(qreal x, qreal y, qreal width,
     Q_CHECK_PTR(this->window);
 
     setupCredit();
+
+    connect(credit, SIGNAL(switchScene(int)), window, SLOT(switchScene(int)));
 }
 
 CreditScene::~CreditScene()
 {
+    delete credit;
+    delete splash_logo;
 
+    qDebug() << "Credit Scene Destroyed";
 }
 
 
@@ -95,5 +100,6 @@ void Credit::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void Credit::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     // move to main
-    window->switchScene(SceneType::MAIN);
+    //window->switchScene(SceneType::MAIN);
+    emit switchScene(SceneType::MAIN);
 }

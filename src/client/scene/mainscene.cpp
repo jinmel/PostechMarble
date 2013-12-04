@@ -19,6 +19,9 @@ MainScene::MainScene(qreal x, qreal y,
     Q_CHECK_PTR(this->window);
 
     setupMain();
+
+    connect(start_button, SIGNAL(clicked(int)), window, SLOT(switchScene(int)));
+    connect(credit_button, SIGNAL(clicked(int)), window, SLOT(switchScene(int)));
 }
 
 
@@ -27,7 +30,12 @@ MainScene::~MainScene()
     delete background;
     delete start_button;
     delete credit_button;
+    delete gplus_button;
+    delete fb_button;
     delete all;
+    delete copy;
+
+    qDebug() << "MainScene destoryed";
 }
 
 
@@ -96,7 +104,8 @@ void StartButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     setImage(":images/main/button_main_start.png");
 
     // move to ready scene
-    window->switchScene(SceneType::READY);
+    //window->switchScene(SceneType::READY);
+    emit clicked(SceneType::READY);
 }
 
 void StartButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
@@ -123,10 +132,6 @@ void CreditButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     qDebug() << "Credit button clicked.";
     setImage(":images/main/button_main_credit_pressed.png");
-    {
-        qDebug() << "Credit button clicked.";
-        setImage(":images/main/button_main_credit_pressed.png");
-    }
 }
 
 void CreditButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
@@ -134,7 +139,8 @@ void CreditButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     setImage(":images/main/button_main_credit.png");
 
     // move to ready scene
-    window->switchScene(SceneType::CREDIT);
+    //window->switchScene(SceneType::CREDIT);
+    emit clicked(SceneType::CREDIT);
 }
 
 void CreditButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)

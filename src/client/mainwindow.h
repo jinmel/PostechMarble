@@ -15,8 +15,10 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void setApplication(QApplication* app);
-    void switchScene(int scenetype);
     void animateScene(int scenetype);
+
+public slots:
+    void switchScene(int scenetype);
 
 private:
     Ui::MainWindow *ui;
