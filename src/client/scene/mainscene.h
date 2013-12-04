@@ -15,8 +15,8 @@ class MainScene : public QGraphicsScene
 private:
     MainWindow* window;
     QGameItem *background;
-    StartButton *start_button;
-    CreditButton *credit_button;
+    QGameItem *start_button;
+    QGameItem *credit_button;
     QGameItem *gplus_button;
     QGameItem *fb_button;
     QGameItem *all;
@@ -41,9 +41,6 @@ public:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
-
-signals:
-    void clicked(int scenetype);
 };
 
 
@@ -56,7 +53,4 @@ public:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
-
-signals:
-    void clicked(int scenetype);
 };

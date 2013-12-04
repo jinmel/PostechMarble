@@ -20,9 +20,6 @@ public:
     ~LogoScene();
     void animateLogo();
 
-signals:
-    void switchScene(int scenetype);
-
 public slots:
     void switchtoMain();
 };

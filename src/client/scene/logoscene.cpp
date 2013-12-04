@@ -22,17 +22,14 @@ LogoScene::LogoScene(qreal x, qreal y,
 
     // setup Logo Scene
     setupLogo();
-
-    connect(this, SIGNAL(switchScene(int)), window, SLOT(switchScene(int)));
 }
 
 
 LogoScene::~LogoScene()
 {
+    qDebug() << "LOGO destroy";
     delete background;
     delete team_logo;
-
-    qDebug() << "LOGO destroyed";
 }
 
 
@@ -40,8 +37,7 @@ LogoScene::~LogoScene()
 void LogoScene::switchtoMain()
 {
     qDebug() << "Switching to Main";
-    //window->switchScene(SceneType::MAIN);
-    emit switchScene(SceneType::MAIN);
+    window->switchScene(SceneType::MAIN);
 }
 
 
