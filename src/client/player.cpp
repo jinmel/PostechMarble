@@ -9,6 +9,7 @@
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>
 #include "localgame.h"
+#include "sellpopup.h"
 #include <QMediaPlayer>
 #include <QFileInfo>
 #define NUMBER_OF_BLOCKS 32
@@ -142,6 +143,7 @@ void Player::setPlural(bool plural)
 
 void Player::setBankrupt()
 {
+    setEnergy(0);
     bankrupt = true;
 }
 
@@ -320,11 +322,19 @@ bool Player::checkWinStatus()
         return false;
 }
 
-void Player::payEnergy(int payenergy)
+void Player::takeEnergy(int payenergy)
 {
-    energy-=payenergy;
+    if(energy >= payenergy)
+        energy-=payenergy;
+    else{
+        if(getAssetValue() >= 100){
+            Sellpopup * popup = new Sellpopup;
+            popup->show();
+        }
+        else
+            setBankrupt();
+    }
     emit energyChanged(this->energy);
-
 }
 void Player::giveEnergy(int paidenergy){
     energy+=paidenergy;
@@ -352,7 +362,6 @@ int Player::getAssetValue() {
            asset += dynamic_cast<SubjectBlock*>(*itor)->getSellCost();
         }
     }
-
     return asset;
 }
 
