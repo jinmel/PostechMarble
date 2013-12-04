@@ -41,6 +41,11 @@ Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
 
         // append grade
         string += convertGrade(blocks[i]->getGrade());
+
+        string += " - ";
+
+        // append sellprice
+        string += QString::number(blocks[i]->getSellCost());
         
         QCheckBox* newCheck = new QCheckBox();
         newCheck->setText(string);
@@ -128,12 +133,16 @@ QString Sellpopup::convertGrade(int grade)
 void Sellpopup::sell()
 {
     qDebug() << "Selling Block!";
-
+    int sellsum=0;
     // calculated selected value
     for(int i=0; i<block_num; i++) {
-        if(checks[i]->isChecked())
+        if(checks[i]->isChecked()){
+            sellsum += blocks[i]->getSellCost();
             player->removeBlock(blocks[i]);
+        }
     }
+
+    player->giveEnergy(sellsum - needed_value);
 
     this->close();
 }
