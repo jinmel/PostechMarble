@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    scene = NULL;
     switchScene(SceneType::LOGO);
 }
 
@@ -35,28 +36,36 @@ MainWindow::~MainWindow()
 // Utility Functions
 void MainWindow::switchScene(int scenetype)
 {
-    using namespace SceneType;
+    QGraphicsScene *new_scene;
 
+    using namespace SceneType;
     switch(scenetype) {
         case LOGO:
-            scene = new LogoScene(0, 0, 1280, 720, this);
+            new_scene = new LogoScene(0, 0, 1280, 720, this);
             break;
         case MAIN:
-            scene = new MainScene(0, 0, 1280, 720, this);
+            new_scene = new MainScene(0, 0, 1280, 720, this);
             break;
         case READY:
-            scene = new ReadyScene(0, 0, 1280, 720, this);
+            new_scene = new ReadyScene(0, 0, 1280, 720, this);
             break;
         case INGAME:
-            scene = new IngameScene(0,0,1280,720,this);
+            new_scene = new IngameScene(0,0,1280,720,this);
             break;
         case CREDIT:
-            scene = new CreditScene(0,0,1280,720,this);
+            new_scene = new CreditScene(0,0,1280,720,this);
             break;
     }
 
-    ui->graphicsView->setScene(scene);
-    animateScene(scenetype);
+    ui->graphicsView->setScene(new_scene);
+
+    if(scene != NULL)
+        delete scene;
+    scene = new_scene;
+
+    this->animateScene(scenetype);
+
+
 }
 
 
