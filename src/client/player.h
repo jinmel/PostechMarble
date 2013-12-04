@@ -60,6 +60,9 @@ public:
     QPointF adjustCoord(QPointF & coord);
 signals:
     void playerArrived(Player * player);
+    void energyChanged(int energy);
+    void activate();
+    void disable();
 public slots:
     void arrived();
     void walkBy(int dice);

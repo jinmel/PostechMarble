@@ -131,6 +131,7 @@ list<Block*> Player::getBlocks() const
 void Player::setEnergy(int energy)
 {
     this->energy = energy;
+    emit energyChanged(this->energy);
 }
 
 void Player::setPlural(bool plural)
@@ -290,6 +291,8 @@ void Player::giveSalary()
         energy += 150;
     else
         energy += 100;
+
+    emit energyChanged(this->energy);
 }
 
 
@@ -313,11 +316,12 @@ bool Player::checkWinStatus()
 void Player::payEnergy(int payenergy)
 {
     energy-=payenergy;
+    emit energyChanged(this->energy);
 
 }
 void Player::giveEnergy(int paidenergy){
     energy+=paidenergy;
-
+    emit energyChanged(this->energy);
 }
 
 int Player::getId() const {
