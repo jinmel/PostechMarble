@@ -6,12 +6,13 @@
 #include "scene/ingamescene.h"
 #include "localgame.h"
 #include "sellpopup.h"
-
+#include "types.h"
 using namespace std;
 
 // Constructor & Destructor
 EventBlock::EventBlock(QGameItem * parent,QGraphicsScene * scene, MainWindow * window) : Block(parent)
 {
+    block_type = BlockType::EVENT;
 }
 
 

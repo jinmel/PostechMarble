@@ -20,6 +20,7 @@ SubjectBlock::SubjectBlock(QGameItem * parent,
                            SubjectType::Type type, QString subject_name, int cost)
     : Block(parent)
 {
+    block_type = BlockType::SUBJECT;
     department = type;
     this->subject_name = subject_name;
     owner = NULL;
@@ -121,9 +122,7 @@ void SubjectBlock::enter(Player* player)
             }
         }
         else{//블럭을 팔거나 파산한다.
-
             //자산을 팔아서 메꿀수 있을 경우
-            qDebug() << "sell asset!";
             if(player->getAssetValue() > getPenaltyCost()){
                 {
                     qDebug() << "sell asset!";

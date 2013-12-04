@@ -6,7 +6,7 @@
 class FireFridayBlock : public Block
 {
 private:
-    FireFridayType::Type block_type;
+    FireFridayType::Type firefriday_type;
 public:
     FireFridayBlock(QGameItem * parent,FireFridayType::Type type);
     virtual ~FireFridayBlock();
