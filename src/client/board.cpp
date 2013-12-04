@@ -5,7 +5,7 @@
 #include "cornerblock.h"
 #include "firefridayblock.h"
 #include <QTransform>
-
+#include "localgame.h"
 
 using namespace std;
 
@@ -174,8 +174,8 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     for(int i=0; i<32; i++)
     {
         blocks[i]->setPosition(i);
+        connect(blocks[i],SIGNAL(blockClicked(Block*)),LocalGame::getInst(),SLOT(blockEvent(Block*)));
     }
-
 }
 
 void Board::diceRolled(int dice, bool is_double){
