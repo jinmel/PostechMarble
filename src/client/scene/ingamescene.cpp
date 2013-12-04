@@ -112,6 +112,7 @@ IngameScene::~IngameScene(){
     delete bgm_player;
     delete pause_button;
     delete pause_panel;
+    LocalGame::delInst();
 }
 
 QGraphicsPixmapItem* IngameScene::setBackgroundPixmap(const char * filename){
