@@ -5,11 +5,13 @@
 #include "dice.h"
 #include "sellpopup.h"
 #include "localgame.h"
+#include "types.h"
 // Constructor & Destructor
 FireFridayBlock::FireFridayBlock(QGameItem * parent,FireFridayType::Type type)
     : Block(parent)
 {
-    block_type = type;
+    firefriday_type = type;
+    block_type = BlockType::FRIDAY;
 }
 
 FireFridayBlock::~FireFridayBlock()
@@ -23,7 +25,7 @@ void FireFridayBlock::enter(Player *player)
 {
     using namespace FireFridayType;
 
-    switch(block_type)
+    switch(firefriday_type)
     {
     case SEOULJONGBIN: inSEOULJONGBIN(player);
         break;

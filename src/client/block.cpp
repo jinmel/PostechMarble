@@ -30,4 +30,5 @@ int Block::getPosition(){
 
 void Block::mousePressEvent(QGraphicsSceneMouseEvent *event){
     qDebug() << "block:" << position;
+    emit blockClicked(this);
 }

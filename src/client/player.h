@@ -20,7 +20,7 @@ private:
     int         energy;
     bool        bankrupt;
     bool        mobile;                    // is player movable? (Mouindo, Drink...)
-    int         penalty;                   // how long to be punished
+    int         immobile_penalty;                   // how long to be punished
     bool        plural;                    // plural major status
     std::map<SubjectType::Type, int> registered;     // registered class for each subject
     std::list<Block*> own_blocks;
@@ -45,8 +45,9 @@ public:
     void setType(CharacterType::Type new_type);
     void setEnergy(int getenergy);
     void setPlural(bool plural);
-    void setMouindo(int penalty);
+    void setMouindo(int immobile_penalty);
     void setMobile(bool mobile);
+    void escapeAttempt();
     bool escapeMouindo();
 
     void setBankrupt();
@@ -60,6 +61,9 @@ public:
     QPointF adjustCoord(QPointF & coord);
 signals:
     void playerArrived(Player * player);
+    void energyChanged(int energy);
+    void activate();
+    void disable();
 public slots:
     void arrived();
     void walkBy(int dice);

@@ -58,7 +58,7 @@ void MainScene::setupMain()
 
     all = new QGameItem(this, window);
     all->setImage(":images/main/all.png");
-    all->setPos(1180, 0);
+    all->setPos(1175, 5);
 
     copy = new QGameItem(this, window);
     copy->setImage(":images/main/copy.png");
@@ -97,7 +97,6 @@ void StartButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
     // move to ready scene
     window->switchScene(SceneType::READY);
-    //window->animateScene(SceneType::READY);
 }
 
 void StartButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
@@ -136,7 +135,6 @@ void CreditButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
     // move to ready scene
     window->switchScene(SceneType::CREDIT);
-    window->animateScene(SceneType::CREDIT);
 }
 
 void CreditButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)

@@ -12,8 +12,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>330</height>
+    <width>550</width>
+    <height>415</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -30,13 +30,16 @@
   <property name="windowTitle">
    <string>수강포기</string>
   </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
   <widget class="QScrollArea" name="scrollArea">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>40</y>
+     <x>80</x>
+     <y>135</y>
      <width>400</width>
-     <height>200</height>
+     <height>190</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -60,34 +63,10 @@
       <x>0</x>
       <y>0</y>
       <width>398</width>
-      <height>198</height>
+      <height>188</height>
      </rect>
     </property>
    </widget>
-  </widget>
-  <widget class="QLabel" name="label_title">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>10</y>
-     <width>210</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>수강포기할 과목을 선택하세요</string>
-   </property>
-   <property name="textFormat">
-    <enum>Qt::AutoText</enum>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
   </widget>
   <widget class="QPushButton" name="sellButton">
    <property name="enabled">
@@ -95,8 +74,8 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>280</y>
+     <x>190</x>
+     <y>360</y>
      <width>75</width>
      <height>30</height>
     </rect>
@@ -110,32 +89,14 @@
     <string>판다능</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="cancelButton">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>280</y>
-     <width>75</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>싫다능</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="bankruptButton">
    <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>280</y>
+     <x>300</x>
+     <y>360</y>
      <width>75</width>
      <height>30</height>
     </rect>
@@ -146,14 +107,14 @@
     </font>
    </property>
    <property name="text">
-    <string>파산</string>
+    <string>망했다능</string>
    </property>
   </widget>
   <widget class="QLabel" name="neededValue">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>250</y>
+     <x>290</x>
+     <y>330</y>
      <width>40</width>
      <height>25</height>
     </rect>
@@ -172,8 +133,8 @@
   <widget class="QLabel" name="selectedValue">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>250</y>
+     <x>235</x>
+     <y>330</y>
      <width>40</width>
      <height>25</height>
     </rect>
@@ -193,8 +154,8 @@
   <widget class="QLabel" name="slash">
    <property name="geometry">
     <rect>
-     <x>232</x>
-     <y>250</y>
+     <x>275</x>
+     <y>330</y>
      <width>16</width>
      <height>25</height>
     </rect>
@@ -213,7 +174,32 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>550</width>
+     <height>415</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/ingame/sellpopup_panel.png</pixmap>
+   </property>
+  </widget>
+  <zorder>label</zorder>
+  <zorder>scrollArea</zorder>
+  <zorder>sellButton</zorder>
+  <zorder>bankruptButton</zorder>
+  <zorder>neededValue</zorder>
+  <zorder>selectedValue</zorder>
+  <zorder>slash</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

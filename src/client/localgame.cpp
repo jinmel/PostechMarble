@@ -4,6 +4,7 @@
 #include <iostream>
 #include <QDebug>
 #include <QtGlobal>
+#include <QMessageBox>
 
 using namespace std;
 using namespace LocalGameState;
@@ -34,12 +35,14 @@ void LocalGame::delInst(){
 void LocalGame::addPlayer(Player *new_player){
     player_queue->push(new_player);
     nPlayers++;
+    emit new_player->disable();
     connect(new_player,SIGNAL(playerArrived(Player*)),this,SLOT(playerEvent(Player*)));
 }
 
 void LocalGame::init(Board * board, Dice * dice){
     m_current_player = player_queue->next();
     Q_CHECK_PTR(m_current_player);
+    emit m_current_player->activate();
     m_board = board;
     m_dice = dice;
     nPlayers = 0;
@@ -74,25 +77,7 @@ void LocalGame::setGameState(State new_state){
     m_state = new_state;
 }
 
-void LocalGame::diceEvent(Dice * dice){
-    qDebug() << "dice event caught by localgame";
-    if(m_state == ROLL_DICE){
-        if(m_current_player->isMobile()){
-            m_current_player->walkBy(dice->getValue());
-            m_state = PLAYER_MOVING;
-        }
-        else{
-            if(dice->isDouble()){
-                m_current_player->setMobile(true);
-                m_current_player->walkBy(dice->getValue());
-                m_state = PLAYER_MOVING;
-            }
-            else{
-                turnOver();
-            }
-        }
-    }
-}
+
 
 void LocalGame::turnOver(){
     //switch current player to next player and change state
@@ -106,6 +91,7 @@ void LocalGame::turnOver(){
     if(m_current_player->isBankrupt()){
         nPlayers--;
         if(nPlayers == 1) {
+            qDebug() << "winner! player:" << m_current_player->getId();
             winner = player_queue->next();
             m_state = GAME_OVER;
             return;
@@ -114,17 +100,53 @@ void LocalGame::turnOver(){
     //should never happen
     Q_ASSERT(nPlayers != 1);
     //update current Player if dice is not double
+    emit m_current_player->disable();
     if(!Dice::getInst()->isDouble()){
         do {
             m_current_player = player_queue->next();
         } while(m_current_player->isBankrupt());
     }
+    emit m_current_player->activate();
     m_state = ROLL_DICE;
 }
 
+void LocalGame::diceEvent(Dice * dice){
+    qDebug() << "dice event caught by localgame";
+    if(m_state == ROLL_DICE){
+        if(m_current_player->isMobile()){
+            m_current_player->walkBy(dice->getValue());
+        }
+        else{
+            if(dice->isDouble()){
+                m_current_player->setMobile(true);
+                m_current_player->walkBy(dice->getValue());
+            }
+            else{
+                m_current_player->escapeAttempt(); //decreases one immobile penalty
+                turnOver();
+            }
+        }
+    }
+}
+
 void LocalGame::blockEvent(Block *block){
+    qDebug() << "block event caught:" << block->getPosition();
     if(m_state == JUMP_PLAYER){
         m_current_player->jumpTo(block->getPosition());
+    }
+    if(m_state == EVENT_DRINK){
+        if (block->getPosition() != 20 && block->getPosition() != 4){
+            //not a valid location to jump.
+            QMessageBox mbox;
+            mbox.setStandardButtons(QMessageBox::Ok);
+            mbox.setDefaultButton(QMessageBox::Ok);
+            mbox.setWindowTitle(QString("이벤트: 음주"));
+            mbox.setText(QString("불금칸으로만 갈 수 있어요!"));
+            mbox.exec();
+        }
+        else{
+            m_current_player->jumpTo(block->getPosition());
+        }
     }
 }
 

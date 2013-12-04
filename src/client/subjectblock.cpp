@@ -20,6 +20,7 @@ SubjectBlock::SubjectBlock(QGameItem * parent,
                            SubjectType::Type type, QString subject_name, int cost)
     : Block(parent)
 {
+    block_type = BlockType::SUBJECT;
     department = type;
     this->subject_name = subject_name;
     owner = NULL;
@@ -121,15 +122,13 @@ void SubjectBlock::enter(Player* player)
             }
         }
         else{//블럭을 팔거나 파산한다.
-
             //자산을 팔아서 메꿀수 있을 경우
-            qDebug() << "sell asset!";
             if(player->getAssetValue() > getPenaltyCost()){
-             {
-            qDebug() << "sell asset!";
-            Sellpopup *popup = new Sellpopup(QGameItem::getWindow(), player, this);
-                popup->show(); //내부에서 매각하는것을 구현했음
-            }
+                {
+                    qDebug() << "sell asset!";
+                    Sellpopup *popup = new Sellpopup(QGameItem::getWindow(), player, this);
+                    popup->show(); //내부에서 매각하는것을 구현했음
+                }
             }
             //소 팔고 외양간 팔아도 파산 ㅠㅠ
             else {

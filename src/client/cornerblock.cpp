@@ -12,6 +12,7 @@ CornerBlock::CornerBlock(QGameItem * parent,CornerType::Type type)
     : Block(parent)
 {
     corner_type = type;
+    block_type = BlockType::CORNER;
 }
 
 CornerBlock::~CornerBlock()

@@ -75,7 +75,6 @@ void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
     // move to ready scene
     window->switchScene(SceneType::INGAME);
-    window->animateScene(SceneType::INGAME);
 }
 
 void ReadyButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)

@@ -1,6 +1,5 @@
-#ifndef INGAMESCENE_H
-#define INGAMESCENE_H
 #pragma once
+#include "pausepanel.h"
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 #include <QObject>
@@ -22,6 +21,7 @@ class DiceValuePanel;
 class CharacterStatusBar;
 //포토제닉
 class PhotoGenicItem;
+class PlayerStatusDisplay;
 
 namespace Ui{
 class PhotoGenicPopup;
@@ -39,9 +39,11 @@ private:
     QGameItem *double_graphic;
     Board *board;
     QTimeLine *double_timeline;
-    QGameItem *status1;
-    QGameItem *status2;
+    PlayerStatusDisplay *status1;
+    PlayerStatusDisplay *status2;
     QMediaPlayer *bgm_player;
+    PausePanel *pause_panel;
+    PauseButton *pause_button;
 
 public:
     IngameScene(qreal x=0,qreal y=0,qreal width=1280,
@@ -113,5 +115,21 @@ signals:
 protected:
 };
 
-
-#endif // INGAMESCENE_H
+class PlayerStatusDisplay : public QGameItem{
+    Q_OBJECT
+public:
+    PlayerStatusDisplay(QGameItem * parent,Player * player);
+    ~PlayerStatusDisplay();
+public slots:
+    void setEnergyText(int energy);
+    void spinNumber(int frame);
+    void endSpin();
+    void activate();
+    void disable();
+private:
+    QTimeLine * m_timeline;
+    int m_last_energy;
+    int m_display_energy;
+    Player const * const m_player;
+    QGraphicsTextItem * m_energy_label;
+};

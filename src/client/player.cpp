@@ -47,7 +47,7 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 
     bankrupt = false;
     mobile = true;
-    penalty = 0;
+    immobile_penalty = 0;
     plural = false;
 
     character_type = CharacterType::NONE;
@@ -107,7 +107,7 @@ int Player::getEnergy() const
 
 int Player::getPenalty() const
 {
-    return penalty;
+    return immobile_penalty;
 }
 
 bool Player::isPlural() const
@@ -131,6 +131,7 @@ list<Block*> Player::getBlocks() const
 void Player::setEnergy(int energy)
 {
     this->energy = energy;
+    emit energyChanged(this->energy);
 }
 
 void Player::setPlural(bool plural)
@@ -148,7 +149,7 @@ void Player::setBankrupt()
 // parm: how long to stay in mouindo
 void Player::setMouindo(int penalty)
 {
-    this->penalty = penalty;
+    this->immobile_penalty = penalty;
     mobile = false;
 }
 
@@ -156,7 +157,13 @@ void Player::setMobile(bool mobile){
     this->mobile = mobile;
 }
 
-// check player escaped or not
+void Player::escapeAttempt(){
+    immobile_penalty--;
+    if(immobile_penalty==0)
+        mobile = true;
+}
+
+//probably unused forever...
 bool Player::escapeMouindo()
 {
     if(mobile)
@@ -164,16 +171,15 @@ bool Player::escapeMouindo()
 
     else {
 
-        if(penalty == 0) {
+        if(immobile_penalty == 0) {
             mobile = true;
             return true;
         }
 
         else {
             // roll a dice
-            penalty--;
+            immobile_penalty--;
             return false;
-
         }
     }
 }
@@ -182,6 +188,7 @@ bool Player::escapeMouindo()
 void Player::walkBy(int steps)
 {
     using namespace BlockCoords;
+    LocalGame::getInst()->setGameState(LocalGameState::PLAYER_MOVING);
     const int step_interval = 300; //0.1 seconds
     int current_pos = position;
     int next_pos;
@@ -226,12 +233,13 @@ void Player::walkBy(int steps)
 
 void Player::jumpTo(int block_num){
     using namespace BlockCoords;
+    LocalGame::getInst()->setGameState(LocalGameState::PLAYER_MOVING);
     QPointF target = block_coord[block_num];
     QPropertyAnimation * step_animation
             = new QPropertyAnimation(this,"pos");
     step_animation->setDuration(2000);
     step_animation->setStartValue(block_coord[getPosition()]);
-    step_animation->setEndValue(block_coord[block_num]);
+    step_animation->setEndValue(target);
     step_animation->setEasingCurve(QEasingCurve::InOutQuint);
     step_animation->start(QAbstractAnimation::DeleteWhenStopped);
 
@@ -290,6 +298,8 @@ void Player::giveSalary()
         energy += 150;
     else
         energy += 100;
+
+    emit energyChanged(this->energy);
 }
 
 
@@ -313,11 +323,12 @@ bool Player::checkWinStatus()
 void Player::payEnergy(int payenergy)
 {
     energy-=payenergy;
+    emit energyChanged(this->energy);
 
 }
 void Player::giveEnergy(int paidenergy){
     energy+=paidenergy;
-
+    emit energyChanged(this->energy);
 }
 
 int Player::getId() const {

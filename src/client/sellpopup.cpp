@@ -10,6 +10,7 @@ Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
     layout = new QVBoxLayout(ui->scrollAreaWidgetContents);
 
     // initialize
+    this->move(365, 152.5);
     this->player = player;
     needed_value = block->getPenaltyCost() - player->getEnergy();
 
@@ -27,7 +28,7 @@ Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
 
     // list up checkbox elements
     for(int i=0; i < block_num; i++) {
-        QString string = "Test";
+        QString string = "";
 
         // append department
         string +=  convertDept(blocks[i]->getDept());
@@ -41,6 +42,11 @@ Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
 
         // append grade
         string += convertGrade(blocks[i]->getGrade());
+
+        string += " - ";
+
+        // append sellprice
+        string += QString::number(blocks[i]->getSellCost());
         
         QCheckBox* newCheck = new QCheckBox();
         newCheck->setText(string);
@@ -58,7 +64,6 @@ Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
 
     // connect
     connect(ui->sellButton, SIGNAL(clicked()), this, SLOT(sell()));
-    connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->bankruptButton, SIGNAL(clicked()), this, SLOT(bankrupt()));
 
 }
@@ -66,6 +71,9 @@ Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
 Sellpopup::~Sellpopup()
 {
     delete ui;
+    delete layout;
+    delete[] checks;
+    delete[] blocks;
 }
 
 
@@ -128,12 +136,16 @@ QString Sellpopup::convertGrade(int grade)
 void Sellpopup::sell()
 {
     qDebug() << "Selling Block!";
-
+    int sellsum=0;
     // calculated selected value
     for(int i=0; i<block_num; i++) {
-        if(checks[i]->isChecked())
+        if(checks[i]->isChecked()){
+            sellsum += blocks[i]->getSellCost();
             player->removeBlock(blocks[i]);
+        }
     }
+
+    player->giveEnergy(sellsum - needed_value);
 
     this->close();
 }

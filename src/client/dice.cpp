@@ -20,7 +20,6 @@ Dice::Dice()
     effect_sound->setVolume(100);
     timeline = new QTimeLine(1000);
 
-    connect(timeline, SIGNAL(finished()), this, SIGNAL(diceDouble()));
     connect(timeline, SIGNAL(finished()), this, SLOT(afterRollSound()));
 }
 
@@ -62,20 +61,17 @@ void Dice::delInst()
 void Dice::roll()
 {
     qDebug() << "Dice Rolled";
-    value1 = rand() % 6 + 1;
-    value2 = rand() % 6 + 1;
-
+//    value1 = rand() % 6 + 1;
+//    value2 = rand() % 6 + 1;
+    value1 = 4;
+    value2 = 5;
     emit diceRolled(getValue(),isDouble());
     emit firstDiceRolled(value1);
     emit secondDiceRolled(value2);
     emit diceRolled(getValue());
     emit diceRolled(this);
 
-    // if double
-    if(isDouble()) {
-        // wait for roll
-        timeline->start();
-    }
+    timeline->start();
 
     // play sound
     roll_sound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/roll.mp3").absoluteFilePath()));
@@ -105,9 +101,12 @@ void Dice::afterRollSound()
 {
     QString path = "";
 
-    if(isDouble())
+    if(isDouble()) {
         path += "sound/double.wav";
 
+        // emit singal for double popup
+        emit diceDouble();
+    }
     else {
         switch(value1 + value2) {
             case 2:
