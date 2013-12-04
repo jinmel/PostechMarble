@@ -90,6 +90,7 @@ void LocalGame::diceEvent(Dice * dice){
                 m_state = PLAYER_MOVING;
             }
             else{
+                m_current_player->escapeAttempt(); //decreases one immobile penalty
                 turnOver();
             }
         }
