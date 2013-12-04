@@ -115,13 +115,11 @@ void LocalGame::diceEvent(Dice * dice){
     if(m_state == ROLL_DICE){
         if(m_current_player->isMobile()){
             m_current_player->walkBy(dice->getValue());
-            m_state = PLAYER_MOVING;
         }
         else{
             if(dice->isDouble()){
                 m_current_player->setMobile(true);
                 m_current_player->walkBy(dice->getValue());
-                m_state = PLAYER_MOVING;
             }
             else{
                 m_current_player->escapeAttempt(); //decreases one immobile penalty
@@ -148,7 +146,6 @@ void LocalGame::blockEvent(Block *block){
         }
         else{
             m_current_player->jumpTo(block->getPosition());
-            m_state = PLAYER_MOVING;
         }
     }
 }

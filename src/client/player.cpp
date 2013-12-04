@@ -188,6 +188,7 @@ bool Player::escapeMouindo()
 void Player::walkBy(int steps)
 {
     using namespace BlockCoords;
+    LocalGame::getInst()->setGameState(LocalGameState::PLAYER_MOVING);
     const int step_interval = 300; //0.1 seconds
     int current_pos = position;
     int next_pos;
@@ -232,6 +233,7 @@ void Player::walkBy(int steps)
 
 void Player::jumpTo(int block_num){
     using namespace BlockCoords;
+    LocalGame::getInst()->setGameState(LocalGameState::PLAYER_MOVING);
     QPointF target = block_coord[block_num];
     QPropertyAnimation * step_animation
             = new QPropertyAnimation(this,"pos");
