@@ -15,8 +15,8 @@ class MainScene : public QGraphicsScene
 private:
     MainWindow* window;
     QGameItem *background;
-    QGameItem *start_button;
-    QGameItem *credit_button;
+    StartButton *start_button;
+    CreditButton *credit_button;
     QGameItem *gplus_button;
     QGameItem *fb_button;
     QGameItem *all;

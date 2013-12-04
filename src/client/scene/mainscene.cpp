@@ -27,7 +27,12 @@ MainScene::~MainScene()
     delete background;
     delete start_button;
     delete credit_button;
+    delete gplus_button;
+    delete fb_button;
     delete all;
+    delete copy;
+
+    qDebug() << "Main Scene Destroyed";
 }
 
 
@@ -123,10 +128,6 @@ void CreditButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     qDebug() << "Credit button clicked.";
     setImage(":images/main/button_main_credit_pressed.png");
-    {
-        qDebug() << "Credit button clicked.";
-        setImage(":images/main/button_main_credit_pressed.png");
-    }
 }
 
 void CreditButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)

@@ -3,6 +3,8 @@
 #include "../mainwindow.h"
 #include "../qgameitem.h"
 
+class Credit;
+
 class CreditScene : public QGraphicsScene
 {
     Q_OBJECT
@@ -11,7 +13,7 @@ public slots:
 
 private:
     MainWindow* window;
-    QGameItem* credit;
+    Credit* credit;
     QGameItem* splash_logo;
 
     void setupCredit();
