@@ -13,6 +13,7 @@ using namespace LocalGameState;
 LocalGame::LocalGame(){
     m_state = ROLL_DICE;
     player_queue = new PlayerQueue;
+    nPlayers = 0;
 }
 
 //Singleton methods
