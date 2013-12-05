@@ -18,7 +18,7 @@ public slots:
     void hideFinished();
 public:
     QGameItem(QGraphicsScene* scene, MainWindow *window);
-    QGameItem(QGameItem * parent);
+    QGameItem(QGameItem * parent=0);
     virtual ~QGameItem();
     QPixmap* image();
     void setImage(const char * filename);
