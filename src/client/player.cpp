@@ -225,6 +225,7 @@ void Player::walkBy(int steps)
         step_animation->setStartValue(block_coord[current_pos]);
         step_animation->setEndValue(block_coord[next_pos]);
         step_animation->setEasingCurve(QEasingCurve::InOutQuint);
+        connect(step_animation,SIGNAL(finished()),this,SLOT(stepForward()));
         seq_animation_group->addAnimation(step_animation);
         steps--; //decrease one step
         current_pos = next_pos;
@@ -240,7 +241,7 @@ void Player::walkBy(int steps)
     seq_animation_group->start(QAbstractAnimation::DeleteWhenStopped);
 
     connect(seq_animation_group,SIGNAL(finished()),this,SLOT(arrived()));
-    position = current_pos;
+    //position = current_pos;
 }
 
 void Player::jumpTo(int block_num){
@@ -257,6 +258,10 @@ void Player::jumpTo(int block_num){
 
     connect(step_animation,SIGNAL(finished()),this,SLOT(arrived()));
     position = block_num;
+}
+
+void Player::stepForward(){
+    position = NEXT_POS(position);
 }
 
 void Player::arrived(){
@@ -377,7 +382,6 @@ int Player::getAssetValue() {
 }
 
 void Player::animatePlayerImage(int frame){
-    qDebug() << frame;
     QString filename = QString(":/images/ingame/character/");
 
     int zone = position /8 ;
@@ -407,7 +411,7 @@ void Player::animatePlayerImage(int frame){
 
     filename += QString::number(frame).rightJustified(3,'0') + QString(".png");
 
-    qDebug() << filename;
+    //qDebug() << filename;
 
     QImage image(filename);
 

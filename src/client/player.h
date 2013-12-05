@@ -70,6 +70,6 @@ public slots:
     void arrived();
     void walkBy(int dice);
     void jumpTo(int block_num);
-
+    void stepForward();
 };
       
