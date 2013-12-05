@@ -68,7 +68,7 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 
     switch(_id){
     case 1:
-        player_color = QString("org");
+        player_color = QString("red");
         break;
     case 2:
         player_color = QString("blue");
@@ -230,14 +230,7 @@ void Player::walkBy(int steps)
         seq_animation_group->addAnimation(step_animation);
         steps--; //decrease one step
         current_pos = next_pos;
-        if(current_pos == 0){
-            //maybe add animation for gaining energy
-            giveSalary();
-            QMediaPlayer* player = new QMediaPlayer();
-            player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coin.wav").absoluteFilePath()));
-            player->setVolume(100);
-            player->play();
-        }
+
     }
     seq_animation_group->start(QAbstractAnimation::DeleteWhenStopped);
 
@@ -263,6 +256,9 @@ void Player::jumpTo(int block_num){
 
 void Player::stepForward(){
     position = NEXT_POS(position);
+    if(position == 0){
+        giveSalary();
+    }
 }
 
 void Player::arrived(){
@@ -312,6 +308,12 @@ void Player::removeBlock(Block *block)
 void Player::giveSalary()
 {
     qDebug() << "Player " << id << " received salary";
+    //maybe add animation for gaining energy
+
+    QMediaPlayer* mediaplayer = new QMediaPlayer();
+    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coin.wav").absoluteFilePath()));
+    mediaplayer->setVolume(100);
+    mediaplayer->play();
 
     if(character_type == CharacterType::HARD_WORKER)
         energy += 150;
@@ -388,17 +390,22 @@ void Player::animatePlayerImage(int frame){
     int zone = position /8 ;
 
     if(zone == 0){
-        filename += QString("top_up_id_");
+        filename += QString("top_up_");
     }
     else if(zone ==1){
-        filename += QString("top_right_id_");
+        filename += QString("top_right_");
     }
     else if(zone ==2){
-        filename += QString("top_down_id_");
+        filename += QString("top_down_");
     }
     else {
-        filename += QString("top_right_id_");
+        filename += QString("top_right_");
     }
+
+    if(id == 1)
+        filename += QString("io_");
+    else if(id == 2)
+        filename += QString("id_");
 
     filename += player_color + QString("_");
 

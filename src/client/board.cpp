@@ -122,15 +122,15 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
     //BIO subject block
     blocks[21] = new SubjectBlock(this,BIO,"BIO1",70); //bio 일반생명 70
-    blocks[21]->setImage(":/images/ingame/block/horizontial/BIO_background_vertical.png");
+    blocks[21]->setImage(":/images/ingame/block/horizontial/sbio1.png");
     blocks[21]->setPos(block_coord[21]);
 
     blocks[22] = new SubjectBlock(this,BIO,"BIO2",110); //bio 분자생물학 110
-    blocks[22]->setImage(":/images/ingame/block/horizontial/BIO_background_vertical.png");
+    blocks[22]->setImage(":/images/ingame/block/horizontial/sbio2.png");
     blocks[22]->setPos(block_coord[22]);
 
     blocks[23] = new SubjectBlock(this,BIO,"BIO3",150); //bio 유전학 150
-    blocks[23]->setImage(":/images/ingame/block/horizontial/BIO_background_vertical.png");
+    blocks[23]->setImage(":/images/ingame/block/horizontial/sbio3.png");
     blocks[23]->setPos(block_coord[23]);
 
     //Corner block
