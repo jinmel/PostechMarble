@@ -14,6 +14,14 @@ LocalGame::LocalGame(){
     m_state = ROLL_DICE;
     player_queue = new PlayerQueue;
     nPlayers = 0;
+    animation_timeline = new QTimeLine(800);
+    animation_timeline->setFrameRange(1,11);
+    connect(animation_timeline,SIGNAL(finished()),this,SLOT(restartTimeline()));
+    animation_timeline->start(); //runs forever
+}
+
+LocalGame::~LocalGame(){
+    delete animation_timeline;
 }
 
 //Singleton methods
@@ -38,6 +46,7 @@ void LocalGame::addPlayer(Player *new_player){
     player_queue->push(new_player);
     nPlayers++;
     emit new_player->disable();
+    connect(animation_timeline,SIGNAL(frameChanged(int)),new_player,SLOT(animatePlayerImage(int)));
     connect(new_player,SIGNAL(playerArrived(Player*)),this,SLOT(playerEvent(Player*)));
 }
 
@@ -210,4 +219,10 @@ void LocalGame::generalEvent(){
     if(m_state == LocalGameState::EVENT_PHOTOGENIC){
         turnOver();
     }
+}
+
+
+//timeline finished. restart.
+void LocalGame::restartTimeline(){
+    animation_timeline->start();
 }

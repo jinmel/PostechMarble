@@ -12,6 +12,7 @@
 #include "sellpopup.h"
 #include <QMediaPlayer>
 #include <QFileInfo>
+#include <QDir>
 #define NUMBER_OF_BLOCKS 32
 #define NEXT_POS(current_pos) ((current_pos + 1) % 32)
 
@@ -64,6 +65,15 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     registered[ME] = 0;
     registered[IME] = 0;
     registered[PHYS] = 0;
+
+    switch(_id){
+    case 1:
+        player_color = QString("org");
+        break;
+    case 2:
+        player_color = QString("blue");
+        break;
+    }
 
     // end initialize
     qDebug() << "Player Created" << endl;
@@ -366,3 +376,46 @@ int Player::getAssetValue() {
     return asset;
 }
 
+void Player::animatePlayerImage(int frame){
+    qDebug() << frame;
+    QString filename = QString(":/images/ingame/character/");
+
+    int zone = position /8 ;
+
+    if(zone == 0){
+        filename += QString("top_up_id_");
+    }
+    else if(zone ==1){
+        filename += QString("top_right_id_");
+    }
+    else if(zone ==2){
+        filename += QString("top_down_id_");
+    }
+    else {
+        filename += QString("top_right_id_");
+    }
+
+    filename += player_color + QString("_");
+
+    LocalGame * game_inst = LocalGame::getInst();
+
+    if(game_inst->getGameState() == LocalGameState::PLAYER_MOVING
+            && game_inst->getCurrentPlayer() == this)
+        filename += QString("walk_");
+    else
+        filename += QString("stand_");
+
+    filename += QString::number(frame).rightJustified(3,'0') + QString(".png");
+
+    qDebug() << filename;
+
+    QImage image(filename);
+
+    QTransform rotate;
+    rotate.rotate(180);
+
+    if(zone == 3)
+        image = image.mirrored(true,false);
+
+    setPixmap(QPixmap::fromImage(image));
+}

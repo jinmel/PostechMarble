@@ -25,6 +25,7 @@ private:
     std::map<SubjectType::Type, int> registered;     // registered class for each subject
     std::list<Block*> own_blocks;
     CharacterType::Type character_type;
+    QString player_color;
 
 public:
     Player(QGameItem * parent,int id);
@@ -65,6 +66,7 @@ signals:
     void activate();
     void disable();
 public slots:
+    void animatePlayerImage(int frame);
     void arrived();
     void walkBy(int dice);
     void jumpTo(int block_num);
