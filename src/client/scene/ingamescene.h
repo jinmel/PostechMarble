@@ -21,6 +21,7 @@ class DiceValuePanel;
 class CharacterStatusBar;
 //포토제닉
 class PhotoGenicItem;
+//캐릭터 상태 표시
 class PlayerStatusDisplay;
 
 namespace Ui{
