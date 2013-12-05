@@ -61,9 +61,11 @@ void Dice::delInst()
 void Dice::roll()
 {
     qDebug() << "Dice Rolled";
-    value1 = rand() % 6 + 1;
-    value2 = rand() % 6 + 1;
 
+//    value1 = rand() % 6 + 1;
+//    value2 = rand() % 6 + 1;
+    value1 = 6;
+    value2 = 6;
     emit diceRolled(getValue(),isDouble());
     emit firstDiceRolled(value1);
     emit secondDiceRolled(value2);

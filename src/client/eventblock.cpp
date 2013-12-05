@@ -71,17 +71,24 @@ void EventBlock::drink(Player* player)
 void EventBlock::cc(Player* player)
 {
     qDebug() << "CC event!";
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
+    warn_box.setWindowTitle("이벤트: Campus Couple");
 
     // 행동력 감소 + 일정 확률로 휴학 또는 61콜 이동
     if(getType() != CharacterType::OUTSIDER)
     {
+        warn_box.setText("랜덤한 장소로 이동합니다.");
         // jump to gapyear
         if((rand() % 2) == 0)
             player->jumpTo(8);
-
         // jump to 61call
         else
-            player->jumpTo(26);
+            player->jumpTo(24); // 61call
+    }
+    else {
+        warn_box.setText("당신은 아웃사이더라서 캠퍼스 커플에 면역입니다.");
     }
 }
 
@@ -119,7 +126,7 @@ void EventBlock::lol(Player* player)
 
     // 50:50으로 행동력 증가 또는 감소, lol타입 캐릭터의 경우 항상 증가
     if(getType() == CharacterType::LOL)
-        player->setEnergy(player->getEnergy() + 50);
+        player->giveEnergy(50);
     else
     {
         if((rand() % 2) == 0){
