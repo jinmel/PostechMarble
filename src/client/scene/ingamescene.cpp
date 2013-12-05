@@ -250,11 +250,22 @@ void DiceValuePanel::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
 // PhotoGenicItem
 PhotoGenicItem::PhotoGenicItem(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene,window){
-
+    int randomvalue= rand()%3 + 1;
+    QString folderstring=QString(":/images/ourphotos/set");
+    QString numberstring=QString::number(randomvalue);
+    QString filestring1=QString("/photo1.png");
+    QString filestring2=QString("/photo2.png");
+    QString filestring3=QString("/photo3.png");
+    QString filestring11=folderstring+numberstring+filestring1;
+    QString filestring22=folderstring+numberstring+filestring2;
+    QString filestring33=folderstring+numberstring+filestring3;
+    image1 = QPixmap(filestring11);
+    image2 = QPixmap(filestring22);
+    image3 = QPixmap(filestring33);
 }
 
 void PhotoGenicItem::showPhotos(){
-    timeline = new QTimeLine(12000); //spin for 3 second
+    timeline = new QTimeLine(20000); //spin for 3 second
     timeline->setFrameRange(0,8); // 3 spins
     timeline->setEasingCurve(QEasingCurve::Linear);
     connect(this->timeline,SIGNAL(frameChanged(int)),this,SLOT(slidePhoto(int)));
@@ -272,33 +283,25 @@ PhotoGenicItem::~PhotoGenicItem()
 }
 
 void PhotoGenicItem::slidePhoto(int frame){
-    int randomvalue= rand()%3;
-    QString folderstring=QString(":/images/ourphotos/set");
-    QString numberstring=QString::number(randomvalue);
-    QString filestring1=QString("/photo1.png");
-    QString filestring2=QString("/photo2.png");
-    QString filestring3=QString("/photo3.png");
-    QString filestring11=folderstring+numberstring+filestring1;
-    QString filestring22=folderstring+numberstring+filestring2;
-    QString filestring33=folderstring+numberstring+filestring3;
+
 
     switch(frame){
     case 1:
-        setPixmap(QPixmap(filestring11));
+        setPixmap(image1);
         show(true);
         break;
     case 2:
         hide(true);
         break;
     case 3:
-        setPixmap(QPixmap(filestring22));
+        setPixmap(image2);
         show(true);
         break;
     case 4:
         hide(true);
         break;
     case 5:
-        setPixmap(QPixmap(filestring33));
+        setPixmap(image3);
         show(true);
         break;
     case 6:
