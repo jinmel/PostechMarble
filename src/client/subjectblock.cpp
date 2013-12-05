@@ -153,6 +153,7 @@ void SubjectBlock::decideGrade(){//random 받아서 20% A, 40% B, 40% C
 
 void SubjectBlock::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     qDebug() << "subject name: " << this->subject_name;
+    Block::mousePressEvent(event);
 }
 
 void SubjectBlock::setOwner(Player *player){
@@ -160,4 +161,8 @@ void SubjectBlock::setOwner(Player *player){
     Q_ASSERT(owner == NULL);
     if(owner == NULL)
         owner = player;
+}
+
+Player * SubjectBlock::getOwner(){
+    return owner;
 }
