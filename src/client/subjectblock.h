@@ -9,22 +9,23 @@ class Player;
 
 class SubjectBlock : public Block
 {
-private:
+public:
     enum Grade{
         A = 4,
         B = 3,
         C = 2,
         NONE =1
     };
+private:
+
     SubjectType::Type       department;
     QString                 subject_name;
     Player*                 owner;
     int                     cost;
     Grade                   grade; //4->A 3->B 2->C
     QGraphicsPixmapItem *   grade_image;
-
-
 public:
+
     SubjectBlock(QGameItem* parent,
                  SubjectType::Type type, QString subject_name, int cost);
     virtual ~SubjectBlock();

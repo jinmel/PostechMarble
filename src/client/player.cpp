@@ -287,7 +287,8 @@ void Player::removeBlock(Block *block)
         qDebug() << "You don't have that block. Check Again!";
         return;
     }
-
+    SubjectBlock * sblock = dynamic_cast<SubjectBlock*>(block);
+    sblock->setGrade(SubjectBlock::NONE);
     registered.find(((SubjectBlock*)block)->getDept())->second--;
     own_blocks.remove(block);
 }
