@@ -146,8 +146,8 @@ void EventBlock::eatChicken(Player* player)
     QMessageBox warn_box;
     warn_box.setStandardButtons(QMessageBox::Ok);
     warn_box.setDefaultButton(QMessageBox::Ok);
-    warn_box.setWindowTitle("이벤트: 치느님");
-    warn_box.setText("치느님을 영접하여 에너지가 증가합니다!");
+    warn_box.setWindowTitle("이벤트: 치느님\n");
+    warn_box.setText("치느님을 영접하여 에너지가 증가합니다!\n");
     warn_box.exec();
     player->giveEnergy(100);
     LocalGame::getInst()->turnOver();
