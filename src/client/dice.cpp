@@ -18,7 +18,7 @@ Dice::Dice()
     roll_sound->setVolume(100);
     effect_sound = new QMediaPlayer();
     effect_sound->setVolume(100);
-    timeline = new QTimeLine(1000);
+    timeline = new QTimeLine(1300);
 
     connect(timeline, SIGNAL(finished()), this, SLOT(afterRollSound()));
 }
@@ -61,10 +61,9 @@ void Dice::delInst()
 void Dice::roll()
 {
     qDebug() << "Dice Rolled";
-//    value1 = rand() % 6 + 1;
-//    value2 = rand() % 6 + 1;
-    value1 = 4;
-    value2 = 5;
+    value1 = rand() % 6 + 1;
+    value2 = rand() % 6 + 1;
+
     emit diceRolled(getValue(),isDouble());
     emit firstDiceRolled(value1);
     emit secondDiceRolled(value2);
