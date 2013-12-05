@@ -7,6 +7,7 @@
 #include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
 #include <QtGlobal>
+#include <QFileInfo>
 
 
 // Constructor & Destructor

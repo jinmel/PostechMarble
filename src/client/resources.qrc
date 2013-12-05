@@ -91,15 +91,9 @@
         <file>images/ingame/pause/reload_pressed.png</file>
         <file>images/ingame/pause/resume_pressed.png</file>
         <file>images/ingame/sellpopup_panel.png</file>
-        <file>images/ingame/block/normal/schem1.png</file>
-        <file>images/ingame/block/normal/schem2.png</file>
-        <file>images/ingame/block/normal/schem3.png</file>
         <file>images/ingame/block/normal/see1.png</file>
         <file>images/ingame/block/normal/see2.png</file>
         <file>images/ingame/block/normal/see3.png</file>
-        <file>images/ingame/block/normal/sime1.png</file>
-        <file>images/ingame/block/normal/sime2.png</file>
-        <file>images/ingame/block/normal/sime3.png</file>
         <file>images/ingame/block/normal/smath1.png</file>
         <file>images/ingame/block/normal/smath2.png</file>
         <file>images/ingame/block/normal/smath3.png</file>
@@ -112,5 +106,11 @@
         <file>images/ourphotos/set3/photo1.png</file>
         <file>images/ourphotos/set3/photo2.png</file>
         <file>images/ourphotos/set3/photo3.png</file>
+        <file>images/ingame/block/normal/schem1.png</file>
+        <file>images/ingame/block/normal/schem2.png</file>
+        <file>images/ingame/block/normal/schem3.png</file>
+        <file>images/ingame/block/normal/sime1.png</file>
+        <file>images/ingame/block/normal/sime2.png</file>
+        <file>images/ingame/block/normal/sime3.png</file>
     </qresource>
 </RCC>
