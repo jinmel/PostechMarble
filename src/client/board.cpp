@@ -105,15 +105,15 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[17] = new SubjectBlock(this,PHYS,"PHYS1",65); //phys 일반물리 65
     blocks[17]->setImage(":/images/ingame/block/vertical/PHYS_background_vertical.png");
     blocks[17]->setPos(block_coord[17]);
-    blocks[17]->rotateImage(180);
+
     blocks[18] = new SubjectBlock(this,PHYS,"PHYS2",105); //phys 현대물리 105
     blocks[18]->setImage(":/images/ingame/block/vertical/PHYS_background_vertical.png");
     blocks[18]->setPos(block_coord[18]);
-    blocks[18]->rotateImage(180);
+
     blocks[19] = new SubjectBlock(this,PHYS,"PHYS3",145); //phys 양자물리 145
     blocks[19]->setImage(":/images/ingame/block/vertical/PHYS_background_vertical.png");
     blocks[19]->setPos(block_coord[19]);
-    blocks[19]->rotateImage(180);
+
 
     //Fire block
     blocks[20] = new FireFridayBlock(this,FireFridayType::SEOULJONGBIN); // 설종빈
@@ -124,15 +124,15 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[21] = new SubjectBlock(this,BIO,"BIO1",70); //bio 일반생명 70
     blocks[21]->setImage(":/images/ingame/block/vertical/BIO_background_vertical.png");
     blocks[21]->setPos(block_coord[21]);
-    blocks[21]->rotateImage(180);
+
     blocks[22] = new SubjectBlock(this,BIO,"BIO2",110); //bio 분자생물학 110
     blocks[22]->setImage(":/images/ingame/block/vertical/BIO_background_vertical.png");
     blocks[22]->setPos(block_coord[22]);
-    blocks[22]->rotateImage(180);
+
     blocks[23] = new SubjectBlock(this,BIO,"BIO3",150); //bio 유전학 150
     blocks[23]->setImage(":/images/ingame/block/vertical/BIO_background_vertical.png");
     blocks[23]->setPos(block_coord[23]);
-    blocks[23]->rotateImage(180);
+
     //Corner block
     blocks[24] = new CornerBlock(this,CornerType::CALLTAXI); //61콜
     blocks[24]->setImage(":/images/ingame/block/corner/taxi.png");
@@ -142,15 +142,15 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[25] = new SubjectBlock(this,CHEM,"CHEM1",75); //chem 일반화학 75
     blocks[25]->setImage(":/images/ingame/block/normal/schem1.png");
     blocks[25]->setPos(block_coord[25]);
-    blocks[25]->rotateImage(180);
+
     blocks[26] = new SubjectBlock(this,CHEM,"CHEM2",115); //chem 유기화학 115
     blocks[26]->setImage(":/images/ingame/block/normal/schem2.png");
     blocks[26]->setPos(block_coord[26]);
-    blocks[26]->rotateImage(180);
+
     blocks[27] = new SubjectBlock(this,CHEM,"CHEM3",155); //chem 물리화학 155
     blocks[27]->setImage(":/images/ingame/block/normal/schem3.png");
     blocks[27]->setPos(block_coord[27]);
-    blocks[27]->rotateImage(180);
+
     
     //Event block
     blocks[28] = new EventBlock(this,scene, window); // Event
@@ -161,15 +161,15 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[29] = new SubjectBlock(this,IME,"IME1",80); //mse 산경입문 80
     blocks[29]->setImage(":/images/ingame/block/normal/sime1.png");
     blocks[29]->setPos(block_coord[29]);
-    blocks[29]->rotateImage(180);
+
     blocks[30] = new SubjectBlock(this,IME,"IME2",120); //mse 제품생산공정 120
     blocks[30]->setImage(":/images/ingame/block/normal/sime2.png");
     blocks[30]->setPos(block_coord[30]);
-    blocks[30]->rotateImage(180);
+
     blocks[31] = new SubjectBlock(this,IME,"IME3",160); //mse 품질공학 160
     blocks[31]->setImage(":/images/ingame/block/normal/sime3.png");
     blocks[31]->setPos(block_coord[31]);
-    blocks[31]->rotateImage(180);
+
 
     for(int i=0; i<32; i++)
     {
