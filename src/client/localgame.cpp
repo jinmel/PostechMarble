@@ -140,38 +140,52 @@ void LocalGame::blockEvent(Block *block){
     }
     //drink event
     if(m_state == EVENT_DRINK){
+        warn_box.setWindowTitle(QString("이벤트: 음주"));
         if (block->getPosition() != 20 && block->getPosition() != 4){
             //not a valid location to jump.
-            warn_box.setWindowTitle(QString("이벤트: 음주"));
             warn_box.setText(QString("불금칸으로만 갈 수 있어요!"));
             warn_box.exec();
         }
-        else{
+        else
             m_current_player->jumpTo(block->getPosition());
-        }
     }
+
     //take subject event
     if(m_state == EVENT_TAKE_SUBJECT){
+        warn_box.setWindowTitle(QString("이벤트: 과목 수강"));
         if(block->getType() == BlockType::SUBJECT){
-            m_current_player->addBlock(block);
-            SubjectBlock * subj = dynamic_cast<SubjectBlock*>(block);
-            subj->decideGrade();
-            LocalGame::getInst()->turnOver();
+            SubjectBlock * subject_block = dynamic_cast<SubjectBlock*>(block);
+            if(subject_block->getOwner() != NULL){
+                warn_box.setText(QString("아무도 수강하지 않은 블록을 선택해 주세요!"));
+                warn_box.exec();
+            }
+            else {
+                m_current_player->addBlock(block);
+                subject_block->decideGrade();
+                LocalGame::getInst()->turnOver();
+            }
         }
         else{
-            warn_box.setWindowTitle("이벤트: 과목 수강");
             warn_box.setText("과목 블럭을 선택해 주세요!");
             warn_box.exec();
         }
     }
 
     if(m_state == EVENT_LOSE_SUBJECT){
+        warn_box.setWindowTitle(QString("이벤트: 과목 포기"));
         if(block->getType() == BlockType::SUBJECT){
-            m_current_player->removeBlock(block);
-            LocalGame::getInst()->turnOver();
+            SubjectBlock * subject_block = dynamic_cast<SubjectBlock*>(block);
+            if(subject_block->getOwner() != m_current_player){
+
+                warn_box.setText(QString("자신이 수강한 과목을 선택해 주세요!"));
+                warn_box.exec();
+            }
+            else {
+                m_current_player->removeBlock(block);
+                LocalGame::getInst()->turnOver();
+            }
         }
-        else{
-            warn_box.setWindowTitle("이벤트: 과목 포기");
+        else {
             warn_box.setText("과목 블럭을 선택해 주세요!");
             warn_box.exec();
         }
@@ -179,7 +193,6 @@ void LocalGame::blockEvent(Block *block){
 }
 
 void LocalGame::playerEvent(Player *player){
-    qDebug() << "signal emmited by Player" << player->getId();
     if(m_state == PLAYER_MOVING){
         qDebug() << "Player in block!";
         int position = player->getPosition();
