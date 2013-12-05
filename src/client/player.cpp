@@ -74,6 +74,21 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
         player_color = QString("blue");
         break;
     }
+    using namespace BlockCoords;
+
+    for(int i =0; i < 32; i ++){
+        player_coord[i] = block_coord[i];
+    }
+
+    for(int i=1; i< 8; i ++){
+        player_coord[i] += QPointF(0,-40);
+    }
+
+    for(int i=17; i < 24; i++){
+        player_coord[i] += QPointF(0,-45);
+    }
+
+    setPos(player_coord[0]);
 
     // end initialize
     qDebug() << "Player Created" << endl;
@@ -214,8 +229,8 @@ void Player::walkBy(int steps)
             = new QPropertyAnimation(this,"pos");
     sleep->setDuration(1800);
     //don't move
-    sleep->setStartValue(block_coord[current_pos]);
-    sleep->setEndValue(block_coord[current_pos]);
+    sleep->setStartValue(player_coord[current_pos]);
+    sleep->setEndValue(player_coord[current_pos]);
     seq_animation_group->addAnimation(sleep);
 
     while(steps){
@@ -223,8 +238,8 @@ void Player::walkBy(int steps)
         QPropertyAnimation * step_animation
                 = new QPropertyAnimation(this,"pos");        
         step_animation->setDuration(step_interval);
-        step_animation->setStartValue(block_coord[current_pos]);
-        step_animation->setEndValue(block_coord[next_pos]);
+        step_animation->setStartValue(player_coord[current_pos]);
+        step_animation->setEndValue(player_coord[next_pos]);
         step_animation->setEasingCurve(QEasingCurve::InOutQuint);
         connect(step_animation,SIGNAL(finished()),this,SLOT(stepForward()));
         seq_animation_group->addAnimation(step_animation);
@@ -241,11 +256,11 @@ void Player::walkBy(int steps)
 void Player::jumpTo(int block_num){
     using namespace BlockCoords;
     LocalGame::getInst()->setGameState(LocalGameState::PLAYER_MOVING);
-    QPointF target = block_coord[block_num];
+    QPointF target = player_coord[block_num];
     QPropertyAnimation * step_animation
             = new QPropertyAnimation(this,"pos");
     step_animation->setDuration(2000);
-    step_animation->setStartValue(block_coord[getPosition()]);
+    step_animation->setStartValue(player_coord[getPosition()]);
     step_animation->setEndValue(target);
     step_animation->setEasingCurve(QEasingCurve::InOutQuint);
     step_animation->start(QAbstractAnimation::DeleteWhenStopped);
