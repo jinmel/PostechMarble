@@ -34,7 +34,7 @@ void EventBlock::enter(Player* player)
 void EventBlock::checkEvent(Player* player,QGraphicsScene * scene, MainWindow * window)
 {
     // generate random event
-    int value = rand() % 7;
+    int value = rand()% 7 ;
 
     switch(value) {
     case 0:

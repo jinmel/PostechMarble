@@ -70,13 +70,13 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
     //MATH subject block
     blocks[9] = new SubjectBlock(this,MATH,"MATH1",55); //math 응선대 55
-    blocks[9]->setImage(":/images/ingame/block/MATH_background.png");
+    blocks[9]->setImage(":/images/ingame/block/normal/smath1.png");
     blocks[9]->setPos(block_coord[9]);
     blocks[10] = new SubjectBlock(this,MATH,"MATH2",95); //math 해석학 95
-    blocks[10]->setImage(":/images/ingame/block/MATH_background.png");
+    blocks[10]->setImage(":/images/ingame/block/normal/smath2.png");
     blocks[10]->setPos(block_coord[10]);
     blocks[11] = new SubjectBlock(this,MATH,"MATH3",135); //math 위상수학 135
-    blocks[11]->setImage(":/images/ingame/block/MATH_background.png");
+    blocks[11]->setImage(":/images/ingame/block/normal/smath3.png");
     blocks[11]->setPos(block_coord[11]);
 
     //Event block
@@ -87,13 +87,13 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
     //EE subject block
     blocks[13] = new SubjectBlock(this,EE,"EE1",60); //ee 반도체 60
-    blocks[13]->setImage(":/images/ingame/block/EE_background.png");
+    blocks[13]->setImage(":/images/ingame/block/normal/see1.png");
     blocks[13]->setPos(block_coord[13]);
     blocks[14] = new SubjectBlock(this,EE,"EE2",100); //ee 신호및시스템 100
-    blocks[14]->setImage(":/images/ingame/block/EE_background.png");
+    blocks[14]->setImage(":/images/ingame/block/normal/see2.png");
     blocks[14]->setPos(block_coord[14]);
     blocks[15] = new SubjectBlock(this,EE,"EE3",140); //ee 전자회로 140
-    blocks[15]->setImage(":/images/ingame/block/EE_background.png");
+    blocks[15]->setImage(":/images/ingame/block/normal/see3.png");
     blocks[15]->setPos(block_coord[15]);
 
     //Corner block
@@ -140,15 +140,15 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
     //CHEM block
     blocks[25] = new SubjectBlock(this,CHEM,"CHEM1",75); //chem 일반화학 75
-    blocks[25]->setImage(":/images/ingame/block/CHEM_background.png");
+    blocks[25]->setImage(":/images/ingame/block/normal/schem1.png");
     blocks[25]->setPos(block_coord[25]);
     blocks[25]->rotateImage(180);
     blocks[26] = new SubjectBlock(this,CHEM,"CHEM2",115); //chem 유기화학 115
-    blocks[26]->setImage(":/images/ingame/block/CHEM_background.png");
+    blocks[26]->setImage(":/images/ingame/block/normal/schem2.png");
     blocks[26]->setPos(block_coord[26]);
     blocks[26]->rotateImage(180);
     blocks[27] = new SubjectBlock(this,CHEM,"CHEM3",155); //chem 물리화학 155
-    blocks[27]->setImage(":/images/ingame/block/CHEM_background.png");
+    blocks[27]->setImage(":/images/ingame/block/normal/schem3.png");
     blocks[27]->setPos(block_coord[27]);
     blocks[27]->rotateImage(180);
     
@@ -159,15 +159,15 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
     //IME block
     blocks[29] = new SubjectBlock(this,IME,"IME1",80); //mse 산경입문 80
-    blocks[29]->setImage(":/images/ingame/block/IME_background.png");
+    blocks[29]->setImage(":/images/ingame/block/normal/sime1.png");
     blocks[29]->setPos(block_coord[29]);
     blocks[29]->rotateImage(180);
     blocks[30] = new SubjectBlock(this,IME,"IME2",120); //mse 제품생산공정 120
-    blocks[30]->setImage(":/images/ingame/block/IME_background.png");
+    blocks[30]->setImage(":/images/ingame/block/normal/sime2.png");
     blocks[30]->setPos(block_coord[30]);
     blocks[30]->rotateImage(180);
     blocks[31] = new SubjectBlock(this,IME,"IME3",160); //mse 품질공학 160
-    blocks[31]->setImage(":/images/ingame/block/IME_background.png");
+    blocks[31]->setImage(":/images/ingame/block/normal/sime3.png");
     blocks[31]->setPos(block_coord[31]);
     blocks[31]->rotateImage(180);
 
