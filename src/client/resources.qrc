@@ -76,9 +76,6 @@
         <file>images/ingame/block/corner/gap_year.png</file>
         <file>images/ingame/block/corner/plurar_major.png</file>
         <file>images/ingame/block/corner/taxi.png</file>
-        <file>images/ourphotos/photo1.png</file>
-        <file>images/ourphotos/photo2.png</file>
-        <file>images/ourphotos/photo3.png</file>
         <file>images/ingame/block/fire/seouljongbin.png</file>
         <file>images/ingame/block/fire/tongzip.png</file>
         <file>images/ingame/board/background.png</file>
@@ -94,5 +91,14 @@
         <file>images/ingame/pause/reload_pressed.png</file>
         <file>images/ingame/pause/resume_pressed.png</file>
         <file>images/ingame/sellpopup_panel.png</file>
+        <file>images/ourphotos/set1/photo1.png</file>
+        <file>images/ourphotos/set1/photo2.png</file>
+        <file>images/ourphotos/set1/photo3.png</file>
+        <file>images/ourphotos/set2/photo1.png</file>
+        <file>images/ourphotos/set2/photo2.png</file>
+        <file>images/ourphotos/set2/photo3.png</file>
+        <file>images/ourphotos/set3/photo1.png</file>
+        <file>images/ourphotos/set3/photo2.png</file>
+        <file>images/ourphotos/set3/photo3.png</file>
     </qresource>
 </RCC>
