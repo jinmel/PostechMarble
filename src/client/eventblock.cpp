@@ -77,7 +77,7 @@ void EventBlock::cc(Player* player)
     warn_box.setWindowTitle("이벤트: Campus Couple");
 
     // 행동력 감소 + 일정 확률로 휴학 또는 61콜 이동
-    if(getType() != CharacterType::OUTSIDER)
+    if(player->getType() != CharacterType::OUTSIDER)
     {
         warn_box.setText("랜덤한 장소로 이동합니다.");
         warn_box.exec();
@@ -127,7 +127,7 @@ void EventBlock::lol(Player* player)
     warn_box.exec();
 
     // 50:50으로 행동력 증가 또는 감소, lol타입 캐릭터의 경우 항상 증가
-    if(getType() == CharacterType::LOL)
+    if(player->getType() == CharacterType::LOL)
         player->giveEnergy(50);
     else
     {

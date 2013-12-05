@@ -15,7 +15,7 @@ namespace CornerType {
 
 namespace FireFridayType {
     enum Type {
-        TWODARI, SEOULJONGBIN, TONGZIP, CHAMPYO
+        SEOULJONGBIN, TONGZIP
     };
 }
 
