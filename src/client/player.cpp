@@ -230,14 +230,7 @@ void Player::walkBy(int steps)
         seq_animation_group->addAnimation(step_animation);
         steps--; //decrease one step
         current_pos = next_pos;
-        if(current_pos == 0){
-            //maybe add animation for gaining energy
-            giveSalary();
-            QMediaPlayer* player = new QMediaPlayer();
-            player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coin.wav").absoluteFilePath()));
-            player->setVolume(100);
-            player->play();
-        }
+
     }
     seq_animation_group->start(QAbstractAnimation::DeleteWhenStopped);
 
@@ -263,6 +256,9 @@ void Player::jumpTo(int block_num){
 
 void Player::stepForward(){
     position = NEXT_POS(position);
+    if(position == 0){
+        giveSalary();
+    }
 }
 
 void Player::arrived(){
@@ -312,6 +308,12 @@ void Player::removeBlock(Block *block)
 void Player::giveSalary()
 {
     qDebug() << "Player " << id << " received salary";
+    //maybe add animation for gaining energy
+
+    QMediaPlayer* mediaplayer = new QMediaPlayer();
+    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coin.wav").absoluteFilePath()));
+    mediaplayer->setVolume(100);
+    mediaplayer->play();
 
     if(character_type == CharacterType::HARD_WORKER)
         energy += 150;
