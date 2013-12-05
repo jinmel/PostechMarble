@@ -253,11 +253,14 @@
         <file>images/ingame/block/normal/sime1.png</file>
         <file>images/ingame/block/normal/sime2.png</file>
         <file>images/ingame/block/normal/sime3.png</file>
-        <file>images/ingame/block/vertical/scse1.png</file>
-        <file>images/ingame/block/vertical/scse2.png</file>
-        <file>images/ingame/block/vertical/scse3.png</file>
-        <file>images/ingame/block/vertical/sme1.png</file>
-        <file>images/ingame/block/vertical/sme2.png</file>
-        <file>images/ingame/block/vertical/sme3.png</file>
+        <file>images/ingame/block/horizontial/scse1.png</file>
+        <file>images/ingame/block/horizontial/scse2.png</file>
+        <file>images/ingame/block/horizontial/scse3.png</file>
+        <file>images/ingame/block/horizontial/sme1.png</file>
+        <file>images/ingame/block/horizontial/sme2.png</file>
+        <file>images/ingame/block/horizontial/sme3.png</file>
+        <file>images/ingame/block/horizontial/sphy1.png</file>
+        <file>images/ingame/block/horizontial/sphy2.png</file>
+        <file>images/ingame/block/horizontial/sphy3.png</file>
     </qresource>
 </RCC>

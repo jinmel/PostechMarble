@@ -24,8 +24,8 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
     /*
      * Corner block size : 142 x 114
-     * Horizontal block size : 91 x 114
-     * Vertical block size : 142 x 64
+     * Vertical block size : 91 x 114
+     * Horizontial block size : 142 x 64
      * Board size : 921 x 676
      */
 
@@ -37,13 +37,13 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[0]->setPos(block_coord[0]);
     //CSED subject block
     blocks[1] = new SubjectBlock(this,CSED,"CSED1",45); // cse 전산 45
-    blocks[1]->setImage(":/images/ingame/block/vertical/CSED_background_vertical.png");
+    blocks[1]->setImage(":/images/ingame/block/horizontial/scse1.png");
     blocks[1]->setPos(block_coord[1]);
     blocks[2] = new SubjectBlock(this,CSED,"CSED2",85); // cse 객체 85
-    blocks[2]->setImage(":/images/ingame/block/vertical/CSED_background_vertical.png");
+    blocks[2]->setImage(":/images/ingame/block/horizontial/scse2.png");
     blocks[2]->setPos(block_coord[2]);
     blocks[3] = new SubjectBlock(this,CSED,"CSED3",125); // cse OS 125
-    blocks[3]->setImage(":/images/ingame/block/vertical/CSED_background_vertical.png");
+    blocks[3]->setImage(":/images/ingame/block/horizontial/scse3.png");
     blocks[3]->setPos(block_coord[3]);
 
     //Fire block
@@ -53,13 +53,13 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
     //ME subject block
     blocks[5] = new SubjectBlock(this,ME,"ME1",50); // me 기공개론 50
-    blocks[5]->setImage(":/images/ingame/block/vertical/ME_background_vertical.png");
+    blocks[5]->setImage(":/images/ingame/block/horizontial/sme1.png");
     blocks[5]->setPos(block_coord[5]);
     blocks[6] = new SubjectBlock(this,ME,"ME2",90); //me 열역학 90
-    blocks[6]->setImage(":/images/ingame/block/vertical/ME_background_vertical.png");
+    blocks[6]->setImage(":/images/ingame/block/horizontial/sme2.png");
     blocks[6]->setPos(block_coord[6]);
     blocks[7] = new SubjectBlock(this,ME,"ME3",130); //me 시스템설계 130
-    blocks[7]->setImage(":/images/ingame/block/vertical/ME_background_vertical.png");
+    blocks[7]->setImage(":/images/ingame/block/horizontial/sme3.png");
     blocks[7]->setPos(block_coord[7]);
 
     //corner block
@@ -103,15 +103,15 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
     //PHYS subject block
     blocks[17] = new SubjectBlock(this,PHYS,"PHYS1",65); //phys 일반물리 65
-    blocks[17]->setImage(":/images/ingame/block/vertical/PHYS_background_vertical.png");
+    blocks[17]->setImage(":/images/ingame/block/horizontial/sphy1.png");
     blocks[17]->setPos(block_coord[17]);
 
-    blocks[18] = new SubjectBlock(this,PHYS,"PHYS2",105); //phys 현대물리 105
-    blocks[18]->setImage(":/images/ingame/block/vertical/PHYS_background_vertical.png");
+    blocks[18] = new SubjectBlock(this,PHYS,"PHYS2",105); //phys 열물리 105
+    blocks[18]->setImage(":/images/ingame/block/horizontial/sphy2.png");
     blocks[18]->setPos(block_coord[18]);
 
     blocks[19] = new SubjectBlock(this,PHYS,"PHYS3",145); //phys 양자물리 145
-    blocks[19]->setImage(":/images/ingame/block/vertical/PHYS_background_vertical.png");
+    blocks[19]->setImage(":/images/ingame/block/horizontial/sphy3.png");
     blocks[19]->setPos(block_coord[19]);
 
 
@@ -122,15 +122,15 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
     //BIO subject block
     blocks[21] = new SubjectBlock(this,BIO,"BIO1",70); //bio 일반생명 70
-    blocks[21]->setImage(":/images/ingame/block/vertical/BIO_background_vertical.png");
+    blocks[21]->setImage(":/images/ingame/block/horizontial/BIO_background_vertical.png");
     blocks[21]->setPos(block_coord[21]);
 
     blocks[22] = new SubjectBlock(this,BIO,"BIO2",110); //bio 분자생물학 110
-    blocks[22]->setImage(":/images/ingame/block/vertical/BIO_background_vertical.png");
+    blocks[22]->setImage(":/images/ingame/block/horizontial/BIO_background_vertical.png");
     blocks[22]->setPos(block_coord[22]);
 
     blocks[23] = new SubjectBlock(this,BIO,"BIO3",150); //bio 유전학 150
-    blocks[23]->setImage(":/images/ingame/block/vertical/BIO_background_vertical.png");
+    blocks[23]->setImage(":/images/ingame/block/horizontial/BIO_background_vertical.png");
     blocks[23]->setPos(block_coord[23]);
 
     //Corner block
