@@ -164,7 +164,7 @@ void LocalGame::blockEvent(Block *block){
         warn_box.setWindowTitle(QString("이벤트: 음주"));
         if (block->getPosition() != 20 && block->getPosition() != 4){
             //not a valid location to jump.
-            warn_box.setText(QString("불금칸으로만 갈 수 있어요!"));
+            warn_box.setText(QString("술집으로만 갈 수 있어요!"));
             warn_box.exec();
         }
         else
