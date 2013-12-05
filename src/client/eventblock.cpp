@@ -65,6 +65,11 @@ void EventBlock::checkEvent(Player* player,QGraphicsScene * scene, MainWindow * 
 void EventBlock::drink(Player* player)
 {
     qDebug() << "Drink event!";
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
+    warn_box.setWindowTitle("이벤트: 음주");
+    warn_box.setText("음주 이벤트! 가고 싶은 술집을 선택하세요!");
     LocalGame::getInst()->setGameState(LocalGameState::EVENT_DRINK);
 }
 
