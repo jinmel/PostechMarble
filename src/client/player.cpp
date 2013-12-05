@@ -68,7 +68,7 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 
     switch(_id){
     case 1:
-        player_color = QString("org");
+        player_color = QString("red");
         break;
     case 2:
         player_color = QString("blue");
@@ -390,17 +390,22 @@ void Player::animatePlayerImage(int frame){
     int zone = position /8 ;
 
     if(zone == 0){
-        filename += QString("top_up_id_");
+        filename += QString("top_up_");
     }
     else if(zone ==1){
-        filename += QString("top_right_id_");
+        filename += QString("top_right_");
     }
     else if(zone ==2){
-        filename += QString("top_down_id_");
+        filename += QString("top_down_");
     }
     else {
-        filename += QString("top_right_id_");
+        filename += QString("top_right_");
     }
+
+    if(id == 1)
+        filename += QString("io_");
+    else if(id == 2)
+        filename += QString("id_");
 
     filename += player_color + QString("_");
 

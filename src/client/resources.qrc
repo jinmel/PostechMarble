@@ -111,36 +111,6 @@
         <file>images/ingame/character/top_down_id_blue_walk_008.png</file>
         <file>images/ingame/character/top_down_id_blue_walk_009.png</file>
         <file>images/ingame/character/top_down_id_blue_walk_010.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_001.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_002.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_003.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_004.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_005.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_006.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_007.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_008.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_009.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_010.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_011.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_012.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_013.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_014.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_015.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_016.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_017.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_018.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_019.png</file>
-        <file>images/ingame/character/top_down_id_org_stand_020.png</file>
-        <file>images/ingame/character/top_down_id_org_walk_001.png</file>
-        <file>images/ingame/character/top_down_id_org_walk_002.png</file>
-        <file>images/ingame/character/top_down_id_org_walk_003.png</file>
-        <file>images/ingame/character/top_down_id_org_walk_004.png</file>
-        <file>images/ingame/character/top_down_id_org_walk_005.png</file>
-        <file>images/ingame/character/top_down_id_org_walk_006.png</file>
-        <file>images/ingame/character/top_down_id_org_walk_007.png</file>
-        <file>images/ingame/character/top_down_id_org_walk_008.png</file>
-        <file>images/ingame/character/top_down_id_org_walk_009.png</file>
-        <file>images/ingame/character/top_down_id_org_walk_010.png</file>
         <file>images/ingame/character/top_right_id_blue_stand_001.png</file>
         <file>images/ingame/character/top_right_id_blue_stand_002.png</file>
         <file>images/ingame/character/top_right_id_blue_stand_003.png</file>
@@ -166,29 +136,6 @@
         <file>images/ingame/character/top_right_id_blue_walk_013.png</file>
         <file>images/ingame/character/top_right_id_blue_walk_014.png</file>
         <file>images/ingame/character/top_right_id_blue_walk_015.png</file>
-        <file>images/ingame/character/top_right_id_org_stand_001.png</file>
-        <file>images/ingame/character/top_right_id_org_stand_002.png</file>
-        <file>images/ingame/character/top_right_id_org_stand_003.png</file>
-        <file>images/ingame/character/top_right_id_org_stand_004.png</file>
-        <file>images/ingame/character/top_right_id_org_stand_005.png</file>
-        <file>images/ingame/character/top_right_id_org_stand_006.png</file>
-        <file>images/ingame/character/top_right_id_org_stand_007.png</file>
-        <file>images/ingame/character/top_right_id_org_stand_008.png</file>
-        <file>images/ingame/character/top_right_id_org_stand_009.png</file>
-        <file>images/ingame/character/top_right_id_org_stand_010.png</file>
-        <file>images/ingame/character/top_right_id_org_walk_001.png</file>
-        <file>images/ingame/character/top_right_id_org_walk_002.png</file>
-        <file>images/ingame/character/top_right_id_org_walk_003.png</file>
-        <file>images/ingame/character/top_right_id_org_walk_004.png</file>
-        <file>images/ingame/character/top_right_id_org_walk_005.png</file>
-        <file>images/ingame/character/top_right_id_org_walk_006.png</file>
-        <file>images/ingame/character/top_right_id_org_walk_007.png</file>
-        <file>images/ingame/character/top_right_id_org_walk_008.png</file>
-        <file>images/ingame/character/top_right_id_org_walk_009.png</file>
-        <file>images/ingame/character/top_right_id_org_walk_010.png</file>
-        <file>images/ingame/character/top_right_id_org_walk_011.png</file>
-        <file>images/ingame/character/top_right_id_org_walk_012.png</file>
-        <file>images/ingame/character/top_right_id_org_walk_013.png</file>
         <file>images/ingame/character/top_up_id_blue_stand_001.png</file>
         <file>images/ingame/character/top_up_id_blue_stand_002.png</file>
         <file>images/ingame/character/top_up_id_blue_stand_003.png</file>
@@ -211,28 +158,6 @@
         <file>images/ingame/character/top_up_id_blue_walk_010.png</file>
         <file>images/ingame/character/top_up_id_blue_walk_011.png</file>
         <file>images/ingame/character/top_up_id_blue_walk_012.png</file>
-        <file>images/ingame/character/top_up_id_org_stand_001.png</file>
-        <file>images/ingame/character/top_up_id_org_stand_002.png</file>
-        <file>images/ingame/character/top_up_id_org_stand_003.png</file>
-        <file>images/ingame/character/top_up_id_org_stand_004.png</file>
-        <file>images/ingame/character/top_up_id_org_stand_005.png</file>
-        <file>images/ingame/character/top_up_id_org_stand_006.png</file>
-        <file>images/ingame/character/top_up_id_org_stand_007.png</file>
-        <file>images/ingame/character/top_up_id_org_stand_008.png</file>
-        <file>images/ingame/character/top_up_id_org_stand_009.png</file>
-        <file>images/ingame/character/top_up_id_org_stand_010.png</file>
-        <file>images/ingame/character/top_up_id_org_walk_001.png</file>
-        <file>images/ingame/character/top_up_id_org_walk_002.png</file>
-        <file>images/ingame/character/top_up_id_org_walk_003.png</file>
-        <file>images/ingame/character/top_up_id_org_walk_004.png</file>
-        <file>images/ingame/character/top_up_id_org_walk_005.png</file>
-        <file>images/ingame/character/top_up_id_org_walk_006.png</file>
-        <file>images/ingame/character/top_up_id_org_walk_007.png</file>
-        <file>images/ingame/character/top_up_id_org_walk_008.png</file>
-        <file>images/ingame/character/top_up_id_org_walk_009.png</file>
-        <file>images/ingame/character/top_up_id_org_walk_010.png</file>
-        <file>images/ingame/character/top_up_id_org_walk_011.png</file>
-        <file>images/ingame/character/top_up_id_org_walk_012.png</file>
         <file>images/ingame/block/normal/see1.png</file>
         <file>images/ingame/block/normal/see2.png</file>
         <file>images/ingame/block/normal/see3.png</file>
@@ -254,5 +179,65 @@
         <file>images/ingame/block/normal/sime1.png</file>
         <file>images/ingame/block/normal/sime2.png</file>
         <file>images/ingame/block/normal/sime3.png</file>
+        <file>images/ingame/character/top_down_io_red_stand_001.png</file>
+        <file>images/ingame/character/top_down_io_red_stand_002.png</file>
+        <file>images/ingame/character/top_down_io_red_stand_003.png</file>
+        <file>images/ingame/character/top_down_io_red_stand_004.png</file>
+        <file>images/ingame/character/top_down_io_red_stand_005.png</file>
+        <file>images/ingame/character/top_down_io_red_stand_006.png</file>
+        <file>images/ingame/character/top_down_io_red_stand_007.png</file>
+        <file>images/ingame/character/top_down_io_red_stand_008.png</file>
+        <file>images/ingame/character/top_down_io_red_stand_009.png</file>
+        <file>images/ingame/character/top_down_io_red_stand_010.png</file>
+        <file>images/ingame/character/top_down_io_red_walk_001.png</file>
+        <file>images/ingame/character/top_down_io_red_walk_002.png</file>
+        <file>images/ingame/character/top_down_io_red_walk_003.png</file>
+        <file>images/ingame/character/top_down_io_red_walk_004.png</file>
+        <file>images/ingame/character/top_down_io_red_walk_005.png</file>
+        <file>images/ingame/character/top_down_io_red_walk_006.png</file>
+        <file>images/ingame/character/top_down_io_red_walk_007.png</file>
+        <file>images/ingame/character/top_down_io_red_walk_008.png</file>
+        <file>images/ingame/character/top_down_io_red_walk_009.png</file>
+        <file>images/ingame/character/top_down_io_red_walk_010.png</file>
+        <file>images/ingame/character/top_right_io_red_walk_001.png</file>
+        <file>images/ingame/character/top_right_io_red_walk_002.png</file>
+        <file>images/ingame/character/top_right_io_red_walk_003.png</file>
+        <file>images/ingame/character/top_right_io_red_walk_004.png</file>
+        <file>images/ingame/character/top_right_io_red_walk_005.png</file>
+        <file>images/ingame/character/top_right_io_red_walk_006.png</file>
+        <file>images/ingame/character/top_right_io_red_walk_007.png</file>
+        <file>images/ingame/character/top_right_io_red_walk_008.png</file>
+        <file>images/ingame/character/top_right_io_red_walk_009.png</file>
+        <file>images/ingame/character/top_right_io_red_walk_010.png</file>
+        <file>images/ingame/character/top_up_io_red_stand_001.png</file>
+        <file>images/ingame/character/top_up_io_red_stand_002.png</file>
+        <file>images/ingame/character/top_up_io_red_stand_003.png</file>
+        <file>images/ingame/character/top_up_io_red_stand_004.png</file>
+        <file>images/ingame/character/top_up_io_red_stand_005.png</file>
+        <file>images/ingame/character/top_up_io_red_stand_006.png</file>
+        <file>images/ingame/character/top_up_io_red_stand_007.png</file>
+        <file>images/ingame/character/top_up_io_red_stand_008.png</file>
+        <file>images/ingame/character/top_up_io_red_stand_009.png</file>
+        <file>images/ingame/character/top_up_io_red_stand_010.png</file>
+        <file>images/ingame/character/top_up_io_red_walk_001.png</file>
+        <file>images/ingame/character/top_up_io_red_walk_002.png</file>
+        <file>images/ingame/character/top_up_io_red_walk_003.png</file>
+        <file>images/ingame/character/top_up_io_red_walk_004.png</file>
+        <file>images/ingame/character/top_up_io_red_walk_005.png</file>
+        <file>images/ingame/character/top_up_io_red_walk_006.png</file>
+        <file>images/ingame/character/top_up_io_red_walk_007.png</file>
+        <file>images/ingame/character/top_up_io_red_walk_008.png</file>
+        <file>images/ingame/character/top_up_io_red_walk_009.png</file>
+        <file>images/ingame/character/top_up_io_red_walk_010.png</file>
+        <file>images/ingame/character/top_right_io_red_stand_001.png</file>
+        <file>images/ingame/character/top_right_io_red_stand_002.png</file>
+        <file>images/ingame/character/top_right_io_red_stand_003.png</file>
+        <file>images/ingame/character/top_right_io_red_stand_004.png</file>
+        <file>images/ingame/character/top_right_io_red_stand_005.png</file>
+        <file>images/ingame/character/top_right_io_red_stand_006.png</file>
+        <file>images/ingame/character/top_right_io_red_stand_007.png</file>
+        <file>images/ingame/character/top_right_io_red_stand_008.png</file>
+        <file>images/ingame/character/top_right_io_red_stand_009.png</file>
+        <file>images/ingame/character/top_right_io_red_stand_010.png</file>
     </qresource>
 </RCC>
