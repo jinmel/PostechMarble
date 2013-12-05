@@ -5,7 +5,7 @@
 #include "block.h"
 #include "types.h"
 #include "qgameitem.h"
-
+#include <QPointF>
 // circular dependency
 class Block;
 class Player;
@@ -20,11 +20,13 @@ private:
     int         energy;
     bool        bankrupt;
     bool        mobile;                    // is player movable? (Mouindo, Drink...)
-    int         immobile_penalty;                   // how long to be punished
+    int         immobile_penalty;          // how long to be punished
     bool        plural;                    // plural major status
     std::map<SubjectType::Type, int> registered;     // registered class for each subject
     std::list<Block*> own_blocks;
     CharacterType::Type character_type;
+    QString player_color;
+    QPointF player_coord[32];
 
 public:
     Player(QGameItem * parent,int id);
@@ -65,9 +67,10 @@ signals:
     void activate();
     void disable();
 public slots:
+    void animatePlayerImage(int frame);
     void arrived();
     void walkBy(int dice);
     void jumpTo(int block_num);
-
+    void stepForward();
 };
       

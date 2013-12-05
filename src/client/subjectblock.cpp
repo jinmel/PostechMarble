@@ -60,6 +60,8 @@ int SubjectBlock::getPenaltyCost(){
         return int(cost * 0.4);
     else if(grade == C)
         return int(cost * 0.2);
+    else
+        return 0;
 }
 
 
@@ -72,6 +74,7 @@ void SubjectBlock::enter(Player* player)
 {
     qDebug() << "subjectblock enter" << getPosition();
     qDebug() << "cost:" << cost;
+    qDebug() << "player" << player->getId();
     QMessageBox mbox;
     mbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     mbox.setDefaultButton(QMessageBox::Ok);
@@ -119,6 +122,7 @@ void SubjectBlock::enter(Player* player)
                     this->owner->giveEnergy(getBuyOutPrice());
                     player->payEnergy(getBuyOutPrice());
                     player->addBlock(this);
+                    decideGrade();
                 }
             }
         }
@@ -184,10 +188,7 @@ void SubjectBlock::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 }
 
 void SubjectBlock::setOwner(Player *player){
-    //cannot be called
-    Q_ASSERT(owner == NULL);
-    if(owner == NULL)
-        owner = player;
+    owner = player;
 }
 
 Player * SubjectBlock::getOwner(){

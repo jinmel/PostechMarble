@@ -12,6 +12,7 @@
 #include "sellpopup.h"
 #include <QMediaPlayer>
 #include <QFileInfo>
+#include <QDir>
 #define NUMBER_OF_BLOCKS 32
 #define NEXT_POS(current_pos) ((current_pos + 1) % 32)
 
@@ -52,7 +53,6 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     plural = false;
 
     character_type = CharacterType::NONE;
-    //totalownsubjectenergy=0;//지우고 동적으로 계산하라
 
     //initialize map
     using namespace SubjectType;
@@ -64,6 +64,32 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     registered[ME] = 0;
     registered[IME] = 0;
     registered[PHYS] = 0;
+
+    switch(_id){
+    case 1:
+        player_color = QString("red");
+        break;
+    case 2:
+        player_color = QString("blue");
+        break;
+    }
+    using namespace BlockCoords;
+
+    for(int i =0; i < 32; i ++){
+        player_coord[i] = block_coord[i];
+    }
+
+    for(int i=1; i< 24; i ++){
+        player_coord[i] += QPointF(0,-40);
+    }
+
+    for(int i=17; i<24; i++){
+        player_coord[i] += QPointF(40,0);
+    }
+
+    player_coord[8] = block_coord[8];
+
+    setPos(player_coord[0]);
 
     // end initialize
     qDebug() << "Player Created" << endl;
@@ -157,6 +183,7 @@ void Player::setMouindo(int penalty)
 
 void Player::setMobile(bool mobile){
     this->mobile = mobile;
+    immobile_penalty = 0;
 }
 
 void Player::escapeAttempt(){
@@ -203,8 +230,8 @@ void Player::walkBy(int steps)
             = new QPropertyAnimation(this,"pos");
     sleep->setDuration(1800);
     //don't move
-    sleep->setStartValue(block_coord[current_pos]);
-    sleep->setEndValue(block_coord[current_pos]);
+    sleep->setStartValue(player_coord[current_pos]);
+    sleep->setEndValue(player_coord[current_pos]);
     seq_animation_group->addAnimation(sleep);
 
     while(steps){
@@ -212,41 +239,42 @@ void Player::walkBy(int steps)
         QPropertyAnimation * step_animation
                 = new QPropertyAnimation(this,"pos");        
         step_animation->setDuration(step_interval);
-        step_animation->setStartValue(block_coord[current_pos]);
-        step_animation->setEndValue(block_coord[next_pos]);
+        step_animation->setStartValue(player_coord[current_pos]);
+        step_animation->setEndValue(player_coord[next_pos]);
         step_animation->setEasingCurve(QEasingCurve::InOutQuint);
+        connect(step_animation,SIGNAL(finished()),this,SLOT(stepForward()));
         seq_animation_group->addAnimation(step_animation);
         steps--; //decrease one step
         current_pos = next_pos;
-        if(current_pos == 0){
-            //maybe add animation for gaining energy
-            giveSalary();
-            QMediaPlayer* player = new QMediaPlayer();
-            player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coin.wav").absoluteFilePath()));
-            player->setVolume(100);
-            player->play();
-        }
+
     }
     seq_animation_group->start(QAbstractAnimation::DeleteWhenStopped);
 
     connect(seq_animation_group,SIGNAL(finished()),this,SLOT(arrived()));
-    position = current_pos;
+    //position = current_pos;
 }
 
 void Player::jumpTo(int block_num){
     using namespace BlockCoords;
     LocalGame::getInst()->setGameState(LocalGameState::PLAYER_MOVING);
-    QPointF target = block_coord[block_num];
+    QPointF target = player_coord[block_num];
     QPropertyAnimation * step_animation
             = new QPropertyAnimation(this,"pos");
     step_animation->setDuration(2000);
-    step_animation->setStartValue(block_coord[getPosition()]);
+    step_animation->setStartValue(player_coord[getPosition()]);
     step_animation->setEndValue(target);
     step_animation->setEasingCurve(QEasingCurve::InOutQuint);
     step_animation->start(QAbstractAnimation::DeleteWhenStopped);
 
     connect(step_animation,SIGNAL(finished()),this,SLOT(arrived()));
     position = block_num;
+}
+
+void Player::stepForward(){
+    position = NEXT_POS(position);
+    if(position == 0){
+        giveSalary();
+    }
 }
 
 void Player::arrived(){
@@ -296,6 +324,12 @@ void Player::removeBlock(Block *block)
 void Player::giveSalary()
 {
     qDebug() << "Player " << id << " received salary";
+    //maybe add animation for gaining energy
+
+    QMediaPlayer* mediaplayer = new QMediaPlayer();
+    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coin.wav").absoluteFilePath()));
+    mediaplayer->setVolume(100);
+    mediaplayer->play();
 
     if(character_type == CharacterType::HARD_WORKER)
         energy += 150;
@@ -366,3 +400,50 @@ int Player::getAssetValue() {
     return asset;
 }
 
+void Player::animatePlayerImage(int frame){
+    QString filename = QString(":/images/ingame/character/");
+
+    int zone = position /8 ;
+
+    if(zone == 0){
+        filename += QString("top_up_");
+    }
+    else if(zone ==1){
+        filename += QString("top_right_");
+    }
+    else if(zone ==2){
+        filename += QString("top_down_");
+    }
+    else {
+        filename += QString("top_right_");
+    }
+
+    if(id == 1)
+        filename += QString("io_");
+    else if(id == 2)
+        filename += QString("id_");
+
+    filename += player_color + QString("_");
+
+    LocalGame * game_inst = LocalGame::getInst();
+
+    if(game_inst->getGameState() == LocalGameState::PLAYER_MOVING
+            && game_inst->getCurrentPlayer() == this)
+        filename += QString("walk_");
+    else
+        filename += QString("stand_");
+
+    filename += QString::number(frame).rightJustified(3,'0') + QString(".png");
+
+    //qDebug() << filename;
+
+    QImage image(filename);
+
+    QTransform rotate;
+    rotate.rotate(180);
+
+    if(zone == 3)
+        image = image.mirrored(true,false);
+
+    setPixmap(QPixmap::fromImage(image));
+}

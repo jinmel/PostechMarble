@@ -24,9 +24,13 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
     /*
      * Corner block size : 142 x 114
-     * Horizontal block size : 91 x 114
-     * Vertical block size : 142 x 64
+     * Vertical block size : 91 x 114
+     * Horizontial block size : 142 x 64
      * Board size : 921 x 676
+     * Horizontial Grade size: 90 x 56
+     * Horizontial Grade Relative Coord: 48 x 4
+     * Vertical Grade size: 84 x 69
+     * Vertical Grade Relative Coord: 3 x 4
      */
 
     //TODO : set position and images... -ㅁ-;;
@@ -36,14 +40,14 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[0]->setImage(":/images/ingame/block/corner/Dormitory.png");
     blocks[0]->setPos(block_coord[0]);
     //CSED subject block
-    blocks[1] = new SubjectBlock(this,CSED,"CSED1",45); // cse 전산 45
-    blocks[1]->setImage(":/images/ingame/block/vertical/CSED_background_vertical.png");
+    blocks[1] = new SubjectBlock(this,CSED,"프로그래밍과 문제해결",45); // cse 전산 45
+    blocks[1]->setImage(":/images/ingame/block/horizontial/scse1.png");
     blocks[1]->setPos(block_coord[1]);
-    blocks[2] = new SubjectBlock(this,CSED,"CSED2",85); // cse 객체 85
-    blocks[2]->setImage(":/images/ingame/block/vertical/CSED_background_vertical.png");
+    blocks[2] = new SubjectBlock(this,CSED,"객체지향프로그래밍",85); // cse 객체 85
+    blocks[2]->setImage(":/images/ingame/block/horizontial/scse2.png");
     blocks[2]->setPos(block_coord[2]);
-    blocks[3] = new SubjectBlock(this,CSED,"CSED3",125); // cse OS 125
-    blocks[3]->setImage(":/images/ingame/block/vertical/CSED_background_vertical.png");
+    blocks[3] = new SubjectBlock(this,CSED,"운영체제",125); // cse OS 125
+    blocks[3]->setImage(":/images/ingame/block/horizontial/scse3.png");
     blocks[3]->setPos(block_coord[3]);
 
     //Fire block
@@ -52,14 +56,14 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[4]->setPos(block_coord[4]);
 
     //ME subject block
-    blocks[5] = new SubjectBlock(this,ME,"ME1",50); // me 기공개론 50
-    blocks[5]->setImage(":/images/ingame/block/vertical/ME_background_vertical.png");
+    blocks[5] = new SubjectBlock(this,ME,"기계공학개론",50); // me 기공개론 50
+    blocks[5]->setImage(":/images/ingame/block/horizontial/sme1.png");
     blocks[5]->setPos(block_coord[5]);
-    blocks[6] = new SubjectBlock(this,ME,"ME2",90); //me 열역학 90
-    blocks[6]->setImage(":/images/ingame/block/vertical/ME_background_vertical.png");
+    blocks[6] = new SubjectBlock(this,ME,"열역학",90); //me 열역학 90
+    blocks[6]->setImage(":/images/ingame/block/horizontial/sme2.png");
     blocks[6]->setPos(block_coord[6]);
-    blocks[7] = new SubjectBlock(this,ME,"ME3",130); //me 시스템설계 130
-    blocks[7]->setImage(":/images/ingame/block/vertical/ME_background_vertical.png");
+    blocks[7] = new SubjectBlock(this,ME,"시스템설계",130); //me 시스템설계 130
+    blocks[7]->setImage(":/images/ingame/block/horizontial/sme3.png");
     blocks[7]->setPos(block_coord[7]);
 
     //corner block
@@ -69,13 +73,13 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
 
     //MATH subject block
-    blocks[9] = new SubjectBlock(this,MATH,"MATH1",55); //math 응선대 55
+    blocks[9] = new SubjectBlock(this,MATH,"응용선형대수",55); //math 응선대 55
     blocks[9]->setImage(":/images/ingame/block/normal/smath1.png");
     blocks[9]->setPos(block_coord[9]);
-    blocks[10] = new SubjectBlock(this,MATH,"MATH2",95); //math 해석학 95
+    blocks[10] = new SubjectBlock(this,MATH,"해석학",95); //math 해석학 95
     blocks[10]->setImage(":/images/ingame/block/normal/smath2.png");
     blocks[10]->setPos(block_coord[10]);
-    blocks[11] = new SubjectBlock(this,MATH,"MATH3",135); //math 위상수학 135
+    blocks[11] = new SubjectBlock(this,MATH,"위상수학",135); //math 위상수학 135
     blocks[11]->setImage(":/images/ingame/block/normal/smath3.png");
     blocks[11]->setPos(block_coord[11]);
 
@@ -86,13 +90,13 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
 
 
     //EE subject block
-    blocks[13] = new SubjectBlock(this,EE,"EE1",60); //ee 반도체 60
+    blocks[13] = new SubjectBlock(this,EE,"회로이론",60); //ee 회로이론 60
     blocks[13]->setImage(":/images/ingame/block/normal/see1.png");
     blocks[13]->setPos(block_coord[13]);
-    blocks[14] = new SubjectBlock(this,EE,"EE2",100); //ee 신호및시스템 100
+    blocks[14] = new SubjectBlock(this,EE,"반도체",100); //ee 반도체 100
     blocks[14]->setImage(":/images/ingame/block/normal/see2.png");
     blocks[14]->setPos(block_coord[14]);
-    blocks[15] = new SubjectBlock(this,EE,"EE3",140); //ee 전자회로 140
+    blocks[15] = new SubjectBlock(this,EE,"신호 및 시스",140); //ee 신호및시스템 140
     blocks[15]->setImage(":/images/ingame/block/normal/see3.png");
     blocks[15]->setPos(block_coord[15]);
 
@@ -102,18 +106,18 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[16]->setPos(block_coord[16]);
 
     //PHYS subject block
-    blocks[17] = new SubjectBlock(this,PHYS,"PHYS1",65); //phys 일반물리 65
-    blocks[17]->setImage(":/images/ingame/block/vertical/PHYS_background_vertical.png");
+    blocks[17] = new SubjectBlock(this,PHYS,"일반물리",65); //phys 일반물리 65
+    blocks[17]->setImage(":/images/ingame/block/horizontial/sphy1.png");
     blocks[17]->setPos(block_coord[17]);
-    blocks[17]->rotateImage(180);
-    blocks[18] = new SubjectBlock(this,PHYS,"PHYS2",105); //phys 현대물리 105
-    blocks[18]->setImage(":/images/ingame/block/vertical/PHYS_background_vertical.png");
+
+    blocks[18] = new SubjectBlock(this,PHYS,"열물리",105); //phys 열물리 105
+    blocks[18]->setImage(":/images/ingame/block/horizontial/sphy2.png");
     blocks[18]->setPos(block_coord[18]);
-    blocks[18]->rotateImage(180);
-    blocks[19] = new SubjectBlock(this,PHYS,"PHYS3",145); //phys 양자물리 145
-    blocks[19]->setImage(":/images/ingame/block/vertical/PHYS_background_vertical.png");
+
+    blocks[19] = new SubjectBlock(this,PHYS,"양자물리",145); //phys 양자물리 145
+    blocks[19]->setImage(":/images/ingame/block/horizontial/sphy3.png");
     blocks[19]->setPos(block_coord[19]);
-    blocks[19]->rotateImage(180);
+
 
     //Fire block
     blocks[20] = new FireFridayBlock(this,FireFridayType::SEOULJONGBIN); // 설종빈
@@ -121,36 +125,36 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[20]->setPos(block_coord[20]);
 
     //BIO subject block
-    blocks[21] = new SubjectBlock(this,BIO,"BIO1",70); //bio 일반생명 70
-    blocks[21]->setImage(":/images/ingame/block/vertical/BIO_background_vertical.png");
+    blocks[21] = new SubjectBlock(this,BIO,"일반생명",70); //bio 일반생명 70
+    blocks[21]->setImage(":/images/ingame/block/horizontial/sbio1.png");
     blocks[21]->setPos(block_coord[21]);
-    blocks[21]->rotateImage(180);
-    blocks[22] = new SubjectBlock(this,BIO,"BIO2",110); //bio 분자생물학 110
-    blocks[22]->setImage(":/images/ingame/block/vertical/BIO_background_vertical.png");
+
+    blocks[22] = new SubjectBlock(this,BIO,"분자생물학",110); //bio 분자생물학 110
+    blocks[22]->setImage(":/images/ingame/block/horizontial/sbio2.png");
     blocks[22]->setPos(block_coord[22]);
-    blocks[22]->rotateImage(180);
-    blocks[23] = new SubjectBlock(this,BIO,"BIO3",150); //bio 유전학 150
-    blocks[23]->setImage(":/images/ingame/block/vertical/BIO_background_vertical.png");
+
+    blocks[23] = new SubjectBlock(this,BIO,"유전학",150); //bio 유전학 150
+    blocks[23]->setImage(":/images/ingame/block/horizontial/sbio3.png");
     blocks[23]->setPos(block_coord[23]);
-    blocks[23]->rotateImage(180);
+
     //Corner block
     blocks[24] = new CornerBlock(this,CornerType::CALLTAXI); //61콜
     blocks[24]->setImage(":/images/ingame/block/corner/taxi.png");
     blocks[24]->setPos(block_coord[24]);
 
     //CHEM block
-    blocks[25] = new SubjectBlock(this,CHEM,"CHEM1",75); //chem 일반화학 75
+    blocks[25] = new SubjectBlock(this,CHEM,"일반화학",75); //chem 일반화학 75
     blocks[25]->setImage(":/images/ingame/block/normal/schem1.png");
     blocks[25]->setPos(block_coord[25]);
-    blocks[25]->rotateImage(180);
-    blocks[26] = new SubjectBlock(this,CHEM,"CHEM2",115); //chem 유기화학 115
+
+    blocks[26] = new SubjectBlock(this,CHEM,"유기화학",115); //chem 유기화학 115
     blocks[26]->setImage(":/images/ingame/block/normal/schem2.png");
     blocks[26]->setPos(block_coord[26]);
-    blocks[26]->rotateImage(180);
-    blocks[27] = new SubjectBlock(this,CHEM,"CHEM3",155); //chem 물리화학 155
+
+    blocks[27] = new SubjectBlock(this,CHEM,"물리화확",155); //chem 물리화학 155
     blocks[27]->setImage(":/images/ingame/block/normal/schem3.png");
     blocks[27]->setPos(block_coord[27]);
-    blocks[27]->rotateImage(180);
+
     
     //Event block
     blocks[28] = new EventBlock(this,scene, window); // Event
@@ -161,15 +165,15 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[29] = new SubjectBlock(this,IME,"IME1",80); //mse 산경입문 80
     blocks[29]->setImage(":/images/ingame/block/normal/sime1.png");
     blocks[29]->setPos(block_coord[29]);
-    blocks[29]->rotateImage(180);
+
     blocks[30] = new SubjectBlock(this,IME,"IME2",120); //mse 제품생산공정 120
     blocks[30]->setImage(":/images/ingame/block/normal/sime2.png");
     blocks[30]->setPos(block_coord[30]);
-    blocks[30]->rotateImage(180);
+
     blocks[31] = new SubjectBlock(this,IME,"IME3",160); //mse 품질공학 160
     blocks[31]->setImage(":/images/ingame/block/normal/sime3.png");
     blocks[31]->setPos(block_coord[31]);
-    blocks[31]->rotateImage(180);
+
 
     for(int i=0; i<32; i++)
     {

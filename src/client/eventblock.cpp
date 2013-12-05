@@ -34,7 +34,7 @@ void EventBlock::enter(Player* player)
 void EventBlock::checkEvent(Player* player,QGraphicsScene * scene, MainWindow * window)
 {
     // generate random event
-    int value = rand()% 7 ;
+    int value = rand() % 7;
 
     switch(value) {
     case 0:
@@ -77,7 +77,7 @@ void EventBlock::cc(Player* player)
     warn_box.setWindowTitle("이벤트: Campus Couple");
 
     // 행동력 감소 + 일정 확률로 휴학 또는 61콜 이동
-    if(getType() != CharacterType::OUTSIDER)
+    if(player->getType() != CharacterType::OUTSIDER)
     {
         warn_box.setText("랜덤한 장소로 이동합니다.");
         warn_box.exec();
@@ -111,10 +111,19 @@ void EventBlock::loseSubject(Player* player)
     QMessageBox warn_box;
     warn_box.setStandardButtons(QMessageBox::Ok);
     warn_box.setDefaultButton(QMessageBox::Ok);
-    warn_box.setWindowTitle("이벤트: 과목 포기");
-    warn_box.setText("포기할 과목 블럭을 선택해 주세요!");
-    warn_box.exec();
-    LocalGame::getInst()->setGameState(LocalGameState::EVENT_LOSE_SUBJECT);
+    std::list<Block*> block_list = player->getBlocks();
+    if(block_list.size() >0){
+        warn_box.setWindowTitle("이벤트: 과목 포기");
+        warn_box.setText("포기할 과목 블럭을 선택해 주세요!");
+        warn_box.exec();
+        LocalGame::getInst()->setGameState(LocalGameState::EVENT_LOSE_SUBJECT);
+    }
+    else {
+        warn_box.setWindowTitle("이벤트: 과목 포기");
+        warn_box.setText("포기할 과목이 없네요.");
+        warn_box.exec();
+        LocalGame::getInst()->turnOver();
+    }
 }
 
 void EventBlock::lol(Player* player)
@@ -123,21 +132,25 @@ void EventBlock::lol(Player* player)
     warn_box.setStandardButtons(QMessageBox::Ok);
     warn_box.setDefaultButton(QMessageBox::Ok);
     warn_box.setWindowTitle("이벤트: 롤 중독");
-    warn_box.setText("롤에 중독되어 에너지가 감소합니다!");
-    warn_box.exec();
+
 
     // 50:50으로 행동력 증가 또는 감소, lol타입 캐릭터의 경우 항상 증가
-    if(getType() == CharacterType::LOL)
+    if(player->getType() == CharacterType::LOL){
+        warn_box.setText("롤 폐인이므로 에너지가 증가합니다!");
         player->giveEnergy(50);
+    }
     else
     {
         if((rand() % 2) == 0){
+            warn_box.setText("롤에 승리하여 에너지가 증가합니다!");
             player->giveEnergy(50);
         }
         else{
+            warn_box.setText("롤에 패배하여 에너지가 감소합니다!");
             player->payEnergy(100);
         }
     }
+    warn_box.exec();
     LocalGame::getInst()->turnOver();
 }
 

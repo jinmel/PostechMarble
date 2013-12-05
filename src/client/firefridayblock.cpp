@@ -40,12 +40,15 @@ void FireFridayBlock::inSEOULJONGBIN(Player *player)
     if(player->getType()!=CharacterType::ALCOHOLIC)
     {
         if(player->getEnergy()>=100)
-            player->setEnergy(player->getEnergy() - 100);
+            player->payEnergy(100);
         else
         {
             if(player->getAssetValue() > 100){
                 Sellpopup * popup = new Sellpopup();
                 popup->show();
+            }
+            else {
+                player->setBankrupt();
             }
         }
     }
@@ -56,7 +59,7 @@ void FireFridayBlock::inTONGZIP(Player *player)
     if(player->getType()!=CharacterType::ALCOHOLIC)
     {
         if(player->getEnergy()>=100)
-            player->setEnergy(player->getEnergy() - 100);
+            player->payEnergy(100);
         else
         {
             if(player->getAssetValue() >100)
@@ -64,6 +67,8 @@ void FireFridayBlock::inTONGZIP(Player *player)
                 Sellpopup * popup = new Sellpopup();
                 popup->show();
             }
+            else
+                player->setBankrupt();
         }
     }
 }

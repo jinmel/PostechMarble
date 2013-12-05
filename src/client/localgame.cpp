@@ -13,6 +13,15 @@ using namespace LocalGameState;
 LocalGame::LocalGame(){
     m_state = ROLL_DICE;
     player_queue = new PlayerQueue;
+    nPlayers = 0;
+    animation_timeline = new QTimeLine(800);
+    animation_timeline->setFrameRange(1,11);
+    connect(animation_timeline,SIGNAL(finished()),this,SLOT(restartTimeline()));
+    animation_timeline->start(); //runs forever
+}
+
+LocalGame::~LocalGame(){
+    delete animation_timeline;
 }
 
 //Singleton methods
@@ -37,6 +46,7 @@ void LocalGame::addPlayer(Player *new_player){
     player_queue->push(new_player);
     nPlayers++;
     emit new_player->disable();
+    connect(animation_timeline,SIGNAL(frameChanged(int)),new_player,SLOT(animatePlayerImage(int)));
     connect(new_player,SIGNAL(playerArrived(Player*)),this,SLOT(playerEvent(Player*)));
 }
 
@@ -86,6 +96,11 @@ void LocalGame::turnOver(){
         //TODO: need to emit signal to notify gameover
         winner = m_current_player;
         qDebug() << "winner! player:" << winner->getId();
+        QMessageBox warn_box;
+        warn_box.setStandardButtons(QMessageBox::Ok);
+        warn_box.setDefaultButton(QMessageBox::Ok);
+        warn_box.setText("승자! 플레이어 " + QString::number(winner->getId()));
+        warn_box.exec();
         m_state = GAME_OVER;
         return;
     }
@@ -94,6 +109,11 @@ void LocalGame::turnOver(){
         if(nPlayers == 1) {
             winner = player_queue->next();
             qDebug() << "winner! player:" << winner->getId();
+            QMessageBox warn_box;
+            warn_box.setStandardButtons(QMessageBox::Ok);
+            warn_box.setDefaultButton(QMessageBox::Ok);
+            warn_box.setText("승자! 플레이어 " + QString::number(winner->getId()));
+            warn_box.exec();
             m_state = GAME_OVER;
             return;
         }
@@ -135,6 +155,7 @@ void LocalGame::blockEvent(Block *block){
     QMessageBox warn_box;
     warn_box.setStandardButtons(QMessageBox::Ok);
     warn_box.setDefaultButton(QMessageBox::Ok);
+    //61 call
     if(m_state == JUMP_PLAYER){
         m_current_player->jumpTo(block->getPosition());
     }
@@ -176,12 +197,30 @@ void LocalGame::blockEvent(Block *block){
         if(block->getType() == BlockType::SUBJECT){
             SubjectBlock * subject_block = dynamic_cast<SubjectBlock*>(block);
             if(subject_block->getOwner() != m_current_player){
-
                 warn_box.setText(QString("자신이 수강한 과목을 선택해 주세요!"));
                 warn_box.exec();
             }
             else {
                 m_current_player->removeBlock(block);
+                LocalGame::getInst()->turnOver();
+            }
+        }
+        else {
+            warn_box.setText("과목 블럭을 선택해 주세요!");
+            warn_box.exec();
+        }
+    }
+
+    if(m_state == CORNER_RETAKE_SUBJECT){
+        warn_box.setWindowTitle(QString("기숙사: 과목 재수강"));
+        if(block->getType() == BlockType::SUBJECT){
+            SubjectBlock * subject_block = dynamic_cast<SubjectBlock*>(block);
+            if(subject_block->getOwner() != m_current_player){
+                warn_box.setText(QString("자신이 수강한 과목을 선택해 주세요!"));
+                warn_box.exec();
+            }
+            else {
+                subject_block->decideGrade();
                 LocalGame::getInst()->turnOver();
             }
         }
@@ -209,4 +248,10 @@ void LocalGame::generalEvent(){
     if(m_state == LocalGameState::EVENT_PHOTOGENIC){
         turnOver();
     }
+}
+
+
+//timeline finished. restart.
+void LocalGame::restartTimeline(){
+    animation_timeline->start();
 }

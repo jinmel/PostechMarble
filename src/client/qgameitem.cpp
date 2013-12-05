@@ -30,7 +30,7 @@ QGameItem::QGameItem(QGraphicsScene *scene, MainWindow *window)
 }
 
 QGameItem::QGameItem(QGameItem *parent)
-    : QGraphicsPixmapItem(parent) , QObject(parent)
+    : QObject(parent) ,QGraphicsPixmapItem(parent)
 {
     parent_scene = parent->scene();
     timer = NULL;

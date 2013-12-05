@@ -16,6 +16,7 @@ namespace LocalGameState {
         EVENT_TAKE_SUBJECT,
         EVENT_LOSE_SUBJECT,
         EVENT_PHOTOGENIC,
+        CORNER_RETAKE_SUBJECT,
         GAME_OVER
     };
 }
@@ -31,9 +32,11 @@ public slots:
     void playerEvent(Player * player);
     void boardEvent(Board * m_board);
     void generalEvent();
+    void restartTimeline();
 signals:
     void signalAll();
 private:
+    QTimeLine * animation_timeline;
     LocalGameState::State m_state;
     PlayerQueue * player_queue;
     Player *m_current_player;
@@ -44,6 +47,7 @@ private:
     static LocalGame * m_inst;
 public:
     LocalGame();
+    virtual ~LocalGame();
     static LocalGame * getInst();
     static void delInst();
     void init(Board * board,Dice * dice);

@@ -100,7 +100,9 @@ class PhotoGenicItem : public QGameItem {
 public:
     PhotoGenicItem(QGraphicsScene * scene, MainWindow * window);
     ~PhotoGenicItem();
-
+    QPixmap image1;
+    QPixmap image2;
+    QPixmap image3;
 public slots:
     void slideFinish();
     void showPhotos();

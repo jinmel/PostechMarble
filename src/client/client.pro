@@ -5,6 +5,9 @@
 #-------------------------------------------------
 
 QT       += core gui multimedia
+QMAKE_CXXFLAGS += -Wno-unused-parameter
+
+cache()
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
