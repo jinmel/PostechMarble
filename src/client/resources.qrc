@@ -239,5 +239,16 @@
         <file>images/ingame/character/top_right_io_red_stand_008.png</file>
         <file>images/ingame/character/top_right_io_red_stand_009.png</file>
         <file>images/ingame/character/top_right_io_red_stand_010.png</file>
+        <file>images/ready/calc.png</file>
+        <file>images/ready/cdu.png</file>
+        <file>images/ready/cgen.png</file>
+        <file>images/ready/clol.png</file>
+        <file>images/ready/cout.png</file>
+        <file>images/ready/ealc.png</file>
+        <file>images/ready/edu.png</file>
+        <file>images/ready/egen.png</file>
+        <file>images/ready/elol.png</file>
+        <file>images/ready/eout.png</file>
+        <file>images/ready/readyscene.png</file>
     </qresource>
 </RCC>
