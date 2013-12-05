@@ -1,5 +1,6 @@
 #pragma once
 #include <QGraphicsScene>
+#include <QMediaPlayer>
 #include "../mainwindow.h"
 #include "../qgameitem.h"
 
@@ -21,6 +22,7 @@ private:
     QGameItem *fb_button;
     QGameItem *all;
     QGameItem *copy;
+    QMediaPlayer *bgm_player;
 
     void setupMain();
 
