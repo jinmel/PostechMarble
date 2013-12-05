@@ -120,7 +120,7 @@ void SubjectBlock::enter(Player* player)
                     this->owner->giveEnergy(getBuyOutPrice());
                     player->payEnergy(getBuyOutPrice());
                     player->addBlock(this);
-                    this->decideGrade();
+                    decideGrade();
                 }
             }
         }

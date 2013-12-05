@@ -80,12 +80,8 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
         player_coord[i] = block_coord[i];
     }
 
-    for(int i=1; i< 8; i ++){
+    for(int i=1; i< 24; i ++){
         player_coord[i] += QPointF(0,-40);
-    }
-
-    for(int i=17; i < 24; i++){
-        player_coord[i] += QPointF(0,-45);
     }
 
     setPos(player_coord[0]);
