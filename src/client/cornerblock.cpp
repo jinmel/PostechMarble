@@ -90,6 +90,7 @@ void CornerBlock::in61Call(Player* player)
 void CornerBlock::inBreakSemester(Player* player)
 {
     //LocalGame에서 모두 구현되어 있음
+    player->setMouindo(3);
     LocalGame::getInst()->turnOver();
     //아... 무인도에 갇힌 횟수 !!!!***********구현해야즤
 

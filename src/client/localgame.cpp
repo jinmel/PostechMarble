@@ -96,6 +96,11 @@ void LocalGame::turnOver(){
         //TODO: need to emit signal to notify gameover
         winner = m_current_player;
         qDebug() << "winner! player:" << winner->getId();
+        QMessageBox warn_box;
+        warn_box.setStandardButtons(QMessageBox::Ok);
+        warn_box.setDefaultButton(QMessageBox::Ok);
+        warn_box.setText("승자! 플레이어 " + QString::number(winner->getId()));
+        warn_box.exec();
         m_state = GAME_OVER;
         return;
     }
@@ -104,6 +109,11 @@ void LocalGame::turnOver(){
         if(nPlayers == 1) {
             winner = player_queue->next();
             qDebug() << "winner! player:" << winner->getId();
+            QMessageBox warn_box;
+            warn_box.setStandardButtons(QMessageBox::Ok);
+            warn_box.setDefaultButton(QMessageBox::Ok);
+            warn_box.setText("승자! 플레이어 " + QString::number(winner->getId()));
+            warn_box.exec();
             m_state = GAME_OVER;
             return;
         }
