@@ -68,12 +68,16 @@ void MainScene::setupMain()
     copy = new QGameItem(this, window);
     copy->setImage(":images/main/copy.png");
     copy->setPos(350, 690);
+
+    // setup BGM
+    bgm_player = new QMediaPlayer();
+    bgm_player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/postech_marble_bgm.mp3").absoluteFilePath()));
 }
 
 
 void MainScene::animateMain()
 {
-
+    bgm_player->play();
 }
 
 
