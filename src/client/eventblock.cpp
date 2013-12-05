@@ -80,6 +80,7 @@ void EventBlock::cc(Player* player)
     if(getType() != CharacterType::OUTSIDER)
     {
         warn_box.setText("랜덤한 장소로 이동합니다.");
+        warn_box.exec();
         // jump to gapyear
         if((rand() % 2) == 0)
             player->jumpTo(8);
@@ -89,6 +90,7 @@ void EventBlock::cc(Player* player)
     }
     else {
         warn_box.setText("당신은 아웃사이더라서 캠퍼스 커플에 면역입니다.");
+        warn_box.exec();
     }
 }
 
