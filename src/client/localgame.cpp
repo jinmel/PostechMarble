@@ -204,3 +204,9 @@ void LocalGame::playerEvent(Player *player){
 void LocalGame::boardEvent(Board *board){
 
 }
+
+void LocalGame::generalEvent(){
+    if(m_state == LocalGameState::EVENT_PHOTOGENIC){
+        turnOver();
+    }
+}

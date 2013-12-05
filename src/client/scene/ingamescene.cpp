@@ -260,6 +260,7 @@ void PhotoGenicItem::showPhotos(){
     timeline->setEasingCurve(QEasingCurve::Linear);
     connect(this->timeline,SIGNAL(frameChanged(int)),this,SLOT(slidePhoto(int)));
     connect(this->timeline,SIGNAL(finished()),this,SLOT(slideFinish()));
+    connect(this->timeline,SIGNAL(finished()),LocalGame::getInst(),SLOT(generalEvent()));
     timeline->start();
     setZValue(10);
     setPos(QPointF(1280/2,720/2) + QPointF(-200,-150));

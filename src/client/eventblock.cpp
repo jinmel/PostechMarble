@@ -156,5 +156,5 @@ void EventBlock::photoGenic(QGraphicsScene * scene, MainWindow * window)
     //팀원 사진 띄우기
     PhotoGenicItem* photogenicitem = new PhotoGenicItem(scene, window);
     photogenicitem->showPhotos();
-    LocalGame::getInst()->turnOver();
+    LocalGame::getInst()->setGameState(LocalGameState::EVENT_PHOTOGENIC);
 }
