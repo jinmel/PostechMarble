@@ -11,7 +11,7 @@
 // Constructor & Destructor
 SubjectBlock::~SubjectBlock()
 {
-
+    delete grade_image;
 }
 
 
@@ -25,6 +25,8 @@ SubjectBlock::SubjectBlock(QGameItem * parent,
     this->subject_name = subject_name;
     owner = NULL;
     this->cost = cost;
+    grade=NONE;
+    grade_image = new QGraphicsPixmapItem(this);
 }
 
 int SubjectBlock::getCost() const{
@@ -41,7 +43,7 @@ QString SubjectBlock::getName() const
     return subject_name;
 }
 
-int SubjectBlock::getGrade() const
+SubjectBlock::Grade SubjectBlock::getGrade() const
 {
     return grade;
 }
@@ -63,7 +65,6 @@ int SubjectBlock::getPenaltyCost(){
 
 int SubjectBlock::getSellCost(){
     return getBuyOutPrice() /2;
-
 }
 
 
@@ -149,7 +150,33 @@ void SubjectBlock::decideGrade(){//random 받아서 20% A, 40% B, 40% C
         grade = B;      //B
     else
         grade = C;      //C
+
+    //set grade image
+    setGradeImage(grade);
 }
+
+void SubjectBlock::setGrade(Grade grade){
+    this->grade = grade;
+    setGradeImage(grade);
+}
+
+void SubjectBlock::setGradeImage(Grade grade){
+    switch(grade){
+    case A:
+        grade_image->setPixmap(QPixmap(":/images/ingame/block/Grade_A.png"));
+        break;
+    case B:
+        grade_image->setPixmap(QPixmap(":/images/ingame/block/Grade_B.png"));
+        break;
+    case C:
+        grade_image->setPixmap(QPixmap(":/images/ingame/block/Grade_C.png"));
+        break;
+    case NONE:
+        grade_image->setPixmap(QPixmap());
+    }
+}
+
+
 
 void SubjectBlock::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     qDebug() << "subject name: " << this->subject_name;
