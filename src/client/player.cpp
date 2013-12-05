@@ -53,7 +53,6 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     plural = false;
 
     character_type = CharacterType::NONE;
-    //totalownsubjectenergy=0;//지우고 동적으로 계산하라
 
     //initialize map
     using namespace SubjectType;

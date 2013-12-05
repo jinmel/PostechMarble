@@ -24,7 +24,7 @@ IngameScene::IngameScene(qreal x, qreal y,
     LocalGame * game = LocalGame::getInst();
 
     board = new Board(this,window);
-    board->setPos(200,720 - board->boundingRect().size().height());
+    board->setPos(200,(720 - board->boundingRect().size().height())/2);
     board->setZValue(2);
 
     Player * player1 = new Player(board,1);
