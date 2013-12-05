@@ -55,7 +55,6 @@
         <file>images/main/button_main_credit_pressed.png</file>
         <file>images/main/button_main_start.png</file>
         <file>images/main/button_main_start_pressed.png</file>
-        <file>images/ingame/block/vertical/Event_block_vertical.png</file>
         <file>images/main/social_fb.png</file>
         <file>images/main/social_fb_pressed.png</file>
         <file>images/main/social_g+.png</file>
@@ -254,5 +253,11 @@
         <file>images/ingame/block/normal/sime1.png</file>
         <file>images/ingame/block/normal/sime2.png</file>
         <file>images/ingame/block/normal/sime3.png</file>
+        <file>images/ingame/block/vertical/scse1.png</file>
+        <file>images/ingame/block/vertical/scse2.png</file>
+        <file>images/ingame/block/vertical/scse3.png</file>
+        <file>images/ingame/block/vertical/sme1.png</file>
+        <file>images/ingame/block/vertical/sme2.png</file>
+        <file>images/ingame/block/vertical/sme3.png</file>
     </qresource>
 </RCC>
