@@ -200,6 +200,25 @@ void LocalGame::blockEvent(Block *block){
             warn_box.exec();
         }
     }
+
+    if(m_state == CORNER_RETAKE_SUBJECT){
+        warn_box.setWindowTitle(QString("기숙사: 과목 재수강"));
+        if(block->getType() == BlockType::SUBJECT){
+            SubjectBlock * subject_block = dynamic_cast<SubjectBlock*>(block);
+            if(subject_block->getOwner() != m_current_player){
+                warn_box.setText(QString("자신이 수강한 과목을 선택해 주세요!"));
+                warn_box.exec();
+            }
+            else {
+                subject_block->decideGrade();
+                LocalGame::getInst()->turnOver();
+            }
+        }
+        else {
+            warn_box.setText("과목 블럭을 선택해 주세요!");
+            warn_box.exec();
+        }
+    }
 }
 
 void LocalGame::playerEvent(Player *player){

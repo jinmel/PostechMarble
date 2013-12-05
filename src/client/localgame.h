@@ -16,6 +16,7 @@ namespace LocalGameState {
         EVENT_TAKE_SUBJECT,
         EVENT_LOSE_SUBJECT,
         EVENT_PHOTOGENIC,
+        CORNER_RETAKE_SUBJECT,
         GAME_OVER
     };
 }

@@ -5,6 +5,7 @@
 #include "player.h"
 #include "dice.h"
 #include "localgame.h"
+#include <QMessageBox>
 
 using namespace std;
 
@@ -38,40 +39,27 @@ void CornerBlock::enter(Player* player)
     default : qDebug() << "CornerBlock error!" << endl;
         break;
     }
-    LocalGame::getInst()->turnOver();
 }
 
 void CornerBlock::inDormitory(Player* player)
 {
     using namespace CharacterType;
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
 
-    int takingenergy;
-    switch(player->getType())
-    {
-    case LOL :
-        takingenergy = 100; //주는 에너지 수치는 상학선배&주현이가 채워주세요 ㅎㅎ
-        break;
+    std::list<Block*> block_list = player->getBlocks();
+    if(block_list.size() > 0){
 
-    case GENIUS :
-        takingenergy = 100;
-        break;
-
-    case HARD_WORKER :
-        takingenergy = 150;
-        break;
-
-    case OUTSIDER :
-        takingenergy = 100;
-        break;
-
-    case ALCOHOLIC :
-        takingenergy = 100;
-        break;
-    default :
-        takingenergy = 100;
+        warn_box.setText("재수강할 과목을 선택해주세요");
+        warn_box.exec();
+        LocalGame::getInst()->setGameState(LocalGameState::CORNER_RETAKE_SUBJECT);
     }
-    player->setEnergy(player->getEnergy() + takingenergy);
-
+    else {
+        warn_box.setText("재수강할 과목이 없네요. 공부좀 하세요.");
+        warn_box.exec();
+        LocalGame::getInst()->turnOver();
+    }
 }
 
 
