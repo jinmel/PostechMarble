@@ -83,6 +83,12 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
         player_coord[i] += QPointF(0,-40);
     }
 
+    for(int i=17; i<24; i++){
+        player_coord[i] += QPointF(40,0);
+    }
+
+    player_coord[8] = block_coord[8];
+
     setPos(player_coord[0]);
 
     // end initialize
