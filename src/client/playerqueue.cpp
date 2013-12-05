@@ -1,4 +1,3 @@
-#pragma once
 #include "playerqueue.h"
 
 // Constructor & Destructor

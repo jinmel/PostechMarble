@@ -60,6 +60,8 @@ int SubjectBlock::getPenaltyCost(){
         return int(cost * 0.4);
     else if(grade == C)
         return int(cost * 0.2);
+    else
+        return 0;
 }
 
 
