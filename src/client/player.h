@@ -5,7 +5,7 @@
 #include "block.h"
 #include "types.h"
 #include "qgameitem.h"
-
+#include <QPointF>
 // circular dependency
 class Block;
 class Player;
@@ -26,6 +26,7 @@ private:
     std::list<Block*> own_blocks;
     CharacterType::Type character_type;
     QString player_color;
+    QPointF player_coord[32];
 
 public:
     Player(QGameItem * parent,int id);

@@ -29,13 +29,11 @@ IngameScene::IngameScene(qreal x, qreal y,
 
     Player * player1 = new Player(board,1);
     player1->setImage(":/images/ingame/pieces/blue.png");
-    player1->setPos(BlockCoords::corner_coord[0]);
     player1->setZValue(3);
 
 
     Player * player2 = new Player(board,2);
     player2->setImage(":/images/ingame/pieces/red.png");
-    player2->setPos(BlockCoords::corner_coord[0]);
     player2->setZValue(3);
     player2->setEnergy(0);
     SubjectBlock * tmpblock = dynamic_cast<SubjectBlock*>(board->getBlock(10));
