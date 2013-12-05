@@ -13,6 +13,9 @@ namespace LocalGameState {
         JUMP_PLAYER,
         TURN_OVER,
         EVENT_DRINK,
+        EVENT_TAKE_SUBJECT,
+        EVENT_LOSE_SUBJECT,
+        EVENT_PHOTOGENIC,
         GAME_OVER
     };
 }
@@ -27,6 +30,7 @@ public slots:
     void blockEvent(Block * block);
     void playerEvent(Player * player);
     void boardEvent(Board * m_board);
+    void generalEvent();
 signals:
     void signalAll();
 private:

@@ -1,6 +1,7 @@
 #include "sellpopup.h"
 #include "ui_sellpopup.h"
 #include <list>
+#include <QString>
 
 Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
     QWidget(parent),
@@ -84,28 +85,28 @@ QString Sellpopup::convertDept(SubjectType::Type type)
     switch(type) {
         using namespace SubjectType;
         case CSED:
-            dept += "컴공과";
+            dept = QString::fromUtf8("\ucef4\uacf5\uacfc");
             break;
         case ME:
-            dept += "기계과";
+            dept = QString::fromUtf8("\uae30\uacc4\uacfc");
             break;
         case MATH:
-            dept += "수학과";
+            dept = QString::fromUtf8("\uc218\ud559\uacfc");
             break;
         case EE:
-            dept += "전자과";
+            dept = QString::fromUtf8("\uc804\uc790\uacfc");
             break;
         case PHYS:
-            dept += "물리과";
+            dept = QString::fromUtf8("\ubb3c\ub9ac\uacfc");
             break;
         case BIO:
-            dept += "생명과";
+            dept = QString::fromUtf8("\uc0dd\uba85\uacfc");
             break;
         case CHEM:
-            dept += "화학과";
+            dept = QString::fromUtf8("\ud654\ud559\uacfc");
             break;
         case IME:
-            dept += "산경과";
+            dept = QString::fromUtf8("\ud654\ud559\uacfc");
             break;
     }
 

@@ -2,6 +2,7 @@
 #include "scene/ingamescene.h"
 #include <ctime>
 #include <iostream>
+#include <QMessageBox>
 #include <cstdlib>
 #include "scene/ingamescene.h"
 #include "localgame.h"
@@ -30,11 +31,10 @@ void EventBlock::enter(Player* player)
     //checkEvent(player);
 }
 
-
 void EventBlock::checkEvent(Player* player,QGraphicsScene * scene, MainWindow * window)
 {
     // generate random event
-    int value = 0;
+    int value = rand() % 7;
 
     switch(value) {
     case 0:
@@ -71,54 +71,84 @@ void EventBlock::drink(Player* player)
 void EventBlock::cc(Player* player)
 {
     qDebug() << "CC event!";
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
+    warn_box.setWindowTitle("이벤트: Campus Couple");
 
     // 행동력 감소 + 일정 확률로 휴학 또는 61콜 이동
     if(getType() != CharacterType::OUTSIDER)
     {
+        warn_box.setText("랜덤한 장소로 이동합니다.");
         // jump to gapyear
         if((rand() % 2) == 0)
             player->jumpTo(8);
-
         // jump to 61call
         else
-            player->jumpTo(26);
+            player->jumpTo(24); // 61call
+    }
+    else {
+        warn_box.setText("당신은 아웃사이더라서 캠퍼스 커플에 면역입니다.");
     }
 }
 
 void EventBlock::takeSubject(Player* player)
 {
-    qDebug() << "Take Subject";
-    // 플레이어가 과목을 하나 선택한 후 buyBlock을 실행한다
-    //player->addBlock();
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
+    warn_box.setWindowTitle("이벤트: 과목 수강");
+    warn_box.setText("수강할 과목 블럭을 선택해 주세요!");
+    warn_box.exec();
+
+    LocalGame::getInst()->setGameState(LocalGameState::EVENT_TAKE_SUBJECT);
 }
 
 void EventBlock::loseSubject(Player* player)
 {
-    qDebug() << "Lose Subject";
-    // 플레이어가 과목 하나를 잃는다. (랜덤 or 선택)
-    //player->sellBlock();
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
+    warn_box.setWindowTitle("이벤트: 과목 포기");
+    warn_box.setText("포기할 과목 블럭을 선택해 주세요!");
+    warn_box.exec();
+    LocalGame::getInst()->setGameState(LocalGameState::EVENT_LOSE_SUBJECT);
 }
 
 void EventBlock::lol(Player* player)
 {
-    qDebug() << "LOL event!";
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
+    warn_box.setWindowTitle("이벤트: 롤 중독");
+    warn_box.setText("롤에 중독되어 에너지가 감소합니다!");
+    warn_box.exec();
 
     // 50:50으로 행동력 증가 또는 감소, lol타입 캐릭터의 경우 항상 증가
     if(getType() == CharacterType::LOL)
-        player->setEnergy(player->getEnergy() + 50); //
+        player->giveEnergy(50);
     else
     {
-        if((rand() % 2) == 0)
-            player->setEnergy(player->getEnergy() + 50); //승리
-        else
-            player->setEnergy(player->getEnergy() - 100); // 패배
+        if((rand() % 2) == 0){
+            player->giveEnergy(50);
+        }
+        else{
+            player->payEnergy(100);
+        }
     }
+    LocalGame::getInst()->turnOver();
 }
 
 void EventBlock::eatChicken(Player* player)
 {
-    // 치느님을 영접하여 행동력 증가
-    player->setEnergy(player->getEnergy() + 100);
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
+    warn_box.setWindowTitle("이벤트: 치느님");
+    warn_box.setText("치느님을 영접하여 에너지가 증가합니다!");
+    warn_box.exec();
+    player->giveEnergy(100);
+    LocalGame::getInst()->turnOver();
 }
 
 void EventBlock::photoGenic(QGraphicsScene * scene, MainWindow * window)
@@ -126,5 +156,5 @@ void EventBlock::photoGenic(QGraphicsScene * scene, MainWindow * window)
     //팀원 사진 띄우기
     PhotoGenicItem* photogenicitem = new PhotoGenicItem(scene, window);
     photogenicitem->showPhotos();
-    LocalGame::getInst()->turnOver();
+    LocalGame::getInst()->setGameState(LocalGameState::EVENT_PHOTOGENIC);
 }

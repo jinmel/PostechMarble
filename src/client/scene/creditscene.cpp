@@ -26,7 +26,10 @@ CreditScene::CreditScene(qreal x, qreal y, qreal width,
 
 CreditScene::~CreditScene()
 {
+    delete credit;
+    delete splash_logo;
 
+    qDebug() << "Credit Scene destroyed";
 }
 
 

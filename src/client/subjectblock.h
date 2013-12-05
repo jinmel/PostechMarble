@@ -34,6 +34,8 @@ public:
     int getPenaltyCost(); //남이 수강한 땅을 밟았을 때 내야 하는 통행료
     int getSellCost(); //팔 때 가격
     void setOwner(Player * player);
+    Player * getOwner();
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
+
 };

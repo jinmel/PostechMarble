@@ -44,10 +44,8 @@ void FireFridayBlock::inSEOULJONGBIN(Player *player)
         else
         {
             if(player->getAssetValue() > 100){
-
                 Sellpopup * popup = new Sellpopup();
                 popup->show();
-
             }
         }
     }
