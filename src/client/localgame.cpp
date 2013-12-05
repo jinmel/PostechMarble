@@ -145,6 +145,7 @@ void LocalGame::blockEvent(Block *block){
     QMessageBox warn_box;
     warn_box.setStandardButtons(QMessageBox::Ok);
     warn_box.setDefaultButton(QMessageBox::Ok);
+    //61 call
     if(m_state == JUMP_PLAYER){
         m_current_player->jumpTo(block->getPosition());
     }
@@ -186,7 +187,6 @@ void LocalGame::blockEvent(Block *block){
         if(block->getType() == BlockType::SUBJECT){
             SubjectBlock * subject_block = dynamic_cast<SubjectBlock*>(block);
             if(subject_block->getOwner() != m_current_player){
-
                 warn_box.setText(QString("자신이 수강한 과목을 선택해 주세요!"));
                 warn_box.exec();
             }

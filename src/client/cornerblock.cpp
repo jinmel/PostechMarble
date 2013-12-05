@@ -65,11 +65,14 @@ void CornerBlock::inDormitory(Player* player)
 
 void CornerBlock::in61Call(Player* player)
 {
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
     if((rand() % 6)==0)
     {
-        qDebug() << "in 61Call";
-        qDebug() <<"You can choose any block.";
-        //player->walkBy(blocknum);//moveTo에서 포인터가지고 어찌어찌해서 옮겨줘야될꺼같은데!!
+        warn_box.setText("61콜 택시 성공! 가고 싶은 블럭을 선택하세요");
+        warn_box.exec();
+        LocalGame::getInst()->setGameState(LocalGameState::JUMP_PLAYER);
     }
     /*
      *moveTo 를 숫자로 넣을수 있도록 해야할듯!! 현재 있는 칸도 번호 저장해둬서 주사위 돌렸을 때 현재 숫자+주사위 눈 으로 이동하든지
@@ -77,81 +80,17 @@ void CornerBlock::in61Call(Player* player)
     //--------->ok!
     else
     {
-        qDebug() <<"You failed to take 61 call taxi.";
+        warn_box.setText("61콜 택시 실패! 다음 기회에...");
+        warn_box.exec();
+        LocalGame::getInst()->turnOver();
     }
 
 }
 
 void CornerBlock::inBreakSemester(Player* player)
 {
-    qDebug() << "in BreakSem";
-
-    if(player->getPenalty()==0)//다른 블럭에서 들어왔을 경우
-    {
-        qDebug() << "You have to break the 3 semesters in this block.";
-        player->setMouindo(3);
-    }
-    else
-    {
-        qDebug() << "Can you escape in this turn?";
-        if(player->getEnergy()>=200)
-        {
-            qDebug()<<"You can escape the mouindo if you pay energy or get a double dice";
-            qDebug()<<"1. pay energy    2. roll a dice"<<endl;//나중에 애니메이션 넣어서 바꿀 부분
-            int userselect;
-            cin>>userselect;
-            if(userselect==1 && player->getEnergy()>=200)
-            {
-                player->payEnergy(200);
-
-                while(player->getPenalty() >=0)//panelty 없애주고
-                {
-                 player->escapeMouindo();
-                }
-                qDebug()<<"Rolling a dice to go another block.";
-                Dice::getInst()->roll();
-                player->walkBy(Dice::getInst()->getValue());
-            }
-            else if(userselect==2)
-            {
-                Dice::getInst()->roll();
-                if(Dice::getInst()->isDouble())
-                {
-                    while(player->getPenalty() >=0)
-                    {
-                        player->escapeMouindo();
-                    }
-                    qDebug()<<"Rolling a dice to go another block.";
-                    Dice::getInst()->roll();
-                    player->walkBy(Dice::getInst()->getValue());
-                }
-                else//not double
-                {
-                    player->escapeMouindo();//(panelty 1개 감소)
-                }
-            }
-            else
-            qDebug()<<"wrong input";
-        }
-        else //행동력이 200보다 적은 경우 묻지 않고 자동으로 더블 확인
-        {
-                Dice::getInst()->roll();
-                if(Dice::getInst()->isDouble())
-                {
-                    while(player->getPenalty() >=0)
-                    {
-                        player->escapeMouindo();
-                    }
-                    qDebug()<<"Rolling a dice to go another block.";
-                    Dice::getInst()->roll();
-                    player->walkBy(Dice::getInst()->getValue());
-                }
-                else//not double
-                {
-                    player->escapeMouindo();//(panelty 1개 감소)
-                }
-        }
-    }
+    //LocalGame에서 모두 구현되어 있음
+    LocalGame::getInst()->turnOver();
     //아... 무인도에 갇힌 횟수 !!!!***********구현해야즤
 
     //1.원래 무인도에 있다가 다시 턴이 된 경우 -> 주사위를 굴릴 수 있게 한다.
@@ -162,15 +101,20 @@ void CornerBlock::inBreakSemester(Player* player)
 
 void CornerBlock::inPluralMajor(Player* player)
 {
-    qDebug() << "You have to take two major for graduation.";
-    qDebug() << "Plural major check...";
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
+    warn_box.setText(QString("복수전공 선택! 승리하려면 두 가지 전공을 해야합니다."));
+    warn_box.exec();
 
     switch((rand()%6)==1) {
-        case 1: qDebug() <<"You have to take plural major.";
-            player->setPlural(true);
-            break;
+    case 1: qDebug() <<"You have to take plural major.";
+        player->setPlural(true);
+        break;
 
-        default: qDebug()<<"You don't have to take plural major.";
+    default: qDebug()<<"You don't have to take plural major.";
 
     }//학과 1개 독점 시에 복수전공 해제& 두개 독점 시에 승리 그리고 만약에 한개 독점 하고 두개째 도전중일 때다른 누군가가 독점된 학과를 뺏어가는 경우!?
+
+    LocalGame::getInst()->turnOver();
 }
