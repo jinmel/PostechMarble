@@ -27,6 +27,10 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
      * Vertical block size : 91 x 114
      * Horizontial block size : 142 x 64
      * Board size : 921 x 676
+     * Horizontial Grade size: 90 x 56
+     * Horizontial Grade Relative Coord: 48 x 4
+     * Vertical Grade size: 84 x 69
+     * Vertical Grade Relative Coord: 3 x 4
      */
 
     //TODO : set position and images... -ㅁ-;;
