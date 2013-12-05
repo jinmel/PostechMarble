@@ -167,6 +167,7 @@ void Player::setMouindo(int penalty)
 
 void Player::setMobile(bool mobile){
     this->mobile = mobile;
+    immobile_penalty = 0;
 }
 
 void Player::escapeAttempt(){

@@ -20,7 +20,7 @@ private:
     int         energy;
     bool        bankrupt;
     bool        mobile;                    // is player movable? (Mouindo, Drink...)
-    int         immobile_penalty;                   // how long to be punished
+    int         immobile_penalty;          // how long to be punished
     bool        plural;                    // plural major status
     std::map<SubjectType::Type, int> registered;     // registered class for each subject
     std::list<Block*> own_blocks;
