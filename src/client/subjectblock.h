@@ -3,30 +3,36 @@
 #include "player.h"
 #include "types.h"
 #include "block.h"
+#include <QGraphicsPixmapItem>
 
 class Player;
 
 class SubjectBlock : public Block
 {
-private:
-    SubjectType::Type   department;
-    QString             subject_name;
-    Player*             owner;
-    int                 cost;
-    int                 grade; //4->A 3->B 2->C
+public:
     enum Grade{
         A = 4,
         B = 3,
-        C = 2
+        C = 2,
+        NONE =1
     };
+private:
 
+    SubjectType::Type       department;
+    QString                 subject_name;
+    Player*                 owner;
+    int                     cost;
+    Grade                   grade; //4->A 3->B 2->C
+    QGraphicsPixmapItem *   grade_image;
 public:
+
     SubjectBlock(QGameItem* parent,
                  SubjectType::Type type, QString subject_name, int cost);
     virtual ~SubjectBlock();
     SubjectType::Type getDept() const;
     QString getName() const;
-    int getGrade() const;
+    Grade getGrade() const;
+    void setGrade(Grade grade);
     int getCost() const;
     virtual void enter(Player* player);
     void decideGrade();
@@ -35,6 +41,7 @@ public:
     int getSellCost(); //팔 때 가격
     void setOwner(Player * player);
     Player * getOwner();
+    void setGradeImage(Grade grade);
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
 
