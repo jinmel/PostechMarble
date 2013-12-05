@@ -10,6 +10,7 @@
 #include <QGraphicsOpacityEffect>
 #include "pausepanel.h"
 #include "subjectblock.h"
+#include <cstring>
 
 
 IngameScene::IngameScene(qreal x, qreal y,
@@ -273,23 +274,33 @@ PhotoGenicItem::~PhotoGenicItem()
 }
 
 void PhotoGenicItem::slidePhoto(int frame){
+    int randomvalue= rand()%3;
+    QString folderstring=QString(":/images/ourphotos/set");
+    QString numberstring=QString::number(randomvalue);
+    QString filestring1=QString("/photo1.png");
+    QString filestring2=QString("/photo2.png");
+    QString filestring3=QString("/photo3.png");
+    QString filestring11=folderstring+numberstring+filestring1;
+    QString filestring22=folderstring+numberstring+filestring2;
+    QString filestring33=folderstring+numberstring+filestring3;
+
     switch(frame){
     case 1:
-        setImage(":/images/ourphotos/photo1.png");
+        setPixmap(QPixmap(filestring11));
         show(true);
         break;
     case 2:
         hide(true);
         break;
     case 3:
-        setImage(":/images/ourphotos/photo2.png");
+        setPixmap(QPixmap(filestring22));
         show(true);
         break;
     case 4:
         hide(true);
         break;
     case 5:
-        setImage(":/images/ourphotos/photo3.png");
+        setPixmap(QPixmap(filestring33));
         show(true);
         break;
     case 6:
