@@ -6,6 +6,7 @@
 #include "dice.h"
 #include "localgame.h"
 #include <QMessageBox>
+#include <QFileInfo>
 
 using namespace std;
 
@@ -14,10 +15,12 @@ CornerBlock::CornerBlock(QGameItem * parent,CornerType::Type type)
 {
     corner_type = type;
     block_type = BlockType::CORNER;
+    effect_player = new QMediaPlayer();
 }
 
 CornerBlock::~CornerBlock()
 {
+    delete effect_player;
 }
 
 
@@ -49,9 +52,9 @@ void CornerBlock::inDormitory(Player* player)
     warn_box.setDefaultButton(QMessageBox::Ok);
 
     std::list<Block*> block_list = player->getBlocks();
-    if(block_list.size() > 0){
+    if(block_list.size() > 0) {
 
-        warn_box.setText("재수강할 과목을 선택해주세요");
+        warn_box.setText("재수강할 과목을 선택해주세요.");
         warn_box.exec();
         LocalGame::getInst()->setGameState(LocalGameState::CORNER_RETAKE_SUBJECT);
     }
@@ -68,9 +71,13 @@ void CornerBlock::in61Call(Player* player)
     QMessageBox warn_box;
     warn_box.setStandardButtons(QMessageBox::Ok);
     warn_box.setDefaultButton(QMessageBox::Ok);
-    if((rand() % 6)==0)
+    if((rand() % 1)==0)
     {
-        warn_box.setText("61콜 택시 성공! 가고 싶은 블럭을 선택하세요");
+        // play 61call sound
+        effect_player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/61call.wav").absoluteFilePath()));
+        effect_player->play();
+
+        warn_box.setText("61콜 택시 성공! 이동하고 싶은 블럭을 선택하세요!");
         warn_box.exec();
         LocalGame::getInst()->setGameState(LocalGameState::JUMP_PLAYER);
     }
@@ -89,10 +96,13 @@ void CornerBlock::in61Call(Player* player)
 
 void CornerBlock::inBreakSemester(Player* player)
 {
+    // play 61call sound
+    effect_player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/no.wav").absoluteFilePath()));
+    effect_player->play();
+
     //LocalGame에서 모두 구현되어 있음
     player->setMouindo(3);
     LocalGame::getInst()->turnOver();
-    //아... 무인도에 갇힌 횟수 !!!!***********구현해야즤
 
     //1.원래 무인도에 있다가 다시 턴이 된 경우 -> 주사위를 굴릴 수 있게 한다.
     //2.다른 칸에 있다가 갑자기 무인도에 온 경우->바로 쉬게 한다.
@@ -105,7 +115,7 @@ void CornerBlock::inPluralMajor(Player* player)
     QMessageBox warn_box;
     warn_box.setStandardButtons(QMessageBox::Ok);
     warn_box.setDefaultButton(QMessageBox::Ok);
-    warn_box.setText(QString("복수전공 선택! 승리하려면 두 가지 전공을 해야합니다."));
+    warn_box.setText(QString("복수전공 당첨! 승리하려면 두 가지 전공을 이수해야 합니다."));
     warn_box.exec();
 
     switch((rand()%6)==1) {
