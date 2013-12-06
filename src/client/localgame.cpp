@@ -7,6 +7,7 @@
 #include <QtGlobal>
 #include <QMessageBox>
 #include "scene/gameoverscene.h"
+#include "mainwindow.h"
 
 using namespace std;
 using namespace LocalGameState;
@@ -19,6 +20,8 @@ LocalGame::LocalGame(){
     animation_timeline->setFrameRange(1,11);
     connect(animation_timeline,SIGNAL(finished()),this,SLOT(restartTimeline()));
     animation_timeline->start(); //runs forever
+    //this-> window = dynamic_cast<MainWindow*>(parent);
+
 }
 
 LocalGame::~LocalGame(){
@@ -102,7 +105,8 @@ void LocalGame::turnOver(){
         warn_box.setDefaultButton(QMessageBox::Ok);
         warn_box.setText("승자! 플레이어 " + QString::number(winner->getId()));
         warn_box.exec();
-        m_state = GAME_OVER;
+        m_state = GAME_OVER;\
+        m_board->getWindow()->switchScene(SceneType::GAMEOVER);
         return;
     }
     if(m_current_player->isBankrupt()){
@@ -115,8 +119,8 @@ void LocalGame::turnOver(){
             warn_box.setDefaultButton(QMessageBox::Ok);
             warn_box.setText("승자! 플레이어 " + QString::number(winner->getId()));
             warn_box.exec();
-
             m_state = GAME_OVER;
+            m_board->getWindow()->switchScene(SceneType::GAMEOVER);
             return;
         }
     }

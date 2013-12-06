@@ -146,11 +146,11 @@ void IngameScene::animateIngame()
     //bgm_player->play();
 }
 
-void IngameScene::switchtoGameover()
+/*void IngameScene::switchtoGameover()
 {
     qDebug()<<"Switching to Gameover";
     window->switchScene(SceneType::GAMEOVER);
-}
+}*/
 
 
 // DiceGrahicItem

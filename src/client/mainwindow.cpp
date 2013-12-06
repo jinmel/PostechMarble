@@ -6,6 +6,7 @@
 #include "scene/mainscene.h"
 #include "scene/ingamescene.h"
 #include "scene/readyscene.h"
+#include "scene/gameoverscene.h"
 #include <QGraphicsItem>
 #include <QDebug>
 #include <QGraphicsItemAnimation>
@@ -48,13 +49,13 @@ void MainWindow::switchScene(int scenetype)
             scene = new ReadyScene(0, 0, 1280, 720, this);
             break;
         case INGAME:
-            scene = new IngameScene(0,0,1280,720,this);
+            scene = new IngameScene(0, 0, 1280, 720, this);
             break;
-   // case GAMEOVER:
-          //  scene = new GameoverScene();
+        case GAMEOVER:
+            scene = new GameoverScene(0, 0, 1280, 720, this);
             break;
         case CREDIT:
-            scene = new CreditScene(0,0,1280,720,this);
+            scene = new CreditScene(0, 0, 1280, 720, this);
             break;
     }
 
