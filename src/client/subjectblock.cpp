@@ -97,8 +97,8 @@ void SubjectBlock::enter(Player* player)
     }
     else if(owner==player)  //자신의 블럭
     {
-        mbox.setWindowTitle("과목 재수강\n");
-        mbox.setText("이 과목을 재수강하시겠습니까?\n");
+        mbox.setWindowTitle("과목 재수강");
+        mbox.setText("이 과목을 재수강하시겠습니까?");
         int userselect = mbox.exec();
         if(userselect== QMessageBox::Ok){   //if yes
             decideGrade();
@@ -118,8 +118,8 @@ void SubjectBlock::enter(Player* player)
                 int userselect = mbox.exec();
                 if(userselect == QMessageBox::Ok)//buy the block;
                 {
-                    this->owner->removeBlock(this);
                     this->owner->giveEnergy(getBuyOutPrice());
+                    this->owner->removeBlock(this);
                     player->payEnergy(getBuyOutPrice());
                     player->addBlock(this);
                     decideGrade();

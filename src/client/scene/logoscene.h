@@ -1,5 +1,6 @@
 #pragma once
 #include <QGraphicsScene>
+#include <QMediaPlayer>
 #include "../mainwindow.h"
 #include "../qgameitem.h"
 
@@ -11,6 +12,7 @@ private:
     MainWindow* window;
     QGameItem *background;
     QGameItem *team_logo;
+    QMediaPlayer *effect_sound;
 
     void setupLogo();
 

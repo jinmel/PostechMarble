@@ -32,6 +32,7 @@ MainScene::~MainScene()
     delete fb_button;
     delete all;
     delete copy;
+    delete bgm_player;
 
     qDebug() << "Main Scene Destroyed";
 }

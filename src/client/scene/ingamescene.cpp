@@ -4,12 +4,12 @@
 #include "../dice.h"
 #include <QTimeLine>
 #include <QEasingCurve>
-#include "block.h"
-#include "localgame.h"
+#include "../block.h"
+#include "../localgame.h"
 #include <QFileInfo>
 #include <QGraphicsOpacityEffect>
-#include "pausepanel.h"
-#include "subjectblock.h"
+#include "../pausepanel.h"
+#include "../subjectblock.h"
 #include <cstring>
 
 
@@ -87,14 +87,13 @@ IngameScene::IngameScene(qreal x, qreal y,
     // setup BGM
     bgm_player = new QMediaPlayer();
     bgm_player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/bgm.mp3").absoluteFilePath()));
+
     game->addPlayer(player1);
     game->addPlayer(player2);
     game->init(board,Dice::getInst());
 
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
-
-
     connect(dice,SIGNAL(diceDouble()), this, SLOT(showDouble()));
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
     connect(dice,SIGNAL(secondDiceRolled(int)),second_dice_panel,SLOT(setValue(int)));
@@ -122,7 +121,6 @@ QGraphicsPixmapItem* IngameScene::backgroundPixmap(){
     return background;
 }
 
-
 void IngameScene::showDouble()
 {
     qDebug() << "Show Double";
@@ -145,6 +143,7 @@ void IngameScene::animateIngame()
 
     //bgm_player->play();
 }
+
 
 // DiceGrahicItem
 DiceGraphicItem::DiceGraphicItem(QGraphicsScene *scene, MainWindow *window)

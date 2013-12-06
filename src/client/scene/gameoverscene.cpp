@@ -20,10 +20,15 @@ GameoverScene::~GameoverScene()
     delete ready_button;
 }
 
-/*
+void GameoverScene::setupGameover()
+{
+    //setup for gameover
 
+    //set background
+    background = new QGameItem(this, window);
+    background->setImage(":/images/gameover/gameover_background");
+    background->setPos(0,0);
 
-
-
-
-*/
+    //set winner image
+    //background->setImage();
+}

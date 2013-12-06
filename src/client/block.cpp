@@ -1,7 +1,7 @@
 #include "block.h"
 
 // Constructor & Destructor
-Block::Block(QGameItem * parent) : QGameItem(parent)
+Block::Block(QGameItem * parent) : QGameItem(parent) // Block constructor
 {
     // dummy
     position = -1;
@@ -9,26 +9,28 @@ Block::Block(QGameItem * parent) : QGameItem(parent)
 }
 
 
-Block::~Block()
+Block::~Block()                                     // Block Destructor
 {
 }
 
-BlockType::Type Block::getType() const
+// public method 
+
+BlockType::Type Block::getType() const              // get block_type              
 {
     return block_type;
 }
 
 
-void Block::setPosition(int position)
+void Block::setPosition(int position)               //set block_position
 {
     this->position = position;
 }
 
-int Block::getPosition(){
+int Block::getPosition(){                           //get block_position
     return position;
 }
 
-void Block::mousePressEvent(QGraphicsSceneMouseEvent *event){
+void Block::mousePressEvent(QGraphicsSceneMouseEvent *event){   // block_clicked event
     qDebug() << "block:" << position;
     emit blockClicked(this);
 }
