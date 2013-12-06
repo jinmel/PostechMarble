@@ -3,30 +3,32 @@
 // Constructor & Destructor
 PlayerQueue::PlayerQueue()
 {
-    playerQueue = new std::queue<Player*>();
-    size = 0;
+    queue = new QQueue<Player*>;
 }
 
 PlayerQueue::~PlayerQueue()
 {
-    delete[] playerQueue;
+    delete[] queue;
 }
-
 
 // Methods
 void PlayerQueue::push(Player * p){
-    playerQueue->push(p);
+    queue->enqueue(p);
 }
 
 Player * PlayerQueue::next(){
-    if(playerQueue->empty())
+    if(queue->empty())
         return NULL;
-    Player * ret = playerQueue->front();
-    playerQueue->pop();
-    playerQueue->push(ret);
+    Player * ret = queue->front();
+    queue->pop_front();
+    queue->enqueue(ret);
     return ret;
 }
 
 int PlayerQueue::getSize(){
-    return size;
+    return queue->length();
+}
+
+QVector<Player*> PlayerQueue::toVector() const{
+    return queue->toVector();
 }
