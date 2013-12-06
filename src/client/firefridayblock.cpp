@@ -21,40 +21,40 @@ FireFridayBlock::~FireFridayBlock()
 
 
 // Methods
-void FireFridayBlock::enter(Player *player)
+void FireFridayBlock::enter(Player *player) // player enter firefriday block
 {
     using namespace FireFridayType;
 
     switch(firefriday_type)
     {
-    case SEOULJONGBIN: inSEOULJONGBIN(player);
+    case SEOULJONGBIN: inSEOULJONGBIN(player); // seouljongro 
         break;
-    case TONGZIP: inTONGZIP(player);
+    case TONGZIP: inTONGZIP(player);            //Tong zip
         break;
     }
     LocalGame::getInst()->turnOver();
 }
 
-void FireFridayBlock::inSEOULJONGBIN(Player *player)
+void FireFridayBlock::inSEOULJONGBIN(Player *player) 
 {
-    if(player->getType()!=CharacterType::ALCOHOLIC)
+    if(player->getType()!=CharacterType::ALCOHOLIC) // if you are not alchoholic 
     {
-        if(player->getEnergy()>=100)
+        if(player->getEnergy()>=100)                // pay 100 energy
             player->payEnergy(100);
         else
         {
-            if(player->getAssetValue() > 100){
+            if(player->getAssetValue() > 100){      // if you don't have enough money. sell ur subject block
                 Sellpopup * popup = new Sellpopup();
                 popup->show();
             }
             else {
-                player->setBankrupt();
+                player->setBankrupt();  // if you can't all above things, you lose
             }
         }
     }
 }
 
-void FireFridayBlock::inTONGZIP(Player *player)
+void FireFridayBlock::inTONGZIP(Player *player)         // Tongzip same with seouljongro
 {
     if(player->getType()!=CharacterType::ALCOHOLIC)
     {

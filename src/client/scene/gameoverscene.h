@@ -9,7 +9,7 @@ class GameoverScene : public QGraphicsScene
 private:
     MainWindow* window;
     QGameItem *background;
-    QGameItem *ready_button;
+    QGameItem *credit_button;
 
     void setupGameover();
 

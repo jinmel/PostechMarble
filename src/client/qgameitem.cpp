@@ -21,26 +21,31 @@ QGameItem::~QGameItem()
 QGameItem::QGameItem(QGraphicsScene *scene, MainWindow *window)
     : QObject(scene)
 {
-    parent_scene = scene;
-    parent_scene->addItem(this);
+    scene->addItem(this);
     timer = NULL;
     animation = NULL;
     item_image = NULL;
     this->window = window;
 }
 
+
 QGameItem::QGameItem(QGameItem *parent)
     : QObject(parent) ,QGraphicsPixmapItem(parent)
 {
-    parent_scene = parent->scene();
     timer = NULL;
     animation = NULL;
     item_image = NULL;
-    window = parent->getWindow();
+    if(parent != NULL)
+        setParent(parent);
 }
 
 MainWindow* QGameItem::getWindow(){
     return this->window;
+}
+
+void QGameItem::setParent(QGameItem *parent){
+    QObject::setParent(parent);
+    window = parent->getWindow();
 }
 
 QPixmap * QGameItem::image(){

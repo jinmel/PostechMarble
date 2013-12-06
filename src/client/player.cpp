@@ -63,12 +63,18 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     registered[PHYS] = 0;
 
     switch(_id){
-        case 1:
-            player_color = QString("red");
-            break;
-        case 2:
-            player_color = QString("blue");
-            break;
+    case 1:
+        color = QString("red");
+        break;
+    case 2:
+        color = QString("blue");
+        break;
+    case 3:
+        color = QString("green");
+        break;
+    case 4:
+        color = QString("yellow");
+        break;
     }
 
     using namespace BlockCoords;
@@ -89,6 +95,11 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 
     setPos(player_coord[0]);
 
+    // step sound load
+    mediaplayer = new QMediaPlayer();
+    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/piece_move.wav").absoluteFilePath()));
+    mediaplayer->setVolume(100);
+
     // end initialize
     qDebug() << "Player Created" << endl;
 }
@@ -97,6 +108,14 @@ Player::~Player()
 {
 
     qDebug() << "Player Destroyed" << endl;
+}
+
+void Player::setColor(QString color_str){
+    color = color_str;
+}
+
+QString Player::getColor(){
+    return color;
 }
 
 
@@ -269,9 +288,6 @@ void Player::jumpTo(int block_num){
 
 void Player::stepForward(){
     position = NEXT_POS(position);
-    QMediaPlayer* mediaplayer = new QMediaPlayer();
-    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/piece_move.wav").absoluteFilePath()));
-    mediaplayer->setVolume(100);
     mediaplayer->play();
     if(position == 0){
         giveSalary();
@@ -375,6 +391,10 @@ void Player::payEnergy(int payenergy)
 }
 void Player::giveEnergy(int paidenergy){
     energy+=paidenergy;
+    QMediaPlayer* coinsound = new QMediaPlayer();
+    coinsound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coinspread.mp3").absoluteFilePath()));
+    coinsound->setVolume(100);
+    coinsound->play();
     emit energyChanged(this->energy);
 }
 
@@ -425,7 +445,7 @@ void Player::animatePlayerImage(int frame){
     else if(id == 2)
         filename += QString("id_");
 
-    filename += player_color + QString("_");
+    filename += color + QString("_");
 
     LocalGame * game_inst = LocalGame::getInst();
 
