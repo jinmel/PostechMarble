@@ -141,6 +141,36 @@ ReadyPlayerImage::ReadyPlayerImage(QGraphicsScene * scene,MainWindow* window,Pla
     setAcceptHoverEvents(true);
     setPixmap(QPixmap(":/images/ready/plus.png"));
     setScale(2.5);
+    name = new QGameItem(scene, window);
+    name->setImage(":images/ready/inv.png");
+    name->setScale(0.5);
+    if(player->getId()==1)
+        name->setPos(150,500);
+    else if(player->getId()==2)
+        name->setPos(400,500);
+    else if(player->getId()==3)
+        name->setPos(650,500);
+    else
+        name->setPos(900,500);
+
+    switch(player->getType()) {
+        using namespace CharacterType;
+        case LOL:
+            type = 1;
+            break;
+        case GENIUS:
+            type = 2;
+            break;
+        case HARD_WORKER:
+            type = 3;
+            break;
+        case OUTSIDER:
+            type = 4;
+            break;
+        case ALCOHOLIC:
+            type = 5;
+            break;
+    }
 }
 
 ReadyPlayerImage::~ReadyPlayerImage(){
@@ -157,6 +187,16 @@ void ReadyPlayerImage::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     if(!play){
         play = true;
+        if(type == 1)
+            name->setPixmap(QPixmap(":/images/ready/clol.png"));
+        else if(type ==2)
+            name->setPixmap(QPixmap(":/images/ready/cgen.png"));
+        else if(type ==3)
+            name->setPixmap(QPixmap(":/images/ready/cdu.png"));
+        else if(type ==4)
+            name->setPixmap(QPixmap(":/images/ready/cout.png"));
+        else if(type ==5)
+            name->setPixmap(QPixmap(":/images/ready/calc.png"));
     }
 }
 
