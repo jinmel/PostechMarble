@@ -5,6 +5,7 @@
 #include <QObject>
 #include "dice.h"
 
+
 namespace LocalGameState {
     enum State {
         ROLL_DICE,

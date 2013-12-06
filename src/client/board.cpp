@@ -11,7 +11,7 @@ using namespace std;
 
 
 // Constructor & Destructor
-Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,window)
+Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,window) //Board Constructor
 {
     using namespace SubjectType;
     using namespace BlockCoords;
@@ -175,7 +175,7 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[31]->setPos(block_coord[31]);
 
 
-    for(int i=0; i<32; i++)
+    for(int i=0; i<32; i++)     //all block set
     {
         blocks[i]->setPosition(i);
         connect(blocks[i],SIGNAL(blockClicked(Block*)),LocalGame::getInst(),SLOT(blockEvent(Block*)));
@@ -186,11 +186,11 @@ void Board::diceRolled(int dice, bool is_double){
     //do something if is_double
     if(is_double){
         QGameItem * double_img = new QGameItem(this);
-        double_img->setImage(":/images/ingame/double.png");
+        double_img->setImage(":/images/ingame/double.png"); // image pop
     }
 }
 
-Board::~Board()
+Board::~Board()                         //Board Destructor
 {
     for(int i=0; i<32; i++)
         delete blocks[i];
@@ -199,19 +199,19 @@ Board::~Board()
 
 
 // Methods
-int Board::getLength() const
+int Board::getLength() const            //get length        
 {
     return length;
 }
 
 
-Block* Board::getBlock(int position) const
+Block* Board::getBlock(int position) const          //get block
 {
     return blocks[position];
 }
 
 
-void Board::enter(Player* player)
+void Board::enter(Player* player)                       // player's entrance in block
 {
     blocks[player->getPosition()]->enter(player);
 }

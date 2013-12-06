@@ -26,6 +26,7 @@ ReadyScene::ReadyScene(qreal x, qreal y,
 ReadyScene::~ReadyScene()
 {
     delete ready_button;
+    delete background;
 }
 
 

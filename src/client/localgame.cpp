@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QtGlobal>
 #include <QMessageBox>
+#include "scene/gameoverscene.h"
 
 using namespace std;
 using namespace LocalGameState;
@@ -114,6 +115,7 @@ void LocalGame::turnOver(){
             warn_box.setDefaultButton(QMessageBox::Ok);
             warn_box.setText("승자! 플레이어 " + QString::number(winner->getId()));
             warn_box.exec();
+
             m_state = GAME_OVER;
             return;
         }
