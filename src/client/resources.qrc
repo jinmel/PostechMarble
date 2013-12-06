@@ -369,5 +369,6 @@
         <file>images/ready/readyscene.png</file>
         <file>images/ready/plus_big.png</file>
         <file>images/ready/plus_big_pressed.png</file>
+        <file>images/gameover/gameover_background.png</file>
     </qresource>
 </RCC>

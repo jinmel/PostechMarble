@@ -15,7 +15,7 @@ using namespace LocalGameState;
 
 LocalGame::LocalGame(){
     m_state = ROLL_DICE;
-    player_queue = new PlayerQueue;
+    m_player_queue = new PlayerQueue;
     nPlayers = 0;
     animation_timeline = new QTimeLine(800);
     animation_timeline->setFrameRange(1,11);
@@ -48,7 +48,7 @@ void LocalGame::delInst(){
 }
 
 void LocalGame::addPlayer(Player *new_player){
-    player_queue->push(new_player);
+    m_player_queue->push(new_player);
     nPlayers++;
     emit new_player->disable();
     connect(animation_timeline,SIGNAL(frameChanged(int)),new_player,SLOT(animatePlayerImage(int)));
@@ -56,7 +56,7 @@ void LocalGame::addPlayer(Player *new_player){
 }
 
 void LocalGame::init(Board * board, Dice * dice){
-    m_current_player = player_queue->next();
+    m_current_player = m_player_queue->next();
     Q_CHECK_PTR(m_current_player);
     emit m_current_player->activate();
     m_board = board;
@@ -83,6 +83,10 @@ void LocalGame::setDice(Dice * dice){
 
 Player* LocalGame::getCurrentPlayer(){
     return m_current_player;
+}
+
+PlayerQueue * LocalGame::getPlayerQueue(){
+    return m_player_queue;
 }
 
 LocalGameState::State LocalGame::getGameState(){
@@ -117,7 +121,7 @@ void LocalGame::turnOver(){
     if(m_current_player->isBankrupt()){
         nPlayers--;
         if(nPlayers == 1) {
-            winner = player_queue->next();
+            winner = m_player_queue->next();
             qDebug() << "winner! player:" << winner->getId();
             QMessageBox warn_box;
             warn_box.setStandardButtons(QMessageBox::Ok);
@@ -139,7 +143,7 @@ void LocalGame::turnOver(){
     emit m_current_player->disable();
     if(!Dice::getInst()->isDouble()){
         do {
-            m_current_player = player_queue->next();
+            m_current_player = m_player_queue->next();
         } while(m_current_player->isBankrupt());
     }
     emit m_current_player->activate();

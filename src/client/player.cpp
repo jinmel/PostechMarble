@@ -449,9 +449,9 @@ void Player::animatePlayerImage(int frame){
         filename += QString("top_right_");
     }
 
-    if(id == 1)
+    if(id == 1 || id ==3)
         filename += QString("io_");
-    else if(id == 2)
+    else if(id == 2 || id ==4)
         filename += QString("id_");
 
     filename += color + QString("_");

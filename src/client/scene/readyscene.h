@@ -24,13 +24,13 @@ private:
     ReadyPlayerImage * player_image2;
     ReadyPlayerImage * player_image3;
     ReadyPlayerImage * player_image4;
-
     void setupReady();
-
 public:
     ReadyScene(qreal x=0, qreal y=0, qreal width=1280,
                qreal height=720, QObject *parent=0);
     ~ReadyScene();
+    ReadyPlayerImage * getPlayerImage(int player_id);
+
     void animateReady();
 };
 
@@ -59,6 +59,8 @@ public:
     ReadyPlayerImage(QGraphicsScene * scene, MainWindow * window,Player * player);
     virtual ~ReadyPlayerImage();
     void setPlay(bool play);
+    bool getPlay();
+    Player * getPlayer();
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
