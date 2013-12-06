@@ -118,7 +118,7 @@ void ReloadButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     setImage(":images/ingame/pause/reload.png");
 
-    window->switchScene(SceneType::INGAME);
+    window->switchScene(SceneType::READY);
 }
 
 void ReloadButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)

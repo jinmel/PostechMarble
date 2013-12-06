@@ -118,6 +118,9 @@ void CornerBlock::inBreakSemester(Player* player)
 //in pluralmajor block, stochastically you should monopolize 2 department (odds=1/6)
 void CornerBlock::inPluralMajor(Player* player)
 {
+    if(player->isPlural())
+        return;
+
     QMessageBox warn_box;
     warn_box.setStandardButtons(QMessageBox::Ok);
     warn_box.setDefaultButton(QMessageBox::Ok);

@@ -97,6 +97,7 @@ void MainWindow::animateScene(int scenetype)
             break;
         case GAMEOVER: //이건 뭐지
            // dynamic_cast<GameoverScene*>(scene)->animateGameover();
+            break;
         case CREDIT:
             dynamic_cast<CreditScene*>(scene)->animateCredit();
             break;

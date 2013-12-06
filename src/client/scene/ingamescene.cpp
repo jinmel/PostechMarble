@@ -67,17 +67,17 @@ IngameScene::IngameScene(qreal x, qreal y,
 
     //주사위 그래픽
     dice_graphic = new DiceGraphicItem(this,window);
-    dice_graphic->setPos(800,400);
+    dice_graphic->setPos(800,450);
     dice_graphic->setZValue(2);
 
     //주사위 패널 첫번째
     first_dice_panel = new DiceValuePanel(this,window);
-    first_dice_panel->setPos(400,400);
+    first_dice_panel->setPos(400,450);
     first_dice_panel->setZValue(2);
 
     //주사위 패널 두번째
     second_dice_panel = new DiceValuePanel(this,window);
-    second_dice_panel->setPos(500,400);
+    second_dice_panel->setPos(500,450);
     second_dice_panel->setZValue(2);
 
     status1 = new PlayerStatusDisplay(board,player1);
@@ -380,9 +380,3 @@ void PlayerStatusDisplay::disable(){
     effect->setOpacity(0.3);
     this->setGraphicsEffect(effect);
 }
-
-
-
-
-
-

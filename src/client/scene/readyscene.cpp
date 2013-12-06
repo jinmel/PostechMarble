@@ -83,12 +83,8 @@ ReadyButton::~ReadyButton()
 
 void ReadyButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-<<<<<<< HEAD
-    setImage(":images/ready/button_start_pressed.png");
-=======
     qDebug() << "Start button clicked.";
     setImage(":images/ingame/pause/resume_pressed.png");
->>>>>>> 6714b6bb76c852224d342be43299aa49caede1e5
 }
 
 void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
@@ -96,8 +92,7 @@ void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     setImage(":images/ingame/pause/resume.png");
 
     // move to ready scene
-    ReadyScene * rscene = scene();
-
+    ReadyScene * rscene = dynamic_cast<ReadyScene*>(scene());
     window->switchScene(SceneType::INGAME);
 }
 
@@ -116,8 +111,7 @@ ReadyPlayerImage::ReadyPlayerImage(QGraphicsScene * scene,MainWindow* window,Pla
     connect(timeline,SIGNAL(finished()),timeline,SLOT(start())); //run forever
     timeline->start();
     setAcceptHoverEvents(true);
-    setPixmap(QPixmap(":/images/ready/plus.png"));
-    setScale(2.5);
+    setPixmap(QPixmap(":/images/ready/plus_big.png"));
 }
 
 ReadyPlayerImage::~ReadyPlayerImage(){
@@ -127,7 +121,7 @@ ReadyPlayerImage::~ReadyPlayerImage(){
 void ReadyPlayerImage::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     if(!play)
-        setPixmap(QPixmap(":/images/ready/plus_pressed.png"));
+        setPixmap(QPixmap(":/images/ready/plus_big_pressed.png"));
 }
 
 void ReadyPlayerImage::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
@@ -153,6 +147,8 @@ void ReadyPlayerImage::animatePlayerImage(int frame){
     if(!play){//not playing. don't show player image
         return;
     }
+
+    setScale(2.5);
 
     QString filename = QString(":/images/ingame/character/");
 
