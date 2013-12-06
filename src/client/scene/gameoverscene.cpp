@@ -27,7 +27,11 @@ void GameoverScene::setupGameover(int winner)
 
     //set background
     background = new QGameItem(this, window);
+<<<<<<< HEAD
     background->setImage(":/images/gameover/game_over_background");
+=======
+    background->setImage(":/images/gameover/gameover_background.png");
+>>>>>>> 85aec4e7c60393582fc8027fd177b858494996f4
     background->setPos(0,0);
 
     switch(winner)
