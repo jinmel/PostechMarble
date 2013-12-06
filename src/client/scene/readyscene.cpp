@@ -35,10 +35,10 @@ ReadyScene::ReadyScene(qreal x, qreal y,
     player_image1->setPlay(true);
     player_image2->setPlay(true);
 
-    player_image1->setPos(150,200);
-    player_image2->setPos(400,200);
-    player_image3->setPos(650,200);
-    player_image4->setPos(900,200);
+    player_image1->setPos(50,180);
+    player_image2->setPos(350,180);
+    player_image3->setPos(650,180);
+    player_image4->setPos(950,180);
 
 }
 
