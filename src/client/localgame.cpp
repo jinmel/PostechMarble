@@ -97,7 +97,7 @@ void LocalGame::setGameState(State new_state){
 
 void LocalGame::turnOver(){
     //switch current player to next player and change state
-    if(m_current_player->checkWinStatus()){
+    if(true/*m_current_player->checkWinStatus()*/){//****************************************** for gameover check
         //TODO: need to emit signal to notify gameover
         winner = m_current_player;
         qDebug() << "winner! player:" << winner->getId();
