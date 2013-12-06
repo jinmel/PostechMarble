@@ -83,12 +83,10 @@ ReadyButton::~ReadyButton()
 
 void ReadyButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-<<<<<<< HEAD
-    setImage(":images/ready/button_start_pressed.png");
-=======
+
     qDebug() << "Start button clicked.";
     setImage(":images/ingame/pause/resume_pressed.png");
->>>>>>> 6714b6bb76c852224d342be43299aa49caede1e5
+
 }
 
 void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
@@ -96,7 +94,7 @@ void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     setImage(":images/ingame/pause/resume.png");
 
     // move to ready scene
-    ReadyScene * rscene = scene();
+
 
     window->switchScene(SceneType::INGAME);
 }
