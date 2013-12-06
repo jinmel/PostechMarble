@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include "localgame.h"
 #include "sellpopup.h"
+#include <QFileInfo>
 
 // Constructor & Destructor
 SubjectBlock::~SubjectBlock()
@@ -27,6 +28,7 @@ SubjectBlock::SubjectBlock(QGameItem * parent,
     this->cost = cost;
     grade=NONE;
     grade_image = new QGraphicsPixmapItem(this);
+    effect_sound = new QMediaPlayer();
 }
 
 int SubjectBlock::getCost() const{
@@ -75,6 +77,12 @@ void SubjectBlock::enter(Player* player)
     qDebug() << "subjectblock enter" << getPosition();
     qDebug() << "cost:" << cost;
     qDebug() << "player" << player->getId();
+
+    if(subject_name == "객체지향프로그래밍") {
+        effect_sound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/prof_voice.wav").absoluteFilePath()));
+        effect_sound->play();
+    }
+
     QMessageBox mbox;
     mbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     mbox.setDefaultButton(QMessageBox::Ok);
@@ -87,7 +95,7 @@ void SubjectBlock::enter(Player* player)
             mbox.setInformativeText("수강료: " + QString::number(cost));
             int userselect = mbox.exec();
 
-            if(userselect==QMessageBox::Ok)   //if buy
+            if(userselect==QMessageBox::Ok)    //if buy
             {
                 player->payEnergy(cost);
                 player->addBlock(this);
@@ -118,6 +126,16 @@ void SubjectBlock::enter(Player* player)
                 int userselect = mbox.exec();
                 if(userselect == QMessageBox::Ok)//buy the block;
                 {
+                    // play sound
+                    QString sound_path="sound/subject_";
+                    if((rand() % 2) == 0)
+                        sound_path += "boy.wav";
+                    else
+                        sound_path += "girl.wav";
+
+                    effect_sound->setMedia(QUrl::fromLocalFile(QFileInfo(sound_path).absoluteFilePath()));
+                    effect_sound->play();
+
                     this->owner->giveEnergy(getBuyOutPrice());
                     this->owner->removeBlock(this);
                     player->payEnergy(getBuyOutPrice());
@@ -126,7 +144,8 @@ void SubjectBlock::enter(Player* player)
                 }
             }
         }
-        else{//블럭을 팔거나 파산한다.
+        else{
+            //블럭을 팔거나 파산한다.
             //자산을 팔아서 메꿀수 있을 경우
             if(player->getAssetValue() > getPenaltyCost()){
                 {
