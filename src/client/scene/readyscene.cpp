@@ -8,6 +8,7 @@
 #include <QPropertyAnimation>
 #include <QtGlobal>
 #include "localgame.h"
+#include "qgameitem.h"
 
 // Constructor & Destructor
 ReadyScene::ReadyScene(qreal x, qreal y,
@@ -46,7 +47,22 @@ ReadyScene::~ReadyScene()
     delete background;
 }
 
+ReadyPlayerImage * ReadyScene::getPlayerImage(int player_id){
+    switch(player_id){
+    case 1:
+        return player_image1;
+    case 2:
+        return player_image2;
+    case 3:
+        return player_image3;
+    case 4:
+        return player_image4;
+    }
+}
 
+Player * ReadyPlayerImage::getPlayer(){
+    return this->player;
+}
 
 // Methods
 void ReadyScene::setupReady()
@@ -83,12 +99,8 @@ ReadyButton::~ReadyButton()
 
 void ReadyButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-<<<<<<< HEAD
-    setImage(":images/ready/button_start_pressed.png");
-=======
     qDebug() << "Start button clicked.";
     setImage(":images/ingame/pause/resume_pressed.png");
->>>>>>> 6714b6bb76c852224d342be43299aa49caede1e5
 }
 
 void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
@@ -96,8 +108,19 @@ void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     setImage(":images/ingame/pause/resume.png");
 
     // move to ready scene
-    ReadyScene * rscene = scene();
 
+    //ReadyScene * rscene = scene();
+
+    ReadyScene * rscene = dynamic_cast<ReadyScene*>(scene());
+
+
+    for(int player_id = 1 ; player_id <=4 ; player_id ++){
+        ReadyPlayerImage * rplayer_image
+                = rscene->getPlayerImage(player_id);
+        if(rplayer_image->getPlay()){
+            LocalGame::getInst()->addPlayer(rplayer_image->getPlayer());
+        }
+    }
     window->switchScene(SceneType::INGAME);
 }
 
@@ -149,10 +172,15 @@ void ReadyPlayerImage::setPlay(bool play){
     this->play = play;
 }
 
+bool ReadyPlayerImage::getPlay(){
+    return play;
+}
+
 void ReadyPlayerImage::animatePlayerImage(int frame){
     if(!play){//not playing. don't show player image
         return;
     }
+
 
     QString filename = QString(":/images/ingame/character/");
 
@@ -175,7 +203,7 @@ void ReadyPlayerImage::animatePlayerImage(int frame){
     setPixmap(QPixmap(filename));
 
     if(player->getId() == 4)
-        setPos(QPointF(900,180));
+        setPos(QPointF(900,178));
 }
 
 

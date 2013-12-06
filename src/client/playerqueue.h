@@ -1,17 +1,17 @@
 #pragma once
-#include <queue>
+#include <QQueue>
 #include "player.h"
+#include <QList>
+#include <QVector>
 
 class PlayerQueue {
 private:
-    std::queue<Player*> * playerQueue;
-    int size;
-
+    QQueue<Player*> * queue;
 public:
     PlayerQueue();
     ~PlayerQueue();
     void push(Player * p);
     Player* next(void);
     int getSize();
-    
+    QVector<Player*> toVector() const;
 };

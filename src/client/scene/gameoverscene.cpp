@@ -13,7 +13,7 @@ GameoverScene::GameoverScene(qreal x, qreal y,
     if(this->window == NULL) qDebug()<<"window is null!";
     Q_CHECK_PTR(this->window);
 
-    //setupGameover();
+    setupGameover();
 }
 
 GameoverScene::~GameoverScene()

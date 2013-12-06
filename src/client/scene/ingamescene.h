@@ -42,6 +42,8 @@ private:
     QTimeLine *double_timeline;
     PlayerStatusDisplay *status1;
     PlayerStatusDisplay *status2;
+    PlayerStatusDisplay *status3;
+    PlayerStatusDisplay *status4;
     QMediaPlayer *bgm_player;
     PausePanel *pause_panel;
     PauseButton *pause_button;
