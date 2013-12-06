@@ -11,6 +11,7 @@
 #include "../pausepanel.h"
 #include "../subjectblock.h"
 #include <cstring>
+#include "types.h"
 
 
 IngameScene::IngameScene(qreal x, qreal y,
