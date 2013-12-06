@@ -21,45 +21,15 @@ GameoverScene::~GameoverScene()
     delete credit_button;
 }
 
-void GameoverScene::setupGameover(int winner)
+void GameoverScene::setupGameover()
 {
     //setup for gameover
 
     //set background
     background = new QGameItem(this, window);
-<<<<<<< HEAD
-    background->setImage(":/images/gameover/game_over_background");
-=======
+
     background->setImage(":/images/gameover/gameover_background.png");
->>>>>>> 85aec4e7c60393582fc8027fd177b858494996f4
     background->setPos(0,0);
-
-    switch(winner)
-  {
-    case 0:
-        player_pos = new QGameItem(this, window);
-        player_pos->setImage(":/images/gameover/red_player.png");
-        player_pos->setPos(100,100);
-        break;
-    case 1:
-        player_pos = new QGameItem(this, window);
-        player_pos->setImage(":/images/gameover/blue_player.png");
-        player_pos->setPos(100,100);
-        break;
-    case 2:
-        player_pos = new QGameItem(this, window);
-        player_pos->setImage(":/images/gameover/green_player.png");
-        player_pos->setPos(100,100);
-        break;
-    case 3:
-        player_pos = new QGameItem(this, window);
-        player_pos->setImage(":/images/gameover/yellow_player.png");
-        player_pos->setPos(100,100);
-        break;
-   }
-
-
-
 
     QGameItem *credit_button;
     QGameItem *player_pos;

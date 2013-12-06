@@ -227,9 +227,6 @@
         <file>images/ingame/block/2A.png</file>
         <file>images/ingame/block/2B.png</file>
         <file>images/ingame/block/2C.png</file>
-<<<<<<< HEAD
-        <file>images/gameover/game_over_background.png</file>
-=======
         <file>images/ready/plus_pressed.png</file>
         <file>images/ready/plus.png</file>
         <file>images/ingame/status/status1.png</file>

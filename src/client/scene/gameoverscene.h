@@ -15,7 +15,7 @@ private:
     QGameItem *winner_statement;
 
 
-    void setupGameover(int winner);
+    void setupGameover();
 
 public:
     GameoverScene(qreal x=0, qreal y=0, qreal width=1280,
