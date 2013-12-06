@@ -13,35 +13,9 @@
         <file>images/ingame/dice/dice4.png</file>
         <file>images/ingame/dice/dice5.png</file>
         <file>images/ingame/dice/dice6.png</file>
-        <file>images/ingame/pieces/piece1.png</file>
-        <file>images/ingame/pieces/piece2.png</file>
-        <file>images/ingame/pieces/piece3.png</file>
-        <file>images/ingame/pieces/piece4.png</file>
         <file>images/credit/credit_background.png</file>
         <file>images/credit/credit_splash.png</file>
-        <file>images/ingame/board/back_white.png</file>
-        <file>images/ingame/block/BIO_background.png</file>
-        <file>images/ingame/block/CHEM_background.png</file>
-        <file>images/ingame/block/CSED_background.png</file>
-        <file>images/ingame/block/EE_background.png</file>
         <file>images/ingame/block/Event_block.png</file>
-        <file>images/ingame/block/Grade_A.png</file>
-        <file>images/ingame/block/Grade_B.png</file>
-        <file>images/ingame/block/Grade_C.png</file>
-        <file>images/ingame/block/IME_background.png</file>
-        <file>images/ingame/block/MATH_background.png</file>
-        <file>images/ingame/block/ME_background.png</file>
-        <file>images/ingame/block/PHYS_background.png</file>
-        <file>images/ingame/block/Question_mark.png</file>
-        <file>images/ingame/block/vertical/BIO_background_vertical.png</file>
-        <file>images/ingame/block/vertical/CHEM_background_vertical.png</file>
-        <file>images/ingame/block/vertical/CSED_background_vertical.png</file>
-        <file>images/ingame/block/vertical/EE_background_vertical.png</file>
-        <file>images/ingame/block/vertical/IME_background_vertical.png</file>
-        <file>images/ingame/block/vertical/MATH_background_vertical.png</file>
-        <file>images/ingame/block/vertical/ME_background_vertical.png</file>
-        <file>images/ingame/block/vertical/PHYS_background_vertical.png</file>
-        <file>images/ingame/block/corner.png</file>
         <file>images/ingame/button2.png</file>
         <file>images/ingame/button2_pushed.png</file>
         <file>images/ready/button_start.png</file>
@@ -54,17 +28,11 @@
         <file>images/main/social_fb_pressed.png</file>
         <file>images/main/social_g+.png</file>
         <file>images/main/social_g+_pressed.png</file>
-        <file>images/ready/ready_background.png</file>
         <file>images/ingame/double.png</file>
-        <file>images/ingame/pieces/piece_blue.png</file>
-        <file>images/ingame/pieces/piece_red.png</file>
         <file>images/main/all.png</file>
-        <file>images/ingame/pieces/red.png</file>
-        <file>images/ingame/pieces/blue.png</file>
         <file>images/main/copy.png</file>
         <file>images/ingame/status/status1.png</file>
         <file>images/ingame/status/status2.png</file>
-        <file>images/ingame/board/board_back.png</file>
         <file>images/main/main_background.png</file>
         <file>images/ingame/block/corner/Dormitory.png</file>
         <file>images/ingame/block/corner/gap_year.png</file>
