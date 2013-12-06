@@ -139,6 +139,7 @@ private:
     int m_display_energy;
     Player const * const m_player;
     QGraphicsTextItem * m_energy_label;
+
 };
 
 

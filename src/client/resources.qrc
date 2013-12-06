@@ -230,5 +230,6 @@
         <file>images/ingame/block/2A.png</file>
         <file>images/ingame/block/2B.png</file>
         <file>images/ingame/block/2C.png</file>
+        <file>images/gameover/game_over_background.png</file>
     </qresource>
 </RCC>
