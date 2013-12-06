@@ -2,9 +2,11 @@
 #include <QGraphicsScene>
 #include "../mainwindow.h"
 #include "../qgameitem.h"
+#include "player.h"
 
 // Ingame Scene으로 가는 버튼
 class ReadyButton;
+class ReadyPlayerImage;
 
 class ReadyScene : public QGraphicsScene
 {
@@ -14,6 +16,14 @@ private:
     MainWindow* window;
     QGameItem *background;
     QGameItem *ready_button;
+    Player * player1;
+    Player * player2;
+    Player * player3;
+    Player * player4;
+    ReadyPlayerImage * player_image1;
+    ReadyPlayerImage * player_image2;
+    ReadyPlayerImage * player_image3;
+    ReadyPlayerImage * player_image4;
 
     void setupReady();
 
@@ -31,7 +41,30 @@ class ReadyButton : public QGameItem
 public:
     ReadyButton(QGraphicsScene *scene, MainWindow *window);
     virtual ~ReadyButton();
+protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
 };
+
+class ReadyPlayerImage : public QGameItem
+{
+    Q_OBJECT
+private:
+    Player * player;
+    bool moving;
+    bool play;
+    QTimeLine * timeline;
+public:
+    ReadyPlayerImage(QGraphicsScene * scene, MainWindow * window,Player * player);
+    virtual ~ReadyPlayerImage();
+    void setPlay(bool play);
+protected:
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    virtual void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
+    virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
+public slots:
+    void animatePlayerImage(int frame);
+};
+
