@@ -78,7 +78,7 @@ void MainScene::setupMain()
 
 void MainScene::animateMain()
 {
-    bgm_player->play();
+    //bgm_player->play();
 }
 
 

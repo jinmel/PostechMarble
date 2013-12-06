@@ -118,8 +118,8 @@ void SubjectBlock::enter(Player* player)
                 int userselect = mbox.exec();
                 if(userselect == QMessageBox::Ok)//buy the block;
                 {
-                    this->owner->removeBlock(this);
                     this->owner->giveEnergy(getBuyOutPrice());
+                    this->owner->removeBlock(this);
                     player->payEnergy(getBuyOutPrice());
                     player->addBlock(this);
                     decideGrade();
