@@ -8,13 +8,13 @@
 
 using namespace std;
 
-Dice::Dice()
+Dice::Dice()    //dice constructor
 {
     qDebug() << "Dice Created";
     srand((unsigned)time(NULL));
     value1 = 0;
     value2 = 0;
-    roll_sound = new QMediaPlayer();
+    roll_sound = new QMediaPlayer();            // dice roll sounde setting
     roll_sound->setVolume(100);
     effect_sound = new QMediaPlayer();
     effect_sound->setVolume(100);
@@ -23,7 +23,7 @@ Dice::Dice()
     connect(timeline, SIGNAL(finished()), this, SLOT(afterRollSound()));
 }
 
-Dice::~Dice()
+Dice::~Dice()   // dice destructor
 {
     qDebug() << "Dice Destroyed";
     delete roll_sound;
@@ -58,11 +58,11 @@ void Dice::delInst()
 
 
 // Methods
-void Dice::roll()
+void Dice::roll()           // dice roll 
 {
     qDebug() << "Dice Rolled";
 
-    value1 = rand() % 6 + 1;
+    value1 = rand() % 6 + 1;        // there are two dices
     value2 = rand() % 6 + 1;
 
     emit diceRolled(getValue(),isDouble());
@@ -78,26 +78,26 @@ void Dice::roll()
     roll_sound->play();
 }
 
-bool Dice::isDouble()
+bool Dice::isDouble() // both values of dices are same => true , else false
 {
     return (value1 == value2);
 }
 
-int Dice::getValue()
+int Dice::getValue()    // sum of two value
 {
     return value1 + value2;
 }
-int Dice::getFirstDice()
+int Dice::getFirstDice()    // 1st dice value
 {
     return value1;
 }
 
-int Dice::getSecondDice()
+int Dice::getSecondDice()       //2nd dice value
 {
     return value2;
 }
 
-void Dice::afterRollSound()
+void Dice::afterRollSound()         // different sounds up to sum of the values
 {
     QString path = "";
 
