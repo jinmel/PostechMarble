@@ -77,6 +77,12 @@ void SubjectBlock::enter(Player* player)
     qDebug() << "subjectblock enter" << getPosition();
     qDebug() << "cost:" << cost;
     qDebug() << "player" << player->getId();
+
+    if(subject_name == "객체지향프로그래밍") {
+        effect_sound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/prof_voice.wav").absoluteFilePath()));
+        effect_sound->play();
+    }
+
     QMessageBox mbox;
     mbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     mbox.setDefaultButton(QMessageBox::Ok);
