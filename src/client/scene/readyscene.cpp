@@ -107,9 +107,12 @@ void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     setImage(":images/ingame/pause/resume.png");
 
+    // move to ready scene
 
     //ReadyScene * rscene = scene();
+
     ReadyScene * rscene = dynamic_cast<ReadyScene*>(scene());
+
 
     for(int player_id = 1 ; player_id <=4 ; player_id ++){
         ReadyPlayerImage * rplayer_image
@@ -118,8 +121,6 @@ void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
             LocalGame::getInst()->addPlayer(rplayer_image->getPlayer());
         }
     }
-
-    // move to ready scene
     window->switchScene(SceneType::INGAME);
 }
 
@@ -138,7 +139,38 @@ ReadyPlayerImage::ReadyPlayerImage(QGraphicsScene * scene,MainWindow* window,Pla
     connect(timeline,SIGNAL(finished()),timeline,SLOT(start())); //run forever
     timeline->start();
     setAcceptHoverEvents(true);
-    setPixmap(QPixmap(":/images/ready/plus_big.png"));
+    setPixmap(QPixmap(":/images/ready/plus.png"));
+    setScale(2.5);
+    name = new QGameItem(scene, window);
+    name->setImage(":images/ready/inv.png");
+    name->setScale(0.5);
+    if(player->getId()==1)
+        name->setPos(150,500);
+    else if(player->getId()==2)
+        name->setPos(400,500);
+    else if(player->getId()==3)
+        name->setPos(650,500);
+    else
+        name->setPos(900,500);
+
+    switch(player->getType()) {
+        using namespace CharacterType;
+        case LOL:
+            type = 1;
+            break;
+        case GENIUS:
+            type = 2;
+            break;
+        case HARD_WORKER:
+            type = 3;
+            break;
+        case OUTSIDER:
+            type = 4;
+            break;
+        case ALCOHOLIC:
+            type = 5;
+            break;
+    }
 }
 
 ReadyPlayerImage::~ReadyPlayerImage(){
@@ -148,13 +180,23 @@ ReadyPlayerImage::~ReadyPlayerImage(){
 void ReadyPlayerImage::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     if(!play)
-        setPixmap(QPixmap(":/images/ready/plus_big_pressed.png"));
+        setPixmap(QPixmap(":/images/ready/plus_pressed.png"));
 }
 
 void ReadyPlayerImage::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     if(!play){
         play = true;
+        if(type == 1)
+            name->setPixmap(QPixmap(":/images/ready/clol.png"));
+        else if(type ==2)
+            name->setPixmap(QPixmap(":/images/ready/cgen.png"));
+        else if(type ==3)
+            name->setPixmap(QPixmap(":/images/ready/cdu.png"));
+        else if(type ==4)
+            name->setPixmap(QPixmap(":/images/ready/cout.png"));
+        else if(type ==5)
+            name->setPixmap(QPixmap(":/images/ready/calc.png"));
     }
 }
 
@@ -175,10 +217,10 @@ bool ReadyPlayerImage::getPlay(){
 }
 
 void ReadyPlayerImage::animatePlayerImage(int frame){
-    if(!play)//not playing. don't show player image
+    if(!play){//not playing. don't show player image
         return;
+    }
 
-    setScale(2.5);
 
     QString filename = QString(":/images/ingame/character/");
 
