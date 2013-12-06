@@ -272,6 +272,10 @@ void Player::jumpTo(int block_num){
 
 void Player::stepForward(){
     position = NEXT_POS(position);
+    QMediaPlayer* mediaplayer = new QMediaPlayer();
+    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/piece_move.wav").absoluteFilePath()));
+    mediaplayer->setVolume(100);
+    mediaplayer->play();
     if(position == 0){
         giveSalary();
     }
@@ -328,7 +332,7 @@ void Player::giveSalary()
     //maybe add animation for gaining energy
 
     QMediaPlayer* mediaplayer = new QMediaPlayer();
-    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coin.wav").absoluteFilePath()));
+    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coinsprinkle.mp3").absoluteFilePath()));
     mediaplayer->setVolume(100);
     mediaplayer->play();
 
