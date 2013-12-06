@@ -61,7 +61,6 @@ void LocalGame::init(Board * board, Dice * dice){
     emit m_current_player->activate();
     m_board = board;
     m_dice = dice;
-    nPlayers = 0;
     connect(m_dice,SIGNAL(diceRolled(Dice*)),this,SLOT(diceEvent(Dice*)));
 }
 
@@ -101,7 +100,7 @@ void LocalGame::setGameState(State new_state){
 
 void LocalGame::turnOver(){
     //switch current player to next player and change state
-    if(true/*m_current_player->checkWinStatus()*/){//****************************************** for gameover check
+    if(m_current_player->checkWinStatus()){
         //TODO: need to emit signal to notify gameover
         winner = m_current_player;
         qDebug() << "winner! player:" << winner->getId();

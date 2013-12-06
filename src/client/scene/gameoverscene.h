@@ -7,9 +7,13 @@ class GameoverScene : public QGraphicsScene
 {
     Q_OBJECT
 private:
+    int winner;
     MainWindow* window;
     QGameItem *background;
     QGameItem *credit_button;
+    QGameItem *player_pos;
+    QGameItem *winner_statement;
+
 
     void setupGameover();
 
@@ -18,5 +22,6 @@ public:
                   qreal height=720,
                   QObject* parent = 0);
     ~GameoverScene();
+
 
 };

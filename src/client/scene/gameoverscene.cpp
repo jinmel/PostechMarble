@@ -27,11 +27,19 @@ void GameoverScene::setupGameover()
 
     //set background
     background = new QGameItem(this, window);
+
     background->setImage(":/images/gameover/gameover_background.png");
     background->setPos(0,0);
+
+    QGameItem *credit_button;
+    QGameItem *player_pos;
+    QGameItem *winner_statement;
+    //set winner image
+    //background->setImage();
 
     //set credit button
     credit_button = new CreditButton(this, window);
     credit_button->setPos(535,470);
+
 
 }
