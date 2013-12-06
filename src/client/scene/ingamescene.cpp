@@ -116,6 +116,7 @@ IngameScene::IngameScene(qreal x, qreal y,
     connect(dice,SIGNAL(diceDouble()), this, SLOT(showDouble()));
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
     connect(dice,SIGNAL(secondDiceRolled(int)),second_dice_panel,SLOT(setValue(int)));
+
 }
 
 IngameScene::~IngameScene(){
