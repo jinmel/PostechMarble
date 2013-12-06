@@ -22,6 +22,7 @@ IngameScene::IngameScene(qreal x, qreal y,
 
     setBackgroundPixmap(":/images/ingame/board/background.png");
     LocalGame * game = LocalGame::getInst();
+    Dice * dice = Dice::getInst();
 
     board = new Board(this,window);
     board->setPos(200,(720 - board->boundingRect().size().height())/2);
@@ -35,6 +36,7 @@ IngameScene::IngameScene(qreal x, qreal y,
     Player * player2 = new Player(board,2);
     player2->setImage(":/images/ingame/pieces/red.png");
     player2->setZValue(3);
+
 //    SubjectBlock * tmpblock = dynamic_cast<SubjectBlock*>(board->getBlock(10));
 //    tmpblock->decideGrade();
 //    player2->addBlock(tmpblock);
@@ -93,7 +95,6 @@ IngameScene::IngameScene(qreal x, qreal y,
     game->init(board,Dice::getInst());
 
     //Signal / Slots connection
-    Dice * dice = Dice::getInst();
     connect(dice,SIGNAL(diceDouble()), this, SLOT(showDouble()));
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
     connect(dice,SIGNAL(secondDiceRolled(int)),second_dice_panel,SLOT(setValue(int)));
