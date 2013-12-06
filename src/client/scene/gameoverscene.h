@@ -20,10 +20,3 @@ public:
     ~GameoverScene();
 
 };
-<<<<<<< HEAD
-
-
-
-#endif // GAMEOVERSCENE_H
-=======
->>>>>>> 55a54d1cb7458164f2c93e00d2f939c4049102ea
