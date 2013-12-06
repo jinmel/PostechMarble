@@ -1,7 +1,4 @@
 #pragma once
-#ifndef GAMEOVERSCENE_H
-#define GAMEOVERSCENE_H
-
 #include <QGraphicsScene>
 #include "../mainwindow.h"
 #include "../qgameitem.h"
@@ -22,12 +19,11 @@ public:
                   QObject* parent = 0);
     ~GameoverScene();
 
-signals:
-
-public slots:
-
 };
+<<<<<<< HEAD
 
 
 
 #endif // GAMEOVERSCENE_H
+=======
+>>>>>>> 55a54d1cb7458164f2c93e00d2f939c4049102ea

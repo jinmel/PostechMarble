@@ -2,6 +2,7 @@
 #include <QMainWindow>
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QTimeLine>
 #include "types.h"
 
 namespace Ui {
@@ -24,4 +25,9 @@ private:
     QApplication *app;
     QGraphicsView *viewWindow;
     QGraphicsScene *scene;
+    QGraphicsScene *old_scene;
+    QTimeLine *delete_delay;
+
+private slots:
+    void deleteOldScene();
 };

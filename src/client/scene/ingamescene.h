@@ -60,8 +60,11 @@ public:
 private slots:
     void showDouble();
     void hideDouble();
+<<<<<<< HEAD
 public slots:
     //void switchtoGameover();
+=======
+>>>>>>> 55a54d1cb7458164f2c93e00d2f939c4049102ea
 };
 
 class DiceGraphicItem: public QGameItem

@@ -52,8 +52,6 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     immobile_penalty = 0;
     plural = false;
 
-    character_type = CharacterType::NONE;
-
     //initialize map
     using namespace SubjectType;
     registered[BIO] = 0;
@@ -66,13 +64,14 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     registered[PHYS] = 0;
 
     switch(_id){
-    case 1:
-        player_color = QString("red");
-        break;
-    case 2:
-        player_color = QString("blue");
-        break;
+        case 1:
+            player_color = QString("red");
+            break;
+        case 2:
+            player_color = QString("blue");
+            break;
     }
+
     using namespace BlockCoords;
 
     for(int i =0; i < 32; i ++){
@@ -91,13 +90,17 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 
     setPos(player_coord[0]);
 
+    // step sound load
+    mediaplayer = new QMediaPlayer();
+    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/piece_move.wav").absoluteFilePath()));
+    mediaplayer->setVolume(100);
+
     // end initialize
     qDebug() << "Player Created" << endl;
 }
 
 Player::~Player()
 {
-    //delete own_blocks;
 
     qDebug() << "Player Destroyed" << endl;
 }
@@ -272,6 +275,7 @@ void Player::jumpTo(int block_num){
 
 void Player::stepForward(){
     position = NEXT_POS(position);
+    mediaplayer->play();
     if(position == 0){
         giveSalary();
     }
@@ -328,7 +332,7 @@ void Player::giveSalary()
     //maybe add animation for gaining energy
 
     QMediaPlayer* mediaplayer = new QMediaPlayer();
-    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coin.wav").absoluteFilePath()));
+    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coinsprinkle.mp3").absoluteFilePath()));
     mediaplayer->setVolume(100);
     mediaplayer->play();
 
@@ -374,6 +378,10 @@ void Player::payEnergy(int payenergy)
 }
 void Player::giveEnergy(int paidenergy){
     energy+=paidenergy;
+    QMediaPlayer* coinsound = new QMediaPlayer();
+    coinsound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coinspread.mp3").absoluteFilePath()));
+    coinsound->setVolume(100);
+    coinsound->play();
     emit energyChanged(this->energy);
 }
 

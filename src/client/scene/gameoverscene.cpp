@@ -30,6 +30,7 @@ void GameoverScene::setupGameover()
     background->setImage(":/images/gameover/gameover_background");
     background->setPos(0,0);
 
+<<<<<<< HEAD
     //set credit button
     credit_button = new CreditButton(this, window);
     credit_button->setPos(535,470);
@@ -38,3 +39,8 @@ void GameoverScene::setupGameover()
 
 
 
+=======
+    //set winner image
+    //background->setImage();
+}
+>>>>>>> 55a54d1cb7458164f2c93e00d2f939c4049102ea

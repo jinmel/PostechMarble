@@ -1,8 +1,7 @@
 #pragma once
+#include <QMediaPlayer>
 #include "player.h"
 #include "block.h"
-#include <ctime>
-#include <cstdlib>
 #include "types.h"
 #include "qgameitem.h"
 
@@ -10,6 +9,8 @@ class CornerBlock : public Block
 {
 private:
     CornerType::Type corner_type;
+    QMediaPlayer *effect_player;
+
 public:
     CornerBlock(QGameItem * parent,CornerType::Type type);
     virtual ~CornerBlock();

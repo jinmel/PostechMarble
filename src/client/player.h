@@ -6,6 +6,7 @@
 #include "types.h"
 #include "qgameitem.h"
 #include <QPointF>
+#include <QMediaPlayer>
 // circular dependency
 class Block;
 class Player;
@@ -27,6 +28,7 @@ private:
     CharacterType::Type character_type;
     QString player_color;
     QPointF player_coord[32];
+    QMediaPlayer* mediaplayer;
 
 public:
     Player(QGameItem * parent,int id);

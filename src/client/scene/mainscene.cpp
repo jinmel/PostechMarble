@@ -20,6 +20,7 @@ MainScene::MainScene(qreal x, qreal y,
     Q_CHECK_PTR(this->window);
 
     setupMain();
+    connect(bgm_player, SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)), bgm_player, SLOT(play()));
 }
 
 
@@ -32,6 +33,7 @@ MainScene::~MainScene()
     delete fb_button;
     delete all;
     delete copy;
+    delete bgm_player;
 
     qDebug() << "Main Scene Destroyed";
 }
@@ -78,7 +80,7 @@ void MainScene::setupMain()
 
 void MainScene::animateMain()
 {
-    //bgm_player->play();
+    bgm_player->play();
 }
 
 
