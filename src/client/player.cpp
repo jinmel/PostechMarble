@@ -365,7 +365,13 @@ bool Player::checkWinStatus()
 void Player::payEnergy(int payenergy)
 {
     if(energy >= payenergy)
+    {
+        QMediaPlayer* coinsound = new QMediaPlayer();
+        coinsound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coinspread.mp3").absoluteFilePath()));
+        coinsound->setVolume(100);
+        coinsound->play();
         energy-=payenergy;
+    }
     else{
         if(getAssetValue() >= payenergy){
             Sellpopup * popup = new Sellpopup;

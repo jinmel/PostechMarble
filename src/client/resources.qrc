@@ -31,8 +31,6 @@
         <file>images/ingame/double.png</file>
         <file>images/main/all.png</file>
         <file>images/main/copy.png</file>
-        <file>images/ingame/status/status1.png</file>
-        <file>images/ingame/status/status2.png</file>
         <file>images/main/main_background.png</file>
         <file>images/ingame/block/corner/Dormitory.png</file>
         <file>images/ingame/block/corner/gap_year.png</file>
@@ -230,5 +228,9 @@
         <file>images/ingame/block/2A.png</file>
         <file>images/ingame/block/2B.png</file>
         <file>images/ingame/block/2C.png</file>
+        <file>images/ingame/status/status1.png</file>
+        <file>images/ingame/status/status2.png</file>
+        <file>images/ingame/status/status3.png</file>
+        <file>images/ingame/status/status4.png</file>
     </qresource>
 </RCC>

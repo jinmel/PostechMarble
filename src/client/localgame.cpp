@@ -7,11 +7,8 @@
 #include <QtGlobal>
 #include <QMessageBox>
 #include "scene/gameoverscene.h"
-<<<<<<< HEAD
 #include "mainwindow.h"
-=======
 #include <QFileInfo>
->>>>>>> 55a54d1cb7458164f2c93e00d2f939c4049102ea
 
 using namespace std;
 using namespace LocalGameState;
