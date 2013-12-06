@@ -8,6 +8,7 @@
 #include <QPropertyAnimation>
 #include <QtGlobal>
 #include "localgame.h"
+#include "qgameitem.h"
 
 // Constructor & Destructor
 ReadyScene::ReadyScene(qreal x, qreal y,
@@ -98,10 +99,8 @@ ReadyButton::~ReadyButton()
 
 void ReadyButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-
     qDebug() << "Start button clicked.";
     setImage(":images/ingame/pause/resume_pressed.png");
-
 }
 
 void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
@@ -109,6 +108,8 @@ void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     setImage(":images/ingame/pause/resume.png");
 
     // move to ready scene
+
+    //ReadyScene * rscene = scene();
 
     ReadyScene * rscene = dynamic_cast<ReadyScene*>(scene());
 
@@ -179,6 +180,7 @@ void ReadyPlayerImage::animatePlayerImage(int frame){
     if(!play){//not playing. don't show player image
         return;
     }
+
 
     QString filename = QString(":/images/ingame/character/");
 
