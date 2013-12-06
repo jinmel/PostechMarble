@@ -30,6 +30,7 @@ void GameoverScene::setupGameover(int winner)
     background->setImage(":/images/gameover/game_over_background");
     background->setPos(0,0);
 
+<<<<<<< HEAD
     switch(winner)
   {
     case 0:
@@ -62,4 +63,10 @@ void GameoverScene::setupGameover(int winner)
     QGameItem *winner_statement;
     //set winner image
     //background->setImage();
+=======
+    //set credit button
+    credit_button = new CreditButton(this, window);
+    credit_button->setPos(535,470);
+
+>>>>>>> 6714b6bb76c852224d342be43299aa49caede1e5
 }

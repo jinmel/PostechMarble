@@ -31,8 +31,6 @@
         <file>images/ingame/double.png</file>
         <file>images/main/all.png</file>
         <file>images/main/copy.png</file>
-        <file>images/ingame/status/status1.png</file>
-        <file>images/ingame/status/status2.png</file>
         <file>images/main/main_background.png</file>
         <file>images/ingame/block/corner/Dormitory.png</file>
         <file>images/ingame/block/corner/gap_year.png</file>
@@ -220,7 +218,6 @@
         <file>images/ready/egen.png</file>
         <file>images/ready/elol.png</file>
         <file>images/ready/eout.png</file>
-        <file>images/ready/readyscene.png</file>
         <file>images/ingame/block/horizontial/sbio1.png</file>
         <file>images/ingame/block/horizontial/sbio2.png</file>
         <file>images/ingame/block/horizontial/sbio3.png</file>
@@ -230,6 +227,22 @@
         <file>images/ingame/block/2A.png</file>
         <file>images/ingame/block/2B.png</file>
         <file>images/ingame/block/2C.png</file>
+<<<<<<< HEAD
         <file>images/gameover/game_over_background.png</file>
+=======
+        <file>images/ready/plus_pressed.png</file>
+        <file>images/ready/plus.png</file>
+        <file>images/ingame/status/status1.png</file>
+        <file>images/ingame/status/status2.png</file>
+        <file>images/ingame/status/status3.png</file>
+        <file>images/ingame/status/status4.png</file>
+        <file>images/ingame/block/3A.png</file>
+        <file>images/ingame/block/3B.png</file>
+        <file>images/ingame/block/3C.png</file>
+        <file>images/ingame/block/4A.png</file>
+        <file>images/ingame/block/4B.png</file>
+        <file>images/ingame/block/4C.png</file>
+        <file>images/ready/readyscene.png</file>
+>>>>>>> 6714b6bb76c852224d342be43299aa49caede1e5
     </qresource>
 </RCC>

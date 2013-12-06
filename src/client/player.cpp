@@ -21,22 +21,21 @@ using namespace std;
 Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 {
     //randomly determine CharacterType
-    int n = rand() % 5;
-    switch(n){
-    case 0:
-        character_type = CharacterType::LOL;
-        break;
-    case 1:
-        character_type = CharacterType::GENIUS;
-        break;
-    case 2:
-        character_type = CharacterType::HARD_WORKER;
-        break;
-    case 3:
-        character_type = CharacterType::OUTSIDER;
-        break;
-    case 4:
-        character_type = CharacterType::ALCOHOLIC;
+    switch(rand() % 5){
+        case 0:
+            character_type = CharacterType::LOL;
+            break;
+        case 1:
+            character_type = CharacterType::GENIUS;
+            break;
+        case 2:
+            character_type = CharacterType::HARD_WORKER;
+            break;
+        case 3:
+            character_type = CharacterType::OUTSIDER;
+            break;
+        case 4:
+            character_type = CharacterType::ALCOHOLIC;
     }
 
     id = _id;
@@ -379,7 +378,13 @@ bool Player::checkWinStatus()
 void Player::payEnergy(int payenergy)
 {
     if(energy >= payenergy)
+    {
+        QMediaPlayer* coinsound = new QMediaPlayer();
+        coinsound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coinspread.mp3").absoluteFilePath()));
+        coinsound->setVolume(100);
+        coinsound->play();
         energy-=payenergy;
+    }
     else{
         if(getAssetValue() >= payenergy){
             Sellpopup * popup = new Sellpopup;
