@@ -60,6 +60,10 @@ public:
 private slots:
     void showDouble();
     void hideDouble();
+
+public slots:
+    //void switchtoGameover();
+
 public slots:
     //void switchtoGameover();
 };

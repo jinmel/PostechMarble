@@ -213,21 +213,19 @@ void SubjectBlock::setGradeImage(Grade grade){          // set gradge image
 
     qDebug() << grade_image->pixmap().size();
     switch(zone){
-    case 0:
-        grade_image->setPos(QPointF(18,-25));
-        break;
-    case 1:
-        grade_image->setPos(QPointF(-15,0));
-        break;
-    case 2:
-        grade_image->setPos(QPointF(55,-25));
-        break;
-    case 3:
-        grade_image->setPos(QPointF(-10,40));
-        break;
+        case 0:
+            grade_image->setPos(QPointF(30,7));
+            break;
+        case 1:
+            grade_image->setPos(QPointF(20,13));
+            break;
+        case 2:
+            grade_image->setPos(QPointF(70,7));
+            break;
+        case 3:
+            grade_image->setPos(QPointF(20,48));
+            break;
     }
-
-    grade_image->setScale(1.3);
 }
 
 
