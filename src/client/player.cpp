@@ -21,22 +21,21 @@ using namespace std;
 Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 {
     //randomly determine CharacterType
-    int n = rand() % 5;
-    switch(n){
-    case 0:
-        character_type = CharacterType::LOL;
-        break;
-    case 1:
-        character_type = CharacterType::GENIUS;
-        break;
-    case 2:
-        character_type = CharacterType::HARD_WORKER;
-        break;
-    case 3:
-        character_type = CharacterType::OUTSIDER;
-        break;
-    case 4:
-        character_type = CharacterType::ALCOHOLIC;
+    switch(rand() % 5){
+        case 0:
+            character_type = CharacterType::LOL;
+            break;
+        case 1:
+            character_type = CharacterType::GENIUS;
+            break;
+        case 2:
+            character_type = CharacterType::HARD_WORKER;
+            break;
+        case 3:
+            character_type = CharacterType::OUTSIDER;
+            break;
+        case 4:
+            character_type = CharacterType::ALCOHOLIC;
     }
 
     id = _id;
@@ -64,12 +63,18 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     registered[PHYS] = 0;
 
     switch(_id){
-        case 1:
-            player_color = QString("red");
-            break;
-        case 2:
-            player_color = QString("blue");
-            break;
+    case 1:
+        color = QString("red");
+        break;
+    case 2:
+        color = QString("blue");
+        break;
+    case 3:
+        color = QString("green");
+        break;
+    case 4:
+        color = QString("yellow");
+        break;
     }
 
     using namespace BlockCoords;
@@ -103,6 +108,14 @@ Player::~Player()
 {
 
     qDebug() << "Player Destroyed" << endl;
+}
+
+void Player::setColor(QString color_str){
+    color = color_str;
+}
+
+QString Player::getColor(){
+    return color;
 }
 
 
@@ -438,7 +451,7 @@ void Player::animatePlayerImage(int frame){
     else if(id == 2)
         filename += QString("id_");
 
-    filename += player_color + QString("_");
+    filename += color + QString("_");
 
     LocalGame * game_inst = LocalGame::getInst();
 

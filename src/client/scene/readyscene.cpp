@@ -7,7 +7,7 @@
 #include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
 #include <QtGlobal>
-
+#include "localgame.h"
 
 // Constructor & Destructor
 ReadyScene::ReadyScene(qreal x, qreal y,
@@ -21,6 +21,22 @@ ReadyScene::ReadyScene(qreal x, qreal y,
 
     // setup Ready Scene
     setupReady();
+
+    //first setup two players
+
+    player1 = new Player(NULL,1);
+    player2 = new Player(NULL,2);
+    player3 = new Player(NULL,3);
+    player4 = new Player(NULL,4);
+    player_image1 = new ReadyPlayerImage(this,window,player1);
+    player_image2 = new ReadyPlayerImage(this,window,player2);
+    player_image3 = new ReadyPlayerImage(this,window,player3);
+    player_image4 = new ReadyPlayerImage(this,window,player4);
+    player_image1->setPlay(true);
+    player_image2->setPlay(true);
+
+    player_image1->setPos(100,200);
+    player_image2->setPos(300,200);
 }
 
 ReadyScene::~ReadyScene()
@@ -83,3 +99,67 @@ void ReadyButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
     // ignore input in this case
     setImage(":images/ready/button_start.png");
 }
+
+ReadyPlayerImage::ReadyPlayerImage(QGraphicsScene * scene,MainWindow* window,Player * player)
+    : QGameItem(scene,window),player(player),moving(false),play(false)
+{
+    timeline = new QTimeLine(1000);
+    timeline->setFrameRange(1,10);
+    connect(timeline,SIGNAL(frameChanged(int)),this,SLOT(animatePlayerImage(int)));
+    connect(timeline,SIGNAL(finished()),timeline,SLOT(start())); //run forever
+    timeline->start();
+    setAcceptHoverEvents(true);
+}
+
+ReadyPlayerImage::~ReadyPlayerImage(){
+
+}
+
+void ReadyPlayerImage::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+}
+
+void ReadyPlayerImage::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+}
+
+void ReadyPlayerImage::hoverEnterEvent(QGraphicsSceneHoverEvent *event){
+    moving = true;
+}
+
+void ReadyPlayerImage::hoverLeaveEvent(QGraphicsSceneHoverEvent *event){
+    moving = false;
+}
+
+void ReadyPlayerImage::setPlay(bool play){
+    this->play = play;
+}
+
+void ReadyPlayerImage::animatePlayerImage(int frame){
+    if(!play)//not playing. don't show player image
+        return;
+
+    QString filename = QString(":/images/ingame/character/");
+
+    filename += QString("top_down_");
+
+    if(player->getId() == 1)
+        filename += QString("io_");
+    else if(player->getId() == 2)
+        filename += QString("id_");
+
+    filename += player->getColor() + QString("_");
+
+    if(moving)
+        filename += QString("walk_");
+    else
+        filename += QString("stand_");
+
+    filename += QString::number(frame).rightJustified(3,'0') + QString(".png");
+
+    setPixmap(QPixmap(filename));
+    setScale(2.5);
+}
+
+
+

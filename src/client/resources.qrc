@@ -232,5 +232,11 @@
         <file>images/ingame/status/status2.png</file>
         <file>images/ingame/status/status3.png</file>
         <file>images/ingame/status/status4.png</file>
+        <file>images/ingame/block/3A.png</file>
+        <file>images/ingame/block/3B.png</file>
+        <file>images/ingame/block/3C.png</file>
+        <file>images/ingame/block/4A.png</file>
+        <file>images/ingame/block/4B.png</file>
+        <file>images/ingame/block/4C.png</file>
     </qresource>
 </RCC>

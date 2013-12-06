@@ -35,4 +35,3 @@ void GameoverScene::setupGameover()
     credit_button->setPos(535,470);
 
 }
-

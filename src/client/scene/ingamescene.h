@@ -64,6 +64,8 @@ private slots:
 public slots:
     //void switchtoGameover();
 
+public slots:
+    //void switchtoGameover();
 };
 
 class DiceGraphicItem: public QGameItem

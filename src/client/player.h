@@ -26,7 +26,7 @@ private:
     std::map<SubjectType::Type, int> registered;     // registered class for each subject
     std::list<Block*> own_blocks;
     CharacterType::Type character_type;
-    QString player_color;
+    QString color;
     QPointF player_coord[32];
     QMediaPlayer* mediaplayer;
 
@@ -63,6 +63,8 @@ public:
     void giveEnergy(int paidenergy);
     bool checkWinStatus();
     QPointF adjustCoord(QPointF & coord);
+    void setColor(QString color_str);
+    QString getColor();
 signals:
     void playerArrived(Player * player);
     void energyChanged(int energy);

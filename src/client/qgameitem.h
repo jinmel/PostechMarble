@@ -31,7 +31,7 @@ public:
     void hide(bool fade,int duration=1000);
     void show(bool fade,int duration=1000);
     MainWindow* getWindow();
-
+    void setParent(QGameItem * parent);
 private:
     QGameItem(); //disabled to explicitly expcify the parent scene of the item
     QTimeLine *timer;
@@ -39,5 +39,4 @@ private:
     QGraphicsItemAnimation *animation;
 protected:
     MainWindow *window;
-    QGraphicsScene *parent_scene;
 };
