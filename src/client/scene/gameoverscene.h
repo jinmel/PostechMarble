@@ -19,8 +19,4 @@ public:
                   QObject* parent = 0);
     ~GameoverScene();
 
-signals:
-
-public slots:
-
 };
