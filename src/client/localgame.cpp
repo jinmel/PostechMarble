@@ -7,6 +7,11 @@
 #include <QtGlobal>
 #include <QMessageBox>
 #include "scene/gameoverscene.h"
+<<<<<<< HEAD
+#include "mainwindow.h"
+=======
+#include <QFileInfo>
+>>>>>>> 55a54d1cb7458164f2c93e00d2f939c4049102ea
 
 using namespace std;
 using namespace LocalGameState;
@@ -19,6 +24,8 @@ LocalGame::LocalGame(){
     animation_timeline->setFrameRange(1,11);
     connect(animation_timeline,SIGNAL(finished()),this,SLOT(restartTimeline()));
     animation_timeline->start(); //runs forever
+    //this-> window = dynamic_cast<MainWindow*>(parent);
+
 }
 
 LocalGame::~LocalGame(){
@@ -101,8 +108,13 @@ void LocalGame::turnOver(){
         warn_box.setStandardButtons(QMessageBox::Ok);
         warn_box.setDefaultButton(QMessageBox::Ok);
         warn_box.setText("승자! 플레이어 " + QString::number(winner->getId()));
+        QMediaPlayer* win_sound = new QMediaPlayer();
+        win_sound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/Win.mp3").absoluteFilePath()));
+        win_sound->setVolume(100);
+        win_sound->play();
         warn_box.exec();
-        m_state = GAME_OVER;
+        m_state = GAME_OVER;\
+        m_board->getWindow()->switchScene(SceneType::GAMEOVER);
         return;
     }
     if(m_current_player->isBankrupt()){
@@ -114,9 +126,13 @@ void LocalGame::turnOver(){
             warn_box.setStandardButtons(QMessageBox::Ok);
             warn_box.setDefaultButton(QMessageBox::Ok);
             warn_box.setText("승자! 플레이어 " + QString::number(winner->getId()));
+            QMediaPlayer* win_sound = new QMediaPlayer();
+            win_sound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/Win.mp3").absoluteFilePath()));
+            win_sound->setVolume(100);
+            win_sound->play();
             warn_box.exec();
-
             m_state = GAME_OVER;
+            m_board->getWindow()->switchScene(SceneType::GAMEOVER);
             return;
         }
     }

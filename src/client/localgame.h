@@ -37,6 +37,7 @@ public slots:
 signals:
     void signalAll();
 private:
+    //MainWindow *const window;
     QTimeLine * animation_timeline;
     LocalGameState::State m_state;
     PlayerQueue * player_queue;

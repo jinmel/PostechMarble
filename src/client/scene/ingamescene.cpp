@@ -11,6 +11,7 @@
 #include "../pausepanel.h"
 #include "../subjectblock.h"
 #include <cstring>
+#include "types.h"
 
 
 IngameScene::IngameScene(qreal x, qreal y,
@@ -144,6 +145,15 @@ void IngameScene::animateIngame()
     //bgm_player->play();
 }
 
+<<<<<<< HEAD
+/*void IngameScene::switchtoGameover()
+{
+    qDebug()<<"Switching to Gameover";
+    window->switchScene(SceneType::GAMEOVER);
+}*/
+
+=======
+>>>>>>> 55a54d1cb7458164f2c93e00d2f939c4049102ea
 
 // DiceGrahicItem
 DiceGraphicItem::DiceGraphicItem(QGraphicsScene *scene, MainWindow *window)
