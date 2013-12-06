@@ -6,7 +6,6 @@
 #include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
 #include <QtGlobal>
-#include <QMediaPlayer>
 #include <QFileInfo>
 
 
@@ -30,6 +29,7 @@ LogoScene::~LogoScene()
     qDebug() << "LOGO destroy";
     delete background;
     delete team_logo;
+    delete effect_sound;
 }
 
 
@@ -76,11 +76,11 @@ void LogoScene::animateLogo()
     connect(animation,SIGNAL(finished()),this,SLOT(switchtoMain()));
 
     // set sound
-    QMediaPlayer* player = new QMediaPlayer();
-    player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/logo_dang.mp3").absoluteFilePath()));
-    player->setVolume(100);
+    effect_sound = new QMediaPlayer();
+    effect_sound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/logo_dang.mp3").absoluteFilePath()));
+    effect_sound->setVolume(100);
     
     // play sound & animate    
     animation->start();
-    player->play();
+    effect_sound->play();
 }
