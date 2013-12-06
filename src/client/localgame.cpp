@@ -61,7 +61,6 @@ void LocalGame::init(Board * board, Dice * dice){
     emit m_current_player->activate();
     m_board = board;
     m_dice = dice;
-    nPlayers = 0;
     connect(m_dice,SIGNAL(diceRolled(Dice*)),this,SLOT(diceEvent(Dice*)));
 }
 
