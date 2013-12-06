@@ -7,6 +7,7 @@
 #include <QtGlobal>
 #include <QMessageBox>
 #include "scene/gameoverscene.h"
+#include <QFileInfo>
 
 using namespace std;
 using namespace LocalGameState;
@@ -101,6 +102,10 @@ void LocalGame::turnOver(){
         warn_box.setStandardButtons(QMessageBox::Ok);
         warn_box.setDefaultButton(QMessageBox::Ok);
         warn_box.setText("승자! 플레이어 " + QString::number(winner->getId()));
+        QMediaPlayer* win_sound = new QMediaPlayer();
+        win_sound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/Win.mp3").absoluteFilePath()));
+        win_sound->setVolume(100);
+        win_sound->play();
         warn_box.exec();
         m_state = GAME_OVER;
         return;
@@ -114,6 +119,10 @@ void LocalGame::turnOver(){
             warn_box.setStandardButtons(QMessageBox::Ok);
             warn_box.setDefaultButton(QMessageBox::Ok);
             warn_box.setText("승자! 플레이어 " + QString::number(winner->getId()));
+            QMediaPlayer* win_sound = new QMediaPlayer();
+            win_sound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/Win.mp3").absoluteFilePath()));
+            win_sound->setVolume(100);
+            win_sound->play();
             warn_box.exec();
 
             m_state = GAME_OVER;

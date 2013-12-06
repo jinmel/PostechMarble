@@ -91,6 +91,11 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 
     setPos(player_coord[0]);
 
+    // step sound load
+    mediaplayer = new QMediaPlayer();
+    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/piece_move.wav").absoluteFilePath()));
+    mediaplayer->setVolume(100);
+
     // end initialize
     qDebug() << "Player Created" << endl;
 }
@@ -272,9 +277,6 @@ void Player::jumpTo(int block_num){
 
 void Player::stepForward(){
     position = NEXT_POS(position);
-    QMediaPlayer* mediaplayer = new QMediaPlayer();
-    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/piece_move.wav").absoluteFilePath()));
-    mediaplayer->setVolume(100);
     mediaplayer->play();
     if(position == 0){
         giveSalary();
@@ -378,6 +380,10 @@ void Player::payEnergy(int payenergy)
 }
 void Player::giveEnergy(int paidenergy){
     energy+=paidenergy;
+    QMediaPlayer* coinsound = new QMediaPlayer();
+    coinsound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coinspread.mp3").absoluteFilePath()));
+    coinsound->setVolume(100);
+    coinsound->play();
     emit energyChanged(this->energy);
 }
 
