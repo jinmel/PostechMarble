@@ -33,10 +33,10 @@ ReadyScene::ReadyScene(qreal x, qreal y,
     player_image2 = new ReadyPlayerImage(this,window,player2);
     player_image3 = new ReadyPlayerImage(this,window,player3);
     player_image4 = new ReadyPlayerImage(this,window,player4);
-    player_image1->setPos(150,200);
-    player_image2->setPos(400,200);
+    player_image1->setPos(50,200);
+    player_image2->setPos(350,200);
     player_image3->setPos(650,200);
-    player_image4->setPos(900,200);
+    player_image4->setPos(950,200);
 
 
 }
@@ -139,19 +139,29 @@ ReadyPlayerImage::ReadyPlayerImage(QGraphicsScene * scene,MainWindow* window,Pla
     connect(timeline,SIGNAL(finished()),timeline,SLOT(start())); //run forever
     timeline->start();
     setAcceptHoverEvents(true);
-    setPixmap(QPixmap(":/images/ready/plus.png"));
-    setScale(2.5);
+    setPixmap(QPixmap(":/images/ready/plus_big.png"));
     name = new QGameItem(scene, window);
     name->setImage(":images/ready/inv.png");
     name->setScale(0.5);
-    if(player->getId()==1)
-        name->setPos(150,500);
-    else if(player->getId()==2)
-        name->setPos(400,500);
-    else if(player->getId()==3)
+    explain = new QGameItem(scene, window);
+    explain->setImage(":images/ready/inv.png");
+    explain->setScale(0.25);
+    if(player->getId()==1){
+        name->setPos(50,500);
+        explain->setPos(50,600);
+    }
+    else if(player->getId()==2){
+        name->setPos(350,500);
+        explain->setPos(350,600);
+    }
+    else if(player->getId()==3){
         name->setPos(650,500);
-    else
-        name->setPos(900,500);
+        explain->setPos(650,600);
+    }
+    else if(player->getId()==4){
+        name->setPos(950,500);
+        explain->setPos(950,600);
+    }
 
     switch(player->getType()) {
         using namespace CharacterType;
@@ -180,23 +190,33 @@ ReadyPlayerImage::~ReadyPlayerImage(){
 void ReadyPlayerImage::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     if(!play)
-        setPixmap(QPixmap(":/images/ready/plus_pressed.png"));
+        setPixmap(QPixmap(":/images/ready/plus_big_pressed.png"));
 }
 
 void ReadyPlayerImage::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     if(!play){
         play = true;
-        if(type == 1)
+        if(type == 1){
             name->setPixmap(QPixmap(":/images/ready/clol.png"));
-        else if(type ==2)
+            explain->setPixmap(QPixmap(":/images/ready/elol.png"));
+        }
+        else if(type ==2){
             name->setPixmap(QPixmap(":/images/ready/cgen.png"));
-        else if(type ==3)
+            explain->setPixmap(QPixmap(":/images/ready/egen.png"));
+        }
+        else if(type ==3){
             name->setPixmap(QPixmap(":/images/ready/cdu.png"));
-        else if(type ==4)
+            explain->setPixmap(QPixmap(":/images/ready/edu.png"));
+        }
+        else if(type ==4){
             name->setPixmap(QPixmap(":/images/ready/cout.png"));
-        else if(type ==5)
+            explain->setPixmap(QPixmap(":/images/ready/eout.png"));
+        }
+        else if(type ==5){
             name->setPixmap(QPixmap(":/images/ready/calc.png"));
+            explain->setPixmap(QPixmap(":/images/ready/ealc.png"));
+        }
     }
 }
 
@@ -221,6 +241,7 @@ void ReadyPlayerImage::animatePlayerImage(int frame){
         return;
     }
 
+    setScale(2.5);
 
     QString filename = QString(":/images/ingame/character/");
 
@@ -243,7 +264,7 @@ void ReadyPlayerImage::animatePlayerImage(int frame){
     setPixmap(QPixmap(filename));
 
     if(player->getId() == 4)
-        setPos(QPointF(900,178));
+        setPos(QPointF(950,170));
 }
 
 
