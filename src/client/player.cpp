@@ -52,8 +52,6 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     immobile_penalty = 0;
     plural = false;
 
-    character_type = CharacterType::NONE;
-
     //initialize map
     using namespace SubjectType;
     registered[BIO] = 0;
@@ -66,13 +64,14 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     registered[PHYS] = 0;
 
     switch(_id){
-    case 1:
-        player_color = QString("red");
-        break;
-    case 2:
-        player_color = QString("blue");
-        break;
+        case 1:
+            player_color = QString("red");
+            break;
+        case 2:
+            player_color = QString("blue");
+            break;
     }
+
     using namespace BlockCoords;
 
     for(int i =0; i < 32; i ++){
@@ -97,7 +96,6 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 
 Player::~Player()
 {
-    //delete own_blocks;
 
     qDebug() << "Player Destroyed" << endl;
 }
