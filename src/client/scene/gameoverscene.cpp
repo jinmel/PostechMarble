@@ -27,7 +27,7 @@ void GameoverScene::setupGameover()
 
     //set background
     background = new QGameItem(this, window);
-    background->setImage(":/images/gameover/gameover_background");
+    background->setImage(":/images/gameover/gameover_background.png");
     background->setPos(0,0);
 
     //set credit button
