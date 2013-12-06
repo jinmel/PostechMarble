@@ -51,6 +51,8 @@ void CornerBlock::inDormitory(Player* player)
     warn_box.setStandardButtons(QMessageBox::Ok);
     warn_box.setDefaultButton(QMessageBox::Ok);
 
+    player->giveSalary();
+
     std::list<Block*> block_list = player->getBlocks();
     if(block_list.size() > 0) {
 
