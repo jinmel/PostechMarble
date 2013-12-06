@@ -32,9 +32,6 @@ ReadyScene::ReadyScene(qreal x, qreal y,
     player_image2 = new ReadyPlayerImage(this,window,player2);
     player_image3 = new ReadyPlayerImage(this,window,player3);
     player_image4 = new ReadyPlayerImage(this,window,player4);
-    player_image1->setPlay(true);
-    player_image2->setPlay(true);
-
     player_image1->setPos(150,200);
     player_image2->setPos(400,200);
     player_image3->setPos(650,200);
@@ -85,7 +82,6 @@ ReadyButton::~ReadyButton()
 
 void ReadyButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    qDebug() << "Start button clicked.";
     setImage(":images/ready/button_start_pressed.png");
 }
 
@@ -94,6 +90,8 @@ void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     setImage(":images/ready/button_start.png");
 
     // move to ready scene
+    ReadyScene * rscene = scene();
+
     window->switchScene(SceneType::INGAME);
 }
 
@@ -128,8 +126,9 @@ void ReadyPlayerImage::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void ReadyPlayerImage::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    if(!play)
-        setPixmap(QPixmap(":/images/ready/plus.png"));
+    if(!play){
+        play = true;
+    }
 }
 
 void ReadyPlayerImage::hoverEnterEvent(QGraphicsSceneHoverEvent *event){
@@ -146,7 +145,6 @@ void ReadyPlayerImage::setPlay(bool play){
 
 void ReadyPlayerImage::animatePlayerImage(int frame){
     if(!play){//not playing. don't show player image
-
         return;
     }
 
@@ -154,9 +152,9 @@ void ReadyPlayerImage::animatePlayerImage(int frame){
 
     filename += QString("top_down_");
 
-    if(player->getId() == 1)
+    if(player->getId() == 1 || player->getId() == 3)
         filename += QString("io_");
-    else if(player->getId() == 2)
+    else if(player->getId() == 2 || player->getId() == 4)
         filename += QString("id_");
 
     filename += player->getColor() + QString("_");
@@ -170,6 +168,8 @@ void ReadyPlayerImage::animatePlayerImage(int frame){
 
     setPixmap(QPixmap(filename));
 
+    if(player->getId() == 4)
+        setPos(QPointF(900,180));
 }
 
 
