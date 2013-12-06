@@ -21,6 +21,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    scene = NULL;
+    old_scene = NULL;
+    delete_delay = new QTimeLine(100);
+    connect(delete_delay, SIGNAL(finished()), this, SLOT(deleteOldScene()));
+
     switchScene(SceneType::LOGO);
 }
 
@@ -29,14 +35,15 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete scene;
+    delete delete_delay;
 }
 
 // Methods
 // Utility Functions
 void MainWindow::switchScene(int scenetype)
 {
+    old_scene = scene;
     using namespace SceneType;
-
     switch(scenetype) {
         case LOGO:
             scene = new LogoScene(0, 0, 1280, 720, this);
@@ -56,6 +63,7 @@ void MainWindow::switchScene(int scenetype)
     }
 
     ui->graphicsView->setScene(scene);
+    delete_delay->start();
     this->animateScene(scenetype);
 }
 
@@ -87,4 +95,10 @@ void MainWindow::animateScene(int scenetype)
             dynamic_cast<CreditScene*>(scene)->animateCredit();
             break;
     }
+}
+
+void MainWindow::deleteOldScene()
+{
+    if(old_scene != NULL)
+        delete old_scene;
 }
