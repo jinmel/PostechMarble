@@ -29,20 +29,20 @@ void CornerBlock::enter(Player* player)
 {
     qDebug() << "In corner block " << corner_type;
     using namespace CornerType;
-    switch(corner_type)
-    {
-    case DORM : inDormitory(player);
-        break;
-    case CALLTAXI : in61Call(player);
-        break;
-    case BREAKSEM : inBreakSemester(player);
-        break;
-    case PLURAL : inPluralMajor(player);
-        break;
-    default : qDebug() << "CornerBlock error!" << endl;
-        break;
+    switch(corner_type) {
+        case DORM : inDormitory(player);
+            break;
+        case CALLTAXI : in61Call(player);
+            break;
+        case BREAKSEM : inBreakSemester(player);
+            break;
+        case PLURAL : inPluralMajor(player);
+            break;
+        default : qDebug() << "CornerBlock error!" << endl;
+            break;
     }
 }
+
 //when arrived at dormitory block, give oppertunity to learn one subject again
 void CornerBlock::inDormitory(Player* player) 
 {
@@ -99,7 +99,7 @@ void CornerBlock::inBreakSemester(Player* player)
     effect_player->play();
 
     //LocalGame에서 모두 구현되어 있음
-    player->setMouindo(3);
+    player->setMouindo(2);
     LocalGame::getInst()->turnOver();
 
     //1.원래 무인도에 있다가 다시 턴이 된 경우 -> 주사위를 굴릴 수 있게 한다.
@@ -119,11 +119,16 @@ void CornerBlock::inPluralMajor(Player* player)
     switch((rand() % 6)==1) {
         case 1:
             qDebug() <<"You have to take plural major.";
+
+            // play 61call sound
+            effect_player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/no.wav").absoluteFilePath()));
+            effect_player->play();
+
             player->setPlural(true);
             break;
 
         default:
-        qDebug()<<"You don't have to take plural major.";
+            qDebug()<<"You don't have to take plural major.";
     }
     //학과 1개 독점 시에 복수전공 해제& 두개 독점 시에 승리 그리고 만약에 한개 독점 하고 두개째 도전중일 때다른 누군가가 독점된 학과를 뺏어가는 경우!?
 
