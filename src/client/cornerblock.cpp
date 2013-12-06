@@ -94,6 +94,12 @@ void CornerBlock::in61Call(Player* player)
 //in breaksemester, rest 3 turns. If dice were double at rest, you would be able to escape..
 void CornerBlock::inBreakSemester(Player* player)
 {
+    QMessageBox warn_box;
+    warn_box.setStandardButtons(QMessageBox::Ok);
+    warn_box.setDefaultButton(QMessageBox::Ok);
+
+    warn_box.setText("휴학! 2턴동안 쉽니다.");
+    warn_box.exec();
     // play 61call sound
     effect_player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/no.wav").absoluteFilePath()));
     effect_player->play();

@@ -4,12 +4,12 @@
 #include "../dice.h"
 #include <QTimeLine>
 #include <QEasingCurve>
-#include "block.h"
-#include "localgame.h"
+#include "../block.h"
+#include "../localgame.h"
 #include <QFileInfo>
 #include <QGraphicsOpacityEffect>
-#include "pausepanel.h"
-#include "subjectblock.h"
+#include "../pausepanel.h"
+#include "../subjectblock.h"
 #include <cstring>
 
 
