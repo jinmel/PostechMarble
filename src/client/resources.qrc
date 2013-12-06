@@ -261,5 +261,11 @@
         <file>images/ingame/block/horizontial/sbio1.png</file>
         <file>images/ingame/block/horizontial/sbio2.png</file>
         <file>images/ingame/block/horizontial/sbio3.png</file>
+        <file>images/ingame/block/1A.png</file>
+        <file>images/ingame/block/1B.png</file>
+        <file>images/ingame/block/1C.png</file>
+        <file>images/ingame/block/2A.png</file>
+        <file>images/ingame/block/2B.png</file>
+        <file>images/ingame/block/2C.png</file>
     </qresource>
 </RCC>
