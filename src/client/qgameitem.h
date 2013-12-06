@@ -39,5 +39,5 @@ private:
     QGraphicsItemAnimation *animation;
 protected:
     MainWindow *window;
-    QGraphicsScene * parent_scene;
+    QGraphicsScene *parent_scene;
 };
