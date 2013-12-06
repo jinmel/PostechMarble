@@ -218,7 +218,6 @@
         <file>images/ready/egen.png</file>
         <file>images/ready/elol.png</file>
         <file>images/ready/eout.png</file>
-        <file>images/ready/readyscene.png</file>
         <file>images/ingame/block/horizontial/sbio1.png</file>
         <file>images/ingame/block/horizontial/sbio2.png</file>
         <file>images/ingame/block/horizontial/sbio3.png</file>
@@ -367,5 +366,6 @@
         <file>images/ingame/character/top_up_id_yellow_walk_010.png</file>
         <file>images/ingame/character/top_up_id_yellow_walk_011.png</file>
         <file>images/ingame/character/top_up_id_yellow_walk_012.png</file>
+        <file>images/ready/readyscene.png</file>
     </qresource>
 </RCC>

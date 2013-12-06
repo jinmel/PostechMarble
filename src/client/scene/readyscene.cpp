@@ -37,6 +37,7 @@ ReadyScene::ReadyScene(qreal x, qreal y,
     player_image3->setPos(650,200);
     player_image4->setPos(900,200);
 
+
 }
 
 ReadyScene::~ReadyScene()
@@ -59,7 +60,7 @@ void ReadyScene::setupReady()
 
     // set buttons
     ready_button = new ReadyButton(this, window);
-    ready_button->setPos(530,500);
+    ready_button->setPos(1185,20);
 }
 
 
@@ -72,7 +73,7 @@ void ReadyScene::animateReady()
 ReadyButton::ReadyButton(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene, window)
 {
-    setImage(":images/ready/button_start.png");
+    setImage(":images/ingame/pause/resume.png");
 }
 
 ReadyButton::~ReadyButton()
@@ -82,12 +83,17 @@ ReadyButton::~ReadyButton()
 
 void ReadyButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
+<<<<<<< HEAD
     setImage(":images/ready/button_start_pressed.png");
+=======
+    qDebug() << "Start button clicked.";
+    setImage(":images/ingame/pause/resume_pressed.png");
+>>>>>>> 6714b6bb76c852224d342be43299aa49caede1e5
 }
 
 void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    setImage(":images/ready/button_start.png");
+    setImage(":images/ingame/pause/resume.png");
 
     // move to ready scene
     ReadyScene * rscene = scene();
@@ -98,7 +104,7 @@ void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 void ReadyButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
     // ignore input in this case
-    setImage(":images/ready/button_start.png");
+    setImage(":images/ingame/pause/resume_pressed.png");
 }
 
 ReadyPlayerImage::ReadyPlayerImage(QGraphicsScene * scene,MainWindow* window,Player * player)
