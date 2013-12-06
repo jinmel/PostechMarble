@@ -40,7 +40,7 @@ private:
     //MainWindow *const window;
     QTimeLine * animation_timeline;
     LocalGameState::State m_state;
-    PlayerQueue * player_queue;
+    PlayerQueue *m_player_queue;
     Player *m_current_player;
     Player *winner;
     int nPlayers;
@@ -60,6 +60,7 @@ public:
     Dice* getDice();
     Board* getBoard();
     Player* getCurrentPlayer();
+    PlayerQueue * getPlayerQueue();
     LocalGameState::State getGameState();
 
     void setDice(Dice * dice);
