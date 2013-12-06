@@ -35,8 +35,11 @@ ReadyScene::ReadyScene(qreal x, qreal y,
     player_image1->setPlay(true);
     player_image2->setPlay(true);
 
-    player_image1->setPos(100,200);
-    player_image2->setPos(300,200);
+    player_image1->setPos(150,200);
+    player_image2->setPos(400,200);
+    player_image3->setPos(650,200);
+    player_image4->setPos(900,200);
+
 }
 
 ReadyScene::~ReadyScene()
@@ -109,6 +112,8 @@ ReadyPlayerImage::ReadyPlayerImage(QGraphicsScene * scene,MainWindow* window,Pla
     connect(timeline,SIGNAL(finished()),timeline,SLOT(start())); //run forever
     timeline->start();
     setAcceptHoverEvents(true);
+    setPixmap(QPixmap(":/images/ready/plus.png"));
+    setScale(2.5);
 }
 
 ReadyPlayerImage::~ReadyPlayerImage(){
@@ -117,10 +122,14 @@ ReadyPlayerImage::~ReadyPlayerImage(){
 
 void ReadyPlayerImage::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
+    if(!play)
+        setPixmap(QPixmap(":/images/ready/plus_pressed.png"));
 }
 
 void ReadyPlayerImage::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
+    if(!play)
+        setPixmap(QPixmap(":/images/ready/plus.png"));
 }
 
 void ReadyPlayerImage::hoverEnterEvent(QGraphicsSceneHoverEvent *event){
@@ -136,8 +145,10 @@ void ReadyPlayerImage::setPlay(bool play){
 }
 
 void ReadyPlayerImage::animatePlayerImage(int frame){
-    if(!play)//not playing. don't show player image
+    if(!play){//not playing. don't show player image
+
         return;
+    }
 
     QString filename = QString(":/images/ingame/character/");
 
@@ -158,7 +169,7 @@ void ReadyPlayerImage::animatePlayerImage(int frame){
     filename += QString::number(frame).rightJustified(3,'0') + QString(".png");
 
     setPixmap(QPixmap(filename));
-    setScale(2.5);
+
 }
 
 

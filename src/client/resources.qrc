@@ -230,5 +230,7 @@
         <file>images/ingame/block/2A.png</file>
         <file>images/ingame/block/2B.png</file>
         <file>images/ingame/block/2C.png</file>
+        <file>images/ready/plus_pressed.png</file>
+        <file>images/ready/plus.png</file>
     </qresource>
 </RCC>

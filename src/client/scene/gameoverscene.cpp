@@ -30,7 +30,6 @@ void GameoverScene::setupGameover()
     background->setImage(":/images/gameover/gameover_background");
     background->setPos(0,0);
 
-
     //set winner image
     //background->setImage();
 }
