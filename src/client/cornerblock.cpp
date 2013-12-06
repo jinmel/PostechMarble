@@ -40,8 +40,8 @@ void CornerBlock::enter(Player* player)
         break;
     }
 }
-
-void CornerBlock::inDormitory(Player* player)
+//when arrived at dormitory block, give oppertunity to learn one subject again
+void CornerBlock::inDormitory(Player* player) 
 {
     using namespace CharacterType;
     QMessageBox warn_box;
@@ -62,7 +62,7 @@ void CornerBlock::inDormitory(Player* player)
     }
 }
 
-
+//when arrived at 61call block, give oppertunity to move other block which you want to move (p=1/4)
 void CornerBlock::in61Call(Player* player)
 {
     QMessageBox warn_box;
@@ -74,10 +74,7 @@ void CornerBlock::in61Call(Player* player)
         warn_box.exec();
         LocalGame::getInst()->setGameState(LocalGameState::JUMP_PLAYER);
     }
-    /*
-     *moveTo 를 숫자로 넣을수 있도록 해야할듯!! 현재 있는 칸도 번호 저장해둬서 주사위 돌렸을 때 현재 숫자+주사위 눈 으로 이동하든지
-    이런 경우에 바로 숫자 입력해서 이동할 수 있도록 하든지*/
-    //--------->ok!
+
     else
     {
         warn_box.setText("61콜 택시 실패! 다음 기회에...");
@@ -86,20 +83,17 @@ void CornerBlock::in61Call(Player* player)
     }
 
 }
-
+//in breaksemester, rest 3 turns. If dice were double at rest, you would be able to escape..
 void CornerBlock::inBreakSemester(Player* player)
 {
-    //LocalGame에서 모두 구현되어 있음
     player->setMouindo(3);
     LocalGame::getInst()->turnOver();
-    //아... 무인도에 갇힌 횟수 !!!!***********구현해야즤
 
     //1.원래 무인도에 있다가 다시 턴이 된 경우 -> 주사위를 굴릴 수 있게 한다.
     //2.다른 칸에 있다가 갑자기 무인도에 온 경우->바로 쉬게 한다.
     //3.휴식 횟수 새는 기능.
-    //돈을 낼 수 있는지 없는지도 검사해야하는 것 아닙니까
 }
-
+//in pluralmajor block, stochastically you should monopolize 2 department (odds=1/6)
 void CornerBlock::inPluralMajor(Player* player)
 {
     QMessageBox warn_box;
