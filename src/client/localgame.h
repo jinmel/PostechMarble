@@ -60,7 +60,7 @@ public:
     Dice* getDice();
     Board* getBoard();
     Player* getCurrentPlayer();
-    const PlayerQueue * getPlayerQueue();
+    PlayerQueue * getPlayerQueue();
     LocalGameState::State getGameState();
 
     void setDice(Dice * dice);

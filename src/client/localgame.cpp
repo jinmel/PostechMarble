@@ -85,7 +85,7 @@ Player* LocalGame::getCurrentPlayer(){
     return m_current_player;
 }
 
-const PlayerQueue * LocalGame::getPlayerQueue(){
+PlayerQueue * LocalGame::getPlayerQueue(){
     return m_player_queue;
 }
 
