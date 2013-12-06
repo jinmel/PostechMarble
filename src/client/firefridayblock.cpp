@@ -39,18 +39,10 @@ void FireFridayBlock::inSEOULJONGBIN(Player *player)
 {
     if(player->getType()!=CharacterType::ALCOHOLIC) // if you are not alchoholic 
     {
-        if(player->getEnergy()>=100)                // pay 100 energy
+        if(player->getEnergy() >= 100)
             player->payEnergy(100);
         else
-        {
-            if(player->getAssetValue() > 100){      // if you don't have enough money. sell ur subject block
-                Sellpopup * popup = new Sellpopup(QGameItem::getWindow(), player, 100);
-                popup->show();
-            }
-            else {
-                player->setBankrupt();  // if you can't all above things, you lose
-            }
-        }
+            player->setEnergy(0);
     }
     else
     {
@@ -62,18 +54,10 @@ void FireFridayBlock::inTONGZIP(Player *player)         // Tongzip same with seo
 {
     if(player->getType()!=CharacterType::ALCOHOLIC)
     {
-        if(player->getEnergy()>=100)
+        if(player->getEnergy() >= 100)
             player->payEnergy(100);
         else
-        {
-            if(player->getAssetValue() >100)
-            {
-                Sellpopup * popup = new Sellpopup(QGameItem::getWindow(), player, 100);
-                popup->show();
-            }
-            else
-                player->setBankrupt();
-        }
+            player->setEnergy(0);
     }
     else
     {
