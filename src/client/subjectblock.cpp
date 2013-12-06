@@ -165,19 +165,49 @@ void SubjectBlock::setGrade(Grade grade){
 }
 
 void SubjectBlock::setGradeImage(Grade grade){
+    QString img_path = ":/images/ingame/block/";
+
+    img_path += QString::number(owner->getId());
+    qDebug() << img_path;
     switch(grade){
     case A:
-        grade_image->setPixmap(QPixmap(":/images/ingame/block/Grade_A.png"));
+        grade_image->setPixmap(img_path + QString("A.png"));
         break;
     case B:
-        grade_image->setPixmap(QPixmap(":/images/ingame/block/Grade_B.png"));
+        grade_image->setPixmap(img_path + QString("B.png"));
         break;
     case C:
-        grade_image->setPixmap(QPixmap(":/images/ingame/block/Grade_C.png"));
+        grade_image->setPixmap(img_path + QString("C.png"));
         break;
     case NONE:
         grade_image->setPixmap(QPixmap());
     }
+
+    int zone = position /8;
+
+    if(zone == 0 || zone ==2){
+        QTransform rotate;
+        rotate.rotate(90);
+        grade_image->setPixmap(grade_image->pixmap().transformed(rotate));
+    }
+
+    qDebug() << grade_image->pixmap().size();
+    switch(zone){
+    case 0:
+        grade_image->setPos(QPointF(18,-25));
+        break;
+    case 1:
+        grade_image->setPos(QPointF(-15,0));
+        break;
+    case 2:
+        grade_image->setPos(QPointF(55,-25));
+        break;
+    case 3:
+        grade_image->setPos(QPointF(-10,40));
+        break;
+    }
+
+    grade_image->setScale(1.3);
 }
 
 

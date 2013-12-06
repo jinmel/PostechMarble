@@ -317,6 +317,7 @@ void Player::removeBlock(Block *block)
     }
     SubjectBlock * sblock = dynamic_cast<SubjectBlock*>(block);
     sblock->setGrade(SubjectBlock::NONE);
+    sblock->setOwner(NULL);
     registered.find(((SubjectBlock*)block)->getDept())->second--;
     own_blocks.remove(block);
 }
