@@ -175,14 +175,10 @@ bool ReadyPlayerImage::getPlay(){
 }
 
 void ReadyPlayerImage::animatePlayerImage(int frame){
-    if(!play){//not playing. don't show player image
+    if(!play)//not playing. don't show player image
         return;
-    }
 
-<<<<<<< HEAD
     setScale(2.5);
-=======
->>>>>>> 9741ddde0c14bfdb9dae058504c626c2a05a24cf
 
     QString filename = QString(":/images/ingame/character/");
 
