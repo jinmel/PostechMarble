@@ -367,5 +367,6 @@
         <file>images/ingame/character/top_up_id_yellow_walk_011.png</file>
         <file>images/ingame/character/top_up_id_yellow_walk_012.png</file>
         <file>images/ready/readyscene.png</file>
+        <file>images/gameover/gameover_background.png</file>
     </qresource>
 </RCC>
