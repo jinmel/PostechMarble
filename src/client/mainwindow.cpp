@@ -50,6 +50,9 @@ void MainWindow::switchScene(int scenetype)
         case INGAME:
             scene = new IngameScene(0,0,1280,720,this);
             break;
+   // case GAMEOVER:
+          //  scene = new GameoverScene();
+            break;
         case CREDIT:
             scene = new CreditScene(0,0,1280,720,this);
             break;
@@ -83,6 +86,8 @@ void MainWindow::animateScene(int scenetype)
         case INGAME:
             dynamic_cast<IngameScene*>(scene)->animateIngame();
             break;
+        case GAMEOVER: //이건 뭐지
+           // dynamic_cast<GameoverScene*>(scene)->animateGameover();
         case CREDIT:
             dynamic_cast<CreditScene*>(scene)->animateCredit();
             break;

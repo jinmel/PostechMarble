@@ -146,6 +146,13 @@ void IngameScene::animateIngame()
     //bgm_player->play();
 }
 
+void IngameScene::switchtoGameover()
+{
+    qDebug()<<"Switching to Gameover";
+    window->switchScene(SceneType::GAMEOVER);
+}
+
+
 // DiceGrahicItem
 DiceGraphicItem::DiceGraphicItem(QGraphicsScene *scene, MainWindow *window)
     : QGameItem(scene,window){

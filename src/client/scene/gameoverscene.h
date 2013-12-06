@@ -17,8 +17,9 @@ private:
     void setupGameover();
 
 public:
-    explicit GameoverScene(qreal x=0, qreal y=0, qreal width=1280,
-                           qreal height=720, QObject *parent = 0);
+    GameoverScene(qreal x=0, qreal y=0, qreal width=1280,
+                  qreal height=720,
+                  QObject* parent = 0);
     ~GameoverScene();
 
 signals:

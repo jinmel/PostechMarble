@@ -46,6 +46,8 @@ private:
     PausePanel *pause_panel;
     PauseButton *pause_button;
 
+    QGameItem *winner_image;//image of winner character
+
 public:
     IngameScene(qreal x=0,qreal y=0,qreal width=1280,
                 qreal height=720,
@@ -58,6 +60,8 @@ public:
 private slots:
     void showDouble();
     void hideDouble();
+public slots:
+    void switchtoGameover();
 };
 
 class DiceGraphicItem: public QGameItem
@@ -136,3 +140,5 @@ private:
     Player const * const m_player;
     QGraphicsTextItem * m_energy_label;
 };
+
+

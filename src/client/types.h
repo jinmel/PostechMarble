@@ -33,6 +33,6 @@ namespace CharacterType {
 
 namespace SceneType {
     enum Type {
-        LOGO=0, MAIN=1, READY=2, INGAME=3, CREDIT=9
+        LOGO=0, MAIN=1, READY=2, INGAME=3, GAMEOVER=4, CREDIT=9
     };
 }
