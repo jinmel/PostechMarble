@@ -6,6 +6,7 @@
 #include "types.h"
 #include "qgameitem.h"
 #include <QPointF>
+
 // circular dependency
 class Block;
 class Player;
@@ -24,12 +25,12 @@ private:
     bool        plural;                    // plural major status
     std::map<SubjectType::Type, int> registered;     // registered class for each subject
     std::list<Block*> own_blocks;
-    CharacterType::Type character_type;
+    int character_type;
     QString player_color;
     QPointF player_coord[32];
 
 public:
-    Player(QGameItem * parent,int id);
+    Player(QGameItem * parent,int id, int type);
     ~Player();
 
     int  getPosition() const;
@@ -40,11 +41,10 @@ public:
     int  getEnergy() const;
     int  getPenalty() const;
     bool isPlural() const;
-    CharacterType::Type getType() const;
+    int getType() const;
     std::list<Block*> getBlocks() const;
     int getAssetValue();
 
-    void setType(CharacterType::Type new_type);
     void setEnergy(int getenergy);
     void setPlural(bool plural);
     void setMouindo(int immobile_penalty);

@@ -14,6 +14,8 @@ private:
     MainWindow* window;
     QGameItem *background;
     QGameItem *ready_button;
+    int player_num;
+    int *player_types;
 
     void setupReady();
 

@@ -68,6 +68,18 @@ void LocalGame::setBoard(Board *board){
     m_board = board;
 }
 
+void LocalGame::setPlayerParent(QGameItem *parent){
+    for(int i = 0; i < player_queue->getSize(); i++)
+        player_queue->next()->setParent(parent);
+}
+
+std::list<Player*> LocalGame::getAllPlayer(){
+    std::list<Player*> player_list;
+    for(int i = 0; i < player_queue->getSize(); i++)
+        player_list.push_front(player_queue->next());
+    return player_list;
+}
+
 Dice* LocalGame::getDice(){
     return m_dice;
 }
@@ -87,7 +99,6 @@ LocalGameState::State LocalGame::getGameState(){
 void LocalGame::setGameState(State new_state){
     m_state = new_state;
 }
-
 
 
 void LocalGame::turnOver(){

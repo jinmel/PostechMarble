@@ -4,6 +4,7 @@
 #include "block.h"
 #include <QObject>
 #include "dice.h"
+#include <list>
 
 namespace LocalGameState {
     enum State {
@@ -59,7 +60,9 @@ public:
     Board* getBoard();
     Player* getCurrentPlayer();
     LocalGameState::State getGameState();
+    std::list<Player*> getAllPlayer();
 
+    void setPlayerParent(QGameItem *parent);
     void setDice(Dice * dice);
     void setBoard(Board * board);
     void setGameState(LocalGameState::State new_state);

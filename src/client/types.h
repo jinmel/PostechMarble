@@ -27,7 +27,7 @@ namespace SubjectType {
 
 namespace CharacterType {
     enum Type {
-           NONE, LOL, GENIUS, HARD_WORKER, OUTSIDER, ALCOHOLIC
+           NONE=-1, LOL=0, GENIUS=1, HARD_WORKER=2, OUTSIDER=3, ALCOHOLIC=4
        };
 }
 
