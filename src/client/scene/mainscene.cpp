@@ -20,6 +20,7 @@ MainScene::MainScene(qreal x, qreal y,
     Q_CHECK_PTR(this->window);
 
     setupMain();
+    connect(bgm_player, SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)), bgm_player, SLOT(play()));
 }
 
 

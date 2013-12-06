@@ -4,6 +4,7 @@
 #include "types.h"
 #include "block.h"
 #include <QGraphicsPixmapItem>
+#include <QMediaPlayer>
 
 class Player;
 
@@ -17,15 +18,15 @@ public:
         NONE =1
     };
 private:
-
     SubjectType::Type       department;
     QString                 subject_name;
     Player*                 owner;
     int                     cost;
     Grade                   grade; //4->A 3->B 2->C
     QGraphicsPixmapItem *   grade_image;
-public:
+    QMediaPlayer*           effect_sound;
 
+public:
     SubjectBlock(QGameItem* parent,
                  SubjectType::Type type, QString subject_name, int cost);
     virtual ~SubjectBlock();
@@ -42,6 +43,7 @@ public:
     void setOwner(Player * player);
     Player * getOwner();
     void setGradeImage(Grade grade);
+
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
 
