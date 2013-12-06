@@ -99,7 +99,7 @@ void CornerBlock::inBreakSemester(Player* player)
     effect_player->play();
 
     //LocalGame에서 모두 구현되어 있음
-    player->setMouindo(3);
+    player->setMouindo(2);
     LocalGame::getInst()->turnOver();
 
     //1.원래 무인도에 있다가 다시 턴이 된 경우 -> 주사위를 굴릴 수 있게 한다.
