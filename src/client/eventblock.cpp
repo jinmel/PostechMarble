@@ -70,6 +70,7 @@ void EventBlock::drink(Player* player)
     warn_box.setDefaultButton(QMessageBox::Ok);
     warn_box.setWindowTitle("이벤트: 음주");
     warn_box.setText("음주 이벤트! 가고 싶은 술집을 선택하세요!");
+    warn_box.exec();
     LocalGame::getInst()->setGameState(LocalGameState::EVENT_DRINK);
 }
 
