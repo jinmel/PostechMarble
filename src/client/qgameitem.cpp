@@ -60,16 +60,6 @@ void QGameItem::setImage(const char * filename){
     }
 }
 
-void QGameItem::setParent(QGameItem *parent){
-    QObject::setParent(parent);
-    QGraphicsPixmapItem::setParentItem(parent);
-    parent_scene = parent->scene();
-    timer = NULL;
-    animation = NULL;
-    item_image = NULL;
-    window = parent->getWindow();
-}
-
 void QGameItem::animateTo(qreal dest_x,qreal dest_y,int duration,
                         const QEasingCurve & curve){
     // Start animate this class

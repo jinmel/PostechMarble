@@ -1,7 +1,5 @@
 #include "readyscene.h"
 #include "../types.h"
-#include "../dice.h"
-#include "../localgame.h"
 #include <QGraphicsItem>
 #include <QDebug>
 #include <QGraphicsItemAnimation>
@@ -27,10 +25,9 @@ ReadyScene::ReadyScene(qreal x, qreal y,
 
 ReadyScene::~ReadyScene()
 {
-    delete background;
     delete ready_button;
-    delete player_types;
 }
+
 
 
 // Methods
@@ -46,20 +43,6 @@ void ReadyScene::setupReady()
     // set buttons
     ready_button = new ReadyButton(this, window);
     ready_button->setPos(530,500);
-
-    player_num = 3;
-    player_types = new int[player_num];
-
-    Dice::getInst();
-    LocalGame *localgame = LocalGame::getInst();
-
-    for(int index=0; index < player_num; index++) {
-        player_types[index] = rand() % 5;
-        Player * new_player = new Player(NULL,1, player_types[index]);
-        new_player->setImage(":/images/ingame/pieces/blue.png");
-        new_player->setZValue(3);
-        localgame->addPlayer(new_player);
-    }
 }
 
 

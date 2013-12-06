@@ -22,7 +22,6 @@ public:
     virtual ~QGameItem();
     QPixmap* image();
     void setImage(const char * filename);
-    void setParent(QGameItem *parent);
     void rotateImage(qreal angle);
     //Game object animation
     void animateTo(qreal x,qreal y,int duration,

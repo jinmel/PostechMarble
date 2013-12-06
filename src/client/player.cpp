@@ -18,10 +18,28 @@
 
 using namespace std;
 
-Player::Player(QGameItem* parent,int _id, int type) : QGameItem(parent)
+Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 {
+    //randomly determine CharacterType
+    int n = rand() % 5;
+    switch(n){
+    case 0:
+        character_type = CharacterType::LOL;
+        break;
+    case 1:
+        character_type = CharacterType::GENIUS;
+        break;
+    case 2:
+        character_type = CharacterType::HARD_WORKER;
+        break;
+    case 3:
+        character_type = CharacterType::OUTSIDER;
+        break;
+    case 4:
+        character_type = CharacterType::ALCOHOLIC;
+    }
+
     id = _id;
-    character_type = type;
     name = "";
     position = 0;
 
@@ -33,6 +51,8 @@ Player::Player(QGameItem* parent,int _id, int type) : QGameItem(parent)
     mobile = true;
     immobile_penalty = 0;
     plural = false;
+
+    character_type = CharacterType::NONE;
 
     //initialize map
     using namespace SubjectType;
@@ -123,7 +143,7 @@ bool Player::isPlural() const
 }
 
 
-int Player::getType() const
+CharacterType::Type Player::getType() const
 {
     return character_type;
 }
@@ -358,6 +378,10 @@ void Player::giveEnergy(int paidenergy){
 
 int Player::getId() const {
     return id;
+}
+
+void Player::setType(CharacterType::Type type) {
+    character_type = type;
 }
 
 int Player::getAssetValue() {

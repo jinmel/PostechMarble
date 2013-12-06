@@ -27,6 +27,14 @@ IngameScene::IngameScene(qreal x, qreal y,
     board->setPos(200,(720 - board->boundingRect().size().height())/2);
     board->setZValue(2);
 
+    Player * player1 = new Player(board,1);
+    player1->setImage(":/images/ingame/pieces/blue.png");
+    player1->setZValue(3);
+
+
+    Player * player2 = new Player(board,2);
+    player2->setImage(":/images/ingame/pieces/red.png");
+    player2->setZValue(3);
 //    SubjectBlock * tmpblock = dynamic_cast<SubjectBlock*>(board->getBlock(10));
 //    tmpblock->decideGrade();
 //    player2->addBlock(tmpblock);
@@ -69,22 +77,24 @@ IngameScene::IngameScene(qreal x, qreal y,
     second_dice_panel->setPos(500,400);
     second_dice_panel->setZValue(2);
 
-//    status1 = new PlayerStatusDisplay(board,player1);
-//    status1->setImage(":images/ingame/status/status1.png");
-//    status1->setPos(150, 120);
-//    status2 = new PlayerStatusDisplay(board,player2);
-//    status2->setImage(":images/ingame/status/status2.png");
-//    status2->setPos(460, 120);
+    status1 = new PlayerStatusDisplay(board,player1);
+    status1->setImage(":images/ingame/status/status1.png");
+    status1->setPos(150, 120);
+    status2 = new PlayerStatusDisplay(board,player2);
+    status2->setImage(":images/ingame/status/status2.png");
+    status2->setPos(460, 120);
 
     // setup BGM
     bgm_player = new QMediaPlayer();
     bgm_player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/bgm.mp3").absoluteFilePath()));
-
-    game->setPlayerParent(board);
+    game->addPlayer(player1);
+    game->addPlayer(player2);
     game->init(board,Dice::getInst());
 
     //Signal / Slots connection
     Dice * dice = Dice::getInst();
+
+
     connect(dice,SIGNAL(diceDouble()), this, SLOT(showDouble()));
     connect(dice,SIGNAL(firstDiceRolled(int)),first_dice_panel,SLOT(setValue(int)));
     connect(dice,SIGNAL(secondDiceRolled(int)),second_dice_panel,SLOT(setValue(int)));
