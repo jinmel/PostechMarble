@@ -101,6 +101,7 @@ void ReadyButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
     qDebug() << "Start button clicked.";
     setImage(":images/ingame/pause/resume_pressed.png");
+
 }
 
 void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
@@ -108,6 +109,7 @@ void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     setImage(":images/ingame/pause/resume.png");
 
     // move to ready scene
+
     ReadyScene * rscene = dynamic_cast<ReadyScene*>(scene());
 
 

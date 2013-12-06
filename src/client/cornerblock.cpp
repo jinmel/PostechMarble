@@ -119,16 +119,17 @@ void CornerBlock::inBreakSemester(Player* player)
 void CornerBlock::inPluralMajor(Player* player)
 {
     QMessageBox warn_box;
-    warn_box.setStandardButtons(QMessageBox::Ok);
-    warn_box.setDefaultButton(QMessageBox::Ok);
-    warn_box.setText(QString("복수전공 당첨! 승리하려면 두 가지 전공을 이수해야 합니다."));
-    warn_box.exec();
 
     switch((rand() % 6)==1) {
         case 1:
             qDebug() <<"You have to take plural major.";
 
-            // play 61call sound
+            warn_box.setStandardButtons(QMessageBox::Ok);
+            warn_box.setDefaultButton(QMessageBox::Ok);
+            warn_box.setText(QString("복수전공 결심! 승리하려면 두 가지 전공을 이수해야 합니다."));
+            warn_box.exec();
+
+            // play no! sound
             effect_player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/no.wav").absoluteFilePath()));
             effect_player->play();
 
@@ -136,6 +137,10 @@ void CornerBlock::inPluralMajor(Player* player)
             break;
 
         default:
+            warn_box.setStandardButtons(QMessageBox::Ok);
+            warn_box.setDefaultButton(QMessageBox::Ok);
+            warn_box.setText(QString("주변의 만류로 인해 복수전공을 안하기로 결정했습니다."));
+            warn_box.exec();
             qDebug()<<"You don't have to take plural major.";
     }
     //학과 1개 독점 시에 복수전공 해제& 두개 독점 시에 승리 그리고 만약에 한개 독점 하고 두개째 도전중일 때다른 누군가가 독점된 학과를 뺏어가는 경우!?
