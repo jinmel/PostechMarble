@@ -13,6 +13,7 @@
 #include <QMediaPlayer>
 #include <QFileInfo>
 #include <QDir>
+#include <QMap>
 #define NUMBER_OF_BLOCKS 32
 #define NEXT_POS(current_pos) ((current_pos + 1) % 32)
 
@@ -42,9 +43,9 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     name = "";
     position = 0;
 
-    energy = 1000;
+    energy = 500;
     if(character_type == CharacterType::GENIUS)
-        energy += 200;
+        energy += 100;
 
     bankrupt = false;
     mobile = true;
@@ -364,18 +365,45 @@ void Player::giveSalary()
 bool Player::checkWinStatus()
 {
     int majored = 0;
+    int majored_b = 0;
 
-    for(map<SubjectType::Type, int>::iterator i = registered.begin(); i != registered.end(); i++) {
+    QMap<SubjectType::Type, int> B_grades;
+
+    using namespace SubjectType;
+    B_grades[BIO] = 0;
+    B_grades[CHEM] = 0;
+    B_grades[CSED] = 0;
+    B_grades[EE] = 0;
+    B_grades[MATH] = 0;
+    B_grades[ME] = 0;
+    B_grades[IME] = 0;
+    B_grades[PHYS] = 0;
+
+    Block* block;
+    foreach(block,own_blocks){
+        SubjectBlock* sblock = dynamic_cast<SubjectBlock*>(block);
+        if(sblock->getGrade() == SubjectBlock::B ||
+                sblock->getGrade() == SubjectBlock::A)
+            B_grades[sblock->getDept()]++;
+    }
+
+    for(map<SubjectType::Type, int>::iterator i=registered.begin(); i != registered.end(); i++) {
         if(i->second == 3)
             majored ++;
     }
 
-    if(plural && majored >= 2)
+    for(QMap<SubjectType::Type, int>::iterator i=B_grades.begin(); i != B_grades.end(); i++) {
+        if(i.value() == 3)
+            majored_b ++;
+    }
+
+    if(plural && majored ==2)
         return true;
-    else if (!plural && majored >= 1)
+    else if(!plural && majored_b == 1)
         return true;
     else
-        return false;
+        false;
+
 }
 
 void Player::payEnergy(int payenergy)
