@@ -9,6 +9,7 @@
 #include "scene/gameoverscene.h"
 #include "mainwindow.h"
 #include <QFileInfo>
+#include <QVector>
 
 using namespace std;
 using namespace LocalGameState;
@@ -19,7 +20,8 @@ LocalGame::LocalGame(){
     nPlayers = 0;
     animation_timeline = new QTimeLine(800);
     animation_timeline->setFrameRange(1,11);
-    connect(animation_timeline,SIGNAL(finished()),this,SLOT(restartTimeline()));
+    //runs forever
+    connect(animation_timeline,SIGNAL(finished()),animation_timeline,SLOT(start()));
     animation_timeline->start(); //runs forever
     //this-> window = dynamic_cast<MainWindow*>(parent);
 
@@ -275,8 +277,10 @@ void LocalGame::generalEvent(){
     }
 }
 
-
-//timeline finished. restart.
-void LocalGame::restartTimeline(){
-    animation_timeline->start();
+void LocalGame::debugPrintAllPlayers(){
+    QVector<Player*> players = m_player_queue->toVector();
+    foreach(Player * player,players){
+        qDebug() << player;
+    }
 }
+
