@@ -189,7 +189,7 @@ void SubjectBlock::setGradeImage(Grade grade){          // set gradge image
     QString img_path = ":/images/ingame/block/";
 
     img_path += QString::number(owner->getId());     
-    qDebug() << img_path;
+    //qDebug() << img_path;
     switch(grade){                                 
     case A:
         grade_image->setPixmap(img_path + QString("A.png"));        
@@ -212,7 +212,7 @@ void SubjectBlock::setGradeImage(Grade grade){          // set gradge image
         grade_image->setPixmap(grade_image->pixmap().transformed(rotate));
     }
 
-    qDebug() << grade_image->pixmap().size();
+    //qDebug() << grade_image->pixmap().size();
     switch(zone){
         case 0:
             grade_image->setPos(QPointF(30,7));
