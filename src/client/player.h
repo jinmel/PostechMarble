@@ -29,6 +29,7 @@ private:
     QString color;
     QPointF player_coord[32];
     QMediaPlayer* mediaplayer;
+    QMediaPlayer* coinspr;
     friend QDebug operator <<(QDebug d,const Player * p);
 public:
     Player(QGameItem * parent,int id);

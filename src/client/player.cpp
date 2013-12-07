@@ -103,6 +103,9 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     mediaplayer = new QMediaPlayer();
     mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/piece_move.wav").absoluteFilePath()));
     mediaplayer->setVolume(100);
+    coinspr = new QMediaPlayer();
+    coinspr->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coinspread.mp3").absoluteFilePath()));
+    coinspr->setVolume(100);
 
     // end initialize
     qDebug() << "Player Created" << endl;
@@ -302,6 +305,7 @@ void Player::jumpTo(int block_num){
 
 void Player::stepForward(){
     position = NEXT_POS(position);
+    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/piece_move.wav").absoluteFilePath()));
     mediaplayer->play();
     if(position == 0){
         giveSalary();
@@ -357,11 +361,9 @@ void Player::giveSalary()
 {
     qDebug() << "Player " << id << " received salary";
     //maybe add animation for gaining energy
-
-    QMediaPlayer* mediaplayer = new QMediaPlayer();
-    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coinsprinkle.mp3").absoluteFilePath()));
-    mediaplayer->setVolume(100);
-    mediaplayer->play();
+    QMediaPlayer* salarysound = new QMediaPlayer();
+    salarysound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coinsprinkle.mp3").absoluteFilePath()));
+    salarysound->play();
 
     if(character_type == CharacterType::HARD_WORKER)
         energy += 150;
@@ -420,10 +422,7 @@ void Player::payEnergy(int payenergy)
 {
     if(energy >= payenergy)
     {
-        QMediaPlayer* coinsound = new QMediaPlayer();
-        coinsound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coinspread.mp3").absoluteFilePath()));
-        coinsound->setVolume(100);
-        coinsound->play();
+        coinspr->play();
         energy-=payenergy;
     }
     else{
@@ -439,10 +438,7 @@ void Player::payEnergy(int payenergy)
 
 void Player::giveEnergy(int paidenergy){
     energy+=paidenergy;
-    QMediaPlayer* coinsound = new QMediaPlayer();
-    coinsound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coinspread.mp3").absoluteFilePath()));
-    coinsound->setVolume(100);
-    coinsound->play();
+    coinspr->play();
     emit energyChanged(this->energy);
 }
 
