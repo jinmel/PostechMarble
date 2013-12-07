@@ -51,7 +51,7 @@ SubjectBlock::Grade SubjectBlock::getGrade() const      //get subject grade
     return grade;
 }
 
-int SubjectBlock::getBuyOutPrice(){                     //buy other's  subject block. price : orginal cost + 2*penalty
+int SubjectBlock::getBuyOutPrice(){                     //buy other's  subject block. price : orginal cost + penalty
     return cost + getPenaltyCost();
 }
 
