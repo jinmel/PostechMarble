@@ -43,16 +43,20 @@ IngameScene::IngameScene(qreal x, qreal y,
             status1 = new PlayerStatusDisplay(board,player);
             status1->setImage(":images/ingame/status/status1.png");
             status1->setPos(150, 120);
+            player->setEnergy(0);
             break;
         case 2:
             status2 = new PlayerStatusDisplay(board,player);
             status2->setImage(":images/ingame/status/status2.png");
             status2->setPos(460, 120);
+            player->addBlock(board->getBlock(9));
+            dynamic_cast<SubjectBlock*>(board->getBlock(9))->decideGrade();
             break;
         case 3:
             status3 = new PlayerStatusDisplay(board,player);
             status3->setImage(":images/ingame/status/status3.png");
             status3->setPos(150, 250);
+            player->setEnergy(0);
             break;
         case 4:
             status4 = new PlayerStatusDisplay(board,player);
@@ -61,7 +65,6 @@ IngameScene::IngameScene(qreal x, qreal y,
             break;
         }
     }
-    qDebug() << board->childItems();
 
 //    SubjectBlock * tmpblock = dynamic_cast<SubjectBlock*>(board->getBlock(10));
 //    tmpblock->decideGrade();
@@ -144,14 +147,12 @@ QGraphicsPixmapItem* IngameScene::backgroundPixmap(){
 
 void IngameScene::showDouble()
 {
-    qDebug() << "Show Double";
     double_graphic->show(true, 300);
     double_timeline->start();
 }
 
 void IngameScene::hideDouble()
 {
-    qDebug() << "Hide Double";
     double_graphic->hide(true, 300);
 }
 
@@ -161,15 +162,7 @@ void IngameScene::animateIngame()
     QMediaPlayer *player = new QMediaPlayer();
     player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/gamestart.wav").absoluteFilePath()));
     player->play();
-
-    //bgm_player->play();
 }
-
-/*void IngameScene::switchtoGameover()
-{
-    qDebug()<<"Switching to Gameover";
-    window->switchScene(SceneType::GAMEOVER);
-}*/
 
 // DiceGrahicItem
 DiceGraphicItem::DiceGraphicItem(QGraphicsScene *scene, MainWindow *window)
@@ -182,7 +175,6 @@ DiceGraphicItem::DiceGraphicItem(QGraphicsScene *scene, MainWindow *window)
 void DiceGraphicItem::mousePressEvent(QGraphicsSceneMouseEvent *event){
     //버튼이 눌렸을 때의 이미지로 바꿈
     this->setImage(":/images/ingame/button2_pushed.png");
-    //QGameItem::mousePressEvent(event);
 
 }
 
@@ -303,7 +295,7 @@ void PhotoGenicItem::showPhotos(){
 
 PhotoGenicItem::~PhotoGenicItem()
 {
-    qDebug()<<"photogenic item destoyed."<<endl;
+
 }
 
 void PhotoGenicItem::slidePhoto(int frame){
@@ -400,7 +392,6 @@ void PlayerStatusDisplay::endSpin(){
 }
 
 PlayerStatusDisplay::~PlayerStatusDisplay(){
-    qDebug() << "called";
     delete m_energy_label;
     delete m_timeline;
     delete m_player;
@@ -408,21 +399,17 @@ PlayerStatusDisplay::~PlayerStatusDisplay(){
 }
 
 void PlayerStatusDisplay::setEnergyText(int energy){
-    qDebug() << "display energy :" << energy;
-    qDebug() << "start energy:" << m_last_energy;
     m_display_energy = energy;
     m_timeline->start();
 }
 
 void PlayerStatusDisplay::activate(){
-    qDebug() << "active";
     QGraphicsOpacityEffect * effect = new QGraphicsOpacityEffect;
     effect->setOpacity(1.0);
     this->setGraphicsEffect(effect);
 }
 
 void PlayerStatusDisplay::disable(){
-    qDebug() <<"disable";
     QGraphicsOpacityEffect * effect = new QGraphicsOpacityEffect;
     effect->setOpacity(0.3);
     this->setGraphicsEffect(effect);

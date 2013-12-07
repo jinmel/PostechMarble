@@ -192,8 +192,15 @@ void Player::setBankrupt()
     setEnergy(0);
     bankrupt = true;
 
+    hide(true);
+
+    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/no.wav").absoluteFilePath()));
+    mediaplayer->play();
+
     for(list<Block*>::iterator itor = own_blocks.begin(); itor != own_blocks.end(); itor++)
        removeBlock(dynamic_cast<SubjectBlock*>(*itor));
+
+
 }
 
 // set player to stay mouindo
@@ -509,4 +516,36 @@ void Player::animatePlayerImage(int frame){
         image = image.mirrored(true,false);
 
     setPixmap(QPixmap::fromImage(image));
+}
+
+QDebug operator <<(QDebug d,CharacterType::Type & type){
+    switch(type){
+    case CharacterType::ALCOHOLIC:
+        d << "Alcoholic";
+        break;
+    case CharacterType::GENIUS:
+        d << "Genius";
+        break;
+    case CharacterType::HARD_WORKER:
+        d << "Hard Worker";
+        break;
+    case CharacterType::LOL:
+        d << "LOL";
+        break;
+    case CharacterType::OUTSIDER:
+        d << "Outsider";
+        break;
+    default :
+        d << "no type: error";
+        break;
+    }
+
+   return d;
+}
+
+QDebug  operator <<(QDebug d,const Player * p){
+    d << "Player id:" << p->id;
+    d << "Player Type:" << p->character_type;
+    d << "Player Color" << p->color;
+    return d;
 }
