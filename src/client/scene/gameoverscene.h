@@ -8,8 +8,10 @@ class GameoverScene : public QGraphicsScene
 {
     Q_OBJECT
 private:
-    static Player *winner;
+    bool moving;
+    Player *winner;
     MainWindow* window;
+    QTimeLine * timeline;
     QGameItem *background;
     QGameItem *credit_button;
     QGameItem *player_pos;
@@ -18,9 +20,12 @@ private:
     void setupGameover();
 
 public:
-    static void setWinner(Player* winner);
     GameoverScene(qreal x=0, qreal y=0, qreal width=1280,
                   qreal height=720,
                   QObject* parent = 0);
     ~GameoverScene();
+    void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
+public slots:
+    void animateWinnerImage(int frame);
 };
