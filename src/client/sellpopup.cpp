@@ -180,4 +180,6 @@ void Sellpopup::calculate()
     // is enough?
     if(selected >= needed_value)
         ui->sellButton->setEnabled(true);
+    else
+        ui->sellButton->setEnabled(false);
 }
