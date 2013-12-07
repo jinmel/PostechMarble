@@ -145,7 +145,7 @@ ReadyPlayerImage::ReadyPlayerImage(QGraphicsScene * scene,MainWindow* window,Pla
     name->setScale(0.5);
     explain = new QGameItem(scene, window);
     explain->setImage(":images/ready/inv.png");
-    explain->setScale(0.25);
+    explain->setScale(0.27);
     if(player->getId()==1){
         name->setPos(50,500);
         explain->setPos(50,600);
@@ -180,7 +180,7 @@ ReadyPlayerImage::ReadyPlayerImage(QGraphicsScene * scene,MainWindow* window,Pla
         case ALCOHOLIC:
             type = 5;
             break;
-    }
+     }
 }
 
 ReadyPlayerImage::~ReadyPlayerImage(){

@@ -49,6 +49,10 @@ private:
     PauseButton *pause_button;
 
     QGameItem *winner_image;//image of winner character
+    QGameItem *status1_t;
+    QGameItem *status2_t;
+    QGameItem *status3_t;
+    QGameItem *status4_t;
 
 public:
     IngameScene(qreal x=0,qreal y=0,qreal width=1280,
