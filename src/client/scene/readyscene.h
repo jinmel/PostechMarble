@@ -30,7 +30,7 @@ public:
                qreal height=720, QObject *parent=0);
     ~ReadyScene();
     ReadyPlayerImage * getPlayerImage(int player_id);
-
+    Player * getPlayer(int player_id);
     void animateReady();
 };
 

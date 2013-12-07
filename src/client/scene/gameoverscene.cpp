@@ -4,6 +4,8 @@
 #include <QGraphicsItem>
 #include <QDebug>
 
+Player* GameoverScene::winner;
+
 GameoverScene::GameoverScene(qreal x, qreal y,
                              qreal width, qreal height,
                              QObject *parent)
@@ -29,16 +31,87 @@ void GameoverScene::setupGameover()
     //set background
     background = new QGameItem(this, window);
     background->setImage(":/images/gameover/game_over_background.png");
-
     background->setPos(0,0);
+    background->setZValue(0);
 
-    QGameItem *credit_button;
-    QGameItem *player_pos;
-    QGameItem *winner_statement;
     //set winner image
     //background->setImage();
 
     //set credit button
     credit_button = new CreditButton(this, window);
-    credit_button->setPos(535,470);
+    credit_button->setPos(635,580);
+
+    switch(winner->getId())
+   {
+    case 1:
+        player_pos = new QGameItem(this,window);
+        player_pos->setImage(":/images/gameover/red_player.png");
+        player_pos->setPos(100,100);
+        player_pos->setZValue(100);
+        qDebug()<<"what";
+        break;
+    case 2:
+        player_pos = new QGameItem(this,window);
+        player_pos->setImage(":/images/gameover/blue_player.png");
+        player_pos->setPos(100,100);
+        player_pos->setZValue(100);
+        qDebug()<<"what";
+        break;
+    case 3:
+        player_pos = new QGameItem(this,window);
+        player_pos->setImage(":/images/gameover/green_player.png");
+        player_pos->setPos(100,100);
+        player_pos->setZValue(100);
+        qDebug()<<"what";
+        break;
+    case 4:
+        player_pos = new QGameItem(this,window);
+        player_pos->setImage(":/images/gameover/yellow_player.png");
+        player_pos->setPos(100,100);
+        player_pos->setZValue(100);
+        qDebug()<<"what";
+        break;
+
+    }
+
+    switch(winner->getType())
+    {
+    case 1:
+        winner_statement = new QGameItem(this,window);
+        winner_statement->setImage(":/images/ready/clol.png");
+        winner_statement->setPos(760,300);
+        winner_statement->setScale(0.6);
+        break;
+    case 2:
+        winner_statement = new QGameItem(this,window);
+        winner_statement->setImage(":/images/ready/cgen.png");
+        winner_statement->setPos(760,300);
+        winner_statement->setScale(0.6);
+        break;
+    case 3:
+        winner_statement = new QGameItem(this,window);
+        winner_statement->setImage(":/images/ready/cdu.png");
+        winner_statement->setPos(760,300);
+        winner_statement->setScale(0.6);
+        break;
+    case 4:
+        winner_statement = new QGameItem(this,window);
+        winner_statement->setImage(":/images/ready/cout.png");
+        winner_statement->setPos(760,300);
+        winner_statement->setScale(0.6);
+        break;
+    case 5:
+        winner_statement = new QGameItem(this,window);
+        winner_statement->setImage(":/images/ready/calc.png");
+        winner_statement->setPos(760,300);
+        winner_statement->setScale(0.6);
+        break;
+
+    }
+
 }
+void GameoverScene::setWinner(Player *winner)
+{
+    GameoverScene::winner =winner;
+}
+

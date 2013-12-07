@@ -95,8 +95,8 @@ void EventBlock::cc(Player* player)  //Campus couple
     else {
         warn_box.setText("당신은 아웃사이더라서 캠퍼스 커플에 면역입니다."); // if you are Outsider. you don't think about CC.
         warn_box.exec();
+        LocalGame::getInst()->turnOver();
     }
-    LocalGame::getInst()->turnOver();
 }
 
 void EventBlock::takeSubject(Player* player)   // You can get one of subject block.

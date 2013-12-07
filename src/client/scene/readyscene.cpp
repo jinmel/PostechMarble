@@ -8,6 +8,7 @@
 #include <QPropertyAnimation>
 #include <QtGlobal>
 #include "localgame.h"
+#include <QMessageBox>
 #include "qgameitem.h"
 
 // Constructor & Destructor
@@ -37,8 +38,6 @@ ReadyScene::ReadyScene(qreal x, qreal y,
     player_image2->setPos(350,200);
     player_image3->setPos(650,200);
     player_image4->setPos(950,200);
-
-
 }
 
 ReadyScene::~ReadyScene()
@@ -57,6 +56,19 @@ ReadyPlayerImage * ReadyScene::getPlayerImage(int player_id){
         return player_image3;
     case 4:
         return player_image4;
+    }
+}
+
+Player * ReadyScene::getPlayer(int player_id){
+    switch(player_id){
+    case 1:
+        return player1;
+    case 2:
+        return player2;
+    case 3:
+        return player3;
+    case 4:
+        return player4;
     }
 }
 
@@ -113,15 +125,20 @@ void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
     ReadyScene * rscene = dynamic_cast<ReadyScene*>(scene());
 
+    qDebug() <<  LocalGame::getInst()->getPlayerCount();
 
-    for(int player_id = 1 ; player_id <=4 ; player_id ++){
-        ReadyPlayerImage * rplayer_image
-                = rscene->getPlayerImage(player_id);
-        if(rplayer_image->getPlay()){
-            LocalGame::getInst()->addPlayer(rplayer_image->getPlayer());
-        }
+    if(LocalGame::getInst()->getPlayerCount() < 2){
+        QMessageBox warn_box;
+        warn_box.setStandardButtons(QMessageBox::Ok);
+        warn_box.setDefaultButton(QMessageBox::Ok);
+        warn_box.setText("2명 이상의 플레이어가 필요합니다.");
+        warn_box.exec();
+        return;
     }
-    window->switchScene(SceneType::INGAME);
+    else{
+        LocalGame::getInst()->debugPrintAllPlayers();
+        window->switchScene(SceneType::INGAME);
+    }
 }
 
 void ReadyButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
@@ -162,25 +179,6 @@ ReadyPlayerImage::ReadyPlayerImage(QGraphicsScene * scene,MainWindow* window,Pla
         name->setPos(950,500);
         explain->setPos(950,600);
     }
-
-    switch(player->getType()) {
-        using namespace CharacterType;
-        case LOL:
-            type = 1;
-            break;
-        case GENIUS:
-            type = 2;
-            break;
-        case HARD_WORKER:
-            type = 3;
-            break;
-        case OUTSIDER:
-            type = 4;
-            break;
-        case ALCOHOLIC:
-            type = 5;
-            break;
-     }
 }
 
 ReadyPlayerImage::~ReadyPlayerImage(){
@@ -196,27 +194,29 @@ void ReadyPlayerImage::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void ReadyPlayerImage::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     if(!play){
-        play = true;
-        if(type == 1){
+        switch(player->getType()){
+        case CharacterType::LOL:
             name->setPixmap(QPixmap(":/images/ready/clol.png"));
             explain->setPixmap(QPixmap(":/images/ready/elol.png"));
-        }
-        else if(type ==2){
+            break;
+        case CharacterType::GENIUS:
             name->setPixmap(QPixmap(":/images/ready/cgen.png"));
             explain->setPixmap(QPixmap(":/images/ready/egen.png"));
-        }
-        else if(type ==3){
+            break;
+        case CharacterType::HARD_WORKER:
             name->setPixmap(QPixmap(":/images/ready/cdu.png"));
             explain->setPixmap(QPixmap(":/images/ready/edu.png"));
-        }
-        else if(type ==4){
+            break;
+        case CharacterType::OUTSIDER:
             name->setPixmap(QPixmap(":/images/ready/cout.png"));
             explain->setPixmap(QPixmap(":/images/ready/eout.png"));
-        }
-        else if(type ==5){
+            break;
+        case CharacterType::ALCOHOLIC:
             name->setPixmap(QPixmap(":/images/ready/calc.png"));
             explain->setPixmap(QPixmap(":/images/ready/ealc.png"));
         }
+        play = true;
+        LocalGame::getInst()->addPlayer(player);
     }
 }
 
