@@ -147,7 +147,7 @@ void Sellpopup::sell()
     }
 
     player->giveEnergy(sellsum - needed_value);
-
+    LocalGame::getInst()->turnOver();
     this->close();
 }
 
@@ -156,6 +156,7 @@ void Sellpopup::bankrupt()
     qDebug() << "Player " << player->getId() << "bankrupted!";
 
     player->setBankrupt();
+    LocalGame::getInst()->turnOver();
     this->close();
 }
 

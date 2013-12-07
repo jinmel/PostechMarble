@@ -122,29 +122,37 @@ void CornerBlock::inPluralMajor(Player* player)
         return;
 
     QMessageBox warn_box;
+    if(player->isPlural())
+    {
+        warn_box.setStandardButtons(QMessageBox::Ok);
+        warn_box.setDefaultButton(QMessageBox::Ok);
+        warn_box.setText(QString("주변의 만류로 인해 복수전공을 안하기로 결정했습니다."));
+        warn_box.exec();
+    }
+    else{
+        switch((rand() % 6)==1) {
+            case 1:
+                qDebug() <<"You have to take plural major.";
 
-    switch((rand() % 6)==1) {
-        case 1:
-            qDebug() <<"You have to take plural major.";
+                warn_box.setStandardButtons(QMessageBox::Ok);
+                warn_box.setDefaultButton(QMessageBox::Ok);
+                warn_box.setText(QString("복수전공 결심! 승리하려면 두 가지 전공을 이수해야 합니다."));
+                warn_box.exec();
 
-            warn_box.setStandardButtons(QMessageBox::Ok);
-            warn_box.setDefaultButton(QMessageBox::Ok);
-            warn_box.setText(QString("복수전공 결심! 승리하려면 두 가지 전공을 이수해야 합니다."));
-            warn_box.exec();
+                // play no! sound
+                effect_player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/no.wav").absoluteFilePath()));
+                effect_player->play();
 
-            // play no! sound
-            effect_player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/no.wav").absoluteFilePath()));
-            effect_player->play();
+                player->setPlural(true);
+                break;
 
-            player->setPlural(true);
-            break;
-
-        default:
-            warn_box.setStandardButtons(QMessageBox::Ok);
-            warn_box.setDefaultButton(QMessageBox::Ok);
-            warn_box.setText(QString("주변의 만류로 인해 복수전공을 안하기로 결정했습니다."));
-            warn_box.exec();
-            qDebug()<<"You don't have to take plural major.";
+            default:
+                warn_box.setStandardButtons(QMessageBox::Ok);
+                warn_box.setDefaultButton(QMessageBox::Ok);
+                warn_box.setText(QString("복수전공은 하지 않기로 했습니다."));
+                warn_box.exec();
+                qDebug()<<"You don't have to take plural major.";
+        }
     }
     //학과 1개 독점 시에 복수전공 해제& 두개 독점 시에 승리 그리고 만약에 한개 독점 하고 두개째 도전중일 때다른 누군가가 독점된 학과를 뺏어가는 경우!?
 
