@@ -22,8 +22,6 @@ namespace LocalGameState {
     };
 }
 
-class LocalGame;
-
 class LocalGame : public QObject
 {
     Q_OBJECT
