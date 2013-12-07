@@ -23,7 +23,6 @@ GameoverScene::~GameoverScene()
 {
     delete background;
     delete credit_button;
-
 }
 
 void GameoverScene::setupGameover()

@@ -86,7 +86,6 @@ void MenuButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void MenuButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     setImage(":images/ingame/pause/menu.png");
-    LocalGame::getInst()->delInst();
     window->switchScene(SceneType::MAIN);
 }
 
@@ -118,7 +117,6 @@ void ReloadButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void ReloadButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     setImage(":images/ingame/pause/reload.png");
-    LocalGame::getInst()->delInst();
     window->switchScene(SceneType::READY);
 }
 
