@@ -367,6 +367,7 @@ bool Player::checkWinStatus()
     int majored_b = 0;
 
     map<SubjectType::Type, int> B_grades;
+
     using namespace SubjectType;
     B_grades[BIO] = 0;
     B_grades[CHEM] = 0;
