@@ -18,6 +18,7 @@ GameoverScene::GameoverScene(qreal x, qreal y,
 
 GameoverScene::~GameoverScene()
 {
+    delete background;
     delete credit_button;
 }
 
@@ -40,6 +41,4 @@ void GameoverScene::setupGameover()
     //set credit button
     credit_button = new CreditButton(this, window);
     credit_button->setPos(535,470);
-
-
 }

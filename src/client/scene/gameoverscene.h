@@ -14,7 +14,6 @@ private:
     QGameItem *player_pos;
     QGameItem *winner_statement;
 
-
     void setupGameover();
 
 public:
@@ -22,6 +21,4 @@ public:
                   qreal height=720,
                   QObject* parent = 0);
     ~GameoverScene();
-
-
 };
