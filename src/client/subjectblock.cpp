@@ -103,6 +103,7 @@ void SubjectBlock::enter(Player* player)        // player enter subject block
                 decideGrade();
             }
         }
+        LocalGame::getInst()->turnOver();
     }
     else if(owner==player)  //자신의 블럭
     {
@@ -112,6 +113,7 @@ void SubjectBlock::enter(Player* player)        // player enter subject block
         if(userselect== QMessageBox::Ok){   //if yes
             decideGrade();
         }
+        LocalGame::getInst()->turnOver();
     }
     else    //타인의 블럭
     {
@@ -144,24 +146,23 @@ void SubjectBlock::enter(Player* player)        // player enter subject block
                     decideGrade();
                 }
             }
+            LocalGame::getInst()->turnOver();
         }
         else{
             //블럭을 팔거나 파산한다.
             //자산을 팔아서 메꿀수 있을 경우
             if(player->getAssetValue() > getPenaltyCost()){
-                {
                     qDebug() << "sell asset!";
-                    Sellpopup *popup = new Sellpopup(QGameItem::getWindow(), player, this);
+                    Sellpopup *popup = new Sellpopup(QGameItem::getWindow(), player, this->getPenaltyCost());
                     popup->show(); //내부에서 매각하는것을 구현했음
-                }
             }
             //소 팔고 외양간 팔아도 파산 ㅠㅠ
             else {
                 player->setBankrupt();
+                LocalGame::getInst()->turnOver();
             }
         }
     }
-    LocalGame::getInst()->turnOver();
     return;
 }
 

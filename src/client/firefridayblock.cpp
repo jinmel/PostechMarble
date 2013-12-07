@@ -27,10 +27,10 @@ void FireFridayBlock::enter(Player *player) // player enter firefriday block
 
     switch(firefriday_type)
     {
-    case SEOULJONGBIN: inSEOULJONGBIN(player); // seouljongro 
-        break;
-    case TONGZIP: inTONGZIP(player);            //Tong zip
-        break;
+        case SEOULJONGBIN: inSEOULJONGBIN(player); // seouljongro
+            break;
+        case TONGZIP: inTONGZIP(player);            //Tong zip
+            break;
     }
     LocalGame::getInst()->turnOver();
 }
@@ -44,13 +44,17 @@ void FireFridayBlock::inSEOULJONGBIN(Player *player)
         else
         {
             if(player->getAssetValue() > 100){      // if you don't have enough money. sell ur subject block
-                Sellpopup * popup = new Sellpopup();
+                Sellpopup * popup = new Sellpopup(QGameItem::getWindow(), player, 100);
                 popup->show();
             }
             else {
                 player->setBankrupt();  // if you can't all above things, you lose
             }
         }
+    }
+    else
+    {
+        player->giveEnergy(100);
     }
 }
 
@@ -64,11 +68,15 @@ void FireFridayBlock::inTONGZIP(Player *player)         // Tongzip same with seo
         {
             if(player->getAssetValue() >100)
             {
-                Sellpopup * popup = new Sellpopup();
+                Sellpopup * popup = new Sellpopup(QGameItem::getWindow(), player, 100);
                 popup->show();
             }
             else
                 player->setBankrupt();
         }
+    }
+    else
+    {
+        player->giveEnergy(100);
     }
 }

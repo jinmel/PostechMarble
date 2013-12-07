@@ -107,12 +107,9 @@ void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     setImage(":images/ingame/pause/resume.png");
 
-    // move to ready scene
 
     //ReadyScene * rscene = scene();
-
     ReadyScene * rscene = dynamic_cast<ReadyScene*>(scene());
-
 
     for(int player_id = 1 ; player_id <=4 ; player_id ++){
         ReadyPlayerImage * rplayer_image
@@ -121,6 +118,8 @@ void ReadyButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
             LocalGame::getInst()->addPlayer(rplayer_image->getPlayer());
         }
     }
+
+    // move to ready scene
     window->switchScene(SceneType::INGAME);
 }
 
@@ -139,8 +138,7 @@ ReadyPlayerImage::ReadyPlayerImage(QGraphicsScene * scene,MainWindow* window,Pla
     connect(timeline,SIGNAL(finished()),timeline,SLOT(start())); //run forever
     timeline->start();
     setAcceptHoverEvents(true);
-    setPixmap(QPixmap(":/images/ready/plus.png"));
-    setScale(2.5);
+    setPixmap(QPixmap(":/images/ready/plus_big.png"));
 }
 
 ReadyPlayerImage::~ReadyPlayerImage(){
@@ -150,7 +148,7 @@ ReadyPlayerImage::~ReadyPlayerImage(){
 void ReadyPlayerImage::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     if(!play)
-        setPixmap(QPixmap(":/images/ready/plus_pressed.png"));
+        setPixmap(QPixmap(":/images/ready/plus_big_pressed.png"));
 }
 
 void ReadyPlayerImage::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
@@ -177,10 +175,10 @@ bool ReadyPlayerImage::getPlay(){
 }
 
 void ReadyPlayerImage::animatePlayerImage(int frame){
-    if(!play){//not playing. don't show player image
+    if(!play)//not playing. don't show player image
         return;
-    }
 
+    setScale(2.5);
 
     QString filename = QString(":/images/ingame/character/");
 

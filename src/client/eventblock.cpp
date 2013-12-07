@@ -28,7 +28,6 @@ void EventBlock::enter(Player* player)          // player enter into event block
 {
     checkEvent(player,this->scene(),this->getWindow());
     return;
-    //checkEvent(player);
 }
 
 void EventBlock::checkEvent(Player* player,QGraphicsScene * scene, MainWindow * window) // there are 7 different events.
@@ -69,7 +68,7 @@ void EventBlock::drink(Player* player)      // drink
     warn_box.setStandardButtons(QMessageBox::Ok);
     warn_box.setDefaultButton(QMessageBox::Ok);
     warn_box.setWindowTitle("이벤트: 음주");
-    warn_box.setText("음주 이벤트! 가고 싶은 술집을 선택하세요!"); // click where you want to go
+    warn_box.setText("음주 이벤트!\n가고 싶은 술집을 선택하세요!"); // click where you want to go
     warn_box.exec();
     LocalGame::getInst()->setGameState(LocalGameState::EVENT_DRINK);
 }

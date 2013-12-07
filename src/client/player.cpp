@@ -187,6 +187,9 @@ void Player::setBankrupt()
 {
     setEnergy(0);
     bankrupt = true;
+
+    for(list<Block*>::iterator itor = own_blocks.begin(); itor != own_blocks.end(); itor++)
+       removeBlock(dynamic_cast<SubjectBlock*>(*itor));
 }
 
 // set player to stay mouindo
@@ -387,7 +390,7 @@ void Player::payEnergy(int payenergy)
     }
     else{
         if(getAssetValue() >= payenergy){
-            Sellpopup * popup = new Sellpopup;
+            Sellpopup * popup = new Sellpopup(QGameItem::getWindow(), this, payenergy);
             popup->show();
         }
         else

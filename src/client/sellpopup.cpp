@@ -1,9 +1,10 @@
 #include "sellpopup.h"
 #include "ui_sellpopup.h"
+#include "localgame.h"
 #include <list>
 #include <QString>
 
-Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
+Sellpopup::Sellpopup(QWidget *parent, Player *player, int penalty) :
     QWidget(parent),
     ui(new Ui::Sellpopup)
 {
@@ -13,7 +14,7 @@ Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
     // initialize
     this->move(365, 152.5);
     this->player = player;
-    needed_value = block->getPenaltyCost() - player->getEnergy();
+    needed_value = penalty - player->getEnergy();
 
     // setup blocks list that player owns
     std::list<Block*> block_list = player->getBlocks();
@@ -66,7 +67,6 @@ Sellpopup::Sellpopup(QWidget *parent, Player *player, SubjectBlock *block) :
     // connect
     connect(ui->sellButton, SIGNAL(clicked()), this, SLOT(sell()));
     connect(ui->bankruptButton, SIGNAL(clicked()), this, SLOT(bankrupt()));
-
 }
 
 Sellpopup::~Sellpopup()
