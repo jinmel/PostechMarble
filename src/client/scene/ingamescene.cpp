@@ -124,11 +124,11 @@ IngameScene::~IngameScene(){
     delete second_dice_panel;
     delete dice_graphic;
     delete background;
-    delete board;
     delete double_timeline;
     delete bgm_player;
     delete pause_button;
     delete pause_panel;
+    LocalGame::delInst();
 }
 
 QGraphicsPixmapItem* IngameScene::setBackgroundPixmap(const char * filename){
@@ -389,7 +389,6 @@ void PlayerStatusDisplay::endSpin(){
 PlayerStatusDisplay::~PlayerStatusDisplay(){
     delete m_energy_label;
     delete m_timeline;
-    delete m_player;
     delete m_type_label;
 }
 

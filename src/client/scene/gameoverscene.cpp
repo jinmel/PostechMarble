@@ -37,7 +37,6 @@ GameoverScene::~GameoverScene()
 {
     delete background;
     delete credit_button;
-    LocalGame::getInst()->delInst();
 }
 
 void GameoverScene::setupGameover()
