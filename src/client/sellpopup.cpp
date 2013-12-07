@@ -6,7 +6,8 @@
 
 Sellpopup::Sellpopup(QWidget *parent, Player *player, int penalty) :
     QWidget(parent),
-    ui(new Ui::Sellpopup)
+    ui(new Ui::Sellpopup),
+    penalty(penalty)
 {
     ui->setupUi(this);
     layout = new QVBoxLayout(ui->scrollAreaWidgetContents);
@@ -147,6 +148,8 @@ void Sellpopup::sell()
     }
 
     player->giveEnergy(sellsum - needed_value);
+    SubjectBlock * cur_block = dynamic_cast<SubjectBlock*>(LocalGame::getInst()->getBoard()->getBlock(player->getPosition()));
+    cur_block->getOwner()->giveEnergy(penalty);
     LocalGame::getInst()->turnOver();
     this->close();
 }

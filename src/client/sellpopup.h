@@ -25,6 +25,7 @@ private:
     SubjectBlock** blocks;
     Player *player;
     int block_num;
+    int penalty;
     int needed_value;
     QString convertDept(SubjectType::Type type);
     QString convertGrade(int grade);
