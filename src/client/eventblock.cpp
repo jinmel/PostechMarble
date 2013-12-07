@@ -152,7 +152,10 @@ void EventBlock::lol(Player* player)   // playing lol
         }
         else{
             warn_box.setText("롤에 패배하여 에너지가 감소합니다!");    // you lose the lol. lose 100 energy
-            player->payEnergy(100);
+            if(player->getEnergy() >= 100)
+                player->payEnergy(100);
+            else
+                player->setEnergy(0);
         }
     }
     warn_box.exec();

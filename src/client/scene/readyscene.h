@@ -54,7 +54,10 @@ private:
     Player * player;
     bool moving;
     bool play;
+    int type;
     QTimeLine * timeline;
+    QGameItem * name;
+    QGameItem * explain;
 public:
     ReadyPlayerImage(QGraphicsScene * scene, MainWindow * window,Player * player);
     virtual ~ReadyPlayerImage();
