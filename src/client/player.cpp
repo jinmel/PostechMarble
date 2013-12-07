@@ -101,7 +101,6 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 
     // step sound load
     mediaplayer = new QMediaPlayer();
-    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/piece_move.wav").absoluteFilePath()));
     mediaplayer->setVolume(100);
 
     // end initialize
@@ -302,6 +301,7 @@ void Player::jumpTo(int block_num){
 
 void Player::stepForward(){
     position = NEXT_POS(position);
+    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/piece_move.wav").absoluteFilePath()));
     mediaplayer->play();
     if(position == 0){
         giveSalary();
