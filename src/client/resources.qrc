@@ -213,11 +213,6 @@
         <file>images/ready/cgen.png</file>
         <file>images/ready/clol.png</file>
         <file>images/ready/cout.png</file>
-        <file>images/ready/ealc.png</file>
-        <file>images/ready/edu.png</file>
-        <file>images/ready/egen.png</file>
-        <file>images/ready/elol.png</file>
-        <file>images/ready/eout.png</file>
         <file>images/ingame/block/horizontial/sbio1.png</file>
         <file>images/ingame/block/horizontial/sbio2.png</file>
         <file>images/ingame/block/horizontial/sbio3.png</file>
@@ -371,5 +366,10 @@
         <file>images/ready/plus_big.png</file>
         <file>images/ready/plus_big_pressed.png</file>
         <file>images/ready/inv.png</file>
+        <file>images/ready/ealc.png</file>
+        <file>images/ready/edu.png</file>
+        <file>images/ready/egen.png</file>
+        <file>images/ready/elol.png</file>
+        <file>images/ready/eout.png</file>
     </qresource>
 </RCC>
