@@ -14,6 +14,7 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QMap>
+#include "dice.h"
 #define NUMBER_OF_BLOCKS 32
 #define NEXT_POS(current_pos) ((current_pos + 1) % 32)
 
@@ -21,6 +22,7 @@ using namespace std;
 
 Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 {
+    Dice::getInst();
     //randomly determine CharacterType
     switch(rand() % 5){
         case 0:
