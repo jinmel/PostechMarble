@@ -162,15 +162,15 @@ Board::Board(QGraphicsScene * scene,MainWindow * window) : QGameItem(scene,windo
     blocks[28]->setPos(block_coord[28]);
 
     //IME block
-    blocks[29] = new SubjectBlock(this,IME,"IME1",80); //mse 산경입문 80
+    blocks[29] = new SubjectBlock(this,IME,"산경입문",80); //mse 산경입문 80
     blocks[29]->setImage(":/images/ingame/block/normal/sime1.png");
     blocks[29]->setPos(block_coord[29]);
 
-    blocks[30] = new SubjectBlock(this,IME,"IME2",120); //mse 제품생산공정 120
+    blocks[30] = new SubjectBlock(this,IME,"제품생산공정",120); //mse 제품생산공정 120
     blocks[30]->setImage(":/images/ingame/block/normal/sime2.png");
     blocks[30]->setPos(block_coord[30]);
 
-    blocks[31] = new SubjectBlock(this,IME,"IME3",160); //mse 품질공학 160
+    blocks[31] = new SubjectBlock(this,IME,"품질공학",160); //mse 품질공학 160
     blocks[31]->setImage(":/images/ingame/block/normal/sime3.png");
     blocks[31]->setPos(block_coord[31]);
 
