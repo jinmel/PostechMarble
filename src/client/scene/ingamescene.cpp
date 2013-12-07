@@ -43,20 +43,16 @@ IngameScene::IngameScene(qreal x, qreal y,
             status1 = new PlayerStatusDisplay(board,player);
             status1->setImage(":images/ingame/status/status1.png");
             status1->setPos(150, 120);
-            player->setEnergy(0);
             break;
         case 2:
             status2 = new PlayerStatusDisplay(board,player);
             status2->setImage(":images/ingame/status/status2.png");
             status2->setPos(460, 120);
-            player->addBlock(board->getBlock(9));
-            dynamic_cast<SubjectBlock*>(board->getBlock(9))->decideGrade();
             break;
         case 3:
             status3 = new PlayerStatusDisplay(board,player);
             status3->setImage(":images/ingame/status/status3.png");
             status3->setPos(150, 250);
-            player->setEnergy(0);
             break;
         case 4:
             status4 = new PlayerStatusDisplay(board,player);
