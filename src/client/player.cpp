@@ -13,6 +13,7 @@
 #include <QMediaPlayer>
 #include <QFileInfo>
 #include <QDir>
+#include <QMap>
 #define NUMBER_OF_BLOCKS 32
 #define NEXT_POS(current_pos) ((current_pos + 1) % 32)
 
@@ -366,7 +367,7 @@ bool Player::checkWinStatus()
     int majored = 0;
     int majored_b = 0;
 
-    map<SubjectType::Type, int> B_grades;
+    QMap<SubjectType::Type, int> B_grades;
 
     using namespace SubjectType;
     B_grades[BIO] = 0;
@@ -386,13 +387,13 @@ bool Player::checkWinStatus()
             B_grades[sblock->getDept()]++;
     }
 
-    for(map<SubjectType::Type, int>::iterator i =registered.begin(); i != registered.end(); i++) {
+    for(map<SubjectType::Type, int>::iterator i=registered.begin(); i != registered.end(); i++) {
         if(i->second == 3)
             majored ++;
     }
 
-    for(map<SubjectType::Type, int>::iterator i = B_grades.begin(); i != B_grades.end(); i++) {
-        if(i->second == 3)
+    for(QMap<SubjectType::Type, int>::iterator i=B_grades.begin(); i != B_grades.end(); i++) {
+        if(i.value() == 3)
             majored_b ++;
     }
 
