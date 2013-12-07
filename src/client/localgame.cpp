@@ -10,6 +10,7 @@
 #include "mainwindow.h"
 #include <QFileInfo>
 #include <QVector>
+#include <QtAlgorithms>
 
 using namespace std;
 using namespace LocalGameState;
@@ -279,6 +280,7 @@ void LocalGame::generalEvent(){
 
 void LocalGame::debugPrintAllPlayers(){
     QVector<Player*> players = m_player_queue->toVector();
+    qStableSort(players.begin(),players.end());
     foreach(Player * player,players){
         qDebug() << player;
     }
