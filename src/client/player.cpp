@@ -429,6 +429,7 @@ void Player::payEnergy(int payenergy)
     }
     emit energyChanged(this->energy);
 }
+
 void Player::giveEnergy(int paidenergy){
     energy+=paidenergy;
     QMediaPlayer* coinsound = new QMediaPlayer();

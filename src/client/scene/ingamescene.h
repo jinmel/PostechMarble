@@ -12,6 +12,7 @@
 #include "../qgameitem.h"
 #include "../board.h"
 #include "../player.h"
+#include "../qgameitem.h"
 
 //주사위 클래스의 그래픽
 class DiceGraphicItem;
@@ -135,7 +136,7 @@ protected:
 class PlayerStatusDisplay : public QGameItem{
     Q_OBJECT
 public:
-    PlayerStatusDisplay(QGameItem * parent,Player * player);
+    PlayerStatusDisplay(QGameItem * parent, Player * player);
     ~PlayerStatusDisplay();
 public slots:
     void setEnergyText(int energy);
@@ -149,7 +150,7 @@ private:
     int m_display_energy;
     Player const * const m_player;
     QGraphicsTextItem * m_energy_label;
-
+    QGameItem * m_type_label;
 };
 
 

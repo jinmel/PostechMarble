@@ -43,109 +43,21 @@ IngameScene::IngameScene(qreal x, qreal y,
             status1 = new PlayerStatusDisplay(board,player);
             status1->setImage(":images/ingame/status/status1.png");
             status1->setPos(150, 120);
-            status1_t = new QGameItem(this, window);
-            status1_t->setPos(480, 140);
-            status1_t->setZValue(3);
-            status1_t->setScale(0.3);
-            switch(player->getType()) {
-                using namespace CharacterType;
-                case LOL:
-                    status1_t->setImage(":images/ready/clol.png");
-                    break;
-                case GENIUS:
-                    status1_t->setImage(":images/ready/cgen.png");
-                    break;
-                case HARD_WORKER:
-                    status1_t->setImage(":images/ready/cdu.png");
-                    break;
-                case OUTSIDER:
-                    status1_t->setImage(":images/ready/cout.png");
-                    break;
-                case ALCOHOLIC:
-                    status1_t->setImage(":images/ready/calc.png");
-                    break;
-             }
             break;
         case 2:
             status2 = new PlayerStatusDisplay(board,player);
             status2->setImage(":images/ingame/status/status2.png");
             status2->setPos(460, 120);
-            status2_t = new QGameItem(this, window);
-            status2_t->setPos(790, 140);
-            status2_t->setZValue(3);
-            status2_t->setScale(0.3);
-            switch(player->getType()) {
-                using namespace CharacterType;
-                case LOL:
-                    status2_t->setImage(":images/ready/clol.png");
-                    break;
-                case GENIUS:
-                    status2_t->setImage(":images/ready/cgen.png");
-                    break;
-                case HARD_WORKER:
-                    status2_t->setImage(":images/ready/cdu.png");
-                    break;
-                case OUTSIDER:
-                    status2_t->setImage(":images/ready/cout.png");
-                    break;
-                case ALCOHOLIC:
-                    status2_t->setImage(":images/ready/calc.png");
-                    break;
-             }
             break;
         case 3:
             status3 = new PlayerStatusDisplay(board,player);
             status3->setImage(":images/ingame/status/status3.png");
             status3->setPos(150, 250);
-            status3_t = new QGameItem(this, window);
-            status3_t->setPos(480, 270);
-            status3_t->setZValue(3);
-            status3_t->setScale(0.3);
-            switch(player->getType()) {
-                using namespace CharacterType;
-                case LOL:
-                    status3_t->setImage(":images/ready/clol.png");
-                    break;
-                case GENIUS:
-                    status3_t->setImage(":images/ready/cgen.png");
-                    break;
-                case HARD_WORKER:
-                    status3_t->setImage(":images/ready/cdu.png");
-                    break;
-                case OUTSIDER:
-                    status3_t->setImage(":images/ready/cout.png");
-                    break;
-                case ALCOHOLIC:
-                    status3_t->setImage(":images/ready/calc.png");
-                    break;
-             }
             break;
         case 4:
             status4 = new PlayerStatusDisplay(board,player);
             status4->setImage(":images/ingame/status/status4.png");
             status4->setPos(460, 250);
-            status4_t = new QGameItem(this, window);
-            status4_t->setPos(790, 270);
-            status4_t->setZValue(3);
-            status4_t->setScale(0.3);
-            switch(player->getType()) {
-                using namespace CharacterType;
-                case LOL:
-                    status4_t->setImage(":images/ready/clol.png");
-                    break;
-                case GENIUS:
-                    status4_t->setImage(":images/ready/cgen.png");
-                    break;
-                case HARD_WORKER:
-                    status4_t->setImage(":images/ready/cdu.png");
-                    break;
-                case OUTSIDER:
-                    status4_t->setImage(":images/ready/cout.png");
-                    break;
-                case ALCOHOLIC:
-                    status4_t->setImage(":images/ready/calc.png");
-                    break;
-             }
             break;
         }
     }
@@ -438,6 +350,33 @@ PlayerStatusDisplay::PlayerStatusDisplay(QGameItem *parent,Player * player)
     QString labelhtml("<h1><font face='나눔고딕'>" + QString::number(player->getEnergy()) + "</font></h1>");
     m_energy_label->setHtml(labelhtml);
 
+    // show player type
+    m_type_label = new QGameItem(this);
+    m_type_label->setPos(130, 0);
+    m_type_label->setZValue(3);
+    m_type_label->setScale(0.3);
+    switch(player->getType()) {
+        using namespace CharacterType;
+        case LOL:
+            m_type_label->setImage(":images/ready/clol.png");
+            break;
+        case GENIUS:
+            m_type_label->setImage(":images/ready/cgen.png");
+            break;
+        case HARD_WORKER:
+            m_type_label->setImage(":images/ready/cdu.png");
+            break;
+        case OUTSIDER:
+            m_type_label->setImage(":images/ready/cout.png");
+            break;
+        case ALCOHOLIC:
+            m_type_label->setImage(":images/ready/calc.png");
+            break;
+     }
+
+    // hide for default
+    this->disable();
+
     //connect all signals and slots
     connect(m_timeline,SIGNAL(finished()),this,SLOT(endSpin()));
     connect(m_timeline,SIGNAL(frameChanged(int)),this,SLOT(spinNumber(int)));
@@ -465,6 +404,7 @@ PlayerStatusDisplay::~PlayerStatusDisplay(){
     delete m_energy_label;
     delete m_timeline;
     delete m_player;
+    delete m_type_label;
 }
 
 void PlayerStatusDisplay::setEnergyText(int energy){
