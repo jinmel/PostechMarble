@@ -42,9 +42,9 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     name = "";
     position = 0;
 
-    energy = 1000;
+    energy = 500;
     if(character_type == CharacterType::GENIUS)
-        energy += 200;
+        energy += 100;
 
     bankrupt = false;
     mobile = true;
