@@ -371,5 +371,9 @@
         <file>images/ready/plus_big.png</file>
         <file>images/ready/plus_big_pressed.png</file>
         <file>images/ready/inv.png</file>
+        <file>images/gameover/red_player.png</file>
+        <file>images/gameover/blue_player.png</file>
+        <file>images/gameover/green_player.png</file>
+        <file>images/gameover/yellow_player.png</file>
     </qresource>
 </RCC>
