@@ -288,8 +288,8 @@ PhotoGenicItem::PhotoGenicItem(QGraphicsScene *scene, MainWindow *window)
 }
 
 void PhotoGenicItem::showPhotos(){
-    timeline = new QTimeLine(20000); //spin for 3 second
-    timeline->setFrameRange(0,8); // 3 spins
+    timeline = new QTimeLine(20000); //showing photo in 20 seconds
+    timeline->setFrameRange(0,8); // 3 spins + show and hide
     timeline->setEasingCurve(QEasingCurve::Linear);
     connect(this->timeline,SIGNAL(frameChanged(int)),this,SLOT(slidePhoto(int)));
     connect(this->timeline,SIGNAL(finished()),this,SLOT(slideFinish()));
