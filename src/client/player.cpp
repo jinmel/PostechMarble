@@ -101,7 +101,6 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 
     // step sound load
     mediaplayer = new QMediaPlayer();
-    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/piece_move.wav").absoluteFilePath()));
     mediaplayer->setVolume(100);
 
     // end initialize
@@ -192,8 +191,15 @@ void Player::setBankrupt()
     setEnergy(0);
     bankrupt = true;
 
+    hide(true);
+
+    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/no.wav").absoluteFilePath()));
+    mediaplayer->play();
+
     for(list<Block*>::iterator itor = own_blocks.begin(); itor != own_blocks.end(); itor++)
        removeBlock(dynamic_cast<SubjectBlock*>(*itor));
+
+
 }
 
 // set player to stay mouindo
@@ -295,6 +301,7 @@ void Player::jumpTo(int block_num){
 
 void Player::stepForward(){
     position = NEXT_POS(position);
+    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/piece_move.wav").absoluteFilePath()));
     mediaplayer->play();
     if(position == 0){
         giveSalary();
@@ -509,4 +516,35 @@ void Player::animatePlayerImage(int frame){
         image = image.mirrored(true,false);
 
     setPixmap(QPixmap::fromImage(image));
+}
+
+QDebug &operator <<(QDebug &d,CharacterType::Type type){
+    switch(type){
+    case CharacterType::ALCOHOLIC:
+        d << "Alcoholic";
+        break;
+    case CharacterType::GENIUS:
+        d << "Genius";
+        break;
+    case CharacterType::HARD_WORKER:
+        d << "Hard Worker";
+        break;
+    case CharacterType::LOL:
+        d << "LOL";
+        break;
+    case CharacterType::OUTSIDER:
+        d << "Outsider";
+        break;
+    default :
+        d << "no type: error";
+        break;
+    }
+   return d;
+}
+
+QDebug operator <<(QDebug d,const Player * p){
+    d << "Player id:" << p->id;
+    d << "Type:" << p->character_type;
+    d << "Color" << p->color;
+    return d;
 }

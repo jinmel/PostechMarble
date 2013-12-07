@@ -33,7 +33,6 @@ public slots:
     void playerEvent(Player * player);
     void boardEvent(Board * m_board);
     void generalEvent();
-    void restartTimeline();
 signals:
     void signalAll();
 private:
@@ -54,8 +53,9 @@ public:
     static void delInst();
     void init(Board * board,Dice * dice);
     void addPlayer(Player * player);
-
+    int getPlayerCount();
     void turnOver();
+
 
     Dice* getDice();
     Board* getBoard();
@@ -63,8 +63,9 @@ public:
     Player* getWinner();
     PlayerQueue * getPlayerQueue();
     LocalGameState::State getGameState();
-
     void setDice(Dice * dice);
     void setBoard(Board * board);
     void setGameState(LocalGameState::State new_state);
+
+    void debugPrintAllPlayers();
 };

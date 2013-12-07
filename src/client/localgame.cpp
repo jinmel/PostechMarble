@@ -9,6 +9,8 @@
 #include "scene/gameoverscene.h"
 #include "mainwindow.h"
 #include <QFileInfo>
+#include <QVector>
+#include <QtAlgorithms>
 
 using namespace std;
 using namespace LocalGameState;
@@ -19,7 +21,8 @@ LocalGame::LocalGame(){
     nPlayers = 0;
     animation_timeline = new QTimeLine(800);
     animation_timeline->setFrameRange(1,11);
-    connect(animation_timeline,SIGNAL(finished()),this,SLOT(restartTimeline()));
+    //runs forever
+    connect(animation_timeline,SIGNAL(finished()),animation_timeline,SLOT(start()));
     animation_timeline->start(); //runs forever
     //this-> window = dynamic_cast<MainWindow*>(parent);
 
@@ -53,6 +56,10 @@ void LocalGame::addPlayer(Player *new_player){
     emit new_player->disable();
     connect(animation_timeline,SIGNAL(frameChanged(int)),new_player,SLOT(animatePlayerImage(int)));
     connect(new_player,SIGNAL(playerArrived(Player*)),this,SLOT(playerEvent(Player*)));
+}
+
+int LocalGame::getPlayerCount(){
+    return m_player_queue->getSize();
 }
 
 void LocalGame::init(Board * board, Dice * dice){
@@ -104,6 +111,7 @@ void LocalGame::setGameState(State new_state){
 
 void LocalGame::turnOver(){
     //switch current player to next player and change state
+    qDebug() <<"number of players:"<< nPlayers;
     if(m_current_player->checkWinStatus()){
         //TODO: need to emit signal to notify gameover
         winner = m_current_player;
@@ -272,8 +280,11 @@ void LocalGame::generalEvent(){
     }
 }
 
-
-//timeline finished. restart.
-void LocalGame::restartTimeline(){
-    animation_timeline->start();
+void LocalGame::debugPrintAllPlayers(){
+    QVector<Player*> players = m_player_queue->toVector();
+    qStableSort(players.begin(),players.end());
+    foreach(Player * player,players){
+        qDebug() << player;
+    }
 }
+
