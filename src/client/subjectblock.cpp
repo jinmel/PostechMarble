@@ -58,11 +58,11 @@ int SubjectBlock::getBuyOutPrice(){                     //buy other's  subject b
 
 int SubjectBlock::getPenaltyCost(){         // pay penalty. penalty changes up to grade.
     if(grade == A)
-        return int(cost * 2.0);             // if grade A , penalty = 0.8 *cost
+        return int(cost * 2.0);             // if grade A , penalty = 2.0 *cost
     else if(grade == B)
-        return int(cost * 1.5);             // if B, 0.4 cost
+        return int(cost * 1.5);             // if B, 1.5 cost
     else if(grade == C)
-        return int(cost * 1.0);             //if C, 0.2 cost
+        return int(cost * 1.0);             //if C, 1.0 cost
     else
         return 0;
 }
