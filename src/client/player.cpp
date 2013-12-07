@@ -101,7 +101,6 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
 
     // step sound load
     mediaplayer = new QMediaPlayer();
-    mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/piece_move.wav").absoluteFilePath()));
     mediaplayer->setVolume(100);
     coinspr = new QMediaPlayer();
     coinspr->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coinspread.mp3").absoluteFilePath()));

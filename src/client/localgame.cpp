@@ -87,6 +87,10 @@ void LocalGame::setDice(Dice * dice){
     m_dice = dice;
 }
 
+Player* LocalGame::getWinner() {
+    return winner;
+}
+
 Player* LocalGame::getCurrentPlayer(){
     return m_current_player;
 }
@@ -120,7 +124,6 @@ void LocalGame::turnOver(){
         win_sound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/Win.mp3").absoluteFilePath()));
         win_sound->setVolume(100);
         win_sound->play();
-        GameoverScene::setWinner(winner);
         warn_box.exec();
         m_state = GAME_OVER;\
         m_board->getWindow()->switchScene(SceneType::GAMEOVER);
@@ -139,7 +142,6 @@ void LocalGame::turnOver(){
             win_sound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/Win.mp3").absoluteFilePath()));
             win_sound->setVolume(100);
             win_sound->play();
-            GameoverScene::setWinner(winner);
             warn_box.exec();
             m_state = GAME_OVER;
             m_board->getWindow()->switchScene(SceneType::GAMEOVER);
