@@ -367,9 +367,14 @@
         <file>images/ingame/character/top_up_id_yellow_walk_011.png</file>
         <file>images/ingame/character/top_up_id_yellow_walk_012.png</file>
         <file>images/ready/readyscene.png</file>
+        <file>images/gameover/game_over_background.png</file>
         <file>images/ready/plus_big.png</file>
         <file>images/ready/plus_big_pressed.png</file>
+<<<<<<< HEAD
+
+=======
         <file>images/gameover/gameover_background.png</file>
         <file>images/ready/inv.png</file>
+>>>>>>> 3c871a48e5294fc9fbda91e3c6302affcb7b1d93
     </qresource>
 </RCC>
