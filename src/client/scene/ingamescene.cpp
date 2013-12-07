@@ -104,11 +104,11 @@ IngameScene::IngameScene(qreal x, qreal y,
     second_dice_panel->setPos(500,450);
     second_dice_panel->setZValue(2);
 
-
-
     // setup BGM
     bgm_player = new QMediaPlayer();
-    bgm_player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/bgm.mp3").absoluteFilePath()));
+    bgm_player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/GamePlay.mp3").absoluteFilePath()));
+    bgm_player->setVolume(70);
+    connect(bgm_player, SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)), bgm_player, SLOT(play()));
 
     game->init(board,Dice::getInst());
 
