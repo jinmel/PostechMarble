@@ -80,6 +80,10 @@ void LocalGame::setDice(Dice * dice){
     m_dice = dice;
 }
 
+Player* LocalGame::getWinner() {
+    return winner;
+}
+
 Player* LocalGame::getCurrentPlayer(){
     return m_current_player;
 }
@@ -100,7 +104,7 @@ void LocalGame::setGameState(State new_state){
 
 void LocalGame::turnOver(){
     //switch current player to next player and change state
-    if(m_current_player->checkWinStatus()){
+    if(!m_current_player->checkWinStatus()){
         //TODO: need to emit signal to notify gameover
         winner = m_current_player;
         qDebug() << "winner! player:" << winner->getId();
@@ -112,7 +116,6 @@ void LocalGame::turnOver(){
         win_sound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/Win.mp3").absoluteFilePath()));
         win_sound->setVolume(100);
         win_sound->play();
-        GameoverScene::setWinner(winner);
         warn_box.exec();
         m_state = GAME_OVER;\
         m_board->getWindow()->switchScene(SceneType::GAMEOVER);
@@ -131,7 +134,6 @@ void LocalGame::turnOver(){
             win_sound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/Win.mp3").absoluteFilePath()));
             win_sound->setVolume(100);
             win_sound->play();
-            GameoverScene::setWinner(winner);
             warn_box.exec();
             m_state = GAME_OVER;
             m_board->getWindow()->switchScene(SceneType::GAMEOVER);

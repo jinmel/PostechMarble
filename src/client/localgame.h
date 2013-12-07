@@ -60,6 +60,7 @@ public:
     Dice* getDice();
     Board* getBoard();
     Player* getCurrentPlayer();
+    Player* getWinner();
     PlayerQueue * getPlayerQueue();
     LocalGameState::State getGameState();
 
