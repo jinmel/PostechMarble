@@ -34,7 +34,6 @@ void EventBlock::checkEvent(Player* player,QGraphicsScene * scene, MainWindow * 
 {
     // generate random event
     int value = rand() % 7;
-
     switch(value) {
     case 0:                                 // drink. go to firefriday block which you want
         drink(player);
@@ -97,6 +96,7 @@ void EventBlock::cc(Player* player)  //Campus couple
         warn_box.setText("당신은 아웃사이더라서 캠퍼스 커플에 면역입니다."); // if you are Outsider. you don't think about CC.
         warn_box.exec();
     }
+    LocalGame::getInst()->turnOver();
 }
 
 void EventBlock::takeSubject(Player* player)   // You can get one of subject block.
