@@ -518,7 +518,7 @@ void Player::animatePlayerImage(int frame){
     setPixmap(QPixmap::fromImage(image));
 }
 
-QDebug operator <<(QDebug d,CharacterType::Type & type){
+QDebug &operator <<(QDebug &d,CharacterType::Type type){
     switch(type){
     case CharacterType::ALCOHOLIC:
         d << "Alcoholic";
@@ -539,13 +539,12 @@ QDebug operator <<(QDebug d,CharacterType::Type & type){
         d << "no type: error";
         break;
     }
-
    return d;
 }
 
-QDebug  operator <<(QDebug d,const Player * p){
+QDebug operator <<(QDebug d,const Player * p){
     d << "Player id:" << p->id;
-    d << "Player Type:" << p->character_type;
-    d << "Player Color" << p->color;
+    d << "Type:" << p->character_type;
+    d << "Color" << p->color;
     return d;
 }
