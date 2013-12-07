@@ -37,6 +37,7 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
             break;
         case 4:
             character_type = CharacterType::ALCOHOLIC;
+            break;
     }
 
     id = _id;
@@ -402,7 +403,7 @@ bool Player::checkWinStatus()
     else if(!plural && majored_b == 1)
         return true;
     else
-        false;
+        return false;
 
 }
 
