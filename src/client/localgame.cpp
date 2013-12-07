@@ -55,6 +55,10 @@ void LocalGame::addPlayer(Player *new_player){
     connect(new_player,SIGNAL(playerArrived(Player*)),this,SLOT(playerEvent(Player*)));
 }
 
+int LocalGame::getPlayerCount(){
+    return m_player_queue->getSize();
+}
+
 void LocalGame::init(Board * board, Dice * dice){
     m_current_player = m_player_queue->next();
     Q_CHECK_PTR(m_current_player);
@@ -100,6 +104,7 @@ void LocalGame::setGameState(State new_state){
 
 void LocalGame::turnOver(){
     //switch current player to next player and change state
+    qDebug() <<"number of players:"<< nPlayers;
     if(m_current_player->checkWinStatus()){
         //TODO: need to emit signal to notify gameover
         winner = m_current_player;

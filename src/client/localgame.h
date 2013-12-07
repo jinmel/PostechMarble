@@ -54,7 +54,7 @@ public:
     static void delInst();
     void init(Board * board,Dice * dice);
     void addPlayer(Player * player);
-
+    int getPlayerCount();
     void turnOver();
 
     Dice* getDice();
