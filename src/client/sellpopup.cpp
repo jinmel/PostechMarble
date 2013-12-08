@@ -86,28 +86,28 @@ QString Sellpopup::convertDept(SubjectType::Type type)
     switch(type) {
         using namespace SubjectType;
         case CSED:
-            dept = QString::fromUtf8("\ucef4\uacf5\uacfc");
+            dept = QString::fromUtf8("컴공과");
             break;
         case ME:
-            dept = QString::fromUtf8("\uae30\uacc4\uacfc");
+            dept = QString::fromUtf8("기계공학과");
             break;
         case MATH:
-            dept = QString::fromUtf8("\uc218\ud559\uacfc");
+            dept = QString::fromUtf8("수학과");
             break;
         case EE:
-            dept = QString::fromUtf8("\uc804\uc790\uacfc");
+            dept = QString::fromUtf8("전자과");
             break;
         case PHYS:
-            dept = QString::fromUtf8("\ubb3c\ub9ac\uacfc");
+            dept = QString::fromUtf8("물리과");
             break;
         case BIO:
-            dept = QString::fromUtf8("\uc0dd\uba85\uacfc");
+            dept = QString::fromUtf8("수학과");
             break;
         case CHEM:
-            dept = QString::fromUtf8("\ud654\ud559\uacfc");
+            dept = QString::fromUtf8("화학과");
             break;
         case IME:
-            dept = QString::fromUtf8("\uc0b0\uacbd\uacfc");
+            dept = QString::fromUtf8("산경과");
             break;
     }
 
@@ -147,7 +147,7 @@ void Sellpopup::sell()
         }
     }
 
-    player->giveEnergy(sellsum - needed_value);
+    player->giveEnergy(sellsum - needed_value - penalty);
     SubjectBlock * cur_block = dynamic_cast<SubjectBlock*>(LocalGame::getInst()->getBoard()->getBlock(player->getPosition()));
     cur_block->getOwner()->giveEnergy(penalty);
     LocalGame::getInst()->turnOver();
@@ -180,4 +180,6 @@ void Sellpopup::calculate()
     // is enough?
     if(selected >= needed_value)
         ui->sellButton->setEnabled(true);
+    else
+        ui->sellButton->setEnabled(false);
 }
