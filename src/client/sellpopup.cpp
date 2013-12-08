@@ -107,7 +107,7 @@ QString Sellpopup::convertDept(SubjectType::Type type)
             dept = QString::fromUtf8("\ud654\ud559\uacfc");
             break;
         case IME:
-            dept = QString::fromUtf8("\ud654\ud559\uacfc");
+            dept = QString::fromUtf8("\uc0b0\uacbd\uacfc");
             break;
     }
 
