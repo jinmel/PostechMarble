@@ -386,12 +386,6 @@ void PlayerStatusDisplay::endSpin(){
     m_last_energy = m_display_energy;
 }
 
-PlayerStatusDisplay::~PlayerStatusDisplay(){
-    delete m_energy_label;
-    delete m_timeline;
-    delete m_type_label;
-}
-
 void PlayerStatusDisplay::setEnergyText(int energy){
     m_display_energy = energy;
     m_timeline->start();
@@ -401,6 +395,13 @@ void PlayerStatusDisplay::activate(){
     QGraphicsOpacityEffect * effect = new QGraphicsOpacityEffect;
     effect->setOpacity(1.0);
     this->setGraphicsEffect(effect);
+}
+
+
+PlayerStatusDisplay::~PlayerStatusDisplay(){
+    delete m_energy_label;
+    delete m_timeline;
+    delete m_type_label;
 }
 
 void PlayerStatusDisplay::disable(){

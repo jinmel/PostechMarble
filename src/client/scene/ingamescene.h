@@ -50,11 +50,6 @@ private:
     PauseButton *pause_button;
 
     QGameItem *winner_image;//image of winner character
-    QGameItem *status1_t;
-    QGameItem *status2_t;
-    QGameItem *status3_t;
-    QGameItem *status4_t;
-
 public:
     IngameScene(qreal x=0,qreal y=0,qreal width=1280,
                 qreal height=720,
@@ -63,16 +58,9 @@ public:
     QGraphicsPixmapItem* setBackgroundPixmap(const char * filename);
     QGraphicsPixmapItem* backgroundPixmap();
     void animateIngame();
-
 private slots:
     void showDouble();
     void hideDouble();
-
-public slots:
-    //void switchtoGameover();
-
-public slots:
-    //void switchtoGameover();
 };
 
 class DiceGraphicItem: public QGameItem

@@ -54,7 +54,6 @@ public:
     int getPlayerCount();
     void turnOver();
 
-
     Dice* getDice();
     Board* getBoard();
     Player* getCurrentPlayer();

@@ -25,7 +25,6 @@ LocalGame::LocalGame(){
     connect(animation_timeline,SIGNAL(finished()),animation_timeline,SLOT(start()));
     animation_timeline->start(); //runs forever
     //this-> window = dynamic_cast<MainWindow*>(parent);
-
 }
 
 LocalGame::~LocalGame(){
