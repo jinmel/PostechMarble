@@ -29,6 +29,8 @@ SubjectBlock::SubjectBlock(QGameItem * parent,
     grade=NONE;
     grade_image = new QGraphicsPixmapItem(this);
     effect_sound = new QMediaPlayer();
+
+
 }
 
 //public method
@@ -167,14 +169,12 @@ void SubjectBlock::enter(Player* player)        // player enter subject block
 }
 
 void SubjectBlock::decideGrade(){//random 받아서 20% A, 40% B, 40% C
-    int randomvalue = rand() % 100 + 1;
 
-    if(randomvalue<=20)
-        grade = A;      //A
-    else if(randomvalue<=60)
-        grade = B;      //B
-    else
-        grade = C;      //C
+    grade = LocalGame::gradequeue.dequeue();
+
+    qDebug() << grade;
+    qDebug() << LocalGame::gradequeue.length();
+
 
     //set grade image
     setGradeImage(grade);

@@ -73,7 +73,7 @@ void CornerBlock::in61Call(Player* player)
     QMessageBox warn_box;
     warn_box.setStandardButtons(QMessageBox::Ok);
     warn_box.setDefaultButton(QMessageBox::Ok);
-    if((rand() % 1)==0)
+    if(1)
     {
         // play 61call sound
         effect_player->setMedia(QUrl::fromLocalFile(QFileInfo("sound/61call.wav").absoluteFilePath()));
@@ -130,7 +130,7 @@ void CornerBlock::inPluralMajor(Player* player)
         warn_box.exec();
     }
     else{
-        switch((rand() % 6)==1) {
+        switch(1) {
             case 1:
                 qDebug() <<"You have to take plural major.";
 

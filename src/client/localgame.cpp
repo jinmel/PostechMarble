@@ -11,9 +11,15 @@
 #include <QFileInfo>
 #include <QVector>
 #include <QtAlgorithms>
+#include <QQueue>
 
 using namespace std;
 using namespace LocalGameState;
+
+QQueue<SubjectBlock::Grade>           LocalGame::gradequeue;
+QQueue<int> LocalGame::eventqueue;
+
+
 
 LocalGame::LocalGame(){
     m_state = ROLL_DICE;
@@ -25,6 +31,8 @@ LocalGame::LocalGame(){
     connect(animation_timeline,SIGNAL(finished()),animation_timeline,SLOT(start()));
     animation_timeline->start(); //runs forever
     //this-> window = dynamic_cast<MainWindow*>(parent);
+
+
 }
 
 LocalGame::~LocalGame(){
@@ -37,6 +45,20 @@ LocalGame * LocalGame::m_inst = NULL;
 LocalGame * LocalGame::getInst(){
     if(m_inst == NULL){
         m_inst = new LocalGame;
+
+        gradequeue.enqueue(SubjectBlock::C);
+        gradequeue.enqueue(SubjectBlock::A);
+        gradequeue.enqueue(SubjectBlock::B);
+        gradequeue.enqueue(SubjectBlock::C);
+        gradequeue.enqueue(SubjectBlock::A);
+        gradequeue.enqueue(SubjectBlock::B);
+        gradequeue.enqueue(SubjectBlock::A);
+        gradequeue.enqueue(SubjectBlock::B);
+        gradequeue.enqueue(SubjectBlock::B);
+        gradequeue.enqueue(SubjectBlock::B);
+
+        eventqueue.enqueue(2);
+        eventqueue.enqueue(6);
     }
 
     return m_inst;
@@ -288,4 +310,6 @@ void LocalGame::debugPrintAllPlayers(){
         qDebug() << player;
     }
 }
+
+
 

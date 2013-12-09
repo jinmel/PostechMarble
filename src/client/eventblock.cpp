@@ -14,6 +14,8 @@ using namespace std;
 EventBlock::EventBlock(QGameItem * parent,QGraphicsScene * scene, MainWindow * window) : Block(parent) // event block constructor
 {
     block_type = BlockType::EVENT;
+
+
 }
 
 
@@ -33,7 +35,7 @@ void EventBlock::enter(Player* player)          // player enter into event block
 void EventBlock::checkEvent(Player* player,QGraphicsScene * scene, MainWindow * window) // there are 7 different events.
 {
     // generate random event
-    int value = rand() % 7;
+    int value = LocalGame::eventqueue.dequeue();
     switch(value) {
     case 0:                                 // drink. go to firefriday block which you want
         drink(player);

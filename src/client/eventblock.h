@@ -3,10 +3,13 @@
 #include "block.h"
 #include "types.h"
 #include <QGraphicsScene>
+#include <QQueue>
 
 
 class EventBlock : public Block
 {
+private:
+    QQueue<int> eventqueue;
 public:
     EventBlock(QGameItem * parent, QGraphicsScene * scene, MainWindow * window);
     virtual ~EventBlock();

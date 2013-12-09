@@ -20,6 +20,69 @@ Dice::Dice()    //dice constructor
     effect_sound->setVolume(100);
     timeline = new QTimeLine(1300);
 
+    //(5,4)플레이어 1응선대 이수
+    dicevaluequeue1.enqueue(5);
+    dicevaluequeue2.enqueue(5);
+
+    //(5,4)플레이어 2 응선대 벌금
+    dicevaluequeue1.enqueue(2);
+    dicevaluequeue2.enqueue(4);
+
+    dicevaluequeue1.enqueue(4);
+    dicevaluequeue2.enqueue(6);
+
+    //(1,1)플레이어 3 객체 더블
+    dicevaluequeue1.enqueue(1);
+    dicevaluequeue2.enqueue(1);
+
+
+    //(2,4)플레이어 3 더블 휴학
+    dicevaluequeue1.enqueue(2);
+    dicevaluequeue2.enqueue(4);
+
+    //(1,2)플레이어 1 이벤트 블록가서 설종빈 ㄱㄱ
+    dicevaluequeue1.enqueue(2);
+    dicevaluequeue2.enqueue(4);
+    //(2,2) 플레이어 2 복수전공 당첨
+    dicevaluequeue1.enqueue(1);
+    dicevaluequeue2.enqueue(1);
+
+    dicevaluequeue1.enqueue(1);
+    dicevaluequeue2.enqueue(4);
+
+
+    //(3,5) 플레이어 2 육일콜 도착해서 해석학
+    dicevaluequeue1.enqueue(6);
+    dicevaluequeue2.enqueue(6);
+
+    dicevaluequeue1.enqueue(5);
+    dicevaluequeue2.enqueue(3);
+
+    dicevaluequeue1.enqueue(4);
+    dicevaluequeue2.enqueue(6);
+
+    dicevaluequeue1.enqueue(1);
+    dicevaluequeue2.enqueue(2);
+
+    dicevaluequeue1.enqueue(5);
+    dicevaluequeue2.enqueue(3);
+
+    dicevaluequeue1.enqueue(1);
+    dicevaluequeue2.enqueue(2);
+
+    dicevaluequeue1.enqueue(1);
+    dicevaluequeue2.enqueue(3);
+
+    dicevaluequeue1.enqueue(1);
+    dicevaluequeue2.enqueue(2);
+
+    dicevaluequeue1.enqueue(2);
+    dicevaluequeue2.enqueue(3);
+
+    dicevaluequeue1.enqueue(3);
+    dicevaluequeue2.enqueue(1);
+
+
     connect(timeline, SIGNAL(finished()), this, SLOT(afterRollSound()));
 }
 
@@ -64,6 +127,9 @@ void Dice::roll()           // dice roll
 
     value1 = rand() % 6 + 1;        // there are two dices
     value2 = rand() % 6 + 1;
+
+    value1 = dicevaluequeue1.dequeue();
+    value2 = dicevaluequeue2.dequeue();
 
     emit diceRolled(getValue(),isDouble());
     emit firstDiceRolled(value1);

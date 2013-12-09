@@ -46,9 +46,7 @@ Player::Player(QGameItem* parent,int _id) : QGameItem(parent)
     name = "";
     position = 0;
 
-    energy = 500;
-    if(character_type == CharacterType::GENIUS)
-        energy += 100;
+    energy = 150;
 
     bankrupt = false;
     mobile = true;
@@ -462,6 +460,8 @@ int Player::getAssetValue() {
            asset += dynamic_cast<SubjectBlock*>(*itor)->getSellCost();
         }
     }
+
+    asset += energy;
     return asset;
 }
 

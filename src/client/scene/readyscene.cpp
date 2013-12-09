@@ -30,6 +30,11 @@ ReadyScene::ReadyScene(qreal x, qreal y,
     player2 = new Player(NULL,2);
     player3 = new Player(NULL,3);
     player4 = new Player(NULL,4);
+    player1->setType(CharacterType::HARD_WORKER);
+    player2->setType(CharacterType::ALCOHOLIC);
+    player3->setType(CharacterType::LOL);
+    player2->setEnergy(400);
+    player3->setEnergy(350);
     player_image1 = new ReadyPlayerImage(this,window,player1);
     player_image2 = new ReadyPlayerImage(this,window,player2);
     player_image3 = new ReadyPlayerImage(this,window,player3);

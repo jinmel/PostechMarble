@@ -2,7 +2,7 @@
 #include <QObject>
 #include <QTimeLine>
 #include <QMediaPlayer>
-
+#include <QQueue>
 class Dice;
 
 class Dice : public QObject
@@ -16,7 +16,8 @@ private:
     QTimeLine *timeline;
     QMediaPlayer *roll_sound;
     QMediaPlayer *effect_sound;
-
+    QQueue<int> dicevaluequeue1;
+    QQueue<int> dicevaluequeue2;
 public:
 	~Dice();
 	void roll();

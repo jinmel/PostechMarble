@@ -5,8 +5,11 @@
 #include "block.h"
 #include <QGraphicsPixmapItem>
 #include <QMediaPlayer>
-
+#include <QQueue>
 class Player;
+
+
+
 
 class SubjectBlock : public Block
 {
@@ -25,6 +28,7 @@ private:
     Grade                   grade; //4->A 3->B 2->C
     QGraphicsPixmapItem *   grade_image;
     QMediaPlayer*           effect_sound;
+
 
 public:
     SubjectBlock(QGameItem* parent,
@@ -48,3 +52,5 @@ protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
 
 };
+
+

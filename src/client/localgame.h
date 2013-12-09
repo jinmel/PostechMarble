@@ -4,6 +4,7 @@
 #include "block.h"
 #include <QObject>
 #include "dice.h"
+#include "subjectblock.h"
 
 
 namespace LocalGameState {
@@ -45,6 +46,8 @@ private:
     Dice *m_dice;
     static LocalGame * m_inst;
 public:
+    static QQueue<SubjectBlock::Grade> gradequeue;
+    static QQueue<int> eventqueue;
     LocalGame();
     virtual ~LocalGame();
     static LocalGame * getInst();
