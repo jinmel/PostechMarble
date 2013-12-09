@@ -358,7 +358,7 @@ void Player::giveSalary()
 {
     qDebug() << "Player " << id << " received salary";
     //maybe add animation for gaining energy
-    QMediaPlayer* salarysound = new QMediaPlayer();
+    salarysound = new QMediaPlayer();
     salarysound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/coinsprinkle.mp3").absoluteFilePath()));
     salarysound->play();
 
@@ -421,6 +421,7 @@ void Player::payEnergy(int payenergy)
     {
         coinspr->play();
         energy-=payenergy;
+        coinspr->play();
     }
     else{
         if(getAssetValue() >= payenergy){

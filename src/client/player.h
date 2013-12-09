@@ -30,6 +30,7 @@ private:
     QPointF player_coord[32];
     QMediaPlayer* mediaplayer;
     QMediaPlayer* coinspr;
+    QMediaPlayer* salarysound;
     friend QDebug operator <<(QDebug d,const Player * p);
 public:
     Player(QGameItem * parent,int id);
