@@ -199,8 +199,11 @@ void Player::setBankrupt()
     mediaplayer->setMedia(QUrl::fromLocalFile(QFileInfo("sound/no.wav").absoluteFilePath()));
     mediaplayer->play();
 
-    for(list<Block*>::iterator itor = own_blocks.begin(); itor != own_blocks.end(); itor++)
-       removeBlock(dynamic_cast<SubjectBlock*>(*itor));
+    list<Block*>::iterator itor = own_blocks.begin();
+    while(itor != own_blocks.end()) {
+          removeBlock(dynamic_cast<SubjectBlock*>(*itor));
+          itor = own_blocks.begin();
+    }
 
 
 }
