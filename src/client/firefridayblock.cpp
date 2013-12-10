@@ -8,6 +8,7 @@
 #include "types.h"
 #include <QFileInfo>
 
+
 // Constructor & Destructor
 FireFridayBlock::FireFridayBlock(QGameItem * parent,FireFridayType::Type type)
     : Block(parent)
@@ -28,6 +29,7 @@ FireFridayBlock::~FireFridayBlock()
 void FireFridayBlock::enter(Player *player) // player enter firefriday block
 {
     sound->play();
+
     using namespace FireFridayType;
 
     switch(firefriday_type)

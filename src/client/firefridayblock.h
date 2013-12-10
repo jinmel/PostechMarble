@@ -3,6 +3,7 @@
 #include "types.h"
 #include <QMediaPlayer>
 
+
 class FireFridayBlock : public Block
 {
 private:
