@@ -1,12 +1,15 @@
 #pragma once
 #include "block.h"
 #include "types.h"
+#include <QMediaPlayer>
 
 
 class FireFridayBlock : public Block
 {
 private:
     FireFridayType::Type firefriday_type;
+    QMediaPlayer *sound;
+
 public:
     FireFridayBlock(QGameItem * parent,FireFridayType::Type type);
     virtual ~FireFridayBlock();

@@ -6,12 +6,17 @@
 #include "sellpopup.h"
 #include "localgame.h"
 #include "types.h"
+#include <QFileInfo>
+
+
 // Constructor & Destructor
 FireFridayBlock::FireFridayBlock(QGameItem * parent,FireFridayType::Type type)
     : Block(parent)
 {
     firefriday_type = type;
     block_type = BlockType::FRIDAY;
+    sound = new QMediaPlayer();
+    sound->setMedia(QUrl::fromLocalFile(QFileInfo("sound/drink.wav").absoluteFilePath()));
 }
 
 FireFridayBlock::~FireFridayBlock()
@@ -23,6 +28,8 @@ FireFridayBlock::~FireFridayBlock()
 // Methods
 void FireFridayBlock::enter(Player *player) // player enter firefriday block
 {
+    sound->play();
+
     using namespace FireFridayType;
 
     switch(firefriday_type)
