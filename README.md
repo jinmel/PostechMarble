@@ -1,15 +1,8 @@
-CSED232 Course Project - Postech Marble
+Postech Marble
 ==============
 
 ## NOTICE!!
 **Please make sure the project is compilable before commit your changes**
-
-
-Tutorials
-----------------------------
- * Git Tutorial Game: http://try.github.io/levels/1/challenges/1
- * QGraphicsView Framework : http://qt-project.org/doc/qt-4.8/graphicsview.html
-
 
 Environment Setup
 -----------------------------
