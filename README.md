@@ -1,17 +1,15 @@
 Postech Marble
 ==============
 
-## NOTICE!!
-**Please make sure the project is compilable before commit your changes**
+![Menu](/report/images/1Main.png "Menu screen")
+
+![GamePlay](/report/images/4buySubject.png "Game play")
 
 Environment Setup
 -----------------------------
  * Qt 5.1
 
-
-
-
-Coding Standard 
+Coding guidelines
 -----------------------------
  * use [snake_case](http://en.wikipedia.org/wiki/Snake_case) for variables
  * use [camelCase](http://en.wikipedia.org/wiki/CamelCase) for operations 
